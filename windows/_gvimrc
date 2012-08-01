@@ -1,0 +1,3 @@
+set runtimepath+=$HOME/My\ Documents/GitHub/dotfiles
+source $HOME\My Documents\GitHub\dotfiles\_gvimrc
+
