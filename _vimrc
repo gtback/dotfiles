@@ -38,7 +38,7 @@ nnoremap <leader><space> :noh<cr>
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=85
+set colorcolumn=80
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
