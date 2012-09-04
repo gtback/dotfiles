@@ -1,3 +1,3 @@
-set runtimepath+=$HOME/My\ Documents/GitHub/dotfiles
-source $HOME\My Documents\GitHub\dotfiles\_vimrc
+set runtimepath+=$HOME/Documents/GitHub/dotfiles
+source $HOME\Documents\GitHub\dotfiles\_vimrc
 
