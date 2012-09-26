@@ -1,2 +1,6 @@
 colorscheme morning
-set guifont=Lucida_Console:h10
+if has("gui_win32")
+  set guifont=Lucida_Console:h10
+else
+  set guifont="Monospace 9"
+endif
