@@ -1,4 +1,7 @@
+" Last Modified: 2012-10-03
+
 filetype off
+syntax on
 set nocompatible
 set modelines=0
 

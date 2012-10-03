@@ -1,3 +1,4 @@
+" Last Modified: 2012-09-26
 colorscheme morning
 if has("gui_win32")
   set guifont=Lucida_Console:h10
