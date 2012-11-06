@@ -1,4 +1,4 @@
-" Last Modified: 2012-10-03
+" Last Modified: 2012-11-06
 
 filetype off
 syntax on
@@ -24,7 +24,12 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
+
+if v:version >= 703
+    set relativenumber
+    set colorcolumn=80
+endif
+
 
 let mapleader = ","
 
@@ -41,7 +46,6 @@ nnoremap <leader><space> :noh<cr>
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=80
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
