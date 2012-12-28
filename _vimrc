@@ -1,4 +1,4 @@
-" Last Modified: 2012-10-03
+" Last Modified: 2012-12-28
 
 filetype off
 syntax on
@@ -42,6 +42,10 @@ set wrap
 set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=80
+
+" Show trailing whitespace with a <
+set list
+set listchars=trail:<
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
