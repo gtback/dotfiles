@@ -24,7 +24,12 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
+
+if v:version >= 703
+    set relativenumber
+    set colorcolumn=80
+endif
+
 
 let mapleader = ","
 
@@ -41,7 +46,6 @@ nnoremap <leader><space> :noh<cr>
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=80
 
 " Show trailing whitespace with a <
 set list
