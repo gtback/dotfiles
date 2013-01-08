@@ -1,4 +1,4 @@
-" Last Modified: 2012-12-28
+" Last Modified: 2013-01-07
 
 filetype off
 syntax on
@@ -63,4 +63,10 @@ nnoremap j gj
 nnoremap k gk
 noremap ; :
 
+nnoremap <F7> :bp<cr>
+inoremap <F7> :bp<cr>
+nnoremap <F8> :bn<cr>
+inoremap <F8> :bn<cr>
+
 inoremap jj <ESC>
+
