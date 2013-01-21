@@ -1,4 +1,4 @@
-" Last Modified: 2013-01-09
+" Last Modified: 2013-01-21
 
 filetype off
 syntax on
@@ -70,5 +70,5 @@ inoremap <F8> :bn<cr>
 
 inoremap jj <ESC>
 
-python from powerline.ext.vim import source_plugin; source_plugin()
+python from powerline.bindings.vim import source_plugin; source_plugin()
 
