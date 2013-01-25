@@ -50,7 +50,7 @@ set formatoptions=qrn1
 
 " Show trailing whitespace with a <
 set list
-set listchars=trail:<
+set listchars=tab:>.,trail:<
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
