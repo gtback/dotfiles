@@ -4,5 +4,5 @@ if has("gui_win32")
   cd ~
   set guifont=Inconsolata_for_Powerline:h10
 else
-  set guifont="Monospace 9"
+  set guifont=Inconsolata\ for\ Powerline\ 10
 endif
