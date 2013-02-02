@@ -2,7 +2,7 @@
 colorscheme morning
 if has("gui_win32")
   cd ~
-  set guifont=Lucida_Console:h10
+  set guifont=Inconsolata_for_Powerline:h10
 else
   set guifont="Monospace 9"
 endif
