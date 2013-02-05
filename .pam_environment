@@ -1,2 +1,0 @@
-PATH DEFAULT=${PATH}:${HOME}/bin
-WORKON_HOME DEFAULT=${HOME}/.environments

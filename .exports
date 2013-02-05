@@ -1,0 +1,2 @@
+export WORKON_HOME=~/.environments
+
