@@ -43,6 +43,11 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>w {gq}
+" Add # at the beginning of all selected lines
+vnoremap <leader>c :s/^/#/<cr>:noh<cr>
+" Remove # at the beginning of all selected lines
+vnoremap <leader>u :s/^#//<cr>:noh<cr>
+
 
 set wrap
 set textwidth=79
