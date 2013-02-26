@@ -1,3 +1,4 @@
 alias ack="ack-grep"
+alias c=clear
 alias e=vim
 
