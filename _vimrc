@@ -1,4 +1,4 @@
-" Last Modified: 2013-01-21
+" Last Modified: 2013-02-28
 
 filetype off
 syntax on
@@ -76,5 +76,8 @@ inoremap <F8> :bn<cr>
 
 inoremap jj <ESC>
 
+" Powerline (https://github.com/Lokaltog/powerline)
 python from powerline.bindings.vim import source_plugin; source_plugin()
 
+" Pathogen (https://github.com/tpope/vim-pathogen)
+execute pathogen#infect()
