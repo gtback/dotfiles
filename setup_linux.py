@@ -31,7 +31,10 @@ if __name__ == "__main__":
             original = os.path.join(cwd, f)
             homeFile = os.path.join(home, f)
             print "Linking: %s --> %s" % (original, homeFile)
-            os.symlink(original, homeFile)
+            try:
+                os.symlink(original, homeFile)
+            except OSError:
+                print "- OS error occured, probably symlink already exists."
 
         else:
             print "Ignoring unexpected file: %s" % f
