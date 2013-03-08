@@ -20,9 +20,8 @@ if __name__ == "__main__":
         print "Are you running this outside of the dotfiles directory?"
         sys.exit(1)
 
-    os.system('echo "source ~/dotfiles/.bashrc" >> $HOME/.bashrc')
-
     for f in os.listdir(cwd):
+        print
         if f.endswith("~") or os.path.isdir(f) or (f in IGNORED_FILES):
             print "Ignoring temp file or directory: %s" % f
             continue
@@ -39,4 +38,7 @@ if __name__ == "__main__":
         else:
             print "Ignoring unexpected file: %s" % f
 
-    print "Done linking..."
+    print "\nAdding dotfiles/.bashrc to the end of the ~/.bashrc"
+    os.system('echo "source ~/dotfiles/.bashrc" >> $HOME/.bashrc')
+
+    print "\nDone linking..."
