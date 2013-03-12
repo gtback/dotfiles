@@ -20,25 +20,37 @@ if __name__ == "__main__":
         print "Are you running this outside of the dotfiles directory?"
         sys.exit(1)
 
-    for f in os.listdir(cwd):
-        print
-        if f.endswith("~") or os.path.isdir(f) or (f in IGNORED_FILES):
-            print "Ignoring temp file or directory: %s" % f
+    files = os.listdir(cwd)
+    files.sort()
+
+    maxlen = max([len(s) for s in files])
+    formatstr = "%%%ds - " % (maxlen + 2)
+
+    for f in files:
+        print formatstr % f,
+        if f.endswith("~"):
+            print "Ignoring (temp file)"
             continue
 
-        elif f.startswith(".") or f.startswith("_"):
+        if os.path.isdir(f):
+            print "Ignoring (directory)"
+            continue
+
+        if f in IGNORED_FILES:
+            print "Ignoring (explict)"
+            continue
+
+        if f.startswith(".") or f.startswith("_"):
             original = os.path.join(cwd, f)
             homeFile = os.path.join(home, f)
-            print "Linking: %s --> %s" % (original, homeFile)
             try:
                 os.symlink(original, homeFile)
+                print "Linked to %s" % homeFile
             except OSError:
-                print "- OS error occured, probably symlink already exists."
+                print "OS error occured, probably symlink already exists."
 
         else:
-            print "Ignoring unexpected file: %s" % f
+            print "Ignoring (unexpected name)"
 
     print "\nAdding dotfiles/.bashrc to the end of the ~/.bashrc"
     os.system('echo "source ~/dotfiles/.bashrc" >> $HOME/.bashrc')
-
-    print "\nDone linking..."
