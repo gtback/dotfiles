@@ -1,5 +1,3 @@
-" Last Modified: 2013-02-28
-
 filetype off
 syntax on
 set nocompatible
@@ -41,8 +39,12 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
+" Clear all highlights
 nnoremap <leader><space> :noh<cr>
+" Wrap curent paragraph
 nnoremap <leader>w {gq}
+" Prettify JSON
+nnoremap <leader>j :%!python -m json.tool<cr>
 " Add # at the beginning of all selected lines
 vnoremap <leader>c :s/^/#/<cr>:noh<cr>
 " Remove # at the beginning of all selected lines
