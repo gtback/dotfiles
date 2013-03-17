@@ -5,7 +5,7 @@ import os
 import sys
 
 # Global - add files you want to ignore in the current directory
-IGNORED_FILES = [".gitignore", "setup_linux.py", "README.md", ".bashrc"]
+IGNORED_FILES = [".gitignore", "README.md", ".bashrc"]
 
 if __name__ == "__main__":
     """
@@ -28,6 +28,10 @@ if __name__ == "__main__":
 
     for f in files:
         print formatstr % f,
+        if f.startswith("setup_"):
+            print "Ignoring (setup script)"
+            continue
+
         if f.endswith("~"):
             print "Ignoring (temp file)"
             continue
