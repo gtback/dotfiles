@@ -80,7 +80,11 @@ inoremap <F8> :bn<cr>
 inoremap jj <ESC>
 
 " Powerline (https://github.com/Lokaltog/powerline)
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vimO
+if has('win32')
+  set rtp+=C:\Python27\Lib\site-packages\powerline\bindings\vim
+else
+  set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
+endif
 
 " Pathogen (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
