@@ -1,5 +1,6 @@
 filetype off
 syntax on
+
 set nocompatible
 set modelines=0
 
@@ -79,7 +80,10 @@ inoremap <F8> :bn<cr>
 inoremap jj <ESC>
 
 " Powerline (https://github.com/Lokaltog/powerline)
-python from powerline.bindings.vim import source_plugin; source_plugin()
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vimO
 
 " Pathogen (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
+
+set background=dark
+colorscheme solarized
