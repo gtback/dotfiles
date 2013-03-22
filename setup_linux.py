@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
         if f.startswith(".") or f.startswith("_"):
             original = os.path.join(cwd, f)
-            homeFile = os.path.join(home, f)
+            homeFile = os.path.join(home, f).replace("_", ".")
             try:
                 os.symlink(original, homeFile)
                 print "Linked to %s" % homeFile
