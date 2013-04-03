@@ -19,11 +19,11 @@ recently.
     cd ~
     ssh-keygen -t rsa
     chsh -s `which zsh`
-    git clone https://github.com/robbyrussell/oh-my-zsh.git
+    git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
     sudo pip install -U pip
     sudo pip install virtualenvwrapper
-    sudo pip install https://github.com/Lokaltog/powerline
+    pip install --user https://github.com/Lokaltog/powerline/archive/develop.zip
 
     wget https://github.com/Lokaltog/powerline-fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
 
