@@ -44,4 +44,4 @@ for dotfile in aliases exports; do
 done
 
 source /usr/local/bin/virtualenvwrapper.sh
-source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh

@@ -1,5 +1,5 @@
 export WORKON_HOME=~/.environments
 export VIRTUAL_ENV_DISABLE_PROMPT=true
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export EDITOR=vim
 
