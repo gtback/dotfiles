@@ -83,7 +83,7 @@ inoremap jj <ESC>
 if has('win32')
   set rtp+=C:\Python27\Lib\site-packages\powerline\bindings\vim
 else
-  set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
+  set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
 endif
 
 " Pathogen (https://github.com/tpope/vim-pathogen)
