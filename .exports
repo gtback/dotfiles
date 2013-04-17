@@ -2,4 +2,5 @@ export WORKON_HOME=~/.environments
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export EDITOR=vim
+export TERM=xterm-256color
 
