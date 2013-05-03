@@ -1,0 +1,11 @@
+[alias]
+	rpo = remote prune origin
+
+[color]
+	ui = auto
+
+[core]
+	excludesfile = ~/.cvsignore
+
+[include]
+	path = .gitconfig.local
