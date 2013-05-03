@@ -5,7 +5,7 @@ import os
 import sys
 
 # Global - add files you want to ignore in the current directory
-IGNORED_FILES = [".gitignore", "README.md", ".bashrc"]
+IGNORED_FILES = ["README.md", "_bashrc"]
 
 if __name__ == "__main__":
     """
