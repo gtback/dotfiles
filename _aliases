@@ -1,4 +1,5 @@
 alias ack="ack-grep"
 alias c=clear
 alias e=vim
+alias myip="hostname -I | tr -d ' '"
 
