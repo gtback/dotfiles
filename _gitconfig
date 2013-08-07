@@ -1,6 +1,7 @@
 [alias]
-	rpo = remote prune origin
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	rpo = remote prune origin
+	rso = remote show origin
 
 [color]
 	ui = auto
