@@ -1,5 +1,6 @@
-alias ack="ack-grep"
+alias ack="ack-grep --pager=less"
 alias c=clear
 alias e=vim
 alias myip="hostname -I | tr -d ' '"
+alias pyws="sed -i -e 's/^[ \r\t]*$//'"
 
