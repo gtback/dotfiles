@@ -45,13 +45,18 @@ if __name__ == "__main__":
             continue
 
         if f.startswith(".") or f.startswith("_"):
-            original = os.path.join(cwd, f)
-            homeFile = os.path.join(home, f).replace("_", ".")
+            source = os.path.join(cwd, f)
+            dest = os.path.join(home, f).replace("_", ".")
+            if os.path.exists(dest):
+                print "Ignoring (already exists)"
+                continue
+
             try:
-                os.symlink(original, homeFile)
-                print "Linked to %s" % homeFile
+                os.symlink(source, dest)
+                print "Linked to %s" % dest
             except OSError:
-                print "OS error occured, probably symlink already exists."
+                print "Failed (OSError)"
+                raise
 
         else:
             print "Ignoring (unexpected name)"
