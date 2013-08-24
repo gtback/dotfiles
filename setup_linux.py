@@ -24,7 +24,7 @@ if __name__ == "__main__":
     files.sort()
 
     maxlen = max([len(s) for s in files])
-    formatstr = "%%%ds - " % (maxlen + 2)
+    formatstr = "%%%ds -" % (maxlen + 2)
 
     for f in files:
         print formatstr % f,
