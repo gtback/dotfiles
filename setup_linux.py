@@ -1,32 +1,22 @@
 #!/usr/bin/env python
+"""Symlink appropriate files into your home directory."""
 
-# Basic Imports
 import os
-import sys
 
 # Global - add files you want to ignore in the current directory
 IGNORED = ["README.md", "_bashrc", ".git", "windows"]
 
-if __name__ == "__main__":
-    """
-    Run this out of the .dotfiles directory to symlink the appropriate
-    files into your home directory
-    """
-
-    cwd = os.getcwd()
+def main():
+    dotfiles_dir = os.path.dirname(__file__)
     home = os.getenv("HOME")
 
-    if not cwd.endswith("dotfiles"):
-        print "Are you running this outside of the dotfiles directory?"
-        sys.exit(1)
+    dotfiles = os.listdir(dotfiles_dir)
+    dotfiles.sort()
 
-    files = os.listdir(cwd)
-    files.sort()
-
-    maxlen = max([len(s) for s in files])
+    maxlen = max([len(s) for s in dotfiles])
     formatstr = "%%%ds -" % (maxlen + 2)
 
-    for f in files:
+    for f in dotfiles:
         print formatstr % f,
         if f.startswith("setup_"):
             print "Ignoring (setup script)"
@@ -40,8 +30,8 @@ if __name__ == "__main__":
             print "Ignoring (explict)"
             continue
 
-        if f.startswith(".") or f.startswith("_"):
-            source = os.path.join(cwd, f)
+        if f.startswith("_"):
+            source = os.path.join(dotfiles_dir, f)
             dest = os.path.join(home, f).replace("_", ".")
             if os.path.exists(dest):
                 print "Ignoring (already exists)"
@@ -71,3 +61,6 @@ if __name__ == "__main__":
     if not found:
         print "\nAdding dotfiles/.bashrc to the end of the ~/.bashrc"
         os.system('echo "source ~/dotfiles/.bashrc" >> $HOME/.bashrc')
+
+if __name__ == "__main__":
+    main()
