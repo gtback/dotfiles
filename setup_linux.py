@@ -57,5 +57,17 @@ if __name__ == "__main__":
         else:
             print "Ignoring (unexpected name)"
 
-    print "\nAdding dotfiles/.bashrc to the end of the ~/.bashrc"
-    os.system('echo "source ~/dotfiles/.bashrc" >> $HOME/.bashrc')
+    bashrc = os.path.join(home, ".bashrc")
+
+    bashrc_line = "source ~/dotfiles/.bashrc"
+
+    found = False
+    with open(bashrc) as f:
+        for line in f:
+            if line.strip() == bashrc_line:
+                print "\n.bashrc has already been modified."
+                found = True
+
+    if not found:
+        print "\nAdding dotfiles/.bashrc to the end of the ~/.bashrc"
+        os.system('echo "source ~/dotfiles/.bashrc" >> $HOME/.bashrc')
