@@ -5,7 +5,7 @@ import os
 import sys
 
 # Global - add files you want to ignore in the current directory
-IGNORED_FILES = ["README.md", "_bashrc"]
+IGNORED = ["README.md", "_bashrc", ".git", "windows"]
 
 if __name__ == "__main__":
     """
@@ -36,11 +36,7 @@ if __name__ == "__main__":
             print "Ignoring (temp file)"
             continue
 
-        if os.path.isdir(f):
-            print "Ignoring (directory)"
-            continue
-
-        if f in IGNORED_FILES:
+        if f in IGNORED:
             print "Ignoring (explict)"
             continue
 
