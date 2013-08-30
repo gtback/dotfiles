@@ -49,7 +49,7 @@ def main():
 
     bashrc = os.path.join(home, ".bashrc")
 
-    bashrc_line = "source ~/dotfiles/.bashrc"
+    bashrc_line = "source ~/dotfiles/_bashrc"
 
     found = False
     with open(bashrc) as f:
@@ -60,7 +60,7 @@ def main():
 
     if not found:
         print "\nAdding dotfiles/.bashrc to the end of the ~/.bashrc"
-        os.system('echo "source ~/dotfiles/.bashrc" >> $HOME/.bashrc')
+        os.system('echo "%s" >> $HOME/.bashrc' % bashrc_line)
 
 if __name__ == "__main__":
     main()
