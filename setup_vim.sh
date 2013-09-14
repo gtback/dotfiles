@@ -6,6 +6,7 @@ cd ~/.vim/autoload
 
 # Install sensible and fugitive
 cd ~/.vim/bundle
+[[ -d jedi-vim ]] || git clone https://github.com/davidhalter/jedi-vim && cd jedi-vim && git submodule update --init && cd ..
 [[ -d syntastic ]] || git clone https://github.com/scrooloose/syntastic.git
 [[ -d vim-colors-solarized ]] || git clone https://github.com/altercation/vim-colors-solarized.git
 [[ -d vim-commentary ]] || git clone https://github.com/tpope/vim-commentary.git
