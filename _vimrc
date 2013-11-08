@@ -46,10 +46,6 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <leader>w {gq}
 " Prettify JSON
 nnoremap <leader>j :%!python -m json.tool<cr>
-" Add # at the beginning of all selected lines
-vnoremap <leader>c :s/^/#/<cr>:noh<cr>
-" Remove # at the beginning of all selected lines
-vnoremap <leader>u :s/^#//<cr>:noh<cr>
 
 
 set wrap
