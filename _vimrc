@@ -87,3 +87,5 @@ execute pathogen#infect()
 
 set background=dark
 colorscheme solarized
+
+autocmd FileType html set ts=2 sts=2 sw=2
