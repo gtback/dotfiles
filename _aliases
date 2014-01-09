@@ -4,5 +4,4 @@ alias e=vim
 alias myip="hostname -I | tr -d ' '"
 alias pt="py.test"
 alias pyws="sed -i -e 's/^[ \r\t]*$//'"
-
-
+alias apt-list="grep -h '^deb ' /etc/apt/sources.list /etc/apt/sources.list.d/*.list | sort -u"
