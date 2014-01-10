@@ -2,7 +2,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 export EDITOR=vim
 export TERM=xterm-256color
-export DISABLE_AUTO_TILE='true'
+export DISABLE_AUTO_TITLE='true'
 
 export WORKON_HOME=~/.environments
 export VIRTUAL_ENV_DISABLE_PROMPT=true
