@@ -82,8 +82,8 @@ else
   set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
 endif
 
-" Pathogen (https://github.com/tpope/vim-pathogen)
-execute pathogen#infect()
+" Vundle (https://github.com/gmarik/vundle)
+source ~/dotfiles/bundles.vim
 
 set background=dark
 colorscheme solarized
