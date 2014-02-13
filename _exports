@@ -10,4 +10,5 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 export POWERLINE=$HOME/.local/lib/python2.7/site-packages/powerline
 
 export PIP_DOWNLOAD_CACHE="$HOME/.cache/pip"
+export PIP_FIND_LINKS="$HOME/.cache/wheel"
 
