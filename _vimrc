@@ -47,11 +47,6 @@ nnoremap <leader>w {gq}
 " Prettify JSON
 nnoremap <leader>j :%!python -m json.tool<cr>
 
-
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-
 " Show trailing whitespace with a <
 set list
 set listchars=tab:>.,trail:<
@@ -87,5 +82,9 @@ source ~/dotfiles/bundles.vim
 
 set background=dark
 colorscheme solarized
+
+set wrap
+set textwidth=79
+set formatoptions=tcroqnl
 
 autocmd FileType html,htmldjango set ts=2 sts=2 sw=2
