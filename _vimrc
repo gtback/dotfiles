@@ -70,15 +70,16 @@ inoremap <F8> :bn<cr>
 
 inoremap jj <ESC>
 
-" Powerline (https://github.com/Lokaltog/powerline)
 if has('win32')
+  " Powerline (https://github.com/Lokaltog/powerline)
   set rtp+=C:\Python27\Lib\site-packages\powerline\bindings\vim
+  " Vundle (https://github.com/gmarik/vundle)
+  source $HOME/Documents/GitHub/dotfiles/bundles.vim
 else
   set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
+  source ~/dotfiles/bundles.vim
 endif
 
-" Vundle (https://github.com/gmarik/vundle)
-source ~/dotfiles/bundles.vim
 
 set background=dark
 colorscheme solarized

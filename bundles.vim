@@ -2,18 +2,27 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 " Vundle (https://github.com/gmarik/vundle)
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if has('win32')
+set rtp+=~/vimfiles/bundle/vundle/
+  let path='~/vimfiles/bundle'
+  call vundle#rc(path)
+else
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
+endif
 
 Bundle 'gmarik/vundle'
 
 Bundle 'altercation/vim-colors-solarized'
-"Bundle 'davidhalter/jedi-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-sensible'
-Bundle 'Valloric/YouCompleteMe'
+if has('win32')
+  Bundle 'davidhalter/jedi-vim'
+else
+  Bundle 'Valloric/YouCompleteMe'
+endif
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'airblade/vim-gitgutter'
 
