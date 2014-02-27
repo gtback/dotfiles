@@ -20,6 +20,9 @@
 
 	last = log -1 HEAD
 
+# Delete branches merged into the current branch
+	dmb = "!git branch --merged | grep -v \"^\\*\" | xargs -n 1 git branch -d"
+
 [color]
 	ui = auto
 
