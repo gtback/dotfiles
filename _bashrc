@@ -1,9 +1,12 @@
 # Add any aliases or exports. The *.local files can be used for machine-
 # specific settings not checked into Git.
 
+os=`uname | tr '[:upper:]' '[:lower:]'`
+
 for dotfile in aliases exports; do
   file="$HOME/.$dotfile"
   [ -e "$file" ] && source "$file"
+  [ -e "${file}.${os}" ] && source "${file}.${os}"
   [ -e "${file}.local" ] && source "${file}.local"
 done
 
