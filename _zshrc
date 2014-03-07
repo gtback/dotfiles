@@ -32,7 +32,7 @@ DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python)
+plugins=(git python pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -49,16 +49,4 @@ done
 source /usr/local/bin/virtualenvwrapper.sh
 source $POWERLINE/bindings/zsh/powerline.zsh
 source tmuxp.zsh
-
-# pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
-# pip zsh completion end
 
