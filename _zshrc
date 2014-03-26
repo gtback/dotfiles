@@ -50,3 +50,4 @@ source /usr/local/bin/virtualenvwrapper.sh
 source $POWERLINE/bindings/zsh/powerline.zsh
 source tmuxp.zsh
 
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH
