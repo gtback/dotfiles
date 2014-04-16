@@ -1,3 +1,2 @@
-alias ack="ack --pager=less"
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias firefox="open -a /Applications/Firefox.app"

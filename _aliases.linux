@@ -1,1 +1,1 @@
-alias ack="ack-grep --pager=less"
+alias ack="ack-grep"
