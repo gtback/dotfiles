@@ -24,6 +24,8 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 
+set foldmethod=indent
+
 if v:version >= 703
     set relativenumber
     set colorcolumn=80
