@@ -74,6 +74,11 @@ inoremap <F8> :bn<cr>
 
 inoremap jj <ESC>
 
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
 if has('win32')
   " Powerline (https://github.com/Lokaltog/powerline)
   set rtp+=C:\Python27\Lib\site-packages\powerline\bindings\vim
