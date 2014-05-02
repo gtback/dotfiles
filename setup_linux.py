@@ -4,7 +4,7 @@
 import os
 
 # Global - add files you want to ignore in the current directory
-IGNORED = ["README.md", "_bashrc", ".git", "windows"]
+IGNORED = ["README.md", "_bashrc", ".git", "windows", "bundles.vim"]
 
 def main():
     dotfiles_dir = os.path.dirname(__file__)
