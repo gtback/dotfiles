@@ -48,6 +48,8 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <leader>w {gq}
 " Prettify JSON
 nnoremap <leader>j :%!python -m json.tool<cr>
+" Select all
+nnoremap <leader>a ggVG
 
 " Show trailing whitespace with a <
 set list
