@@ -25,5 +25,6 @@ else
 endif
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'saltstack/salt-vim'
 
 filetype plugin indent on
