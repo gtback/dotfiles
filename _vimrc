@@ -50,6 +50,8 @@ nnoremap <leader>w {gq}
 nnoremap <leader>j :%!python -m json.tool<cr>
 " Select all
 nnoremap <leader>a ggVG
+" Toggle Syntastic Mode
+nnoremap <leader>s :SyntasticToggleMode<cr>
 
 " Show trailing whitespace with a <
 set list
