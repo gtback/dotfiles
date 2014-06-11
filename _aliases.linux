@@ -1,1 +1,3 @@
 alias ack="ack-grep"
+alias sau="sudo aptitude update"
+alias sasu="sudo aptitude safe-upgrade"
