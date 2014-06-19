@@ -14,8 +14,11 @@ endif
 Bundle 'gmarik/vundle'
 
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'saltstack/salt-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-commentary'
@@ -27,8 +30,5 @@ if has('win32')
 else
   Bundle 'Valloric/YouCompleteMe'
 endif
-Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'saltstack/salt-vim'
 
 filetype plugin indent on
