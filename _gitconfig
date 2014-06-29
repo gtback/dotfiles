@@ -36,3 +36,6 @@
 	path = .gitconfig.local
 [push]
 	default = simple
+[user]
+	email = gtback@gmail.com
+	name = Greg Back

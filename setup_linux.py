@@ -7,7 +7,7 @@ import os
 IGNORED = ["README.md", "_bashrc", ".git", "windows", "bundles.vim"]
 
 def main():
-    dotfiles_dir = os.path.dirname(__file__)
+    dotfiles_dir = os.path.dirname(os.path.realpath(__file__))
     home = os.getenv("HOME")
 
     dotfiles = os.listdir(dotfiles_dir)
