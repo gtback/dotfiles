@@ -78,9 +78,9 @@ nnoremap <F6> yyp<c-v>$r-
 " Underline the current line with dashes in insert mode
 inoremap <F6> <Esc>yyp<c-v>$r-A
 nnoremap <F7> :bp<cr>
-inoremap <F7> :bp<cr>
+inoremap <F7> <Esc>:bp<cr>
 nnoremap <F8> :bn<cr>
-inoremap <F8> :bn<cr>
+inoremap <F8> <Esc>:bn<cr>
 inoremap <F9> <C-O>za
 nnoremap <F9> za
 onoremap <F9> <C-C>za
