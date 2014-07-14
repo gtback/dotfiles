@@ -25,6 +25,7 @@ set backspace=indent,eol,start
 set laststatus=2
 
 set foldmethod=indent
+set foldlevel=99
 
 if v:version >= 703
     set relativenumber
