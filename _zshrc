@@ -52,3 +52,4 @@ source tmuxp.zsh
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+eval "$(pyenv init -)"
