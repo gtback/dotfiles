@@ -36,6 +36,8 @@ plugins=(git python pip fabric rvm ruby vagrant brew celery django)
 
 source $ZSH/oh-my-zsh.sh
 
+setopt NO_NOMATCH
+
 # Customize to your needs...
 os=`uname | tr '[:upper:]' '[:lower:]'`
 
