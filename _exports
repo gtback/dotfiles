@@ -10,5 +10,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 export POWERLINE=$HOME/src/powerline/powerline
 
 export PIP_DOWNLOAD_CACHE="$HOME/.cache/pip"
-export PIP_FIND_LINKS="$HOME/.cache/wheel"
+export WHEELHOUSE="$HOME/.cache/wheel"
+export PIP_WHEEL_DIR="${WHEELHOUSE}"
+export PIP_FIND_LINKS="${WHEELHOUSE}"
 
