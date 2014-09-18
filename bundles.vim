@@ -25,6 +25,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-surround'
 if has('win32')
   Bundle 'davidhalter/jedi-vim'
 else
