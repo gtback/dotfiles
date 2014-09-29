@@ -37,10 +37,12 @@
 [diff]
 	algorithm = patience
 
-[include]
-	path = .gitconfig.local
 [push]
 	default = simple
+
 [user]
 	email = gtback@gmail.com
 	name = Greg Back
+
+[include]
+	path = .gitconfig.local
