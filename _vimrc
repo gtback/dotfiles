@@ -101,6 +101,7 @@ set background=dark
 colorscheme solarized
 
 set wrap
+set linebreak
 set textwidth=79
 set formatoptions=tcroqnl
 
