@@ -106,3 +106,5 @@ set textwidth=79
 set formatoptions=tcroqnl
 
 autocmd FileType html,htmldjango set ts=2 sts=2 sw=2
+autocmd FileType yaml set ts=2 sts=2 sw=2
+autocmd FileType mkd set ts=2 sts=2 sw=2 foldlevel=20
