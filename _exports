@@ -16,3 +16,5 @@ export PIP_FIND_LINKS="${WHEELHOUSE}"
 
 export IP_RE="((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
 export CIDR_RE="${IP_RE}/(3[0-2]|[0-2]?[0-9])"
+
+export PYTHONSTARTUP="$HOME/.pythonstartup"
