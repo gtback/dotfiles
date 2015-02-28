@@ -11,3 +11,4 @@ alias now="date +%FT%T"
 alias lsvirtualenv="lsvirtualenv -b"
 alias wo="workon"
 alias gca="echo DON\'T DO THIS; echo $* > /dev/null"
+alias vg=vagrant
