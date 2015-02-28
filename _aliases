@@ -1,14 +1,13 @@
 alias c=clear
 alias e=vim
-alias myip="hostname -I | tr -d ' '"
-alias pt="py.test"
-alias pyws="sed -i -e 's/^[ \r\t]*$//'"
-alias apt-list="grep -h '^deb ' /etc/apt/sources.list /etc/apt/sources.list.d/*.list | sort -u"
-alias version="git --version && tmux -V &&  vim --version | head -1"
-alias gdmb="git dmb"
+alias pt=py.test
+alias vg=vagrant
+alias wo=workon
+
 alias today="date +%F"
 alias now="date +%FT%T"
+
+alias gdmb="git dmb"
 alias lsvirtualenv="lsvirtualenv -b"
-alias wo="workon"
-alias gca="echo DON\'T DO THIS; echo $* > /dev/null"
-alias vg=vagrant
+alias pyws="sed -i -e 's/^[ \r\t]*$//'"
+alias version="git --version && tmux -V &&  vim --version | head -1"
