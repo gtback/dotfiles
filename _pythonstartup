@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
-# From http://stackoverflow.com/a/4289945
+# Disable print statement in Python 2.
+from __future__ import print_function
 
+# From http://stackoverflow.com/a/4289945
 import readline
 import rlcompleter
 import atexit
