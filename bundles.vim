@@ -17,7 +17,12 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
 Bundle 'plasticboy/vim-markdown'
+if has('mac')
+  Bundle 'rizzatti/dash.vim'
+endif
+Bundle 'rking/ag.vim'
 Bundle 'saltstack/salt-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
