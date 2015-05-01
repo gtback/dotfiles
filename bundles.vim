@@ -15,6 +15,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'chase/vim-ansible-yaml'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
