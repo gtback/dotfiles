@@ -23,6 +23,7 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
+set autoread
 
 set foldmethod=indent
 set foldlevel=99
@@ -108,3 +109,4 @@ set formatoptions=tcroqnl
 autocmd FileType html,htmldjango set ts=2 sts=2 sw=2
 autocmd FileType yaml set ts=2 sts=2 sw=2
 autocmd FileType mkd set ts=2 sts=2 sw=2 foldlevel=20
+autocmd FileType gitcommit setlocal tw=72 colorcolumn=72
