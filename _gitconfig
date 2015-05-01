@@ -8,6 +8,7 @@
 
 	rpo = remote prune origin
 	rso = remote show origin
+	pom = push origin master
 
 	assume = update-index --assume-unchanged
 	unassume = update-index --no-assume-unchanged
