@@ -33,7 +33,7 @@ Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 if has('win32')
   Bundle 'davidhalter/jedi-vim'
-else
+elif !has('win32unix')
   Bundle 'Valloric/YouCompleteMe'
 endif
 
