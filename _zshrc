@@ -39,7 +39,7 @@ source $ZSH/oh-my-zsh.sh
 setopt NO_NOMATCH
 
 # Customize to your needs...
-os=`uname | tr '[:upper:]' '[:lower:]'`
+os=`uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//'`
 
 # From http://dougblack.io/words/zsh-vi-mode.html
 bindkey -v

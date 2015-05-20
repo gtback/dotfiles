@@ -1,7 +1,7 @@
 # Add any aliases or exports. The *.local files can be used for machine-
 # specific settings not checked into Git.
 
-os=`uname | tr '[:upper:]' '[:lower:]'`
+os=`uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//'`
 
 for dotfile in aliases exports; do
   file="$HOME/.$dotfile"
