@@ -60,7 +60,7 @@ for dotfile in aliases exports; do
   [ -e "${file}.local" ] && source "${file}.local"
 done
 
-source /usr/local/bin/virtualenvwrapper.sh
+source virtualenvwrapper.sh
 source $POWERLINE/bindings/zsh/powerline.zsh
 source tmuxp.zsh
 
