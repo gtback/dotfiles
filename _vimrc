@@ -97,6 +97,7 @@ else
   source ~/dotfiles/bundles.vim
 endif
 
+set nobackup
 
 set background=dark
 colorscheme solarized
