@@ -38,6 +38,9 @@ source $ZSH/oh-my-zsh.sh
 
 setopt NO_NOMATCH
 
+# Don't let shell builtin interfere with the statistical programming language.
+disable r
+
 # Customize to your needs...
 os=`uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//'`
 
