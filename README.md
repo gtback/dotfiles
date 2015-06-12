@@ -3,6 +3,13 @@ dotfiles
 
 My dotfiles
 
+Setting up on Windows 7
+=======================
+
+This is not a complete guide, just a few hints.
+
+1. Clone repo to $HOME directory
+2. Copy files from `windows` directory to $HOME directory
 
 Setting up Ubuntu GNOME 14.04
 =======================
