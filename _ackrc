@@ -1,3 +1,4 @@
 --ignore-dir=.tox
 --ignore-dir=DATA
+--ignore-dir=build
 --pager=less
