@@ -36,12 +36,12 @@ plugins=(docker git python pip fabric rvm ruby vagrant brew celery django)
 
 source $ZSH/oh-my-zsh.sh
 
+# ----------CUSTOMIZATIONS---------------
 setopt NO_NOMATCH
 
 # Don't let shell builtin interfere with the statistical programming language.
 disable r
 
-# Customize to your needs...
 os=`uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//'`
 
 # From http://dougblack.io/words/zsh-vi-mode.html
@@ -63,9 +63,9 @@ for dotfile in aliases exports; do
   [ -e "${file}.local" ] && source "${file}.local"
 done
 
-source virtualenvwrapper.sh
-source $POWERLINE/bindings/zsh/powerline.zsh
-source tmuxp.zsh
+which virtualenvwrapper.sh >/dev/null && source virtualenvwrapper.sh
+[ -e $POWERLINE/bindings/zsh/powerline.zsh ] && source $POWERLINE/bindings/zsh/powerline.zsh
+which tmuxp.sh >/dev/null && source tmuxp.zsh
 
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
