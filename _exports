@@ -8,10 +8,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 export POWERLINE=$HOME/src/powerline/powerline
 
-export WHEELHOUSE="$HOME/.cache/wheel"
-export PIP_WHEEL_DIR="${WHEELHOUSE}"
-export PIP_FIND_LINKS="${WHEELHOUSE}"
-
 export IP_RE="((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
 export CIDR_RE="${IP_RE}/(3[0-2]|[0-2]?[0-9])"
 
