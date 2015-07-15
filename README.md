@@ -28,7 +28,7 @@ ssh-keygen -t rsa
 Upload ~/.ssh/id_rsa.pub to GitHub.
 ```sh
 git clone git@github.com:gtback/dotfiles.git
-python dotfiles/setup_linux.py
+python dotfiles/setup_env.py
 source dotfiles/setup_vim.sh
 
 cd $HOME/.vim/bundle/YouCompleteMe
@@ -70,7 +70,7 @@ recently.
 
     git clone https://github.com/gtback/dotfiles.git
     cd dotfiles
-    python setup_linux.py
+    python setup_env.py
     source setup_vim.sh
 
     cd ~
