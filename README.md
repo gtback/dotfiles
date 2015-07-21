@@ -20,7 +20,7 @@ sudo add-apt-repository ppa:git-core/ppa
 sudo add-apt-repository ppa:pi-rho/dev
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install build-essential cmake curl git openssh-server python-pip tmux vim vim-gnome zsh
+sudo apt-get install build-essential cmake curl git openssh-server python-pip tmux vim vim-gnome xclip zsh
 
 cd $HOME
 ssh-keygen -t rsa
