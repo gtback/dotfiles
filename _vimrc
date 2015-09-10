@@ -72,6 +72,7 @@ nnoremap k gk
 noremap ; :
 inoremap jj <ESC>
 
+nnoremap <F3> :NERDTreeToggle <CR>
 nnoremap <F4> :CtrlP <CR>
 nnoremap <F5> :GundoToggle<CR>
 " Underline the current line with dashes in normal mode

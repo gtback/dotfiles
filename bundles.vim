@@ -27,6 +27,7 @@ endif
 Bundle 'rking/ag.vim'
 Bundle 'saltstack/salt-vim'
 Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
