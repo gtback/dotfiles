@@ -1,4 +1,3 @@
-alias c=clear
 alias e=vim
 alias pt=py.test
 alias vg=vagrant
