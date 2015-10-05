@@ -3,15 +3,15 @@ filetype off                   " required!
 
 " Vundle (https://github.com/gmarik/vundle)
 if has('win32')
-set rtp+=~/vimfiles/bundle/vundle/
+  set rtp+=~/vimfiles/bundle/Vundle.vim/
   let path='~/vimfiles/bundle'
-  call vundle#rc(path)
+  call vundle#begin(path)
 else
   set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+  call vundle#begin()
 endif
 
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'airblade/vim-gitgutter'
@@ -39,5 +39,7 @@ if has('win32')
 elseif !has('win32unix')
   Bundle 'Valloric/YouCompleteMe'
 endif
+
+call vundle#end()
 
 filetype plugin indent on
