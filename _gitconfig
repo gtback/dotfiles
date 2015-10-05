@@ -36,6 +36,7 @@
 
 [core]
 	excludesfile = ~/.cvsignore
+	trustctime = false
 
 [diff]
 	algorithm = patience
