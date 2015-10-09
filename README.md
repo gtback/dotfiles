@@ -4,15 +4,28 @@ dotfiles
 My dotfiles
 
 Setting up on Windows 7
-=======================
+-----------------------
 
 This is not a complete guide, just a few hints.
 
 1. Clone repo to $HOME directory
 2. Copy files from `windows` directory to $HOME directory
 
+OS X Setup hints
+----------------
+
+1. Install Homebrew
+1. Install `python` and `vim` with Homebrew: `brew install python vim`
+1. Install virtualenvwrapper with Homebrew pip: `sudo -H /usr/local/bin/pip install virtualenvwrapper`
+1. Install `isort` so that Vim can get to it: `sudo -H /usr/local/bin/pip install isort`
+1. Install [`pipsi`](https://github.com/mitsuhiko/pipsi) with Homebrew Python: 
+
+    `curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | /usr/local/bin/python`
+    
+1. Install powerline with pipsi: `pipsi install powerline-status`
+
 Setting up Ubuntu GNOME 14.04
-=======================
+-----------------------------
 
 ```sh
 sudo add-apt-repository ppa:fkrull/dead-snakes
@@ -57,7 +70,7 @@ Log out and back in to ensure changes have taken effect.
 
 
 Setting up a new Ubuntu 12.04 system
-====================================
+------------------------------------
 
 These are some steps I performed when setting up a new Ubuntu 12.04 system
 recently.
