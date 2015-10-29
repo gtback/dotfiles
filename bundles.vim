@@ -11,41 +11,41 @@ else
   call vundle#begin()
 endif
 
-Bundle 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'bitc/vim-bad-whitespace'
-Bundle 'chase/vim-ansible-yaml'
-Bundle 'fisadev/vim-isort'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'jnurmine/Zenburn'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'mileszs/ack.vim'
-Bundle 'nvie/vim-flake8'
-Bundle 'plasticboy/vim-markdown'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bitc/vim-bad-whitespace'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'fisadev/vim-isort'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'jnurmine/Zenburn'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'mileszs/ack.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'plasticboy/vim-markdown'
 if has('mac')
-  Bundle 'rizzatti/dash.vim'
+  Plugin 'rizzatti/dash.vim'
 endif
-Bundle 'rking/ag.vim'
-Bundle 'saltstack/salt-vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'sjl/gundo.vim'
-Bundle 'tmhedberg/SimpylFold'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-surround'
+Plugin 'rking/ag.vim'
+Plugin 'saltstack/salt-vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'sjl/gundo.vim'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
 if has('win32')
-  Bundle 'davidhalter/jedi-vim'
+  Plugin 'davidhalter/jedi-vim'
 elseif !has('win32unix')
-  Bundle 'Valloric/YouCompleteMe'
+  Plugin 'Valloric/YouCompleteMe'
 endif
-Bundle 'vim-scripts/indentpython.vim'
+Plugin 'vim-scripts/indentpython.vim'
 
 call vundle#end()
 
