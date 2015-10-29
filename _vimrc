@@ -29,10 +29,9 @@ set foldmethod=indent
 set foldlevel=99
 
 if v:version >= 703
-    set relativenumber
-    set colorcolumn=80
+  set relativenumber
+  set colorcolumn=80
 endif
-
 
 let mapleader = ","
 
@@ -54,6 +53,8 @@ nnoremap <leader>j :%!python -m json.tool<cr>
 nnoremap <leader>a ggVG
 " Toggle Syntastic Mode
 nnoremap <leader>s :SyntasticToggleMode<cr>
+" Go to Definition
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Show trailing whitespace with a <
 set list
@@ -72,6 +73,28 @@ nnoremap k gk
 noremap ; :
 inoremap jj <ESC>
 
+"split navigations
+"https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+if has('win32')
+  " Vundle (https://github.com/gmarik/vundle)
+  source $HOME/dotfiles/bundles.vim
+else
+  source ~/dotfiles/bundles.vim
+endif
+
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme zenburn
+endif
+call togglebg#map("<F2>")
+
 nnoremap <F3> :NERDTreeToggle <CR>
 nnoremap <F4> :CtrlP <CR>
 nnoremap <F5> :GundoToggle<CR>
@@ -85,28 +108,19 @@ nnoremap <F8> :bn<cr>
 inoremap <F8> <Esc>:bn<cr>
 inoremap <F9> <C-O>za
 nnoremap <F9> za
+nnoremap <space> za
 onoremap <F9> <C-C>za
 vnoremap <F9> zf
 
-if has('win32')
-  " Powerline (https://github.com/Lokaltog/powerline)
-  set rtp+=C:\Python27\Lib\site-packages\powerline\bindings\vim
-  " Vundle (https://github.com/gmarik/vundle)
-  source $HOME/dotfiles/bundles.vim
-else
-  set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
-  source ~/dotfiles/bundles.vim
-endif
-
 set nobackup
-
-set background=dark
-colorscheme solarized
 
 set wrap
 set linebreak
 set textwidth=79
 set formatoptions=tcroqnl
+
+let g:SimpylFold_docstring_preview=1
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 autocmd FileType html,htmldjango set ts=2 sts=2 sw=2
 autocmd FileType yaml set ts=2 sts=2 sw=2
