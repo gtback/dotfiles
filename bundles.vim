@@ -1,17 +1,20 @@
+" In a separate file because of:
+" http://www.gmarik.info/blog/2011/chicken-or-egg-dilemma/
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-" Vundle (https://github.com/gmarik/vundle)
+" Vundle (https://github.com/VundleVim/Vundle.vim)
 if has('win32')
   set rtp+=~/vimfiles/bundle/Vundle.vim/
   let path='~/vimfiles/bundle'
   call vundle#begin(path)
 else
-  set rtp+=~/.vim/bundle/vundle/
+  set rtp+=~/.vim/bundle/Vundle.vim/
   call vundle#begin()
 endif
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'airblade/vim-gitgutter'
