@@ -91,7 +91,9 @@ if has('gui_running')
   set background=dark
   colorscheme solarized
 else
-  colorscheme zenburn
+  if filereadable("$HOME/.vim/bundle/Zenburn/colors/zenburn.vim")
+    colorscheme zenburn
+  endif
 endif
 call togglebg#map("<F2>")
 
