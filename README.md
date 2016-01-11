@@ -27,47 +27,71 @@ OS X Setup hints
 Setting up Ubuntu GNOME 14.04
 -----------------------------
 
+For VirtualBox, to get shared folders to work, run `sudo adduser $USER vboxsf`
+
 ```sh
-sudo add-apt-repository ppa:fkrull/dead-snakes
-sudo add-apt-repository ppa:git-core/ppa
-sudo add-apt-repository ppa:pi-rho/dev
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install build-essential cmake curl git openssh-server python-pip tmux vim vim-gnome xclip zsh
+sudo apt-get install -y build-essential cmake curl git python-dev tmux vim vim-gnome xclip zsh
 
-cd $HOME
-ssh-keygen -t rsa
+ssh-keygen
 ```
 Upload ~/.ssh/id_rsa.pub to GitHub.
 ```sh
+git config --file ~/.gitconfig.local user.email "gtback@users.noreply.github.com"
+git config --file ~/.gitconfig.local user.name "Greg Back"
+
+cd $HOME
 git clone git@github.com:gtback/dotfiles.git
 python dotfiles/setup_env.py
+
+# Vim Setup
 source dotfiles/setup_vim.sh
+$HOME/.vim/bundle/YouCompleteMe/install.py
 
-cd $HOME/.vim/bundle/YouCompleteMe
-./install
-
+# Oh-my-zsh setup
 cd $HOME
 chsh -s `which zsh`
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
-mkdir -p .cache/wheel .cache/pip
-sudo pip install pep8 pyflakes pylint tmuxp virtualenvwrapper
+# Python setup
+git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+sudo apt-get install -y libbz2-dev libncurses5-dev libreadline-dev libsqlite3-dev libssl-dev llvm wget zlib1g-dev
+pyenv install 2.7.11
+pyenv install 3.5.1
+pyenv rehash
+echo "2.7.11\n3.5.1\nsystem\n" > ~/.pyenv/version
 
+# Log out and back on to update Shell settings
+
+~/.pyenv/versions/2.7.11/bin/pip install virtualenvwrapper
+
+# Pipsi setup
+pyenv rehash
+curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | ~/.pyenv/versions/2.7.11/bin/python
+pipsi install autopep8
+pipsi install flake8
+pipsi install httpie
+pipsi install pep8
+pipsi install pylint
+pipsi install tmuxp
+pipsi install tox
+pipsi install twine
+
+# Terminal Colors and Fonts
+# Create a new Terminal Profile and use it for all modifications below.
+cd $HOME
 mkdir src
 cd src
-git clone https://github.com/sigurdga/gnome-terminal-colors-solarized
-gnome-terminal-colors-solarized/install.sh
+git clone https://github.com/gnumoksha/gnome-terminal-colors
+gnome-terminal-colors/install.sh
 
-git clone https://github.com/Lokaltog/powerline.git
-pip install --user -e powerline
-
-git clone https://github.com/Lokaltog/powerline-fonts.git
+git clone https://github.com/powerline/fonts.git powerline-fonts
+powerline-fonts/install.sh
+# Configure the Terminal Profile to use  `Sauce Code Powerline Medium.otf`
 ```
-Install `~/src/powerline-fonts/SourceCodePro/Sauce Code Powerline Medium.otf` and configure the Terminal application to use it.
 
 Log out and back in to ensure changes have taken effect.
-
 
 Setting up a new Ubuntu 12.04 system
 ------------------------------------
