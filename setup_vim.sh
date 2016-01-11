@@ -2,8 +2,8 @@
 
 # Install Vundle
 mkdir -p ~/.vim/bundle
-[[ -d ~/.vim/bundle/vundle ]] || git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle 
+[[ -d ~/.vim/bundle/Vundle.vim ]] || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-vim -u ~/dotfiles/bundles.vim +BundleInstall +q
+vim +BundleInstall +qall
 
 mkdir -p ~/.local/share/vim/undo
