@@ -11,6 +11,32 @@ This is not a complete guide, just a few hints.
 1. Clone repo to $HOME directory
 2. Copy files from `windows` directory to $HOME directory
 
+Setting up Babun/Cygwin
+-----------------------
+
+1. Install [Babun](https://babun.github.io/)
+1. Install Source Code Pro font [modified for Powerline](https://github.com/powerline/fonts/tree/master/SourceCodePro).
+1. Configure Babun to use `Sauce Code Powerline` font.
+1. Create SSH key (`ssh-keygen -t rsa -b 4096`) and upload to GitHub.
+1. Update `.babunrc` file as needed 
+
+```sh
+babun check
+cd $HOME
+git clone git@github.com:gtback/dotfiles.git
+mv .zshrc .zshrc.bak
+mv .gitconfig .gitconfig.bak
+dotfiles/setup_env.py
+dotfiles/setup_vim.sh
+
+curl https://bootstrap.pypa.io/get-pip.py | python
+pip install virtualenvwrapper
+curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
+git config -f .gitconfig.local user.name "Greg Back"
+git config -f .gitconfig.local user.email gtback@users.noreply.github.com
+```
+
+
 OS X Setup hints
 ----------------
 
