@@ -18,24 +18,52 @@ Setting up Babun/Cygwin
 1. Install Source Code Pro font [modified for Powerline](https://github.com/powerline/fonts/tree/master/SourceCodePro).
 1. Configure Babun to use `Sauce Code Powerline` font.
 1. Create SSH key (`ssh-keygen -t rsa -b 4096`) and upload to GitHub.
-1. Update `.babunrc` file as needed 
+1. Update `.babunrc` file as needed (proxies, user agent, etc.).
+1. Reload `.babunrc` and verify Network connectivity and available updates.
+    
+    ```sh
+    source .babunrc
+    babun check
+    ```
+    
+1. Clone dotfiles and run installation scripts.
 
-```sh
-babun check
-cd $HOME
-git clone git@github.com:gtback/dotfiles.git
-mv .zshrc .zshrc.bak
-mv .gitconfig .gitconfig.bak
-dotfiles/setup_env.py
-dotfiles/setup_vim.sh
+    ```sh
+    cd $HOME
+    git clone git@github.com:gtback/dotfiles.git
+    mv .zshrc .zshrc.bak
+    mv .gitconfig .gitconfig.bak
+    dotfiles/setup_env.py
+    dotfiles/setup_vim.sh
+    ```
+    
+1. Customize local installation.
 
-curl https://bootstrap.pypa.io/get-pip.py | python
-pip install virtualenvwrapper
-curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
-git config -f .gitconfig.local user.name "Greg Back"
-git config -f .gitconfig.local user.email gtback@users.noreply.github.com
-```
+    ```sh
+    git config -f .gitconfig.local user.name "Greg Back"
+    git config -f .gitconfig.local user.email gtback@users.noreply.github.com
+    ```
 
+1. Launch a new terminal to reload ZSH settings.  If you get error messages, you can try updating the completion files. Note that the file containing <COMPUTER NAME> should already exist; replace that file.
+
+    ```sh
+    compinit -y
+    cp .zcompdump .zcompdump-<COMPUTER NAME>-5.0.6
+    ```
+    
+1. Set up pip, virtualenvwrapper, and pipsi.
+    
+    ```sh
+    curl https://bootstrap.pypa.io/get-pip.py | python
+    pip install virtualenvwrapper
+    curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
+    ```
+
+1. Install other desired packages
+
+    ```sh
+    pact install tmux
+    ```
 
 OS X Setup hints
 ----------------
