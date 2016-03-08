@@ -1,0 +1,2 @@
+export VAGRANT_DETECTED_OS=cygwin
+export REQUESTS_CA_BUNDLE=/usr/ssl/cert.pem  # https://github.com/pypa/pip/issues/3415
