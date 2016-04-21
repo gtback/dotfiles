@@ -65,9 +65,14 @@ done
 
 [ -e $POWERLINE/bindings/zsh/powerline.zsh ] && source $POWERLINE/bindings/zsh/powerline.zsh
 
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv > /dev/null
+then
+    eval "$(pyenv init -)"
+    which virtualenvwrapper.sh >/dev/null && source `pyenv which virtualenvwrapper.sh`
+else
+    which virtualenvwrapper.sh >/dev/null && source `which virtualenvwrapper.sh`
+fi
 which tmuxp.sh >/dev/null && source tmuxp.zsh
-which virtualenvwrapper.sh >/dev/null && source `pyenv which virtualenvwrapper.sh`
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
