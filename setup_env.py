@@ -52,11 +52,13 @@ def main():
     bashrc_line = "source ~/dotfiles/_bashrc"
 
     found = False
-    with open(bashrc) as f:
-        for line in f:
-            if line.strip() == bashrc_line:
-                print "\n.bashrc has already been modified."
-                found = True
+    if os.path.exists(bashrc):
+        with open(bashrc) as f:
+            for line in f:
+                if line.strip() == bashrc_line:
+                    print "\n.bashrc has already been modified."
+                    found = True
+                    break
 
     if not found:
         print "\nAdding dotfiles/.bashrc to the end of the ~/.bashrc"
