@@ -30,6 +30,7 @@
 	dmb = "!git branch --merged | grep -v \"^\\*\" | xargs -n 1 git branch -d"
 
 	mydiff = "!f () { echo $1 && echo $2 && git diff $(git merge-base $1 $2) $2; }; f"
+	info = "!pushd ~/code/$1 && git remote -v && git branch -a && popd"
 
 [color]
 	ui = auto
