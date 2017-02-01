@@ -4,9 +4,11 @@ export EDITOR=vim
 export TERM=xterm-256color
 export DISABLE_AUTO_TITLE='true'
 
+export WORKON_HOME="$HOME/.virtualenvs"
+export PROJECT_HOME="$HOME/code"
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
-export POWERLINE=$HOME/.local/venvs/powerline-status/lib/python2.7/site-packages/powerline
+export POWERLINE=$HOME/.local/venvs/powerline-status/lib/python3.6/site-packages/powerline
 
 export IP_RE="((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
 export CIDR_RE="${IP_RE}/(3[0-2]|[0-2]?[0-9])"
