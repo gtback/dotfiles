@@ -1,3 +1,4 @@
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias firefox="open -a /Applications/Firefox.app"
 alias vi=vim
+alias st="open -a ~/Applications/Sourcetree.app"
