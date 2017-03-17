@@ -107,6 +107,7 @@ $HOME/.vim/bundle/YouCompleteMe/install.py
 cd $HOME
 chsh -s `which zsh`
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Python setup
 git clone https://github.com/yyuu/pyenv.git ~/.pyenv
