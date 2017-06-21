@@ -6,7 +6,6 @@
 # Log of changes on branch not yet on branch (aka hg outgoing).
 	outgoing = log @{upstream}..HEAD
 
-	rpo = remote prune origin
 	rso = remote show origin
 	pom = push origin master
 
@@ -41,6 +40,9 @@
 
 [diff]
 	algorithm = patience
+
+[fetch]
+	prune = true
 
 [push]
 	default = simple
