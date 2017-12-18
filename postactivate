@@ -1,0 +1,5 @@
+#!/bin/zsh
+# This hook is sourced after every virtualenv is activated.
+
+tmux rename-window `basename $VIRTUAL_ENV`
+
