@@ -8,6 +8,7 @@ alias now="date +%FT%T"
 
 alias gdmb="git dmb"
 alias gpom="git pom"
+alias gssp="git ssp"
 alias lsvirtualenv="lsvirtualenv -b"
 alias pyws="sed -i -e 's/^[ \r\t]*$//'"
 alias version="git --version && tmux -V &&  vim --version | head -1"
