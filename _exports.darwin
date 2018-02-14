@@ -1,1 +1,10 @@
 export BROWSER=open
+
+# virtualenvwrapper should run using Homebrew's python3.
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+
+# virtualenvwrapper should use the virtualenv installed in Homebrew's python3 to create new virtualenvs.
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+
+# virtualenvwrapper should install pyenv's python into new virtualenvs.
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="-p /usr/local/var/pyenv/shims/python"
