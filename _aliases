@@ -11,7 +11,7 @@ alias gpom="git pom"
 alias gssp="git ssp"
 alias lsvirtualenv="lsvirtualenv -b"
 alias pyws="sed -i -e 's/^[ \r\t]*$//'"
-alias version="git --version && tmux -V &&  vim --version | head -1"
+alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
 
 alias vagrant-ids="grep '.*' ~/code/**/.vagrant/machines/*/virtualbox/index_uuid"
 alias zreload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
