@@ -22,10 +22,10 @@ Plugin 'bitc/vim-bad-whitespace'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'fisadev/vim-isort'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'jmcantrell/vim-virtualenv'
+"Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jnurmine/Zenburn'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'mileszs/ack.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'plasticboy/vim-markdown'
@@ -48,7 +48,7 @@ Plugin 'tpope/vim-vinegar'
 if has('win32')
   Plugin 'davidhalter/jedi-vim'
 elseif !has('win32unix')
-  Plugin 'Valloric/YouCompleteMe'
+  "Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'vim-scripts/indentpython.vim'
 

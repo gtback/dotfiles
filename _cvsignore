@@ -2,3 +2,4 @@
 *.swp
 .python-version
 .DS_Store
+.vscode
