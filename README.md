@@ -78,6 +78,50 @@ OS X Setup hints
     
 1. Install powerline with pipsi: `pipsi install powerline-status`
 
+RHEL/CentOS 7
+-------------
+```
+sudo yum -y update
+
+ssh-keygen
+
+git config --file ~/.gitconfig.local user.email "gtback@users.noreply.github.com"
+git config --file ~/.gitconfig.local user.name "Greg Back"
+
+git clone git@github.com:gtback/dotfiles.git
+python dotfiles/setup_env.py
+source dotfiles/setup_vim.sh
+
+sudo yum -y install zsh
+chsh -s /bin/zsh
+
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+sudo yum -y install yum-utils
+sudo yum -y groupinstall development
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+sudo yum -y install python36u python36u-pip python36u-devel
+
+wget https://github.com/github/hub/releases/download/v2.4.0/hub-linux-amd64-2.4.0.tgz
+tar xf hub-linux-amd64-2.4.0.tgz
+sudo ./hub-linux-amd64-2.4.0/install
+
+git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+sudo yum -y install zlib-devel readline-devel bzip2-devel sqlite-devel openssl-devel
+pyenv install 2.7.15
+pyenv install 3.6.5
+echo "3.6.5\n2.7.15\nsystem\n" > ~/.pyenv/version
+pyenv rehash
+
+/usr/bin/pip3.6 install --user virtualenvwrapper
+curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | /usr/bin/python3.6
+pipsi install twine
+pyenv rehash
+
+# To verify virtualenwrapper is installed correctly, run the `workon` command.
+```
+
 Setting up Ubuntu GNOME 14.04
 -----------------------------
 
