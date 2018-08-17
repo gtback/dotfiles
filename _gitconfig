@@ -33,6 +33,10 @@
 
 	ssp = stash show -p
 
+	# https://railsware.com/blog/2014/08/11/git-housekeeping-tutorial-clean-up-outdated-branches-in-local-and-remote-repositories/
+	remote-merged = "!for branch in `git branch -r --merged | grep -v HEAD`; do echo `git show --format=\"%ci %cr %an\" $branch | head -n 1` \\\\t$branch; done | sort -r"
+	remote-unmerged = "!for branch in `git branch -r --no-merged | grep -v HEAD`; do echo `git show --format=\"%ci %cr %an\" $branch | head -n 1` \\\\t$branch; done | sort -r"
+
 [color]
 	ui = auto
 
