@@ -68,6 +68,7 @@ done
 source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/opt/nvm/nvm.sh
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 which tmuxp.sh >/dev/null && source tmuxp.zsh
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH
