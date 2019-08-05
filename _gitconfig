@@ -1,5 +1,8 @@
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset - %G?%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+# Use this to get a standard-format diff result (for pasting into GitHub or a
+# patch file) since diff-so-fancy is the default pager.
+	patch = --no-pager diff --no-color
 
 # Log of changes on origin not yet on branch (aka hg incoming).
 	incoming = log HEAD..@{upstream}
@@ -26,7 +29,7 @@
 	last = log -1 HEAD
 
 # Delete branches merged into the current branch
-	dmb = "!git branch --merged | grep -v \"^\\*\" | grep -v master | grep -v develop | xargs -n 1 git branch -d"
+	dmb = "!git branch --merged | grep -v \"^\\*\" | grep -v '^  master$' | grep -v '^  develop$' | xargs -n 1 git branch -d"
 
 	mydiff = "!f () { echo $1 && echo $2 && git diff $(git merge-base $1 $2) $2; }; f"
 	info = "!pushd ~/code/$1 && git remote -v && git branch -a && popd"

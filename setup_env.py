@@ -12,7 +12,7 @@ IGNORED = ["README.md", "_bashrc", ".git", "windows", "bundles.vim"]
 
 def link(filename, dest_dir=HOME):
     source = os.path.join(DOTFILES_DIR, filename)
-    dest = os.path.join(dest_dir, filename).replace("_", ".")
+    dest = os.path.join(dest_dir, filename).replace("_", ".", 1)
 
     if os.path.exists(dest):
         print("Ignoring (already exists)")
@@ -61,7 +61,7 @@ def main():
     if not found:
         print("\nAdding dotfiles/.bashrc to the end of the ~/.bashrc")
         os.system('echo "%s" >> $HOME/.bashrc' % bashrc_line)
-        
+
 
 if __name__ == "__main__":
     main()

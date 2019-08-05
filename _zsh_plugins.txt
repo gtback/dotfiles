@@ -1,0 +1,9 @@
+djui/alias-tips
+caarlos0/ports
+mafredri/zsh-async
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+
+sindresorhus/pure
+zdharma/fast-syntax-highlighting
+zsh-users/zsh-history-substring-search

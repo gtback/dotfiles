@@ -1,12 +1,22 @@
-alias e=vim
-alias pt=py.test
-alias vg=vagrant
-alias wo=workon
-
 alias today="date +%F"
 alias now="date +%FT%T"
 
-alias gdmb="git dmb"
+alias l='ls -lFh'
+alias ll='ls -l'
+
+alias ga='git add'
+alias gb='git branch'
+alias gba='git branch --all'
+alias gc='git commit'
+alias gcm='git checkout master'
+alias gco='git checkout'
+alias gd='git diff'
+alias gdca='git diff --cached'
+alias gfa='git fetch --all'
+alias glg='git log --stat'
+alias gm='git merge'
+alias gst='git status'
+
 alias gpom="git pom"
 alias gssp="git ssp"
 alias lsvirtualenv="lsvirtualenv -b"
