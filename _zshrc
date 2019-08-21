@@ -100,4 +100,4 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
 fi
 
 autoload -Uz compinit && compinit
-function gi() { curl -sLw "\n" https://www.gitignore.io/api/$@ ;}
+function gi() { curl -sLw "\\n" https://www.gitignore.io/api/$@ ;}
