@@ -20,5 +20,3 @@ export GOPATH=$HOME/code/go
 
 export NVM_DIR="$HOME/.nvm"
 
-# added by pipsi (https://github.com/mitsuhiko/pipsi)
-export PATH="$HOME/.local/bin:$PATH"
