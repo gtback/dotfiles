@@ -124,6 +124,15 @@ set formatoptions=tcroqnl
 let g:SimpylFold_docstring_preview=1
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 autocmd FileType html,htmldjango set ts=2 sts=2 sw=2
 autocmd FileType yaml set ts=2 sts=2 sw=2
 autocmd FileType mkd set ts=2 sts=2 sw=2 foldlevel=20
