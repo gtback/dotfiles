@@ -19,6 +19,7 @@ alias gst='git status'
 
 alias gpom="git pom"
 alias gssp="git ssp"
+
 alias lsvirtualenv="lsvirtualenv -b"
 alias pyws="sed -i -e 's/^[ \r\t]*$//'"
 alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
@@ -33,3 +34,6 @@ function pip-upgrade-all {
 }
 
 alias git=hub
+
+alias ng="npm list -g --depth=0 2>/dev/null"
+alias nl="npm list --depth=0 2>/dev/null"
