@@ -35,5 +35,5 @@ function pip-upgrade-all {
 
 alias git=hub
 
-alias ng="npm list -g --depth=0 2>/dev/null"
+alias nlg="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
