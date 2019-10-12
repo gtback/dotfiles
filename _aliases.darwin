@@ -1,13 +1,9 @@
 alias md5sum=md5
 alias vi=vim
 
-alias atom="open -a /Applications/Atom.app"
-alias atomb="open -a /Applications/Atom\ Beta.app"
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias firefox="open -a /Applications/Firefox.app"
-alias krak="open -a /Applications/GitKraken.app"
 alias subl="open -a /Applications/Sublime\ Text.app"
-alias vsc="open -a /Applications/Visual\ Studio\ Code.app"
 alias ffprof="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManager 2>/dev/null &"
 
 # https://stackoverflow.com/a/30029855
