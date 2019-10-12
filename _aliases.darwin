@@ -6,7 +6,6 @@ alias atomb="open -a /Applications/Atom\ Beta.app"
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias firefox="open -a /Applications/Firefox.app"
 alias krak="open -a /Applications/GitKraken.app"
-alias st="echo 'use \"stree\" instead'"
 alias subl="open -a /Applications/Sublime\ Text.app"
 alias vsc="open -a /Applications/Visual\ Studio\ Code.app"
 alias ffprof="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManager 2>/dev/null &"
@@ -21,3 +20,6 @@ listening() {
         echo "Usage: listening [pattern]"
     fi
 }
+
+# Training to not use certain things.
+st () { echo 'use "stree" instead' }

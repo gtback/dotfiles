@@ -1,8 +1,8 @@
 alias today="date +%F"
 alias now="date +%FT%T"
 
-alias l='ls -lFh'
-alias ll='ls -l'
+alias l='exa -lFhg -m --time-style=long-iso'
+alias ll='exa -l'
 
 alias ga='git add'
 alias gb='git branch'
@@ -41,3 +41,6 @@ alias git=hub
 #   (https://gist.github.com/yyx990803/6045243)
 alias nlg="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
+
+# Train myself to use new things
+ls () { echo "How about trying 'exa'?" }
