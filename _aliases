@@ -30,9 +30,9 @@ alias vagrant-ids="grep '.*' ~/code/**/.vagrant/machines/*/virtualbox/index_uuid
 alias zreload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias lspath='f(){echo ${PATH} | tr ":" "\n"};f'
 alias proxies="env | grep -i proxy"
-alias pip-rm-all="pip freeze | sed 's/^-e.*egg=//' | xargs pip uninstall -y"
+alias pip-rm-all="python -m pip freeze | sed 's/^-e.*egg=//' | xargs python -m pip uninstall -y"
 function pip-upgrade-all {
-  pip list --outdated --disable-pip-version-check | awk 'NR>2 {print $1 "==" $3}' | xargs pip install
+  python -m pip list --outdated --disable-pip-version-check | awk 'NR>2 {print $1 "==" $3}' | xargs python -m pip install
 }
 
 alias git=hub
@@ -44,3 +44,5 @@ alias nl="npm list --depth=0 2>/dev/null"
 
 # Train myself to use new things
 ls () { echo "How about trying 'exa'?" }
+unalias pip
+pip () { echo "Use 'python -m pip' instead" }
