@@ -44,5 +44,6 @@ alias nl="npm list --depth=0 2>/dev/null"
 
 # Train myself to use new things
 ls () { echo "How about trying 'exa'?" }
-unalias pip
+# Check if there's an existing alias for pip, and if so, remove it.
+alias pip && unalias pip
 pip () { echo "Use 'python -m pip' instead" }
