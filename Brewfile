@@ -36,6 +36,7 @@ brew "wget"
 brew "zsh"
 
 cask "1password"
+cask "alfred"
 cask "appcleaner"
 cask "dash"
 cask "fantastical"
