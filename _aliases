@@ -17,10 +17,13 @@ alias gdca='git diff --cached'
 alias gfa='git fetch --all'
 alias glg='git log --stat'
 alias gm='git merge'
+alias grv='git remote -v'
 alias gst='git status'
 
 alias gpom="git pom"
 alias gssp="git ssp"
+
+alias branch='git symbolic-ref --short HEAD'
 
 alias lsvirtualenv="lsvirtualenv -b"
 alias pyws="sed -i -e 's/^[ \r\t]*$//'"
