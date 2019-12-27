@@ -1,13 +1,13 @@
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset - %G?%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	
+
 	# Use this to get a standard-format diff result (for pasting into GitHub or a
 	# patch file) since diff-so-fancy is the default pager.
 	patch = --no-pager diff --no-color
 
 	# Log of changes on origin not yet on branch (aka hg incoming).
 	incoming = log HEAD..@{upstream}
-	
+
 	# Log of changes on branch not yet on branch (aka hg outgoing).
 	outgoing = log @{upstream}..HEAD
 
@@ -41,6 +41,14 @@
 	# https://railsware.com/blog/2014/08/11/git-housekeeping-tutorial-clean-up-outdated-branches-in-local-and-remote-repositories/
 	remote-merged = "!for branch in `git branch -r --merged | grep -v HEAD`; do echo `git show --format=\"%ci %cr %an\" $branch | head -n 1` \\\\t$branch; done | sort -r"
 	remote-unmerged = "!for branch in `git branch -r --no-merged | grep -v HEAD`; do echo `git show --format=\"%ci %cr %an\" $branch | head -n 1` \\\\t$branch; done | sort -r"
+
+	# Show commits in <branch> that aren't in the current branch.
+	# This is equivalent to This is equivalent to `git log ^HEAD <branch>`
+	commits = "!git log ..${1}"
+
+	# Show changes made in <branch> (from common ancestor with current branch)
+	# This is equivalent to: `git diff $(git-merge-base HEAD <branch>) <branch>`
+	changes = "!git diff ...${1}"
 
 [color]
 	ui = auto
