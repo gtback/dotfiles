@@ -9,14 +9,14 @@
 		"deerawan.vscode-dash",
 		"eamodio.gitlens",
 		"lextudio.restructuredtext",
-		"mattlott.copy-github-url",
 		"ms-python.python",
 		"searKing.preview-vscode",
 		"stkb.rewrap",
+		"ziyasal.vscode-open-in-github",
 		"vscodevim.vim",
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": [
-		
+
 	]
 }
