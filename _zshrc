@@ -48,7 +48,7 @@ done
 
 # https://github.com/zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down  
+bindkey '^[[B' history-substring-search-down
 
 # [ -e $POWERLINE/bindings/zsh/powerline.zsh ] && source $POWERLINE/bindings/zsh/powerline.zsh
 
