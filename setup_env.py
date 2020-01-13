@@ -9,9 +9,15 @@ HOME = os.getenv("HOME")
 # Global - add files you want to ignore in the current directory
 IGNORED = ["README.md", "_bashrc", ".git", "windows", "bundles.vim"]
 
+DIRS = {
+    'VSCode': os.path.join(HOME, 'Library', 'Application Support', 'Code', 'User'),
+}
 
-def link(filename, dest_dir=HOME):
-    source = os.path.join(DOTFILES_DIR, filename)
+def link(filename, dest_dir=HOME, src_dir=None):
+    if src_dir:
+        source = os.path.join(DOTFILES_DIR, src_dir, filename)
+    else:
+        source = os.path.join(DOTFILES_DIR, filename)
     dest = os.path.join(dest_dir, filename).replace("_", ".", 1)
 
     if os.path.exists(dest):
@@ -36,6 +42,11 @@ def main():
         print(formatstr % f, end=" ")
         if f.startswith("setup_"):
             print("Ignoring (setup script)")
+        elif f in DIRS:
+            subdir = os.path.join(DOTFILES_DIR, f)
+            target_dir = DIRS[f]
+            for nested in os.listdir(subdir):
+                link(nested, target_dir, subdir)
         elif f.endswith("~"):
             print("Ignoring (temp file)")
         elif f in IGNORED:

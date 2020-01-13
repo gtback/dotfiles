@@ -1,0 +1,24 @@
+{
+    "editor.suggest.localityBonus": true,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "on",
+    "explorer.confirmDelete": false,
+    "git.confirmSync": false,
+    "window.zoomLevel": 0,
+    "editor.minimap.enabled": false,
+    "python.dataScience.sendSelectionToInteractiveWindow": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.views.repositories.location": "gitlens",
+    "gitlens.views.fileHistory.location": "gitlens",
+    "gitlens.views.lineHistory.location": "gitlens",
+    "gitlens.views.compare.location": "gitlens",
+    "gitlens.views.search.location": "gitlens",
+    "workbench.colorTheme": "Visual Studio Light",
+    "workbench.list.keyboardNavigation": "filter",
+    "[typescript]": {
+        "editor.tabSize": 2,
+    },
+    "git.untrackedChanges": "separate",
+    "python.jediEnabled": false,
+    "problems.showCurrentInStatus": true
+}
