@@ -1,6 +1,16 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
     {
+        "key": "ctrl+alt+cmd+g",
+        "command": "extension.vim_ctrl+g",
+        "when": "editorTextFocus && vim.active && vim.use<C-g> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+g",
+        "command": "-extension.vim_ctrl+g",
+        "when": "editorTextFocus && vim.active && vim.use<C-g> && !inDebugRepl"
+    },
+    {
         "key": "alt+cmd+down",
         "command": "-extension.vim_cmd+alt+down",
         "when": "editorTextFocus && vim.active && !inDebugRepl"

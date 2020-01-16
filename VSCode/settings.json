@@ -3,11 +3,39 @@
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "on",
     "explorer.confirmDelete": false,
+    "breadcrumbs.enabled": true,
+    "editor.rulers": [
+        80,
+        120,
+    ],
+
+    "files.exclude": {
+        "**/__pycache__": true
+    },
+    "files.insertFinalNewline": true,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+
+    // Python Language support
+    "python.venvPath": "~/.virtualenvs",
+    "autoDocstring.newlineBeforeSummary": true,
+
     "git.confirmSync": false,
+
     "window.zoomLevel": 0,
     "editor.minimap.enabled": false,
+    "workbench.startupEditor": "newUntitledFile",
     "python.dataScience.sendSelectionToInteractiveWindow": false,
+
+    "editor.renderWhitespace": "all",
+    "files.trimTrailingWhitespace": true,
+    "debug.toolBarLocation": "docked",
+    "extensions.ignoreRecommendations": true,
+    "liveshare.autoShareServers": false,
+    "liveshare.openSharedServers": false,
+    "gitlens.codeLens.enabled": false,
     "gitlens.hovers.currentLine.over": "line",
+    "liveshare.codeLens": false,
+    "liveshare.featureSet": "insiders",
     "gitlens.views.repositories.location": "gitlens",
     "gitlens.views.fileHistory.location": "gitlens",
     "gitlens.views.lineHistory.location": "gitlens",
@@ -15,10 +43,32 @@
     "gitlens.views.search.location": "gitlens",
     "workbench.colorTheme": "Visual Studio Light",
     "workbench.list.keyboardNavigation": "filter",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "terminal.integrated.scrollback": 10000,
+    "workbench.statusBar.visible": true,
+    "terminal.integrated.shell.osx": "/bin/zsh",
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.confirmOnExit": true,
+    "workbench.activityBar.visible": true,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "extensions.showRecommendationsOnlyOnDemand": true,
+    "python.formatting.provider": "black",
+    "files.associations": {
+        "_zshrc": "shellscript"
+    },
+    "diffEditor.ignoreTrimWhitespace": true,
+    "diffEditor.renderSideBySide": true,
     "[typescript]": {
         "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "typescript.updateImportsOnFileMove.enabled": "always",
     "git.untrackedChanges": "separate",
+    "git.alwaysShowStagedChangesResourceGroup": true,
     "python.jediEnabled": false,
     "problems.showCurrentInStatus": true
 }
