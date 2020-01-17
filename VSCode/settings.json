@@ -1,73 +1,70 @@
 {
-    "editor.suggest.localityBonus": true,
-    "editor.suggestSelection": "first",
-    "editor.tabCompletion": "on",
-    "explorer.confirmDelete": false,
-    "breadcrumbs.enabled": true,
-    "editor.rulers": [
-        80,
-        120,
-    ],
-
-    "files.exclude": {
-        "**/__pycache__": true
-    },
-    "files.insertFinalNewline": true,
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-
-    // Python Language support
-    "python.venvPath": "~/.virtualenvs",
-
-    "git.confirmSync": false,
-
-    "window.zoomLevel": 0,
-    "editor.minimap.enabled": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "python.dataScience.sendSelectionToInteractiveWindow": false,
-
-    "editor.renderWhitespace": "all",
-    "files.trimTrailingWhitespace": true,
-    "debug.toolBarLocation": "docked",
-    "extensions.ignoreRecommendations": true,
-    "liveshare.autoShareServers": false,
-    "liveshare.openSharedServers": false,
-    "gitlens.codeLens.enabled": false,
-    "gitlens.hovers.currentLine.over": "line",
-    "liveshare.codeLens": false,
-    "liveshare.featureSet": "insiders",
-    "gitlens.views.repositories.location": "gitlens",
-    "gitlens.views.fileHistory.location": "gitlens",
-    "gitlens.views.lineHistory.location": "gitlens",
-    "gitlens.views.compare.location": "gitlens",
-    "gitlens.views.search.location": "gitlens",
-    "workbench.colorTheme": "Visual Studio Light",
-    "workbench.list.keyboardNavigation": "filter",
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "terminal.integrated.scrollback": 10000,
-    "workbench.statusBar.visible": true,
-    "terminal.integrated.shell.osx": "/bin/zsh",
-    "explorer.confirmDragAndDrop": false,
-    "terminal.integrated.confirmOnExit": true,
-    "workbench.activityBar.visible": true,
-    "workbench.iconTheme": "vscode-icons",
-    "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 14,
-    "extensions.showRecommendationsOnlyOnDemand": true,
-    "python.formatting.provider": "black",
-    "files.associations": {
-        "_zshrc": "shellscript"
-    },
-    "diffEditor.ignoreTrimWhitespace": true,
-    "diffEditor.renderSideBySide": true,
-    "[typescript]": {
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "git.untrackedChanges": "separate",
-    "git.alwaysShowStagedChangesResourceGroup": true,
-    "python.jediEnabled": false,
-    "problems.showCurrentInStatus": true
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "breadcrumbs.enabled": true,
+  "debug.toolBarLocation": "docked",
+  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.renderSideBySide": true,
+  "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.suggest.localityBonus": true,
+  "editor.suggestSelection": "first",
+  "editor.tabCompletion": "on",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "extensions.ignoreRecommendations": true,
+  "extensions.showRecommendationsOnlyOnDemand": true,
+  "files.associations": {
+    _zshrc: "shellscript"
+  },
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "git.alwaysShowStagedChangesResourceGroup": true,
+  "git.confirmSync": false,
+  "git.untrackedChanges": "separate",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.views.compare.location": "gitlens",
+  "gitlens.views.fileHistory.location": "gitlens",
+  "gitlens.views.lineHistory.location": "gitlens",
+  "gitlens.views.repositories.location": "gitlens",
+  "gitlens.views.search.location": "gitlens",
+  "liveshare.autoShareServers": false,
+  "liveshare.codeLens": false,
+  "liveshare.featureSet": "insiders",
+  "liveshare.openSharedServers": false,
+  "problems.showCurrentInStatus": true,
+  "python.dataScience.sendSelectionToInteractiveWindow": false,
+  "python.formatting.provider": "black",
+  "python.jediEnabled": false,
+  "python.venvPath": "~/.virtualenvs",
+  "terminal.integrated.confirmOnExit": true,
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "Visual Studio Light",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.list.keyboardNavigation": "filter",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.statusBar.visible": true
 }
