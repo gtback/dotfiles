@@ -28,7 +28,7 @@
   "extensions.ignoreRecommendations": true,
   "extensions.showRecommendationsOnlyOnDemand": true,
   "files.associations": {
-    _zshrc: "shellscript"
+    "_zshrc": "shellscript"
   },
   "files.exclude": {
     "**/__pycache__": true
