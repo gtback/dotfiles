@@ -62,6 +62,7 @@ cask "visual-studio-code"
 cask "vlc"
 
 mas "Amphetamine", id: 937984704
+mas "Bumpr", id: 1166066070
 mas "Speedtest", id: 1153157709
 mas "Pocket", id: 568494494
 mas "Todoist", id: 585829637
