@@ -5,6 +5,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "getantibody/tap"
 
+brew "awscli"
 brew "bash"
 brew "coreutils"
 brew "ctags"
@@ -29,6 +30,7 @@ brew "ripgrep"
 brew "shellcheck"
 brew "sk"
 brew "ssh-copy-id"
+brew "tldr"
 brew "tmux"
 brew "tree"
 brew "unp"
@@ -42,6 +44,7 @@ brew "zsh"
 cask "1password"
 cask "alfred"
 cask "appcleaner"
+cask "bartender"
 cask "clipy"
 cask "dash"
 cask "fantastical"
@@ -66,7 +69,6 @@ cask "vlc"
 
 mas "Amphetamine", id: 937984704
 mas "Bumpr", id: 1166066070
-mas "LastPass", id: 926036361
 mas "Speedtest", id: 1153157709
 mas "Pocket", id: 568494494
 mas "Todoist", id: 585829637
