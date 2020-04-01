@@ -55,6 +55,7 @@ cask "grandperspective"
 cask "istat-menus"
 cask "iterm2"
 cask "kap"
+cask "keybase"
 cask "krisp"
 cask "private-internet-access"
 cask "slack"
@@ -66,6 +67,7 @@ cask "vlc"
 
 mas "Amphetamine", id: 937984704
 mas "Bumpr", id: 1166066070
+mas "LastPass", id: 926036361
 mas "Speedtest", id: 1153157709
 mas "Pocket", id: 568494494
 mas "Todoist", id: 585829637
