@@ -2,8 +2,12 @@
 # - https://blog.askesis.pl/post/2017/04/how-to-debug-zsh-startup-time.html
 #zmodload zsh/zprof
 
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
 autoload -Uz compinit
 compinit
+fi
 
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt
