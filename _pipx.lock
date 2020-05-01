@@ -1,0 +1,7 @@
+black
+flake8
+gcalcli
+poetry
+tox
+twine
+youtube_dl

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Usage:
+#   pipx-freeze > ~/.pipx.lock
+
+set -euo pipefail
+
+ls ${PIPX_HOME:-$HOME/.local/pipx}/venvs
