@@ -57,18 +57,14 @@ bindkey '^[[B' history-substring-search-down
 # [ -e $POWERLINE/bindings/zsh/powerline.zsh ] && source $POWERLINE/bindings/zsh/powerline.zsh
 
 if [ "$TERM_PROGRAM" == "vscode" ]; then
-  echo "Disabling shell environment managers (virtualenvwrapper, nvm, pyenv, rbenv) in Visual Studio Code"
+  echo "Disabling shell environment managers (virtualenvwrapper, nvm, pyenv) in Visual Studio Code"
 else
   source /usr/local/bin/virtualenvwrapper.sh
   [ -s "$NVM_HOME/nvm.sh" ] && . "$NVM_HOME/nvm.sh"  # This loads nvm
   [ -s "$NVM_HOME/bash_completion" ] && . "$NVM_HOME/bash_completion"  # This loads nvm bash_completion
   if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-  if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 fi
 which tmuxp.sh >/dev/null && source tmuxp.zsh
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Start ssh-agent if it it is not already running.
 SSHAGENT=/usr/bin/ssh-agent

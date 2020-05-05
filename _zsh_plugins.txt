@@ -9,6 +9,7 @@ zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
 # robbyrussell/oh-my-zsh path:plugins/celery
+robbyrussell/oh-my-zsh path:plugins/chruby
 # robbyrussell/oh-my-zsh path:plugins/django
 robbyrussell/oh-my-zsh path:plugins/docker
 # robbyrussell/oh-my-zsh path:plugins/fabric
@@ -17,8 +18,7 @@ robbyrussell/oh-my-zsh path:plugins/docker
 # robbyrussell/oh-my-zsh path:plugins/nvm
 robbyrussell/oh-my-zsh path:plugins/pip
 robbyrussell/oh-my-zsh path:plugins/python
-# robbyrussell/oh-my-zsh path:plugins/ruby
-robbyrussell/oh-my-zsh path:plugins/rvm
+robbyrussell/oh-my-zsh path:plugins/ruby
 robbyrussell/oh-my-zsh path:plugins/vagrant
 # robbyrussell/oh-my-zsh path:plugins/virtualenv
 
