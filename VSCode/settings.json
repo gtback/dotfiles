@@ -8,11 +8,11 @@
   },
   "breadcrumbs.enabled": true,
   "debug.toolBarLocation": "docked",
-  "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": true,
   "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 14,
   "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
   "editor.rulers": [
