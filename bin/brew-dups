@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Detect formuale, casks, taps, etc. that are in more than one Brewfile
+
+set -euo pipefail
+
+fd Brewfile ${HOME} -x cat | egrep -v "(^#|^$)" | sort | uniq -c | grep -v "^   1 "
