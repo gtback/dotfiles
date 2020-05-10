@@ -41,6 +41,8 @@ function pip-upgrade-all {
 alias git=hub
 alias k=kubectl
 
+alias xo="xargs open"
+
 # List top level npm packages (global and local)
 #   (https://gist.github.com/yyx990803/6045243)
 alias nlg="npm list -g --depth=0 2>/dev/null"
