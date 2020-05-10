@@ -15,10 +15,7 @@
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
@@ -53,6 +50,7 @@
   "python.formatting.provider": "black",
   "python.jediEnabled": false,
   "python.venvPath": "~/.virtualenvs",
+  "spellright.documentTypes": ["markdown"],
   "terminal.integrated.confirmOnExit": true,
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.shell.osx": "/bin/zsh",
