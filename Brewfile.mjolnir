@@ -1,0 +1,12 @@
+brew "ffmpeg"
+
+cask "adobe-digital-editions"
+cask "backblaze"
+cask "calibre"
+cask "discord"
+cask "dropbox"
+cask "gemini"
+cask "netnewswire"
+cask "pocket-casts"
+
+mas "WireGuard", id: 1451685025
