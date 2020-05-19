@@ -47,6 +47,7 @@ for dotfile in aliases exports; do
   file="$HOME/.${dotfile}"
   [ -e "${file}" ] && source "${file}"
   [ -e "${file}.${os}" ] && source "${file}.${os}"
+  [ -e "${file}.$(hostname)" ] && echo "${file}.$(hostname)" && source "${file}.$(hostname)"
   [ -e "${file}.local" ] && source "${file}.local"
 done
 

@@ -2,4 +2,6 @@
 
 set -euo pipefail
 
-brew bundle install --file ~/dotfiles/Brewfile
+[ -e "${HOME}/dotfiles/Brewfile" ] && brew bundle install --file "${HOME}/dotfiles/Brewfile"
+[ -e "${HOME}/dotfiles/Brewfile.$(hostname)" ] && brew bundle install --file "${HOME}/dotfiles/Brewfile.$(hostname)"
+[ -e "${HOME}/Brewfile.local" ] && source "${HOME}/Brewfile.local"
