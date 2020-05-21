@@ -3,12 +3,12 @@
 set -euf
 
 symlink() {
-    SRC="$PWD/$1"
-    [ -e "$SRC" ] || (echo "No file named $SRC" && exit 1)
-    DEST="$2"
-    echo "Linking $DEST -> $SRC"
-    ln -sf "$SRC" "$DEST"
-    #ls -l "$DEST"
+	SRC="$PWD/$1"
+	[ -e "$SRC" ] || (echo "No file named $SRC" && exit 1)
+	DEST="$2"
+	echo "Linking $DEST -> $SRC"
+	ln -sf "$SRC" "$DEST"
+	#ls -l "$DEST"
 }
 
 symlink _zshrc ~/.zshrc
@@ -39,10 +39,8 @@ symlink VSCode/keybindings.json "$HOME/Library/Application Support/Code/User/key
 symlink VSCode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 symlink VSCode/tasks.json "$HOME/Library/Application Support/Code/User/tasks.json"
 
-
-
 if grep -q 'source ~/dotfiles/_bashrc' "${HOME}/.bashrc"; then
-    echo ".bashrc has already been modified"
+	echo ".bashrc has already been modified"
 else
-    echo 'source ~/dotfiles/_bashrc' >> "${HOME}/.bashrc"
+	echo 'source ~/dotfiles/_bashrc' >>"${HOME}/.bashrc"
 fi

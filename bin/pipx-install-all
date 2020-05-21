@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-cat ~/.pipx.lock | xargs -n 1 pipx install
+xargs -n 1 pipx install <~/.pipx.lock
