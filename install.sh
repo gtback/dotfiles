@@ -46,4 +46,3 @@ if grep -q 'source ~/dotfiles/_bashrc' "${HOME}/.bashrc"; then
 else
     echo 'source ~/dotfiles/_bashrc' >> "${HOME}/.bashrc"
 fi
-

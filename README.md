@@ -20,12 +20,12 @@ Setting up Babun/Cygwin
 1. Create SSH key (`ssh-keygen -t rsa -b 4096`) and upload to GitHub.
 1. Update `.babunrc` file as needed (proxies, user agent, etc.).
 1. Reload `.babunrc` and verify Network connectivity and available updates.
-    
+
     ```sh
     source .babunrc
     babun check
     ```
-    
+
 1. Clone dotfiles and run installation scripts.
 
     ```sh
@@ -36,7 +36,7 @@ Setting up Babun/Cygwin
     dotfiles/setup_env.py
     dotfiles/setup_vim.sh
     ```
-    
+
 1. Customize local installation.
 
     ```sh
@@ -50,9 +50,9 @@ Setting up Babun/Cygwin
     compinit -y
     cp .zcompdump .zcompdump-<COMPUTER NAME>-5.0.6
     ```
-    
+
 1. Set up pip, virtualenvwrapper, and pipsi.
-    
+
     ```sh
     curl https://bootstrap.pypa.io/get-pip.py | python
     pip install virtualenvwrapper
@@ -72,10 +72,10 @@ OS X Setup hints
 1. Install `python` and `vim` with Homebrew: `brew install python vim`
 1. Install virtualenvwrapper with Homebrew pip: `sudo -H /usr/local/bin/pip install virtualenvwrapper`
 1. Install `isort` so that Vim can get to it: `sudo -H /usr/local/bin/pip install isort`
-1. Install [`pipsi`](https://github.com/mitsuhiko/pipsi) with Homebrew Python: 
+1. Install [`pipsi`](https://github.com/mitsuhiko/pipsi) with Homebrew Python:
 
     `curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | /usr/local/bin/python`
-    
+
 1. Install powerline with pipsi: `pipsi install powerline-status`
 
 RHEL/CentOS 7

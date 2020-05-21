@@ -4,4 +4,3 @@
 if [ -n "$TMUX" ]; then
   tmux rename-window `basename $VIRTUAL_ENV`
 fi
-
