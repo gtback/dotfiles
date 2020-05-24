@@ -15,5 +15,6 @@ export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="-p /usr/local/var/pyenv/shims/python"
 export GPG_TTY=$(tty)
 
 export HOMEBREW_BUNDLE_NO_LOCK=1
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=14
 
 export NVM_HOME=/usr/local/opt/nvm/
