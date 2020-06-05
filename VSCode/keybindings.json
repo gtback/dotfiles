@@ -14,5 +14,10 @@
         "key": "alt+cmd+down",
         "command": "-extension.vim_cmd+alt+down",
         "when": "editorTextFocus && vim.active && !inDebugRepl"
+    },
+    {
+        "key": "shift+cmd+a",
+        "command": "editor.emmet.action.wrapWithAbbreviation",
+        "when": "editorHasSelection"
     }
 ]
