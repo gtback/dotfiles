@@ -4,4 +4,4 @@
 
 set -euo pipefail
 
-fd Brewfile "${HOME}" -x cat | grep -E -v "(^#|^$)" | sort | uniq -c | grep -v "^   1 "
+fd Brewfile "${HOME}" | grep -v "${BREWFILE_IGNORE:-xxxxxx}" | xargs cat | grep -E -v "(^#|^$)" | sort | uniq -c | grep -v "^   1 "
