@@ -54,3 +54,5 @@ ls () { echo "How about trying 'exa'?" }
 # Check if there's an existing alias for pip, and if so, remove it.
 alias pip >/dev/null && unalias pip
 pip () { echo "Use 'python -m pip' instead" }
+
+tlsdates () { echo | openssl s_client -servername $1 -connect $1:443 2>/dev/null | openssl x509 -noout -dates }
