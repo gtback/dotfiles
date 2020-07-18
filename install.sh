@@ -24,6 +24,7 @@ symlink _exports.darwin ~/.exports.darwin
 symlink _exports.linux ~/.exports.linux
 
 symlink _ackrc ~/.ackrc
+symlink _alacritty.yml ~/.alacritty.yml
 symlink _cvsignore ~/.cvsignore
 symlink _gitconfig ~/.gitconfig
 symlink _gvimrc ~/.gvimrc
