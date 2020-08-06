@@ -19,5 +19,9 @@
         "key": "shift+cmd+a",
         "command": "editor.emmet.action.wrapWithAbbreviation",
         "when": "editorHasSelection"
+    },
+    {
+        "key": "alt+cmd+g",
+        "command": "git.showOutput"
     }
 ]
