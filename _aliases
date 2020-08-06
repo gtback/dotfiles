@@ -39,7 +39,6 @@ function pip-upgrade-all {
 }
 
 alias git=hub
-alias k=kubectl
 alias ip="http https://httpbin.org/ip | jq -r '.origin'"
 
 alias xo="xargs open"
@@ -56,3 +55,8 @@ alias pip >/dev/null && unalias pip
 pip () { echo "Use 'python -m pip' instead" }
 
 tlsdates () { echo | openssl s_client -servername $1 -connect $1:443 2>/dev/null | openssl x509 -noout -dates }
+
+alias kdp="kubectl describe pod"
+alias kgp="kubectl get events"
+alias kgn="kubectl get namespaces"
+alias kgp="kubectl get pods"
