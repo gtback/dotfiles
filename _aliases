@@ -40,6 +40,7 @@ function pip-upgrade-all {
 
 alias git=hub
 alias ip="http https://httpbin.org/ip | jq -r '.origin'"
+alias tm="tmuxinator start"
 
 alias xo="xargs open"
 
