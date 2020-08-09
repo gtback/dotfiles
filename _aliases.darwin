@@ -5,6 +5,7 @@ alias chrome="open -a /Applications/Google\ Chrome.app"
 alias firefox="open -a /Applications/Firefox.app"
 alias subl="open -a /Applications/Sublime\ Text.app"
 alias ffprof="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManager 2>/dev/null &"
+alias swud="softwareupdate --all"
 
 # https://stackoverflow.com/a/30029855
 listening() {
