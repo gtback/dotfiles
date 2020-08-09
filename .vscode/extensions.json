@@ -1,22 +1,23 @@
 {
-	// See http://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
-	// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+  // See http://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+  // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
 
-	// List of extensions which should be recommended for users of this workspace.
-	"recommendations": [
-		"arthurwhite.white",
-		"bbenoist.vagrant",
-		"deerawan.vscode-dash",
-		"eamodio.gitlens",
-		"lextudio.restructuredtext",
-		"ms-python.python",
-		"searKing.preview-vscode",
-		"stkb.rewrap",
-		"ziyasal.vscode-open-in-github",
-		"vscodevim.vim",
-	],
-	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
-	"unwantedRecommendations": [
+  // List installed extensions with:
+  //     code --list-extensions
 
-	]
+  // List of extensions which should be recommended for users of this workspace.
+  "recommendations": [
+    "arthurwhite.white",
+    "bbenoist.vagrant",
+    "deerawan.vscode-dash",
+    "eamodio.gitlens",
+    "lextudio.restructuredtext",
+    "ms-python.python",
+    "searKing.preview-vscode",
+    "stkb.rewrap",
+    "ziyasal.vscode-open-in-github",
+    "vscodevim.vim"
+  ],
+  // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+  "unwantedRecommendations": []
 }
