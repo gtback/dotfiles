@@ -6,5 +6,6 @@ cask "discord"
 cask "dropbox"
 cask "gemini"
 cask "pocket-casts"
+cask "steam"
 
 mas "WireGuard", id: 1451685025
