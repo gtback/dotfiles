@@ -2,7 +2,6 @@ brew "ffmpeg"
 
 cask "adobe-digital-editions"
 cask "backblaze"
-cask "calibre"
 cask "discord"
 cask "dropbox"
 cask "gemini"
