@@ -1,9 +1,18 @@
+#!/bin/bash 
+
+### Date aliases
 alias today="date +%F"
 alias now="date +%FT%T"
 
+### File listing aliases
 alias l='exa -lFhg -m --time-style=long-iso'
 alias ll='exa -l'
+ls () { 
+  echo "How about trying 'exa'?" 
+}
 
+### Git aliases
+alias branch='git symbolic-ref --short HEAD'
 alias ga='git add'
 alias gb='git branch'
 alias gba='git branch --all'
@@ -20,23 +29,29 @@ alias gm='git merge'
 alias grv='git remote -v'
 alias gst='git status'
 
+# These git aliases are defined in _gitconfig
 alias gpom="git pom"
 alias gssp="git ssp"
 
-alias branch='git symbolic-ref --short HEAD'
-
+### Python Aliases
 alias lsvirtualenv="lsvirtualenv -b"
 alias pyws="sed -i -e 's/^[ \r\t]*$//'"
+alias pip-rm-all="python -m pip freeze | sed 's/^-e.*egg=//' | xargs python -m pip uninstall -y"
+pip-upgrade-all () {
+  python -m pip list --outdated --disable-pip-version-check | awk 'NR>2 {print $1 "==" $3}' | xargs python -m pip install
+}
+# Check if there's an existing alias for pip, and if so, remove it.
+alias pip >/dev/null && unalias pip
+pip () { 
+  echo "Use 'python -m pip' instead" 
+}
+
 alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
 
 alias vagrant-ids="grep '.*' ~/code/**/.vagrant/machines/*/virtualbox/index_uuid"
 alias zreload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias lspath='f(){echo ${PATH} | tr ":" "\n"};f'
 alias proxies="env | grep -i proxy"
-alias pip-rm-all="python -m pip freeze | sed 's/^-e.*egg=//' | xargs python -m pip uninstall -y"
-function pip-upgrade-all {
-  python -m pip list --outdated --disable-pip-version-check | awk 'NR>2 {print $1 "==" $3}' | xargs python -m pip install
-}
 
 alias git=hub
 alias ip="http https://httpbin.org/ip | jq -r '.origin'"
@@ -49,14 +64,11 @@ alias xo="xargs open"
 alias nlg="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
 
-# Train myself to use new things
-ls () { echo "How about trying 'exa'?" }
-# Check if there's an existing alias for pip, and if so, remove it.
-alias pip >/dev/null && unalias pip
-pip () { echo "Use 'python -m pip' instead" }
+tlsdates () { 
+  echo | openssl s_client -servername "$1" -connect "$1":443 2>/dev/null | openssl x509 -noout -dates 
+}
 
-tlsdates () { echo | openssl s_client -servername $1 -connect $1:443 2>/dev/null | openssl x509 -noout -dates }
-
+### kubectl aliases
 alias kdp="kubectl describe pod"
 alias kgp="kubectl get events"
 alias kgn="kubectl get namespaces"
