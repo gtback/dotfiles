@@ -76,7 +76,7 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
 fi
 
 
-function gi() { curl -sLw "\\n" https://www.gitignore.io/api/$@ ;}
+function gi() { curl -sLw "\\n" https://www.gitignore.io/api/$@ | grep -v "toptal";}
 
 # Uncomment to print results of startup profiling
 #zprof
