@@ -4,8 +4,11 @@ cask "adobe-digital-editions"
 cask "backblaze"
 cask "discord"
 cask "dropbox"
+cask "element"
 cask "gemini"
 cask "pocket-casts"
 cask "steam"
+cask "zotero"
 
 mas "WireGuard", id: 1451685025
+mas "Xcode", id: 497799835
