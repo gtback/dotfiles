@@ -6,7 +6,13 @@ alias firefox="open -a /Applications/Firefox.app"
 alias subl="open -a /Applications/Sublime\ Text.app"
 alias ffprof="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManager 2>/dev/null &"
 alias swud="softwareupdate --all"
-alias pods="SwitchAudioSource -t input -s AirPods && SwitchAudioSource -t output -s AirPods"
+
+pods() {
+    blueutil --connect "${AIRPODS_BLUETOOTH_ID}"
+    while [ "$(blueutil --is-connected "${AIRPODS_BLUETOOTH_ID}")" -ne "1" ]; do sleep 1; done
+    SwitchAudioSource -t output -s AirPods
+    SwitchAudioSource -t input -s AirPods
+}
 
 # https://stackoverflow.com/a/30029855
 listening() {
@@ -20,4 +26,4 @@ listening() {
 }
 
 # Training to not use certain things.
-st () { echo 'use "stree" instead' }
+st () { echo 'use "stree" instead'; }
