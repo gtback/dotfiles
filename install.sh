@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -euf
 
@@ -10,6 +10,8 @@ symlink() {
 	ln -sf "$SRC" "$DEST"
 	#ls -l "$DEST"
 }
+
+pushd "${HOME}/dotfiles"
 
 symlink _zshrc ~/.zshrc
 symlink _zsh_plugins.txt ~/.zsh_plugins.txt
@@ -26,6 +28,8 @@ symlink _exports.linux ~/.exports.linux
 symlink _ackrc ~/.ackrc
 symlink _alacritty.yml ~/.alacritty.yml
 symlink _cvsignore ~/.cvsignore
+symlink _fzf.bash ~/.fzf.bash
+symlink _fzf.zsh ~/.fzf.zsh
 symlink _gitconfig ~/.gitconfig
 symlink _gvimrc ~/.gvimrc
 symlink _jsbeautifyrc ~/.jsbeautifyrc
@@ -45,3 +49,5 @@ if grep -q 'source ~/dotfiles/_bashrc' "${HOME}/.bashrc"; then
 else
 	echo 'source ~/dotfiles/_bashrc' >>"${HOME}/.bashrc"
 fi
+
+popd

@@ -75,6 +75,8 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
   trap "kill $SSH_AGENT_PID" 0
 fi
 
+# https://github.com/junegunn/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 function gi() { curl -sLw "\\n" https://www.gitignore.io/api/$@ | grep -v "toptal";}
 

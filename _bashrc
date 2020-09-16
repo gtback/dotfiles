@@ -11,3 +11,6 @@ for dotfile in aliases exports; do
 done
 
 source virtualenvwrapper.sh
+
+# https://github.com/junegunn/fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
