@@ -10,6 +10,7 @@ alias swud="softwareupdate --all"
 pods() {
     blueutil --connect "${AIRPODS_BLUETOOTH_ID}"
     while [ "$(blueutil --is-connected "${AIRPODS_BLUETOOTH_ID}")" -ne "1" ]; do sleep 1; done
+    sleep 1
     SwitchAudioSource -t output -s AirPods
     SwitchAudioSource -t input -s AirPods
 }
