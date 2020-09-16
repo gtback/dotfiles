@@ -10,5 +10,6 @@ cask "pocket-casts"
 cask "steam"
 cask "zotero"
 
+mas "Cyph", id: 1480070821
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
