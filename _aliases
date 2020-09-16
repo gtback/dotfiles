@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 ### Date aliases
 alias today="date +%F"
@@ -7,8 +7,8 @@ alias now="date +%FT%T"
 ### File listing aliases
 alias l='exa -lFhg -m --time-style=long-iso'
 alias ll='exa -l'
-ls () { 
-  echo "How about trying 'exa'?" 
+ls () {
+  echo "How about trying 'exa'?"
 }
 
 ### Git aliases
@@ -42,8 +42,8 @@ pip-upgrade-all () {
 }
 # Check if there's an existing alias for pip, and if so, remove it.
 alias pip >/dev/null && unalias pip
-pip () { 
-  echo "Use 'python -m pip' instead" 
+pip () {
+  echo "Use 'python -m pip' instead"
 }
 
 alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
@@ -64,8 +64,8 @@ alias xo="xargs open"
 alias nlg="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
 
-tlsdates () { 
-  echo | openssl s_client -servername "$1" -connect "$1":443 2>/dev/null | openssl x509 -noout -dates 
+tlsdates () {
+  echo | openssl s_client -servername "$1" -connect "$1":443 2>/dev/null | openssl x509 -noout -dates
 }
 
 ### kubectl aliases
@@ -73,3 +73,5 @@ alias kdp="kubectl describe pod"
 alias kgp="kubectl get events"
 alias kgn="kubectl get namespaces"
 alias kgp="kubectl get pods"
+
+function gi() { curl -sLw "\\n" https://www.gitignore.io/api/$@ | grep -v "toptal";}

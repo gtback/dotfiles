@@ -78,7 +78,5 @@ fi
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-function gi() { curl -sLw "\\n" https://www.gitignore.io/api/$@ | grep -v "toptal";}
-
 # Uncomment to print results of startup profiling
 #zprof
