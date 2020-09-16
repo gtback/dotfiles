@@ -69,6 +69,5 @@
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "vscode-icons",
   "workbench.list.keyboardNavigation": "filter",
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.statusBar.visible": true
+  "workbench.startupEditor": "newUntitledFile"
 }
