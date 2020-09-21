@@ -1,0 +1,16 @@
+tap "fossas/tap"
+
+brew "cmake"
+brew "fossas/tap/fossa"
+brew "fx"
+brew "telnet"
+brew "tmuxinator"
+
+cask "github"
+cask "google-chrome"
+cask "graphiql"
+cask "microsoft-auto-update"
+cask "microsoft-edge"
+cask "vivaldi"
+
+mas "Xcode", id: e97799835
