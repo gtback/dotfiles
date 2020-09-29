@@ -75,4 +75,4 @@ alias kge="kubectl get events"
 alias kgn="kubectl get namespaces"
 alias kgp="kubectl get pods"
 
-function gi() { curl -sLw "\\n" https://www.gitignore.io/api/$@ | grep -v "toptal";}
+function gi() { curl -sLw "\\n" "https://www.gitignore.io/api/$*" | grep -v "toptal";}
