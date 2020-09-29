@@ -69,8 +69,9 @@ tlsdates () {
 }
 
 ### kubectl aliases
+alias k=kubectl
 alias kdp="kubectl describe pod"
-alias kgp="kubectl get events"
+alias kge="kubectl get events"
 alias kgn="kubectl get namespaces"
 alias kgp="kubectl get pods"
 
