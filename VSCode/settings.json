@@ -15,6 +15,7 @@
   },
   "breadcrumbs.enabled": true,
   "debug.toolBarLocation": "docked",
+  "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": true,
   "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 14,
@@ -22,7 +23,10 @@
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
@@ -40,6 +44,7 @@
   "files.trimTrailingWhitespace": true,
   "git.alwaysShowStagedChangesResourceGroup": true,
   "git.confirmSync": false,
+  "git.openDiffOnClick": false,
   "git.untrackedChanges": "separate",
   "gitlens.codeLens.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
