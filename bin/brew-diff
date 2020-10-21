@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+echo "< : installed but not listed in Brewfile"
+echo "> : in Brewfile but not installed"
+
 fd Brewfile "${HOME}" | grep -v "${BREWFILE_IGNORE:-xxxxxx}" | xargs cat | grep -E -v "(^#|^$)" | sort -u >/tmp/Brewfile.combined
 brew bundle dump --no-restart --file=- | sort -u >/tmp/Brewfile.installed
 
