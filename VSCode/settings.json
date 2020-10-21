@@ -6,7 +6,11 @@
     "editor.tabSize": 2
   },
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
   "[typescript]": {
@@ -23,10 +27,7 @@
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
@@ -61,6 +62,7 @@
   "python.dataScience.sendSelectionToInteractiveWindow": false,
   "python.formatting.provider": "black",
   "python.jediEnabled": false,
+  "python.languageServer": "Microsoft",
   "python.venvPath": "~/.virtualenvs",
   "spellright.documentTypes": ["markdown"],
   "terminal.integrated.confirmOnExit": true,
@@ -74,5 +76,7 @@
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "vscode-icons",
   "workbench.list.keyboardNavigation": "filter",
-  "workbench.startupEditor": "newUntitledFile"
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.statusBar.visible": true,
+  "yaml.format.enable": false
 }
