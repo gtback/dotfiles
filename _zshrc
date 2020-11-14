@@ -29,7 +29,7 @@ setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
 
 
-os=`uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//'`
+os=$(uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//')
 
 # From http://dougblack.io/words/zsh-vi-mode.html
 bindkey -v
