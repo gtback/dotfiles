@@ -82,6 +82,10 @@ eval "$(starship init zsh)"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # Uncomment to print results of startup profiling
 #zprof
