@@ -54,15 +54,15 @@
   "gitlens.views.lineHistory.location": "gitlens",
   "gitlens.views.repositories.location": "gitlens",
   "gitlens.views.search.location": "gitlens",
+  "jupyter.sendSelectionToInteractiveWindow": false,
   "liveshare.autoShareServers": false,
   "liveshare.codeLens": false,
   "liveshare.featureSet": "insiders",
   "liveshare.openSharedServers": false,
   "problems.showCurrentInStatus": true,
-  "python.dataScience.sendSelectionToInteractiveWindow": false,
   "python.formatting.provider": "black",
   "python.jediEnabled": false,
-  "python.languageServer": "Microsoft",
+  "python.languageServer": "Pylance",
   "python.venvPath": "~/.virtualenvs",
   "spellright.documentTypes": ["markdown"],
   "terminal.integrated.confirmOnExit": true,
@@ -74,6 +74,12 @@
   "workbench.colorTheme": "Visual Studio Dark",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editorAssociations": [
+    {
+      "filenamePattern": "*.ipynb",
+      "viewType": "jupyter.notebook.ipynb"
+    }
+  ],
   "workbench.iconTheme": "vscode-icons",
   "workbench.list.keyboardNavigation": "filter",
   "workbench.startupEditor": "newUntitledFile",
