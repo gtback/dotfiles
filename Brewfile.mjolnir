@@ -12,4 +12,3 @@ cask "steam"
 cask "zotero"
 
 mas "WireGuard", id: 1451685025
-mas "Xcode", id: 497799835
