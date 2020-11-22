@@ -44,6 +44,8 @@ symlink VSCode/keybindings.json "$HOME/Library/Application Support/Code/User/key
 symlink VSCode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 symlink VSCode/tasks.json "$HOME/Library/Application Support/Code/User/tasks.json"
 
+symlink espanso.yml "${HOME}/Library/Preferences/espanso/default.yml"
+
 if grep -q 'source ~/dotfiles/_bashrc' "${HOME}/.bashrc"; then
 	echo ".bashrc has already been modified"
 else
