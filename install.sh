@@ -8,10 +8,9 @@ symlink() {
 	DEST="$2"
 	echo "Linking $DEST -> $SRC"
 	ln -sf "$SRC" "$DEST"
-	#ls -l "$DEST"
 }
 
-pushd "${HOME}/dotfiles"
+pushd "${HOME}/dotfiles" >/dev/null
 
 symlink _zshrc ~/.zshrc
 symlink _zsh_plugins.txt ~/.zsh_plugins.txt
@@ -52,4 +51,4 @@ else
 	echo 'source ~/dotfiles/_bashrc' >>"${HOME}/.bashrc"
 fi
 
-popd
+popd >/dev/null
