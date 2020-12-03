@@ -9,8 +9,8 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# source <(antibody init)
-# antibody bundle < ~/.zsh_plugins.txt
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
 
 setopt NO_NOMATCH
 
@@ -52,8 +52,8 @@ for dotfile in aliases exports; do
 done
 
 # https://github.com/zsh-users/zsh-history-substring-search
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # [ -e $POWERLINE/bindings/zsh/powerline.zsh ] && source $POWERLINE/bindings/zsh/powerline.zsh
 if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then . "${HOME}/.nix-profile/etc/profile.d/nix.sh"; fi # added by Nix installer
@@ -79,7 +79,10 @@ fi
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(starship init zsh)"
+if which starship &>/dev/null
+then
+  eval "$(starship init zsh)"
+fi
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault

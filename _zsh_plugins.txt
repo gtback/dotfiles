@@ -2,8 +2,8 @@ djui/alias-tips
 caarlos0/ports
 
 # "Pure" prompt (requires zsh-async beforehand)
-mafredri/zsh-async
-sindresorhus/pure
+# mafredri/zsh-async
+# sindresorhus/pure
 
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
