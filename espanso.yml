@@ -13,14 +13,17 @@ matches:
   - trigger: ":espanso"
     replace: "Hi there!"
 
+  - trigger: "/shrug "
+    replace: "¯\\_(ツ)_/¯"
+
   # Dates
-  - trigger: ":date"
-    replace: "{{mydate}}"
+  - trigger: ":date "
+    replace: "{{mydate}} "
     vars:
       - name: mydate
         type: date
         params:
-          format: "%m/%d/%Y"
+          format: "%Y-%m-%d"
 
   # Shell commands
   - trigger: ":shell"
