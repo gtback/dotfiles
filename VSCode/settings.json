@@ -6,7 +6,7 @@
     "editor.tabSize": 2
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "vscode.json-language-features",
     "editor.tabSize": 2
   },
   "[jsonc]": {
@@ -31,6 +31,7 @@
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
+  "emmet.triggerExpansionOnTab": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "extensions.ignoreRecommendations": true,
@@ -59,27 +60,31 @@
   "liveshare.codeLens": false,
   "liveshare.featureSet": "insiders",
   "liveshare.openSharedServers": false,
+  "prettier.disableLanguages": ["yaml"],
   "problems.showCurrentInStatus": true,
   "python.formatting.provider": "black",
   "python.jediEnabled": false,
   "python.languageServer": "Pylance",
   "python.venvPath": "~/.virtualenvs",
+  "ruby.codeCompletion": "rcodetools",
+  "ruby.format": "rubocop",
+  "ruby.intellisense": "rubyLocate",
+  "ruby.useBundler": true,
+  "ruby.useLanguageServer": true,
   "spellright.documentTypes": ["markdown"],
   "terminal.integrated.confirmOnExit": true,
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.shell.osx": "/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "vs-kubernetes": {
+    "vs-kubernetes.minikube-path.mac": "/Users/gtback/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+  },
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": true,
   "workbench.colorTheme": "Visual Studio Dark",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editorAssociations": [
-    {
-      "filenamePattern": "*.ipynb",
-      "viewType": "jupyter.notebook.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": [],
   "workbench.iconTheme": "vscode-icons",
   "workbench.list.keyboardNavigation": "filter",
   "workbench.startupEditor": "newUntitledFile",
