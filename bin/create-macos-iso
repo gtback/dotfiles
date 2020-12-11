@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Usage:
+# - For Catalina:
+#     create-macos-iso
+# - For Mojave:
+#     create-macos-iso Mojave
+
+set -euxo pipefail
+
+VERSION=${1:-"Catalina"}
+
+# https://support.apple.com/en-us/HT201372
+# https://osxdaily.com/2020/07/20/how-convert-macos-installer-iso/
+hdiutil create -o "/tmp/${VERSION}" -size 8500m -volname "${VERSION}" -layout SPUD -fs HFS+J
+hdiutil attach "/tmp/${VERSION}.dmg" -noverify -mountpoint "/Volumes/${VERSION}"
+sudo "/Applications/Install macOS ${VERSION}.app/Contents/Resources/createinstallmedia" --volume "/Volumes/${VERSION}" --nointeraction
+hdiutil detach "/volumes/Install\ macOS\ ${VERSION}"
+hdiutil convert "/tmp/${VERSION}.dmg" -format UDTO -o "${HOME}/Desktop/${VERSION}.cdr"
+mv "${HOME}/Desktop/${VERSION}.cdr" "${HOME}/Desktop/${VERSION}.iso"
+rm "/tmp/${VERSION}.dmg"
