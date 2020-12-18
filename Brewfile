@@ -94,7 +94,7 @@ cask "vagrant"
 cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
-cask "zoomus"
+cask "zoom"
 
 mas "Amphetamine", id: 937984704
 mas "Bumpr", id: 1166066070
