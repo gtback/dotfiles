@@ -1,18 +1,15 @@
-dotfiles
-========
+# dotfiles
 
 My dotfiles
 
-Setting up on Windows 7
------------------------
+## Setting up on Windows 7
 
 This is not a complete guide, just a few hints.
 
 1. Clone repo to $HOME directory
 2. Copy files from `windows` directory to $HOME directory
 
-Setting up Babun/Cygwin
------------------------
+## Setting up Babun/Cygwin
 
 1. Install [Babun](https://babun.github.io/)
 1. Install Source Code Pro font [modified for Powerline](https://github.com/powerline/fonts/tree/master/SourceCodePro).
@@ -21,52 +18,51 @@ Setting up Babun/Cygwin
 1. Update `.babunrc` file as needed (proxies, user agent, etc.).
 1. Reload `.babunrc` and verify Network connectivity and available updates.
 
-    ```sh
-    source .babunrc
-    babun check
-    ```
+   ```sh
+   source .babunrc
+   babun check
+   ```
 
 1. Clone dotfiles and run installation scripts.
 
-    ```sh
-    cd $HOME
-    git clone git@github.com:gtback/dotfiles.git
-    mv .zshrc .zshrc.bak
-    mv .gitconfig .gitconfig.bak
-    dotfiles/setup_env.py
-    dotfiles/setup_vim.sh
-    ```
+   ```sh
+   cd $HOME
+   git clone git@github.com:gtback/dotfiles.git
+   mv .zshrc .zshrc.bak
+   mv .gitconfig .gitconfig.bak
+   dotfiles/setup_env.py
+   dotfiles/setup_vim.sh
+   ```
 
 1. Customize local installation.
 
-    ```sh
-    git config -f .gitconfig.local user.name "Greg Back"
-    git config -f .gitconfig.local user.email gtback@users.noreply.github.com
-    ```
+   ```sh
+   git config -f .gitconfig.local user.name "Greg Back"
+   git config -f .gitconfig.local user.email gtback@users.noreply.github.com
+   ```
 
-1. Launch a new terminal to reload ZSH settings.  If you get error messages, you can try updating the completion files. Note that the file containing <COMPUTER NAME> should already exist; replace that file.
+1. Launch a new terminal to reload ZSH settings. If you get error messages, you can try updating the completion files. Note that the file containing <COMPUTER NAME> should already exist; replace that file.
 
-    ```sh
-    compinit -y
-    cp .zcompdump .zcompdump-<COMPUTER NAME>-5.0.6
-    ```
+   ```sh
+   compinit -y
+   cp .zcompdump .zcompdump-<COMPUTER NAME>-5.0.6
+   ```
 
 1. Set up pip, virtualenvwrapper, and pipsi.
 
-    ```sh
-    curl https://bootstrap.pypa.io/get-pip.py | python
-    pip install virtualenvwrapper
-    curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
-    ```
+   ```sh
+   curl https://bootstrap.pypa.io/get-pip.py | python
+   pip install virtualenvwrapper
+   curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
+   ```
 
 1. Install other desired packages
 
-    ```sh
-    pact install tmux
-    ```
+   ```sh
+   pact install tmux
+   ```
 
-OS X Setup hints
-----------------
+## OS X Setup hints
 
 1. Install Homebrew
 1. Install `python` and `vim` with Homebrew: `brew install python vim`
@@ -74,13 +70,13 @@ OS X Setup hints
 1. Install `isort` so that Vim can get to it: `sudo -H /usr/local/bin/pip install isort`
 1. Install [`pipsi`](https://github.com/mitsuhiko/pipsi) with Homebrew Python:
 
-    `curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | /usr/local/bin/python`
+   `curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | /usr/local/bin/python`
 
 1. Install powerline with pipsi: `pipsi install powerline-status`
 
-RHEL/CentOS 7
--------------
-```
+## RHEL/CentOS 7
+
+```shell
 sudo yum -y update
 
 ssh-keygen
@@ -122,8 +118,7 @@ pyenv rehash
 # To verify virtualenwrapper is installed correctly, run the `workon` command.
 ```
 
-Setting up Ubuntu GNOME 14.04
------------------------------
+## Setting up Ubuntu GNOME 14.04
 
 For VirtualBox, to get shared folders to work, run `sudo adduser $USER vboxsf`
 
@@ -134,7 +129,9 @@ sudo apt-get install -y build-essential cmake curl git python-dev tmux vim vim-g
 
 ssh-keygen
 ```
-Upload ~/.ssh/id_rsa.pub to GitHub.
+
+Upload `~/.ssh/id_rsa.pub` to GitHub.
+
 ```sh
 git config --file ~/.gitconfig.local user.email "gtback@users.noreply.github.com"
 git config --file ~/.gitconfig.local user.name "Greg Back"
@@ -192,8 +189,7 @@ powerline-fonts/install.sh
 
 Log out and back in to ensure changes have taken effect.
 
-Setting up a new Ubuntu 12.04 system
-------------------------------------
+## Setting up a new Ubuntu 12.04 system
 
 These are some steps I performed when setting up a new Ubuntu 12.04 system
 recently.
