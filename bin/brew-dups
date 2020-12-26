@@ -4,4 +4,13 @@
 
 set -euo pipefail
 
-fd Brewfile "${HOME}" | grep -v "${BREWFILE_IGNORE:-xxxxxx}" | xargs cat | grep -E -v "(^#|^$)" | sort | uniq -c | grep -v "^   1 "
+# TODO: Give option to only look at non-ignored Brewfiles
+# RESPECT_BREWFILE_IGNORE=1
+# | grep -v "${BREWFILE_IGNORE:-xxxxxx}" \
+
+{
+    fd Brewfile "${HOME}/code" "${HOME}/dotfiles" && \
+    ([[ ! -e "${HOME}/Brewfile*" ]] || command ls -1 "${HOME}/Brewfile*"); \
+} 2>/dev/null \
+    | xargs cat \
+    | grep -E -v "(^#|^$)" | sort | uniq -c | grep -v "^   1 "

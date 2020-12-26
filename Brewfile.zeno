@@ -7,7 +7,6 @@ brew "graphviz"
 brew "telnet"
 brew "tmuxinator"
 
-cask "firefox-developer-edition"
 cask "github"
 cask "google-chrome"
 cask "graphiql"
