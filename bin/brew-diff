@@ -2,10 +2,28 @@
 
 set -euo pipefail
 
+## Don't update automatically when running this script
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 echo "< : installed but not listed in Brewfile"
 echo "> : in Brewfile but not installed"
 
-fd Brewfile "${HOME}" | grep -v "${BREWFILE_IGNORE:-xxxxxx}" | xargs cat | grep -E -v "(^#|^$)" | sort -u >/tmp/Brewfile.combined
+# - Find all Brewfiles in code/ and dotfiles/
+# - Find any Brewfiles in the home directory (if any exist)
+# - Remove all files listed in the BREWFILE_IGNORE variable (typically used for
+#   files for other hostnames)
+# - Combine the contents of all files
+# - Remove comments
+# - Find unique set of files
+{
+    fd Brewfile "${HOME}/code" "${HOME}/dotfiles" && \
+    ([[ ! -e "${HOME}/Brewfile*" ]] || command ls -1 "${HOME}/Brewfile*"); \
+} 2>/dev/null \
+    | grep -v "${BREWFILE_IGNORE:-xxxxxx}" \
+    | xargs cat \
+    | grep -E -v "(^#|^$)" | sort -u >/tmp/Brewfile.combined
+
+# List all installed Brew formualae and casks
 brew bundle dump --no-restart --file=- | sort -u >/tmp/Brewfile.installed
 
 diff /tmp/Brewfile.{installed,combined}
