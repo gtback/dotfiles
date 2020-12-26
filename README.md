@@ -2,6 +2,83 @@
 
 My dotfiles
 
+## Set up macOS
+
+1. Install [Homebrew](https://brew.sh/)
+
+   ```shell
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+1. Install zsh
+
+   ```shell
+   brew install zsh
+   chsh -s /usr/local/bin/zsh
+   ```
+
+1. Clone Repo
+
+   ```shell
+   git clone git@github.com/gtback/dotfiles.git
+   ./dotfiles/install.sh
+   ```
+
+1. Set Mac defaults
+
+   ```shell
+   HOSTNAME="mjolnir"
+   defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+   sudo scutil --set ComputerName ${HOSTNAME}
+   sudo scutil --set HostName ${HOSTNAME}
+   sudo scutil --set LocalHostName ${HOSTNAME}
+   sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string ${HOSTNAME}
+   ```
+
+1. Set up Python. `virtualenv` and `virtualenvwrapper` are installed in the
+   Homebrew Python3 (this is the `system` Python to `pyenv`). When a new minor
+   version of Python is released, we'll have to re-install
+
+   ```shell
+   brew install python
+   /usr/local/bin/python3 -m pip install --upgrade pip setuptools wheel
+   /usr/local/bin/python3 -m pip install virtualenv virtualenvwrapper
+   ```
+
+1. Install remaining Homebrew dependencies. This includes `pyenv`.
+
+   ```shell
+   brew-sync
+   ```
+
+1. Install most recent patch version of all [active Python
+   releases](https://www.python.org/downloads/)... including 2.7 :-(
+
+   ```shell
+   PY27=$(pyenv install --list | xargs -n 1 echo | rg "^2\.7\." | tail -1)
+   PY36=$(pyenv install --list | xargs -n 1 echo | rg "^3\.6\." | tail -1)
+   PY37=$(pyenv install --list | xargs -n 1 echo | rg "^3\.7\." | tail -1)
+   PY38=$(pyenv install --list | xargs -n 1 echo | rg "^3\.8\." | tail -1)
+   PY39=$(pyenv install --list | xargs -n 1 echo | rg "^3\.9\." | tail -1)
+   pyenv install $PY27
+   pyenv install $PY36
+   pyenv install $PY37
+   pyenv install $PY38
+   pyenv install $PY39
+   pyenv global $PY39 $PY38 $PY37 $PY36 system $PY27
+   pyenv rehash
+   ```
+
+1. Compile custom `nnn` with Nerd Font support:
+
+   ```shell
+   mkdir -p ~/code
+   cd ~/code
+   git clone git@github.com:jarun/nnn.git
+   make O_NERD=1
+   mv ./nnn ~/bin
+   ```
+
 ## Setting up on Windows 7
 
 This is not a complete guide, just a few hints.
