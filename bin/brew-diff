@@ -16,12 +16,12 @@ echo "> : in Brewfile but not installed"
 # - Remove comments
 # - Find unique set of files
 {
-    fd Brewfile "${HOME}/code" "${HOME}/dotfiles" && \
-    ([[ ! -e "${HOME}/Brewfile*" ]] || command ls -1 "${HOME}/Brewfile*"); \
-} 2>/dev/null \
-    | grep -v "${BREWFILE_IGNORE:-xxxxxx}" \
-    | xargs cat \
-    | grep -E -v "(^#|^$)" | sort -u >/tmp/Brewfile.combined
+	fd Brewfile "${HOME}/code" "${HOME}/dotfiles" &&
+		([[ ! -e "${HOME}/Brewfile*" ]] || command ls -1 "${HOME}/Brewfile*")
+} 2>/dev/null |
+	grep -v "${BREWFILE_IGNORE:-xxxxxx}" |
+	xargs cat |
+	grep -E -v "(^#|^$)" | sort -u >/tmp/Brewfile.combined
 
 # List all installed Brew formualae and casks
 brew bundle dump --no-restart --file=- | sort -u >/tmp/Brewfile.installed
