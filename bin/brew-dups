@@ -9,8 +9,8 @@ set -euo pipefail
 # | grep -v "${BREWFILE_IGNORE:-xxxxxx}" \
 
 {
-	fd Brewfile "${HOME}/code" "${HOME}/dotfiles" &&
-		([[ ! -e "${HOME}/Brewfile*" ]] || command ls -1 "${HOME}/Brewfile*")
+    fd Brewfile "${HOME}/code" "${HOME}/dotfiles" &&
+        ([[ ! -e "${HOME}/Brewfile*" ]] || command ls -1 "${HOME}/Brewfile*")
 } 2>/dev/null |
-	xargs cat |
-	grep -E -v "(^#|^$)" | sort | uniq -c | grep -v "^   1 "
+    xargs cat |
+    grep -E -v "(^#|^$)" | sort | uniq -c | grep -v "^   1 "

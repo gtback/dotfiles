@@ -9,3 +9,4 @@ repos:
   hooks:
     - id: shellcheck
     - id: shfmt
+      args: ['-i', '4']

@@ -7,8 +7,8 @@ alias now="date +%FT%T"
 ### File listing aliases
 alias l='exa -lFhg -m --time-style=long-iso'
 alias ll='exa -l'
-ls () {
-  echo "How about trying 'exa'?"
+ls() {
+    echo "How about trying 'exa'?"
 }
 
 ### Git aliases
@@ -37,13 +37,13 @@ alias gssp="git ssp"
 alias lsvirtualenv="lsvirtualenv -b"
 alias pyws="sed -i -e 's/^[ \r\t]*$//'"
 alias pip-rm-all="python -m pip freeze | sed 's/^-e.*egg=//' | xargs python -m pip uninstall -y"
-pip-upgrade-all () {
-  python -m pip list --outdated --disable-pip-version-check | awk 'NR>2 {print $1 "==" $3}' | xargs python -m pip install
+pip-upgrade-all() {
+    python -m pip list --outdated --disable-pip-version-check | awk 'NR>2 {print $1 "==" $3}' | xargs python -m pip install
 }
 # Check if there's an existing alias for pip, and if so, remove it.
 alias pip >/dev/null && unalias pip
-pip () {
-  echo "Use 'python -m pip' instead"
+pip() {
+    echo "Use 'python -m pip' instead"
 }
 
 alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
@@ -64,8 +64,8 @@ alias xo="xargs open"
 alias nlg="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
 
-tlsdates () {
-  echo | openssl s_client -servername "$1" -connect "$1":443 2>/dev/null | openssl x509 -noout -dates
+tlsdates() {
+    echo | openssl s_client -servername "$1" -connect "$1":443 2>/dev/null | openssl x509 -noout -dates
 }
 
 ### kubectl aliases

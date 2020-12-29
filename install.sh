@@ -3,11 +3,11 @@
 set -euf
 
 symlink() {
-	SRC="$PWD/$1"
-	[ -e "$SRC" ] || (echo "No file named $SRC" && exit 1)
-	DEST="$2"
-	echo "Linking $DEST -> $SRC"
-	ln -sf "$SRC" "$DEST"
+    SRC="$PWD/$1"
+    [ -e "$SRC" ] || (echo "No file named $SRC" && exit 1)
+    DEST="$2"
+    echo "Linking $DEST -> $SRC"
+    ln -sf "$SRC" "$DEST"
 }
 
 pushd "${HOME}/dotfiles" >/dev/null
@@ -46,9 +46,9 @@ symlink VSCode/tasks.json "$HOME/Library/Application Support/Code/User/tasks.jso
 symlink espanso.yml "${HOME}/Library/Preferences/espanso/default.yml"
 
 if grep -q 'source ~/dotfiles/_bashrc' "${HOME}/.bashrc"; then
-	echo ".bashrc has already been modified"
+    echo ".bashrc has already been modified"
 else
-	echo 'source ~/dotfiles/_bashrc' >>"${HOME}/.bashrc"
+    echo 'source ~/dotfiles/_bashrc' >>"${HOME}/.bashrc"
 fi
 
 popd >/dev/null
