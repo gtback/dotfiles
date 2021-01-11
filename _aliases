@@ -82,3 +82,7 @@ function gi() {
             sed '$d'
     done
 }
+
+function docker-rm-images() {
+    docker image ls | grep "$1" | awk '{print $1 ":" $2}' | xargs -n 1 docker image rm
+}
