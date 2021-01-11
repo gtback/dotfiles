@@ -44,6 +44,7 @@
     "**/__pycache__": true
   },
   "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
   "git.alwaysShowStagedChangesResourceGroup": true,
   "git.confirmSync": false,
