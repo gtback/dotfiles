@@ -78,7 +78,7 @@ alias kgp="kubectl get pods"
 function gi() {
     for var in "$@"; do
         curl -sLw "\\n" "https://www.gitignore.io/api/$var" |
-            grep -v "toptal" sed '/./,/^$/!d' |
+            grep -v "toptal" | sed '/./,/^$/!d' |
             sed '$d'
     done
 }
