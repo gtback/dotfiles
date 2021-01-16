@@ -1,8 +1,9 @@
 black
+bugwarrior
 flake8
 gcalcli
 poetry
 pre-commit
 tox
 twine
-youtube_dl
+youtube-dl
