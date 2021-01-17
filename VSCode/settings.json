@@ -75,6 +75,8 @@
   "ruby.useLanguageServer": true,
   "spellright.documentTypes": ["markdown"],
   "terminal.integrated.confirmOnExit": true,
+  "terminal.integrated.fontFamily": "Inconsolata Nerd Font",
+  "terminal.integrated.fontSize": 16,
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.shell.osx": "/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
