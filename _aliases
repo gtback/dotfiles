@@ -20,7 +20,6 @@ alias gbac='git branch --all --contains'
 alias gbc='git branch --contains'
 alias gc='git commit'
 alias gcm='git checkout main 2>/dev/null || git checkout master'
-alias gco='git checkout'
 alias gd='git diff'
 alias gdca='git diff --cached'
 alias gfa='git fetch --all'
@@ -28,6 +27,11 @@ alias glg='git log --stat'
 alias gm='git merge'
 alias grv='git remote -v'
 alias gst='git status'
+
+# https://medium.com/@mrWinston/smarter-git-checkout-using-fzf-to-supercharge-your-commandline-7507db600996
+gco() {
+    git checkout "$(git branch --all | fzf | tr -d '[:space:]')"
+}
 
 # These git aliases are defined in _gitconfig
 alias gpom="git pom"
