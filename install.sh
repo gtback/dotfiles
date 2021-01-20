@@ -39,6 +39,8 @@ symlink _tmux.darwin.conf ~/.tmux.darwin.conf
 symlink _vimrc ~/.vimrc
 symlink _yarnrc ~/.yarnrc
 
+symlink starship.toml ~/.config/starship.toml
+
 symlink VSCode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
 symlink VSCode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 symlink VSCode/tasks.json "$HOME/Library/Application Support/Code/User/tasks.json"
