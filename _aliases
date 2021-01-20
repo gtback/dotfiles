@@ -70,10 +70,16 @@ tlsdates() {
 
 ### kubectl aliases
 alias k=kubectl
+alias kc=kubectx
 alias kdp="kubectl describe pod"
 alias kge="kubectl get events"
 alias kgn="kubectl get namespaces"
 alias kgp="kubectl get pods"
+
+kn (){
+    NAMESPACE=${1:-$(kubectl get namespaces | fzf | awk '{print $1}' )}
+    kubectl config set-context --current --namespace="$NAMESPACE"
+}
 
 function gi() {
     for var in "$@"; do
