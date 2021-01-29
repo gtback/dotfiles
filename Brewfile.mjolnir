@@ -2,15 +2,11 @@ brew "ffmpeg"
 
 cask "adobe-digital-editions"
 cask "backblaze"
-cask "discord"
 cask "dropbox"
 cask "element"
-cask "fontforge"
 cask "gemini"
-cask "microblog"
 cask "netnewswire"
 cask "pocket-casts"
 cask "steam"
-cask "zotero"
 
 mas "WireGuard", id: 1451685025
