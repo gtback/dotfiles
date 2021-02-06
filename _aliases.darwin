@@ -1,3 +1,4 @@
+#!/bin/sh
 alias md5sum=md5
 alias vi=vim
 
@@ -6,6 +7,8 @@ alias firefox="open -a /Applications/Firefox.app"
 alias subl="open -a /Applications/Sublime\ Text.app"
 alias ffprof="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManager 2>/dev/null &"
 alias swud="softwareupdate --all"
+# https://blog.jpalardy.com/posts/untangling-your-homebrew-dependencies/
+alias graph-brew-deps="brew graph --installed --highlight-leaves | fdp -T png -o graph.png"
 
 pods() {
     blueutil --connect "${AIRPODS_BLUETOOTH_ID}"
