@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Delete branches squash-merged into the master branch
+# From: https://github.com/not-an-aardvark/git-delete-squashed
+
+# Run with `git dsb`
+
+set -euo pipefail
+
+git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" |
+    while read -r branch; do
+        mergeBase=$(git merge-base master "$branch") &&
+            [[ $(git cherry master "$(git commit-tree "$(git rev-parse "$branch"^\{tree\})" -p "$mergeBase" -m _)") == "-"* ]] &&
+            git branch -D "$branch"; done
