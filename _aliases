@@ -49,7 +49,7 @@ pip-upgrade-all() {
 # Check if there's an existing alias for pip, and if so, remove it.
 alias pip >/dev/null && unalias pip
 pip() {
-    echo "Use 'python -m pip' instead"
+    >&2 echo "Use 'python -m pip' instead"
 }
 
 alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
