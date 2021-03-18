@@ -78,6 +78,7 @@ tlsdates() {
 alias k=kubectl
 alias kc=kubectx
 alias kdp="kubectl describe pod"
+alias kdelp="kubectl delete pod"
 alias kge="kubectl get events"
 alias kgn="kubectl get namespaces"
 alias kgp="kubectl get pods"
