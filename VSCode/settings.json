@@ -80,10 +80,10 @@
   "terminal.integrated.shell.osx": "/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vs-kubernetes": {
-    "vs-kubernetes.minikube-path.mac": "/usr/local/bin/minikube",
-    "vs-kubernetes.helm-path.mac": "/usr/local/bin/helm",
     "vs-kubernetes.draft-path.mac": "/usr/local/bin/draft",
-    "vs-kubernetes.kubectl-path.mac": "/usr/local/bin/kubectl"
+    "vs-kubernetes.helm-path.mac": "/usr/local/bin/helm",
+    "vs-kubernetes.kubectl-path.mac": "/usr/local/bin/kubectl",
+    "vs-kubernetes.minikube-path.mac": "/usr/local/bin/minikube"
   },
   "vsicons.dontShowNewVersionMessage": true,
   "window.zoomLevel": 0,
