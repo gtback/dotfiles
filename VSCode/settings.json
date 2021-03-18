@@ -85,6 +85,7 @@
     "vs-kubernetes.draft-path.mac": "/usr/local/bin/draft",
     "vs-kubernetes.kubectl-path.mac": "/usr/local/bin/kubectl"
   },
+  "vsicons.dontShowNewVersionMessage": true,
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": true,
   "workbench.colorTheme": "Visual Studio Dark",
