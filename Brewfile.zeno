@@ -3,7 +3,6 @@ tap "fossas/tap"
 brew "cmake"
 brew "fossas/tap/fossa"
 brew "fx"
-brew "graphviz"
 brew "telnet"
 
 cask "github"
