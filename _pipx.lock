@@ -4,6 +4,7 @@ flake8
 gcalcli
 poetry
 pre-commit
+togglcli
 tox
 twine
 youtube-dl
