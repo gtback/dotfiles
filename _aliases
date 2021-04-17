@@ -4,12 +4,14 @@
 alias today="date +%F"
 alias now="date +%FT%T"
 
-### File listing aliases
+## "Improved" standard utils
+
+# https://the.exa.website/
+alias ls='exa'
 alias l='exa -lFhg -m --time-style=long-iso'
 alias ll='exa -l'
-ls() {
-    echo "How about trying 'exa'?"
-}
+# https://github.com/sharkdp/bat
+alias cat=bat
 
 ### Git aliases
 alias branch='git symbolic-ref --short HEAD'
