@@ -12,6 +12,8 @@ alias l='exa -lFhg -m --time-style=long-iso'
 alias ll='exa -l'
 # https://github.com/sharkdp/bat
 alias cat=bat
+# https://github.com/muesli/duf
+alias df=duf
 
 ### Git aliases
 alias branch='git symbolic-ref --short HEAD'
