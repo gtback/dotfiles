@@ -1,8 +1,9 @@
 tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/cask"
-tap "homebrew/cask-fonts"
 tap "homebrew/core"
+
 tap "getantibody/tap"
 tap "federico-terzi/espanso"
 
