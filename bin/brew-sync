@@ -4,6 +4,11 @@ set -euo pipefail
 
 brew update
 brew upgrade
-[ -e "${HOME}/dotfiles/Brewfile" ] && brew bundle install --file "${HOME}/dotfiles/Brewfile"
-[ -e "${HOME}/dotfiles/Brewfile.$(hostname)" ] && brew bundle install --file "${HOME}/dotfiles/Brewfile.$(hostname)"
-[ -e "${HOME}/Brewfile.local" ] && brew bundle install --file "${HOME}/Brewfile.local"
+
+install_from_brewfile() {
+    [ -e "$1" ] && brew bundle install --file "$1"
+}
+
+install_from_brewfile "${HOME}/dotfiles/Brewfile"
+install_from_brewfile "${HOME}/dotfiles/Brewfile.$(hostname)"
+install_from_brewfile "${HOME}/Brewfile.local"
