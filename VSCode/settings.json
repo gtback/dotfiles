@@ -19,6 +19,7 @@
     "editor.tabSize": 2
   },
   "breadcrumbs.enabled": true,
+  "color-highlight.markerType": "dot-after",
   "debug.toolBarLocation": "docked",
   "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": true,
@@ -57,6 +58,7 @@
   "gitlens.views.lineHistory.location": "gitlens",
   "gitlens.views.repositories.location": "gitlens",
   "gitlens.views.search.location": "gitlens",
+  "go.toolsManagement.autoUpdate": true,
   "jupyter.sendSelectionToInteractiveWindow": false,
   "liveshare.autoShareServers": false,
   "liveshare.codeLens": false,
@@ -83,18 +85,17 @@
     "vs-kubernetes.draft-path.mac": "/usr/local/bin/draft",
     "vs-kubernetes.helm-path.mac": "/usr/local/bin/helm",
     "vs-kubernetes.kubectl-path.mac": "/usr/local/bin/kubectl",
-    "vs-kubernetes.minikube-path.mac": "/usr/local/bin/minikube"
+    "vs-kubernetes.minikube-path.mac": "/usr/local/bin/minikube",
+    "vscode-kubernetes.minikube-path.mac": "/Users/gtback/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
   },
   "vsicons.dontShowNewVersionMessage": true,
-  "window.zoomLevel": 0,
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Visual Studio Dark",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editorAssociations": [
     {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
+      "filenamePattern": "*.ipynb",
+      "viewType": "jupyter.notebook.ipynb"
     }
   ],
   "workbench.iconTheme": "vscode-icons",
