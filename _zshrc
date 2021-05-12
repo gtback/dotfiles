@@ -15,19 +15,21 @@ antibody bundle < ~/.zsh_plugins.txt
 setopt NO_NOMATCH
 
 ## History file configuration
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
-HISTSIZE=50000
-SAVEHIST=10000
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HISTSIZE=1000000  # Number of commands saved to file
+SAVEHIST=1000000  # Number of commands saved in memory
 
 ## History command configuration
-setopt extended_history       # record timestamp of command in HISTFILE
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
-setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
-setopt inc_append_history     # add commands to HISTFILE in order of execution
-setopt share_history          # share command history data
+setopt EXTENDED_HISTORY       # record timestamp of command in HISTFILE
+setopt HIST_EXPIRE_DUPS_FIRST # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt HIST_IGNORE_DUPS       # ignore duplicated commands history list
+setopt HIST_IGNORE_SPACE      # ignore commands that start with space
+setopt HIST_REDUCE_BLANKS     # remove superfluous blanks from each command
+setopt HIST_VERIFY            # show command with history expansion to user before running it
+setopt INC_APPEND_HISTORY     # add commands to HISTFILE in order of execution
 
+# By default, make `history` show all commands with a custom timestamp
+alias history="fc -l -t '[%F %T]' 1"
 
 os=$(uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//')
 
