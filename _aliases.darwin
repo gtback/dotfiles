@@ -30,5 +30,13 @@ listening() {
     fi
 }
 
+# Update macOS command line tools
+# https://apple.stackexchange.com/a/375535
+update_xcode() {
+    sudo rm -rf "$(xcode-select --print-path)"
+    sudo xcode-select --install
+    sudo xcode-select --reset
+}
+
 # Training to not use certain things.
 st () { echo 'use "stree" instead'; }
