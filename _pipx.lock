@@ -2,6 +2,7 @@ black
 bugwarrior
 flake8
 gcalcli
+pip-tools
 poetry
 pre-commit
 togglcli
