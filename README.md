@@ -55,18 +55,7 @@ My dotfiles
    releases](https://www.python.org/downloads/)... including 2.7 :-(
 
    ```shell
-   PY27=$(pyenv install --list | xargs -n 1 echo | rg "^2\.7\." | tail -1)
-   PY36=$(pyenv install --list | xargs -n 1 echo | rg "^3\.6\." | tail -1)
-   PY37=$(pyenv install --list | xargs -n 1 echo | rg "^3\.7\." | tail -1)
-   PY38=$(pyenv install --list | xargs -n 1 echo | rg "^3\.8\." | tail -1)
-   PY39=$(pyenv install --list | xargs -n 1 echo | rg "^3\.9\." | tail -1)
-   pyenv install $PY27
-   pyenv install $PY36
-   pyenv install $PY37
-   pyenv install $PY38
-   pyenv install $PY39
-   pyenv global $PY39 $PY38 $PY37 $PY36 system $PY27
-   pyenv rehash
+   install-pythons.sh
    ```
 
 1. Compile custom `nnn` with Nerd Font support:
