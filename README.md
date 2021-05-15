@@ -37,7 +37,7 @@ My dotfiles
 
 1. Set up Python. `virtualenv` and `virtualenvwrapper` are installed in the
    Homebrew Python3 (this is the `system` Python to `pyenv`). When a new minor
-   version of Python is released, we'll have to re-install
+   version of Python is released, we'll have to re-install.
 
    ```shell
    brew install python
@@ -107,7 +107,9 @@ This is not a complete guide, just a few hints.
    git config -f .gitconfig.local user.email gtback@users.noreply.github.com
    ```
 
-1. Launch a new terminal to reload ZSH settings. If you get error messages, you can try updating the completion files. Note that the file containing <COMPUTER NAME> should already exist; replace that file.
+1. Launch a new terminal to reload ZSH settings. If you get error messages, you
+   can try updating the completion files. Note that the file containing
+   `<COMPUTER NAME>` should already exist; replace that file.
 
    ```sh
    compinit -y
@@ -260,25 +262,27 @@ Log out and back in to ensure changes have taken effect.
 These are some steps I performed when setting up a new Ubuntu 12.04 system
 recently.
 
-    add-apt-repository ppa:fkrull/dead-snakes
-    add-apt-repository ppa:git-core/ppa
-    add-apt-repository ppa:pi-rho/dev
+```shell
+add-apt-repository ppa:fkrull/dead-snakes
+add-apt-repository ppa:git-core/ppa
+add-apt-repository ppa:pi-rho/dev
 
-    apt-get install curl git openssh-server python-pip tmux vim vim-gnome zsh
+apt-get install curl git openssh-server python-pip tmux vim vim-gnome zsh
 
-    git clone https://github.com/gtback/dotfiles.git
-    cd dotfiles
-    python setup_env.py
-    source setup_vim.sh
+git clone https://github.com/gtback/dotfiles.git
+cd dotfiles
+python setup_env.py
+source setup_vim.sh
 
-    cd ~
-    ssh-keygen -t rsa
-    chsh -s `which zsh`
-    git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cd ~
+ssh-keygen -t rsa
+chsh -s `which zsh`
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
-    sudo pip install -U pip
-    sudo pip install virtualenvwrapper
-    sudo pip install tmuxp
-    pip install --user https://github.com/Lokaltog/powerline/archive/develop.zip
+sudo pip install -U pip
+sudo pip install virtualenvwrapper
+sudo pip install tmuxp
+pip install --user https://github.com/Lokaltog/powerline/archive/develop.zip
 
-    wget https://github.com/Lokaltog/powerline-fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
+wget https://github.com/Lokaltog/powerline-fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
+```
