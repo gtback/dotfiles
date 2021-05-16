@@ -27,6 +27,7 @@
   "editor.fontSize": 14,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modifications",
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
   "editor.rulers": [80, 120],
