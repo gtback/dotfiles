@@ -25,3 +25,6 @@ robbyrussell/oh-my-zsh path:plugins/vagrant
 zdharma/fast-syntax-highlighting
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
+
+# https://github.com/reegnz/jq-zsh-plugin
+reegnz/jq-zsh-plugin
