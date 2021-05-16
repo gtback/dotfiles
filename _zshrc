@@ -94,6 +94,8 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
+source "$(brew --prefix)/share/zsh/site-functions/_todoist_fzf"
+
 #compdef toggl
 _toggl() {
   eval $(env COMMANDLINE="${words[1,$CURRENT]}" _TOGGL_COMPLETE=complete-zsh  toggl)
