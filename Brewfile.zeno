@@ -11,5 +11,3 @@ cask "graphiql"
 cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "vivaldi"
-
-mas "Xcode", id: 497799835
