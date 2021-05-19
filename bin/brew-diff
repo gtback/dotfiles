@@ -5,9 +5,6 @@ set -euo pipefail
 ## Don't update automatically when running this script
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-echo "< : installed but not listed in Brewfile"
-echo "> : in Brewfile but not installed"
-
 # - Find all Brewfiles in code/ and dotfiles/
 # - Find any Brewfiles in the home directory (if any exist)
 # - Remove all files listed in the BREWFILE_IGNORE variable (typically used for
@@ -26,4 +23,9 @@ echo "> : in Brewfile but not installed"
 # List all installed Brew formualae and casks
 brew bundle dump --no-restart --file=- | sort -u >/tmp/Brewfile.installed
 
-diff /tmp/Brewfile.{installed,combined}
+echo "Installed but not listed in Brewfile:"
+comm -23 /tmp/Brewfile.{installed,combined}
+
+echo
+echo "In Brewfile but not installed:"
+comm -13 /tmp/Brewfile.{installed,combined}
