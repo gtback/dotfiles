@@ -129,13 +129,13 @@ function git-log-regex () {
 alias glr='git-log-regex'
 
 function start () {
-    ssh-add
     eval "$(op signin ${OP_ACCOUNT})"
     eval "$(load-gh-token.sh)"
+    ssh-add
 }
 
 function stop () {
-    ssh-add -D
     op signout
     unset GITHUB_TOKEN
+    ssh-add -D
 }
