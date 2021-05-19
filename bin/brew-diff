@@ -17,7 +17,7 @@ echo "> : in Brewfile but not installed"
 # - Find unique set of files
 {
     fd Brewfile "${HOME}/code" "${HOME}/dotfiles" &&
-        ([[ ! -e "${HOME}/Brewfile*" ]] || command ls -1 "${HOME}/Brewfile*")
+        fd --max-depth 1 Brewfile "${HOME}"
 } 2>/dev/null |
     grep -v "${BREWFILE_IGNORE:-xxxxxx}" |
     xargs cat |
