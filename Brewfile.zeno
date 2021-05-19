@@ -1,7 +1,8 @@
-tap "fossas/tap"
+# tap "fossas/tap"
 
 brew "cmake"
-brew "fossas/tap/fossa"
+# https://github.com/fossas/homebrew-tap/issues/2
+# brew "fossas/tap/fossa"
 brew "fx"
 brew "telnet"
 
