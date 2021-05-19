@@ -59,6 +59,8 @@ brew "shfmt"
 brew "shpotify"
 brew "sk"
 brew "starship"
+# Needed to install some fonts
+brew "subversion"
 brew "switchaudio-osx"
 brew "terraform"
 brew "tldr"
