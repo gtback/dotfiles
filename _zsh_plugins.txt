@@ -1,26 +1,27 @@
-djui/alias-tips
+# https://github.com/caarlos0/ports
 caarlos0/ports
+# https://github.com/djui/alias-tips
+djui/alias-tips
 
-zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
+# https://github.com/reegnz/jq-zsh-plugin
+reegnz/jq-zsh-plugin
 
-# robbyrussell/oh-my-zsh path:plugins/celery
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
 robbyrussell/oh-my-zsh path:plugins/chruby
-# robbyrussell/oh-my-zsh path:plugins/django
 robbyrussell/oh-my-zsh path:plugins/docker
-# robbyrussell/oh-my-zsh path:plugins/fabric
-# robbyrussell/oh-my-zsh path:plugins/git
-# robbyrussell/oh-my-zsh path:plugins/npm
-# robbyrussell/oh-my-zsh path:plugins/nvm
 robbyrussell/oh-my-zsh path:plugins/pip
 robbyrussell/oh-my-zsh path:plugins/python
 robbyrussell/oh-my-zsh path:plugins/ruby
 robbyrussell/oh-my-zsh path:plugins/vagrant
-# robbyrussell/oh-my-zsh path:plugins/virtualenv
 
+# https://github.com/zdharma/fast-syntax-highlighting
 zdharma/fast-syntax-highlighting
-zsh-users/zsh-syntax-highlighting
-zsh-users/zsh-history-substring-search
 
-# https://github.com/reegnz/jq-zsh-plugin
-reegnz/jq-zsh-plugin
+# https://github.com/zsh-users/zsh-autosuggestions
+zsh-users/zsh-autosuggestions
+# https://github.com/zsh-users/zsh-completions
+zsh-users/zsh-completions
+# https://github.com/zsh-users/zsh-history-substring-search
+zsh-users/zsh-history-substring-search
+# https://github.com/zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-syntax-highlighting
