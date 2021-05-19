@@ -32,6 +32,8 @@ alias glg='git log --stat'
 alias gm='git merge'
 alias gpso='git push --set-upstream origin'
 alias grv='git remote -v'
+alias gsd='git stash drop'
+alias gsl='git stash list'
 alias gst='git status'
 
 # https://medium.com/@mrWinston/smarter-git-checkout-using-fzf-to-supercharge-your-commandline-7507db600996
