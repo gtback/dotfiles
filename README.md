@@ -35,20 +35,19 @@ My dotfiles
    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string ${HOSTNAME}
    ```
 
-1. Set up Python. `virtualenv` and `virtualenvwrapper` are installed in the
-   Homebrew Python3 (this is the `system` Python to `pyenv`). When a new minor
-   version of Python is released, we'll have to re-install.
-
-   ```shell
-   brew install python
-   /usr/local/bin/python3 -m pip install --upgrade pip setuptools wheel
-   /usr/local/bin/python3 -m pip install virtualenv virtualenvwrapper
-   ```
-
-1. Install remaining Homebrew dependencies. This includes `pyenv`.
+1. Install Homebrew dependencies.
 
    ```shell
    brew-sync
+   ```
+
+1. Set up Python. `virtualenv` and `virtualenvwrapper` are installed in the
+   Homebrew Python3 (this is the `system` Python to `asdf`/`python`). When a new
+   minor version of Python is released, we'll have to re-install.
+
+   ```shell
+   /usr/local/bin/python3 -m pip install --upgrade pip setuptools wheel
+   /usr/local/bin/python3 -m pip install virtualenv virtualenvwrapper
    ```
 
 1. Install most recent patch version of all [active Python

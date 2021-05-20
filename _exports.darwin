@@ -1,7 +1,5 @@
 export BROWSER=open
 
-export PYENV_ROOT=/usr/local/var/pyenv
-
 # virtualenvwrapper is installed with Homebrew's python3
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
