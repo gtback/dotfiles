@@ -50,6 +50,13 @@ My dotfiles
    /usr/local/bin/python3 -m pip install virtualenv virtualenvwrapper
    ```
 
+1. Set up versions of languages:
+
+   ```shell
+   asdf plugin-add nodejs
+   asdf plugin-add python
+   ```
+
 1. Install most recent patch version of all [active Python
    releases](https://www.python.org/downloads/)... including 2.7 :-(
 

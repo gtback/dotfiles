@@ -61,11 +61,9 @@ bindkey '^[[B' history-substring-search-down
 if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then . "${HOME}/.nix-profile/etc/profile.d/nix.sh"; fi # added by Nix installer
 
 if [ "$TERM_PROGRAM" == "vscode" ]; then
-  echo "Disabling shell environment managers (virtualenvwrapper, nvm) in Visual Studio Code"
+  echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
 else
   [ -s /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
-  [ -s "$NVM_HOME/nvm.sh" ] && source "$NVM_HOME/nvm.sh"  # This loads nvm
-  [ -s "$NVM_HOME/bash_completion" ] && source "$NVM_HOME/bash_completion"  # This loads nvm bash_completion
   [ -s "$(brew --prefix asdf)/asdf.sh" ] && source "$(brew --prefix asdf)/asdf.sh"
 fi
 which tmuxp.sh >/dev/null && source tmuxp.zsh
