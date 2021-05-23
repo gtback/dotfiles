@@ -8,7 +8,5 @@ repos:
   rev: 2.1.5
   hooks:
     - id: shellcheck
-      # https://github.com/jumanjihouse/pre-commit-hooks/issues/82
-      additional_dependencies: []
     - id: shfmt
       args: ['-i', '4']
