@@ -3,7 +3,6 @@
 brew "cmake"
 # https://github.com/fossas/homebrew-tap/issues/2
 # brew "fossas/tap/fossa"
-brew "fx"
 brew "telnet"
 
 cask "github"

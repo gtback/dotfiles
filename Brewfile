@@ -78,7 +78,6 @@ brew "unzip"
 brew "vim"
 brew "watch"
 brew "wget"
-brew "yarn"
 brew "yq"
 brew "zsh"
 
