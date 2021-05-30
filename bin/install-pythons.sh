@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Install most recent patch version of all active Python releases, including
+# Python 2.7 (https://www.python.org/downloads). Update the asdf global versions
+# file with the new versions.
+
 set -euo pipefail
 
 PY27=$(asdf latest python 2.7)
