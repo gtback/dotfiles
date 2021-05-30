@@ -3,3 +3,11 @@ alias apt-list="grep -h '^deb ' /etc/apt/sources.list /etc/apt/sources.list.d/*.
 alias myip="hostname -I | tr -d ' '"
 alias sasu="sudo aptitude safe-upgrade"
 alias sau="sudo aptitude update"
+
+# Start ssh-agent if it it is not already running.
+SSHAGENT=/usr/bin/ssh-agent
+SSHAGENTARGS="-s"
+if [ -z "$SSH_AUTH_SOCK" ] && [ -x "$SSHAGENT" ]; then
+  eval "$($SSHAGENT $SSHAGENTARGS)"
+  trap "kill $SSH_AGENT_PID" 0
+fi

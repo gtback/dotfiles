@@ -1,21 +1,33 @@
+# shellcheck disable=SC1090,SC2034,SC2148,SC2154
 # Uncomment to enable profiling of zsh startup
 # - https://blog.askesis.pl/post/2017/04/how-to-debug-zsh-startup-time.html
 #zmodload zsh/zprof
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
 fi
 
+for f in "$XDG_CONFIG_HOME"/env/*.sh; do
+  if [ -r "$f" ]; then
+    # echo "loading $f"
+    . "$f"
+  fi
+done
+unset f
+
+autoload -Uz compinit
+
+# https://wiki.archlinux.org/title/XDG_Base_Directory#Hardcoded
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+
 source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+antibody bundle < "${ZDOTDIR}/plugins.txt"
 
 setopt NO_NOMATCH
 
 ## History file configuration
-HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=1000000  # Number of commands saved to file
 SAVEHIST=1000000  # Number of commands saved in memory
 
@@ -68,14 +80,6 @@ else
 fi
 which tmuxp.sh >/dev/null && source tmuxp.zsh
 
-# Start ssh-agent if it it is not already running.
-SSHAGENT=/usr/bin/ssh-agent
-SSHAGENTARGS="-s"
-if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
-  eval `$SSHAGENT $SSHAGENTARGS`
-  trap "kill $SSH_AGENT_PID" 0
-fi
-
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -92,14 +96,6 @@ source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 source "$(brew --prefix)/share/zsh/site-functions/_todoist_fzf"
-
-#compdef toggl
-_toggl() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _TOGGL_COMPLETE=complete-zsh  toggl)
-}
-if [[ "$(basename -- ${(%):-%x})" != "_toggl" ]]; then
-  compdef _toggl toggl
-fi
 
 # Uncomment to print results of startup profiling
 #zprof

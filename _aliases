@@ -139,3 +139,12 @@ function stop () {
     unset GITHUB_TOKEN
     ssh-add -D
 }
+
+# Temporarily moving here to avoid shfmt and shellcheck problems in .zshrc
+#compdef toggl
+_toggl() {
+  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _TOGGL_COMPLETE=complete-zsh  toggl)
+}
+if [[ "$(basename -- ${(%):-%x})" != "_toggl" ]]; then
+  compdef _toggl toggl
+fi
