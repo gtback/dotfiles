@@ -17,3 +17,7 @@ git checkout -q "remotes/$REMOTE/HEAD" && git for-each-ref refs/heads/ "--format
             [[ $(git cherry "remotes/$REMOTE/HEAD" "$(git commit-tree "$(git rev-parse "$branch"^\{tree\})" -p "$mergeBase" -m _)") == "-"* ]] &&
             git branch -D "$branch"
     done
+
+# Check out the remote HEAD branch. Without this you're in a detached-HEAD state.
+# https://stackoverflow.com/a/19457164/1136755
+git checkout "$(git ls-remote --heads "$REMOTE" | grep "$(git rev-parse HEAD)" | cut -d / -f 3-)"
