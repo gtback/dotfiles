@@ -9,9 +9,11 @@
 
 set -euo pipefail
 
-git checkout -q remotes/origin/HEAD && git for-each-ref refs/heads/ "--format=%(refname:short)" |
+REMOTE=${GIT_DSB_REMOTE:-origin}
+
+git checkout -q "remotes/$REMOTE/HEAD" && git for-each-ref refs/heads/ "--format=%(refname:short)" |
     while read -r branch; do
-        mergeBase=$(git merge-base remotes/origin/HEAD "$branch") &&
-            [[ $(git cherry remotes/origin/HEAD "$(git commit-tree "$(git rev-parse "$branch"^\{tree\})" -p "$mergeBase" -m _)") == "-"* ]] &&
+        mergeBase=$(git merge-base "remotes/$REMOTE/HEAD" "$branch") &&
+            [[ $(git cherry "remotes/$REMOTE/HEAD" "$(git commit-tree "$(git rev-parse "$branch"^\{tree\})" -p "$mergeBase" -m _)") == "-"* ]] &&
             git branch -D "$branch"
     done
