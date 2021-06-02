@@ -11,7 +11,9 @@ symlink() {
 
 pushd "${HOME}/dotfiles" >/dev/null
 # If this is running for the first time, these variables won't be set.
+set +u
 source env/xdg.sh
+set -u
 
 # Set up directory with environment variables
 symlink env "$XDG_CONFIG_HOME"
