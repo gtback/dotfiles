@@ -152,3 +152,10 @@ fi
 function asdf-install-plugins () {
     awk '{print $1}' < "${ASDF_DEFAULT_TOOL_VERSIONS_FILENAME}" | xargs -n 1 asdf plugin add
 }
+
+function asdf-list-all () {
+    for plugin in $(asdf plugin-list); do
+        echo "$plugin"
+        asdf list "$plugin"
+    done
+}
