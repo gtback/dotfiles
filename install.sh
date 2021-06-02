@@ -50,7 +50,6 @@ symlink _pythonstartup ~/.pythonstartup
 symlink _tmux.conf ~/.tmux.conf
 symlink _tmux.darwin.conf ~/.tmux.darwin.conf
 symlink _vimrc ~/.vimrc
-symlink _yarnrc ~/.yarnrc
 
 symlink starship.toml ~/.config/starship.toml
 
