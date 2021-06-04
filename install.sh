@@ -6,7 +6,7 @@ symlink() {
     SRC="$PWD/$1"
     [ -e "$SRC" ] || (echo "No file named $SRC" && exit 1)
     DEST="$2"
-    ln -svf "$SRC" "$DEST"
+    ln -svfn "$SRC" "$DEST"
 }
 
 pushd "${HOME}/dotfiles" >/dev/null
@@ -21,7 +21,7 @@ symlink env "$XDG_CONFIG_HOME"
 # Set up ZSH
 symlink zsh "$XDG_CONFIG_HOME"
 # .zshenv needs to be in $HOME to bootstrap ZDOTDIR
-ln -sf "$XDG_CONFIG_HOME/zsh/zshenv" ~/.zshenv
+ln -svfn "$XDG_CONFIG_HOME/zsh/zshenv" ~/.zshenv
 mkdir -p "$XDG_CACHE_HOME/zsh"
 mkdir -p "$XDG_DATA_HOME/zsh"
 
