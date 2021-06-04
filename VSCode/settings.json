@@ -84,6 +84,9 @@
   "ruby.intellisense": "rubyLocate",
   "ruby.useBundler": true,
   "ruby.useLanguageServer": true,
+  "rust-client.rlsPath": "$ASDF_DATA_DIR/shims/rls",
+  "rust-client.rustupPath": "$ASDF_DATA_DIR/shims/rustup",
+  "rust.rustfmt_path": "$ASDF_DATA_DIR/shims/rustfmt",
   "spellright.documentTypes": [
     "markdown"
   ],
