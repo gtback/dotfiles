@@ -59,12 +59,6 @@ My dotfiles
    asdf install
    ```
 
-1. Install Rust toolchain:
-
-   ```shell
-   curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
-   ```
-
 1. Compile custom `nnn` with Nerd Font support:
 
    ```shell
