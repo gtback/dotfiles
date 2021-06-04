@@ -14,11 +14,11 @@
     "editor.tabSize": 2
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "vscode.json-language-features",
     "editor.tabSize": 2
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.tabSize": 2
   },
   "breadcrumbs.enabled": true,
@@ -33,7 +33,10 @@
   "editor.formatOnSaveMode": "modifications",
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
@@ -68,7 +71,9 @@
   "liveshare.codeLens": false,
   "liveshare.featureSet": "insiders",
   "liveshare.openSharedServers": false,
-  "prettier.disableLanguages": ["yaml"],
+  "prettier.disableLanguages": [
+    "yaml"
+  ],
   "problems.showCurrentInStatus": true,
   "python.formatting.provider": "black",
   "python.jediEnabled": false,
@@ -79,7 +84,9 @@
   "ruby.intellisense": "rubyLocate",
   "ruby.useBundler": true,
   "ruby.useLanguageServer": true,
-  "spellright.documentTypes": ["markdown"],
+  "spellright.documentTypes": [
+    "markdown"
+  ],
   "terminal.integrated.fontFamily": "Inconsolata Nerd Font",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.scrollback": 10000,
