@@ -4,27 +4,27 @@ My dotfiles
 
 ## Set up macOS
 
-1. Install [Homebrew](https://brew.sh/)
+1. Install [Homebrew](https://brew.sh/):
 
    ```shell
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
-1. Install zsh
+1. Install zsh:
 
    ```shell
    brew install zsh
    chsh -s /usr/local/bin/zsh
    ```
 
-1. Clone Repo
+1. Clone this repo and install the files:
 
    ```shell
    git clone git@github.com/gtback/dotfiles.git
    ./dotfiles/install.sh
    ```
 
-1. Set Mac defaults
+1. Set Mac defaults:
 
    ```shell
    HOSTNAME="mjolnir"
@@ -35,20 +35,22 @@ My dotfiles
    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string ${HOSTNAME}
    ```
 
-1. Install Homebrew dependencies.
+1. Install Homebrew dependencies:
 
    ```shell
    brew-sync
    ```
 
-1. Set up Python. `virtualenv` and `virtualenvwrapper` are installed in the
-   Homebrew Python3 (this is the `system` Python to `asdf`/`python`). When a new
-   minor version of Python is released, we'll have to re-install.
+1. Set up Python:
 
    ```shell
    /usr/local/bin/python3 -m pip install --upgrade pip setuptools wheel
    /usr/local/bin/python3 -m pip install virtualenv virtualenvwrapper
    ```
+
+   `virtualenv` and `virtualenvwrapper` are installed in the Homebrew Python 3
+   (this is the `system` Python to `asdf`/`pyenv`). When a new minor version of
+   Python is released to Homebrew, these need to be re-installed.
 
 1. Set up [ASDF](https://asdf-vm.com/#/) plugins and versions:
 
