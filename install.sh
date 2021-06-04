@@ -53,37 +53,6 @@ symlink _vimrc ~/.vimrc
 
 symlink starship.toml ~/.config/starship.toml
 
-# https://zork.net/~st/jottings/Rust_and_the_XDG_Base_Directory_Specification.html
-# TODO: Move `CARGO_BIN_DIR` to somewhere that *just* cargo can use.
-CARGO_BIN_DIR="$HOME/.local/bin"
-CARGO_CACHE_DIR="$XDG_CACHE_HOME/cargo"
-RUSTUP_CACHE_DIR="$XDG_CACHE_HOME/rustup"
-
-# `$HOME/.local/bin` holds other executables, like those installed by pipx.
-mkdir -p "$CARGO_BIN_DIR"
-mkdir -p "$CARGO_CACHE_DIR"
-mkdir -p "$HOME/.cargo"
-mkdir -p "$HOME/.rustup"
-mkdir -p "$RUSTUP_CACHE_DIR/downloads"
-mkdir -p "$RUSTUP_CACHE_DIR/tmp"
-mkdir -p "$RUSTUP_CACHE_DIR/toolchains"
-mkdir -p "$RUSTUP_CACHE_DIR/update-hashes"
-
-symlink rustup/settings.toml "$HOME/.rustup"
-
-ln -svfn "$CARGO_BIN_DIR" "$HOME/.cargo/bin"
-ln -svfn "$CARGO_CACHE_DIR" "$HOME/.cargo/registry"
-ln -svfn "$HOME/.rustup" "$HOME/.multirust"
-ln -svfn "$RUSTUP_CACHE_DIR/downloads" "$HOME/.rustup/downloads"
-ln -svfn "$RUSTUP_CACHE_DIR/tmp" "$HOME/.rustup/tmp"
-ln -svfn "$RUSTUP_CACHE_DIR/toolchains" "$HOME/.rustup/toolchains"
-ln -svfn "$RUSTUP_CACHE_DIR/update-hashes" "$HOME/.rustup/update-hashes"
-
-# To clean up:
-#   - rm -rf ${XDG_CACHE_HOME}/{cargo,rustup}
-#   - rm -rf ${HOME}/{.cargo,.rustup,.multirust}
-# Don't remove `$HOME/.local/bin`
-
 symlink VSCode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
 symlink VSCode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 symlink VSCode/tasks.json "$HOME/Library/Application Support/Code/User/tasks.json"
