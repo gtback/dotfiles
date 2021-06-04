@@ -3,6 +3,7 @@
 # - https://blog.askesis.pl/post/2017/04/how-to-debug-zsh-startup-time.html
 #zmodload zsh/zprof
 
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
