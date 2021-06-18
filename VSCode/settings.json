@@ -109,12 +109,9 @@
   "workbench.activityBar.visible": true,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editorAssociations": [
-    {
-      "filenamePattern": "*.ipynb",
-      "viewType": "jupyter.notebook.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "workbench.iconTheme": "vscode-icons",
   "workbench.list.keyboardNavigation": "filter",
   "workbench.startupEditor": "newUntitledFile",
