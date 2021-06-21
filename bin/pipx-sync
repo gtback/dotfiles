@@ -2,7 +2,4 @@
 
 set -euo pipefail
 
-echo "< : installed but not in .pipx.lock"
-echo "> : in .pipx.lock but not installed"
-
-diff <(pipx-freeze) ~/.pipx.lock
+xargs -n 1 pipx install <~/.pipx.lock

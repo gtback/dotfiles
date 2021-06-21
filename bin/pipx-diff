@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+echo "Installed but not listed in .pipx.lock:"
+comm -23 <(pipx-freeze) ~/.pipx.lock
+echo
+echo "In .pipx.lock but not installed:"
+comm -13 <(pipx-freeze) ~/.pipx.lock
