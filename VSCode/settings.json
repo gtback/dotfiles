@@ -52,7 +52,11 @@
     "_zshrc": "shellscript"
   },
   "files.exclude": {
-    "**/__pycache__": true
+    "**/__pycache__": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
   },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
