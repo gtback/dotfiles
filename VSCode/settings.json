@@ -47,7 +47,6 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "extensions.ignoreRecommendations": true,
-  "extensions.showRecommendationsOnlyOnDemand": true,
   "files.associations": {
     "_zshrc": "shellscript"
   },
@@ -67,23 +66,10 @@
   "git.untrackedChanges": "separate",
   "gitlens.codeLens.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
-  "gitlens.views.compare.location": "gitlens",
-  "gitlens.views.fileHistory.location": "gitlens",
-  "gitlens.views.lineHistory.location": "gitlens",
-  "gitlens.views.repositories.location": "gitlens",
-  "gitlens.views.search.location": "gitlens",
   "go.toolsManagement.autoUpdate": true,
   "jupyter.sendSelectionToInteractiveWindow": false,
-  "liveshare.autoShareServers": false,
-  "liveshare.codeLens": false,
-  "liveshare.featureSet": "insiders",
-  "liveshare.openSharedServers": false,
-  "prettier.disableLanguages": [
-    "yaml"
-  ],
   "problems.showCurrentInStatus": true,
   "python.formatting.provider": "black",
-  "python.jediEnabled": false,
   "python.languageServer": "Pylance",
   "python.venvPath": "~/.virtualenvs",
   "ruby.codeCompletion": "rcodetools",
@@ -100,7 +86,6 @@
   "terminal.integrated.fontFamily": "Inconsolata Nerd Font",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.scrollback": 10000,
-  "terminal.integrated.shell.osx": "/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vs-kubernetes": {
     "vs-kubernetes.draft-path.mac": "/usr/local/bin/draft",
