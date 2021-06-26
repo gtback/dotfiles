@@ -98,5 +98,7 @@ source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.z
 
 source "$(brew --prefix)/share/zsh/site-functions/_todoist_fzf"
 
+eval "$(op completion zsh)"; compdef _op op
+
 # Uncomment to print results of startup profiling
 #zprof
