@@ -51,11 +51,11 @@
     "_zshrc": "shellscript"
   },
   "files.exclude": {
-    "**/__pycache__": true,
     "**/.classpath": true,
+    "**/.factorypath": true,
     "**/.project": true,
     "**/.settings": true,
-    "**/.factorypath": true
+    "**/__pycache__": true
   },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -68,6 +68,10 @@
   "gitlens.hovers.currentLine.over": "line",
   "go.toolsManagement.autoUpdate": true,
   "jupyter.sendSelectionToInteractiveWindow": false,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
   "problems.showCurrentInStatus": true,
   "python.formatting.provider": "black",
   "python.languageServer": "Pylance",
@@ -99,7 +103,7 @@
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
+    "*.ipynb": "jupyter-notebook"
   },
   "workbench.iconTheme": "vscode-icons",
   "workbench.list.keyboardNavigation": "filter",
