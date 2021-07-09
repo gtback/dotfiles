@@ -5,6 +5,7 @@ gcalcli
 pip-tools
 poetry
 pre-commit
+pycodestyle
 togglcli
 tox
 twine
