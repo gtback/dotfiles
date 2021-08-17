@@ -39,4 +39,4 @@ update_xcode() {
 }
 
 # Training to not use certain things.
-st () { echo 'use "stree" instead'; }
+st() { echo 'use "stree" instead'; }

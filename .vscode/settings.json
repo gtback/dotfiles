@@ -1,0 +1,4 @@
+{
+  // Just for this repo, not in every environment
+  "shellformat.flag": "-bn"
+}
