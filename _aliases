@@ -61,7 +61,6 @@ pip() {
 alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
 
 alias vagrant-ids="grep '.*' ~/code/**/.vagrant/machines/*/virtualbox/index_uuid"
-alias zreload=". \${ZDOTDIR}/.zshrc && echo 'ZSH config reloaded from \${ZDOTDIR}/.zshrc'"
 alias lspath='f(){echo ${PATH} | tr ":" "\n"};f'
 alias proxies="env | grep -i proxy"
 
@@ -79,6 +78,13 @@ alias nl="npm list --depth=0 2>/dev/null"
 
 tlsdates() {
     echo | openssl s_client -servername "$1" -connect "$1":443 2>/dev/null | openssl x509 -noout -dates
+}
+
+zreload() {
+    CONFIG_FILE=$ZDOTDIR/.zshrc
+    # shellcheck source=zsh/.zshrc
+    source "$CONFIG_FILE"
+    echo "Reloaded ZSH config from $CONFIG_FILE"
 }
 
 ### kubectl aliases
@@ -130,7 +136,7 @@ function git-log-regex () {
 alias glr='git-log-regex'
 
 function start () {
-    eval "$(op signin ${OP_ACCOUNT})"
+    eval "$(op signin "${OP_ACCOUNT}")"
     eval "$(load-gh-token.sh)"
     ssh-add
 }
