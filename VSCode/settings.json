@@ -76,6 +76,7 @@
   "python.formatting.provider": "black",
   "python.languageServer": "Pylance",
   "python.venvPath": "~/.virtualenvs",
+  "redhat.telemetry.enabled": false,
   "ruby.codeCompletion": "rcodetools",
   "ruby.format": "rubocop",
   "ruby.intellisense": "rubyLocate",
