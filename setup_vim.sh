@@ -1,9 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
+bundleDir="${XDG_DATA_HOME}/vim/bundle"
 
 # Install Vundle
-mkdir -p ~/.vim/bundle
-[[ -d ~/.vim/bundle/Vundle.vim ]] || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+mkdir -p "$bundleDir"
+
+[[ -d "$bundleDir"/Vundle.vim ]] || git clone https://github.com/VundleVim/Vundle.vim.git "$bundleDir"/Vundle.vim
 
 vim +PluginInstall! +qall
-
-mkdir -p ~/.local/share/vim/undo

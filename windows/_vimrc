@@ -1,2 +1,2 @@
 set runtimepath+=$HOME/dotfiles
-source $HOME\dotfiles\_vimrc
+source $HOME\dotfiles\vim\vimrc

@@ -7,3 +7,7 @@
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/asdfrc"
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
 export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="$XDG_CONFIG_HOME/asdf/tool-versions"
+
+# Used for Vim and Neovim
+# https://blog.joren.ga/tools/vim-xdg
+export VIMINIT="source ${XDG_CONFIG_HOME}/vim/vimrc"

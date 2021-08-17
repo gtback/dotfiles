@@ -6,13 +6,13 @@ filetype off                   " required!
 
 " Vundle (https://github.com/VundleVim/Vundle.vim)
 if has('win32')
-  set rtp+=~/vimfiles/bundle/Vundle.vim/
-  let path='~/vimfiles/bundle'
-  call vundle#begin(path)
+  let $bundlePath='~/vimfiles/bundle'
 else
-  set rtp+=~/.vim/bundle/Vundle.vim/
-  call vundle#begin()
+  let $bundlePath=$XDG_DATA_HOME."/vim/bundle"
 endif
+
+set runtimepath+=$bundlePath/Vundle.vim/
+call vundle#begin($bundlePath)
 
 Plugin 'VundleVim/Vundle.vim'
 
