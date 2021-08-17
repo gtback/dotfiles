@@ -23,14 +23,14 @@ compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 
 source <(antibody init)
-antibody bundle < "${ZDOTDIR}/plugins.txt"
+antibody bundle <"${ZDOTDIR}/plugins.txt"
 
 setopt NO_NOMATCH
 
 ## History file configuration
 HISTFILE="$XDG_DATA_HOME"/zsh/history
-HISTSIZE=1000000  # Number of commands saved to file
-SAVEHIST=1000000  # Number of commands saved in memory
+HISTSIZE=1000000 # Number of commands saved to file
+SAVEHIST=1000000 # Number of commands saved in memory
 
 ## History command configuration
 setopt EXTENDED_HISTORY       # record timestamp of command in HISTFILE
@@ -84,8 +84,7 @@ which tmuxp.sh >/dev/null && source tmuxp.zsh
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if which starship &>/dev/null
-then
+if which starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
@@ -98,9 +97,10 @@ source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.z
 
 source "$(brew --prefix)/share/zsh/site-functions/_todoist_fzf"
 
-eval "$(op completion zsh)"; compdef _op op
+eval "$(op completion zsh)"
+compdef _op op
 
 # Uncomment to print results of startup profiling
 #zprof
 
-source "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
+[ -s "${XDG_CONFIG_HOME}/broot/launcher/bash/br" ] && source "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
