@@ -1,7 +1,6 @@
 #!/bin/sh
 
 alias md5sum=md5
-alias vi=vim
 
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias firefox="open -a /Applications/Firefox.app"
