@@ -102,3 +102,5 @@ eval "$(op completion zsh)"; compdef _op op
 
 # Uncomment to print results of startup profiling
 #zprof
+
+source "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
