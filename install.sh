@@ -37,6 +37,7 @@ symlink _exports.linux ~/.exports.linux
 # https://asdf-vm.com/#/
 symlink asdf "$XDG_CONFIG_HOME"
 
+symlink gnupg "$XDG_CONFIG_HOME"
 symlink tmux "$XDG_CONFIG_HOME"
 symlink vim "$XDG_CONFIG_HOME"
 

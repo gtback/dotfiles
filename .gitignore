@@ -1,0 +1,2 @@
+gnupg/*
+!gnupg/gpg*.conf
