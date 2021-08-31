@@ -79,3 +79,7 @@
 	defaultBranch = main
 [pull]
 	ff = only
+[user]
+	signingkey = 0x9836566B227CEF7F
+[commit]
+	gpgsign = true
