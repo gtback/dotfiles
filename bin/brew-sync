@@ -3,7 +3,6 @@
 set -euo pipefail
 
 brew update
-brew upgrade
 
 install_from_brewfile() {
     [ -e "$1" ] && brew bundle install --file "$1"
