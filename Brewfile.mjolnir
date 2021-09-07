@@ -1,4 +1,6 @@
 brew "ffmpeg"
+brew "mutt"
+brew "noti"
 
 cask "adobe-digital-editions"
 cask "backblaze"
@@ -9,5 +11,7 @@ cask "netnewswire"
 cask "microsoft-teams"
 cask "pocket-casts"
 cask "steam"
+cask "telegram"
+cask "zulip"
 
 mas "WireGuard", id: 1451685025
