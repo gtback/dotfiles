@@ -2,6 +2,7 @@ black
 bugwarrior
 flake8
 gcalcli
+identify
 pip-tools
 poetry
 pre-commit
