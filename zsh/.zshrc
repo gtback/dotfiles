@@ -56,11 +56,18 @@ bindkey '^?' backward-delete-char
 # bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+
+# https://github.com/zsh-users/zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 export KEYTIMEOUT=1
 
 source-if-exists() {
   [ -s "$1" ] && source "$1"
 }
+
+# Load shell aliases and environment variables
 
 for dotfile in aliases exports; do
   file="$HOME/.${dotfile}"
@@ -70,13 +77,11 @@ for dotfile in aliases exports; do
   source-if-exists "${file}.local"
 done
 
-# https://github.com/zsh-users/zsh-history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# Load other tools' configuration files
 
 # source-if-exists $POWERLINE/bindings/zsh/powerline.zsh
-
 source-if-exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+source-if-exists "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
 
 if [ "$TERM_PROGRAM" == "vscode" ]; then
   echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
@@ -84,15 +89,17 @@ else
   source-if-exists /usr/local/bin/virtualenvwrapper.sh
   source-if-exists "$(brew --prefix asdf)/asdf.sh"
 fi
-which tmuxp.sh >/dev/null && source tmuxp.zsh
 
 # https://github.com/junegunn/fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source-if-exists ~/.fzf.zsh
 
+
+# Load prompt
 if which starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
+# Load completions
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
 complete -o nospace -C /usr/local/bin/terraform terraform
@@ -107,5 +114,3 @@ compdef _op op
 
 # Uncomment to print results of startup profiling
 #zprof
-
-source-if-exists "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
