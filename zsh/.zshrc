@@ -58,26 +58,31 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 export KEYTIMEOUT=1
 
+source-if-exists() {
+  [ -s "$1" ] && source "$1"
+}
+
 for dotfile in aliases exports; do
   file="$HOME/.${dotfile}"
-  [ -e "${file}" ] && source "${file}"
-  [ -e "${file}.${os}" ] && source "${file}.${os}"
-  [ -e "${file}.$(hostname)" ] && echo "${file}.$(hostname)" && source "${file}.$(hostname)"
-  [ -e "${file}.local" ] && source "${file}.local"
+  source-if-exists "${file}"
+  source-if-exists "${file}.${os}"
+  source-if-exists "${file}.$(hostname)"
+  source-if-exists "${file}.local"
 done
 
 # https://github.com/zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# [ -e $POWERLINE/bindings/zsh/powerline.zsh ] && source $POWERLINE/bindings/zsh/powerline.zsh
-if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then . "${HOME}/.nix-profile/etc/profile.d/nix.sh"; fi # added by Nix installer
+# source-if-exists $POWERLINE/bindings/zsh/powerline.zsh
+
+source-if-exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 
 if [ "$TERM_PROGRAM" == "vscode" ]; then
   echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
 else
-  [ -s /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
-  [ -s "$(brew --prefix asdf)/asdf.sh" ] && source "$(brew --prefix asdf)/asdf.sh"
+  source-if-exists /usr/local/bin/virtualenvwrapper.sh
+  source-if-exists "$(brew --prefix asdf)/asdf.sh"
 fi
 which tmuxp.sh >/dev/null && source tmuxp.zsh
 
@@ -92,10 +97,10 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
 complete -o nospace -C /usr/local/bin/terraform terraform
 
-source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
-source "$(brew --prefix)/share/zsh/site-functions/_todoist_fzf"
+source-if-exists "$(brew --prefix)/share/zsh/site-functions/_todoist_fzf"
 
 eval "$(op completion zsh)"
 compdef _op op
@@ -103,4 +108,4 @@ compdef _op op
 # Uncomment to print results of startup profiling
 #zprof
 
-[ -s "${XDG_CONFIG_HOME}/broot/launcher/bash/br" ] && source "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
+source-if-exists "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
