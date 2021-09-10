@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 alias md5sum=md5
 
@@ -10,12 +10,32 @@ alias swud="softwareupdate --all"
 # https://blog.jpalardy.com/posts/untangling-your-homebrew-dependencies/
 alias graph-brew-deps="brew graph --installed --highlight-leaves | fdp -T png -o graph.png"
 
+bt._connect() {
+    blueutil --connect "$1"
+    while [ "$(blueutil --is-connected "$1")" -ne "1" ]; do sleep 1; done
+}
+
 pods() {
-    blueutil --connect "${AIRPODS_BLUETOOTH_ID}"
-    while [ "$(blueutil --is-connected "${AIRPODS_BLUETOOTH_ID}")" -ne "1" ]; do sleep 1; done
+    bt._connect "${AIRPODS_BLUETOOTH_ID}"
     sleep 1
     SwitchAudioSource -t output -s AirPods
     SwitchAudioSource -t input -s AirPods
+}
+
+bt.start() {
+    echo "connecting keyboard"
+    bt._connect "${KEYBOARD_BLUETOOTH_ID}"
+    echo "connecting mouse"
+    bt._connect "${MOUSE_BLUETOOTH_ID}"
+    echo "connected"
+}
+
+bt.stop() {
+    echo "disconnecting keyboard"
+    blueutil --disconnect "${KEYBOARD_BLUETOOTH_ID}"
+    echo "disconnecting mouse"
+    blueutil --disconnect "${MOUSE_BLUETOOTH_ID}"
+    echo "disconnected"
 }
 
 # https://stackoverflow.com/a/30029855
