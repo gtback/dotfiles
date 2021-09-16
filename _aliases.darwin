@@ -5,6 +5,7 @@ alias md5sum=md5
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias firefox="open -a /Applications/Firefox.app"
 alias subl="open -a /Applications/Sublime\ Text.app"
+alias tbird="open -a /Applications/Thunderbird.app"
 alias ffprof="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManager 2>/dev/null &"
 alias swud="softwareupdate --all"
 # https://blog.jpalardy.com/posts/untangling-your-homebrew-dependencies/
@@ -23,6 +24,7 @@ pods() {
 }
 
 bt.start() {
+    blueutil --power 1
     echo "connecting keyboard"
     bt._connect "${KEYBOARD_BLUETOOTH_ID}"
     echo "connecting mouse"
@@ -36,6 +38,7 @@ bt.stop() {
     echo "disconnecting mouse"
     blueutil --disconnect "${MOUSE_BLUETOOTH_ID}"
     echo "disconnected"
+    blueutil --power 0
 }
 
 # https://stackoverflow.com/a/30029855
