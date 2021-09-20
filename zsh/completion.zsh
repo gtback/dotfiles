@@ -1,4 +1,4 @@
-#!/bin/zsh
+# shellcheck shell=bash
 
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 # This must be done before `compinit` is called
@@ -26,8 +26,10 @@ eval "$(op completion zsh)"
 compdef _op op
 
 _toggl() {
+  # shellcheck disable=SC2046,SC2154
   eval $(env COMMANDLINE="${words[1,$CURRENT]}" _TOGGL_COMPLETE=complete-zsh  toggl)
 }
+# shellcheck disable=SC2086
 if [[ "$(basename -- ${(%):-%x})" != "_toggl" ]]; then
   compdef _toggl toggl
 fi

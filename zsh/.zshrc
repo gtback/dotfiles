@@ -1,4 +1,6 @@
-# shellcheck disable=SC1090,SC2034,SC2148,SC2154
+# shellcheck shell=bash
+# shellcheck disable=SC1090
+
 # Uncomment to enable profiling of zsh startup
 # - https://blog.askesis.pl/post/2017/04/how-to-debug-zsh-startup-time.html
 #zmodload zsh/zprof
@@ -23,6 +25,7 @@ setopt NO_NOMATCH
 ## History file configuration
 HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=1000000 # Number of commands saved to file
+# shellcheck disable=SC2034
 SAVEHIST=1000000 # Number of commands saved in memory
 
 ## History command configuration
