@@ -3,11 +3,6 @@
 # - https://blog.askesis.pl/post/2017/04/how-to-debug-zsh-startup-time.html
 #zmodload zsh/zprof
 
-# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
-
 for f in "$XDG_CONFIG_HOME"/env/*.sh; do
   if [ -r "$f" ]; then
     # echo "loading $f"
@@ -22,15 +17,6 @@ unset f
 autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
-
-autoload -Uz compinit
-
-# https://wiki.archlinux.org/title/XDG_Base_Directory#Hardcoded
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
-
-source <(antibody init)
-antibody bundle <"${ZDOTDIR}/plugins.txt"
 
 setopt NO_NOMATCH
 
@@ -100,13 +86,24 @@ fi
 # https://github.com/junegunn/fzf
 source-if-exists ~/.fzf.zsh
 
-
 # Load prompt
 if which starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
-# Load completions
+### Load completions
+
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+autoload -Uz compinit
+
+# https://wiki.archlinux.org/title/XDG_Base_Directory#Hardcoded
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
 complete -o nospace -C /usr/local/bin/terraform terraform
