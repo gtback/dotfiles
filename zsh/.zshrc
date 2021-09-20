@@ -16,6 +16,13 @@ for f in "$XDG_CONFIG_HOME"/env/*.sh; do
 done
 unset f
 
+# Allow editing the command line:
+# https://thevaluable.dev/zsh-install-configure-mouseless/#editing-command-lines-in-vim
+# See also: https://blog.thecodewhisperer.com/permalink/edit-then-execute
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 autoload -Uz compinit
 
 # https://wiki.archlinux.org/title/XDG_Base_Directory#Hardcoded
