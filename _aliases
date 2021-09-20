@@ -160,15 +160,6 @@ function stop () {
     ssh-add -D
 }
 
-# Temporarily moving here to avoid shfmt and shellcheck problems in .zshrc
-#compdef toggl
-_toggl() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _TOGGL_COMPLETE=complete-zsh  toggl)
-}
-if [[ "$(basename -- ${(%):-%x})" != "_toggl" ]]; then
-  compdef _toggl toggl
-fi
-
 function asdf-install-plugins () {
     awk '{print $1}' < "${ASDF_DEFAULT_TOOL_VERSIONS_FILENAME}" | xargs -n 1 asdf plugin add
 }

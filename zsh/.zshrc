@@ -51,8 +51,9 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
 # https://github.com/zsh-users/zsh-history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# Turning off temporarily as I can't get this to work.
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
 
 export KEYTIMEOUT=1
 
@@ -83,6 +84,9 @@ else
   source-if-exists "$(brew --prefix asdf)/asdf.sh"
 fi
 
+### Load completions
+source "${XDG_CONFIG_HOME}/zsh/completion.zsh"
+
 # https://github.com/junegunn/fzf
 source-if-exists ~/.fzf.zsh
 
@@ -90,31 +94,6 @@ source-if-exists ~/.fzf.zsh
 if which starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
-
-### Load completions
-
-# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
-
-autoload -Uz compinit
-
-# https://wiki.archlinux.org/title/XDG_Base_Directory#Hardcoded
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/vault vault
-complete -o nospace -C /usr/local/bin/terraform terraform
-
-source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
-source-if-exists "$(brew --prefix)/share/zsh/site-functions/_todoist_fzf"
-
-eval "$(op completion zsh)"
-compdef _op op
 
 # Uncomment to print results of startup profiling
 #zprof

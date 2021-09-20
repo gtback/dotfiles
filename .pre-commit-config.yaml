@@ -8,7 +8,9 @@ repos:
   rev: 2.1.5
   hooks:
     - id: shellcheck
+      # Shellheck doesn't support ZSH
+      exclude: "zsh/.*"
     - id: shfmt
-      args: ['-i', '4']
+      args: ['-i', '4', '-bn']
       # shfmt doesn't support ZSH
-      exclude: "zsh/.zshrc"
+      exclude: "zsh/.*"
