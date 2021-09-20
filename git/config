@@ -53,7 +53,6 @@
 	ui = auto
 
 [core]
-	excludesfile = ~/.cvsignore
 	trustctime = false
 	autocrlf = input
 	pager = delta
@@ -74,7 +73,7 @@
 	default = simple
 
 [include]
-	path = .gitconfig.local
+	path = config.local
 [init]
 	defaultBranch = main
 [pull]
