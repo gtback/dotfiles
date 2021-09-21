@@ -18,21 +18,14 @@ set -u
 # Set up directory with environment variables
 symlink env "$XDG_CONFIG_HOME"
 
+symlink sh "$XDG_CONFIG_HOME"
+
 # Set up ZSH
 symlink zsh "$XDG_CONFIG_HOME"
 # .zshenv needs to be in $HOME to bootstrap ZDOTDIR
 ln -svfn "$XDG_CONFIG_HOME/zsh/zshenv" ~/.zshenv
 mkdir -p "$XDG_CACHE_HOME/zsh"
 mkdir -p "$XDG_DATA_HOME/zsh"
-
-symlink _aliases ~/.aliases
-symlink _aliases.darwin ~/.aliases.darwin
-symlink _aliases.linux ~/.aliases.linux
-symlink _aliases.mingw32 ~/.aliases.mingw32
-symlink _exports ~/.exports
-symlink _exports.cygwin ~/.exports.cygwin
-symlink _exports.darwin ~/.exports.darwin
-symlink _exports.linux ~/.exports.linux
 
 # https://asdf-vm.com/#/
 symlink asdf "$XDG_CONFIG_HOME"

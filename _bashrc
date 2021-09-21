@@ -1,13 +1,18 @@
 # Add any aliases or exports. The *.local files can be used for machine-
 # specific settings not checked into Git.
 
-os=`uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//'`
+source-if-exists() {
+  [ -s "$1" ] && source "$1"
+}
 
-for dotfile in aliases exports; do
-  file="$HOME/.$dotfile"
-  [ -e "$file" ] && source "$file"
-  [ -e "${file}.${os}" ] && source "${file}.${os}"
-  [ -e "${file}.local" ] && source "${file}.local"
+os=$(uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//')
+
+for dotfile in sh/aliases sh/exports; do
+  file="${XDG_CONFIG_HOME}/${dotfile}"
+  source-if-exists "${file}"
+  source-if-exists "${file}.${os}"
+  source-if-exists "${file}.$(hostname)"
+  source-if-exists "${file}.local"
 done
 
 source virtualenvwrapper.sh

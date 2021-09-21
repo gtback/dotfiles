@@ -66,8 +66,8 @@ source-if-exists() {
 
 # Load shell aliases and environment variables
 
-for dotfile in aliases exports; do
-  file="$HOME/.${dotfile}"
+for dotfile in sh/aliases sh/exports zsh/completion.zsh; do
+  file="${XDG_CONFIG_HOME}/${dotfile}"
   source-if-exists "${file}"
   source-if-exists "${file}.${os}"
   source-if-exists "${file}.$(hostname)"
@@ -86,10 +86,6 @@ else
   source-if-exists /usr/local/bin/virtualenvwrapper.sh
   source-if-exists "$(brew --prefix asdf)/asdf.sh"
 fi
-
-### Load completions
-source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh"
-source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh.local"
 
 # https://github.com/junegunn/fzf
 source-if-exists ~/.fzf.zsh
