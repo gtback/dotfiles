@@ -49,6 +49,9 @@
 	# Use with `cd $(git root)`
 	root = "rev-parse --show-toplevel"
 
+	# https://stackoverflow.com/a/22183573/1136755
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | sort
+
 [color]
 	ui = auto
 
