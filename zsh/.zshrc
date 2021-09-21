@@ -88,7 +88,8 @@ else
 fi
 
 ### Load completions
-source "${XDG_CONFIG_HOME}/zsh/completion.zsh"
+source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh"
+source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh.local"
 
 # https://github.com/junegunn/fzf
 source-if-exists ~/.fzf.zsh

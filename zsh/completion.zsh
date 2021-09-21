@@ -1,3 +1,4 @@
+#!/bin/zsh
 # shellcheck shell=bash
 
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
