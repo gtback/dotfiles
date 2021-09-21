@@ -20,6 +20,9 @@
     "editor.defaultFormatter": "vscode.json-language-features",
     "editor.tabSize": 2
   },
+  "[ruby]": {
+    "editor.formatOnSave": false
+  },
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.tabSize": 2
