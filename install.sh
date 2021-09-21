@@ -6,7 +6,7 @@ symlink() {
     SRC="$PWD/$1"
     [ -e "$SRC" ] || (echo "No file named $SRC" && exit 1)
     DEST="$2"
-    ln -svfn "$SRC" "$DEST"
+    ln -svfFn "$SRC" "$DEST"
 }
 
 pushd "${HOME}/dotfiles" >/dev/null
@@ -56,7 +56,7 @@ symlink VSCode/keybindings.json "$HOME/Library/Application Support/Code/User/key
 symlink VSCode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 symlink VSCode/tasks.json "$HOME/Library/Application Support/Code/User/tasks.json"
 
-symlink espanso.yml "${HOME}/Library/Preferences/espanso/default.yml"
+symlink espanso "${HOME}/Library/Preferences"
 
 if grep -q 'source ~/dotfiles/_bashrc' "${HOME}/.bashrc"; then
     echo ".bashrc has already been modified"
