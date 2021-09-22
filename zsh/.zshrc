@@ -60,6 +60,18 @@ bindkey '^r' history-incremental-search-backward
 
 export KEYTIMEOUT=1
 
+### Set up Directory Stack
+# https://thevaluable.dev/zsh-install-configure-mouseless/#zsh-directory-stack
+setopt AUTO_PUSHD        # Push the current directory visited on the stack.
+setopt PUSHD_IGNORE_DUPS # Do not store duplicates in the stack.
+setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
+alias d='dirs -v'
+for _index in {1..20}; do
+  # shellcheck disable=SC2139
+  alias "$_index=cd +${_index}"
+done
+unset _index
+
 source-if-exists() {
   [ -s "$1" ] && source "$1"
 }
