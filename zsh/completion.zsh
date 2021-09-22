@@ -14,6 +14,9 @@ compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 
+# Include hidden files in completions
+_comp_options+=(globdots)
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
 complete -o nospace -C /usr/local/bin/terraform terraform
