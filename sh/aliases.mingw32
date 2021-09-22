@@ -1,2 +1,4 @@
+#!/bin/bash
+
 alias chrome="/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe"
 alias firefox="/c/Program\ Files\ \(x86\)/Mozilla\ Firefox/firefox.exe"

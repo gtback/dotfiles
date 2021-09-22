@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias ack="ack-grep"
 alias apt-list="grep -h '^deb ' /etc/apt/sources.list /etc/apt/sources.list.d/*.list | sort -u"
 alias myip="hostname -I | tr -d ' '"
@@ -9,5 +11,5 @@ SSHAGENT=/usr/bin/ssh-agent
 SSHAGENTARGS="-s"
 if [ -z "$SSH_AUTH_SOCK" ] && [ -x "$SSHAGENT" ]; then
   eval "$($SSHAGENT $SSHAGENTARGS)"
-  trap "kill $SSH_AGENT_PID" 0
+  trap 'ssh-agent -k' exit
 fi

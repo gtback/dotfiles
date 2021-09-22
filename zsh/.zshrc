@@ -1,5 +1,5 @@
+#!/bin/zsh
 # shellcheck shell=bash
-# shellcheck disable=SC1090
 
 # Uncomment to enable profiling of zsh startup
 # - https://blog.askesis.pl/post/2017/04/how-to-debug-zsh-startup-time.html
@@ -7,7 +7,7 @@
 
 for f in "$XDG_CONFIG_HOME"/env/*.sh; do
   if [ -r "$f" ]; then
-    # echo "loading $f"
+    # shellcheck disable=SC1090
     . "$f"
   fi
 done
@@ -73,6 +73,7 @@ done
 unset _index
 
 source-if-exists() {
+  # shellcheck disable=SC1090
   [ -s "$1" ] && source "$1"
 }
 

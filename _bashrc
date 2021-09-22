@@ -1,3 +1,4 @@
+#!/bin/bash
 # Add any aliases or exports. The *.local files can be used for machine-
 # specific settings not checked into Git.
 

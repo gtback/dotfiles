@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export BROWSER=open
 
 # virtualenvwrapper is installed with Homebrew's python3
@@ -7,7 +9,8 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 
 # https://www.gnupg.org/documentation/manuals/gnupg/Common-Problems.html
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 
 export HOMEBREW_BUNDLE_NO_LOCK=1
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=14
