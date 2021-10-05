@@ -53,6 +53,8 @@ $status\
 $character"""
 
 [kubernetes]
-format = 'on [$symbol$context( \($namespace\))]($style) '
 style = "blue bold"
 disabled = false
+
+[kubernetes.context_aliases]
+"gke_.*_(?P<cluster>[\\w-]+)" = "gke-$cluster"
