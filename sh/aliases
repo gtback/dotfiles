@@ -40,7 +40,7 @@ alias gsl='git stash list'
 alias gst='git status'
 
 # https://medium.com/@mrWinston/smarter-git-checkout-using-fzf-to-supercharge-your-commandline-7507db600996
-b () {
+b() {
     git checkout "$(git branch --all | fzf | tr -d '[:space:]')"
 }
 
@@ -56,9 +56,9 @@ pip-upgrade-all() {
     python -m pip list --outdated --disable-pip-version-check | awk 'NR>2 {print $1 "==" $3}' | xargs python -m pip install
 }
 # Check if there's an existing alias for pip, and if so, remove it.
-alias pip &> /dev/null && unalias pip
+alias pip &>/dev/null && unalias pip
 pip() {
-    >&2 echo "Use 'python -m pip' instead"
+    echo >&2 "Use 'python -m pip' instead"
 }
 
 alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
@@ -110,16 +110,16 @@ alias kunset="kubectl config unset current-context"
 
 alias gunset="gcloud config unset account"
 
-kn (){
-    NAMESPACE=${1:-$(kubectl get namespaces | fzf | awk '{print $1}' )}
+kn() {
+    NAMESPACE=${1:-$(kubectl get namespaces | fzf | awk '{print $1}')}
     kubectl config set-context --current --namespace="$NAMESPACE"
 }
 
 function gi() {
     for var in "$@"; do
-        curl -sLw "\\n" "https://www.gitignore.io/api/$var" |
-            grep -v "toptal" | sed '/./,/^$/!d' |
-            sed '$d'
+        curl -sLw "\\n" "https://www.gitignore.io/api/$var" \
+            | grep -v "toptal" | sed '/./,/^$/!d' \
+            | sed '$d'
     done
 }
 
@@ -141,7 +141,7 @@ function docker-rm-images() {
 # a file (meaning it was added or removed).
 #
 # The original version (`gli`) was used to browse the history of a repo, or of a specific with FZF
-function git-log-regex () {
+function git-log-regex() {
     # local filter
     # if [ -n $@ ] && [ -f $@ ]
     # then
@@ -154,7 +154,7 @@ function git-log-regex () {
         xargs -I % sh -c 'git show --color=always % $filter | less -R') << 'FZF-EOF'
         {}
         FZF-EOF" --preview-window=right:60%)
-    "${gitlog[@]}"| rg -v "Merge Pull Request" | "${fzf[@]}"
+    "${gitlog[@]}" | rg -v "Merge Pull Request" | "${fzf[@]}"
 }
 alias glr='git-log-regex'
 
@@ -162,23 +162,23 @@ function op.signin() {
     eval "$(op signin "${OP_ACCOUNT}")"
 }
 
-function start () {
+function start() {
     op.signin
     eval "$(load-gh-token.sh)"
     ssh-add
 }
 
-function stop () {
+function stop() {
     op signout
     unset GITHUB_TOKEN
     ssh-add -D
 }
 
-function asdf-install-plugins () {
-    awk '{print $1}' < "${ASDF_DEFAULT_TOOL_VERSIONS_FILENAME}" | xargs -n 1 asdf plugin add
+function asdf-install-plugins() {
+    awk '{print $1}' <"${ASDF_DEFAULT_TOOL_VERSIONS_FILENAME}" | xargs -n 1 asdf plugin add
 }
 
-function asdf-list-all () {
+function asdf-list-all() {
     for plugin in $(asdf plugin-list); do
         echo "$plugin"
         asdf list "$plugin"
