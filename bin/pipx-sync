@@ -2,4 +2,6 @@
 
 set -euo pipefail
 
-xargs -n 1 pipx install <~/.pipx.lock
+PIPX_LOCK_FILE="${XDG_CONFIG_HOME}/pipx/pipx.lock"
+
+xargs -n 1 pipx install <"${PIPX_LOCK_FILE}"

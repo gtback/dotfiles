@@ -32,6 +32,7 @@ symlink asdf "$XDG_CONFIG_HOME"
 
 symlink git "$XDG_CONFIG_HOME"
 symlink gnupg "$XDG_CONFIG_HOME"
+symlink pipx "$XDG_CONFIG_HOME"
 symlink tmux "$XDG_CONFIG_HOME"
 symlink vim "$XDG_CONFIG_HOME"
 
@@ -40,7 +41,6 @@ symlink _alacritty.yml ~/.alacritty.yml
 symlink _fzf.bash ~/.fzf.bash
 symlink _fzf.zsh ~/.fzf.zsh
 symlink _jsbeautifyrc ~/.jsbeautifyrc
-symlink _pipx.lock ~/.pipx.lock
 symlink _pythonstartup ~/.pythonstartup
 
 symlink starship.toml ~/.config/starship.toml
