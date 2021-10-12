@@ -28,8 +28,8 @@ matches:
     replace: "—"
 
   # Dates
-  - trigger: ":date "
-    replace: "{{mydate}} "
+  - trigger: ":date"
+    replace: "{{mydate}}"
     vars:
       - name: mydate
         type: date
