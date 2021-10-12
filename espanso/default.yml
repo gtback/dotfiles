@@ -19,6 +19,14 @@ matches:
   - trigger: ":vemail"
     replace: "I own the \"gregback.net\" domain, so I get any email sent to <anything>@gregback.net. I use this to create different accounts on different websites (for instance, amazon@gregback.net is my Amazon account), to make filtering email easier."
 
+  # En dash (https://en.wikipedia.org/wiki/Dash#En_dash)
+  - trigger: "-- "
+    replace: "–"
+
+  # Em dash (https://en.wikipedia.org/wiki/Dash#Em_dash)
+  - trigger: "--- "
+    replace: "—"
+
   # Dates
   - trigger: ":date "
     replace: "{{mydate}} "
