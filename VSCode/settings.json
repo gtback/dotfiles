@@ -23,6 +23,10 @@
   "[ruby]": {
     "editor.formatOnSave": false
   },
+  "[terraform]": {
+    // https://github.com/hashicorp/vscode-terraform/issues/542
+    "editor.formatOnSaveMode": "file"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.tabSize": 2
