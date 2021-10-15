@@ -108,5 +108,8 @@ if which starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
+source <(antibody init)
+antibody bundle <"${ZDOTDIR}/plugins.txt"
+
 # Uncomment to print results of startup profiling
 #zprof

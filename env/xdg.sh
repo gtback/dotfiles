@@ -16,3 +16,5 @@ export VIMINIT="source ${XDG_CONFIG_HOME}/vim/vimrc"
 
 # By default, Poetry uses `~/Library/Caches/pypoetry` on macOS
 export POETRY_CACHE_DIR="${XDG_CACHE_HOME}/pypoetry"
+
+export ANTIBODY_HOME="$XDG_DATA_HOME/antibody"
