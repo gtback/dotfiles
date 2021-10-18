@@ -17,3 +17,6 @@ export HOMEBREW_CLEANUP_MAX_AGE_DAYS=14
 
 # https://docs.brew.sh/Analytics#opting-out
 export HOMEBREW_NO_ANALYTICS=1
+
+# https://github.com/Homebrew/homebrew-core/issues/52490#issuecomment-885021156
+export PERL5LIB=/usr/local/opt/subversion/lib/perl5/site_perl/5.30.2/darwin-thread-multi-2level

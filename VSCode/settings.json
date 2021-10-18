@@ -95,6 +95,7 @@
   "spellright.documentTypes": [
     "markdown"
   ],
+  "svn.path": "/usr/local/bin/svn",
   "terminal.integrated.fontFamily": "Inconsolata Nerd Font",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.scrollback": 10000,
