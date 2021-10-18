@@ -21,3 +21,7 @@ export ANTIBODY_HOME="$XDG_DATA_HOME/antibody"
 
 # https://git.zx2c4.com/password-store/about/
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+
+export TEXMFHOME="${XDG_DATA_HOME}/texmf"
+export TEXMFVAR="${XDG_CACHE_HOME}/texlive/texmf-var"
+export TEXMFCONFIG="${XDG_CONFIG_HOME}/texlive/texmf-config"
