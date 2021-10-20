@@ -55,6 +55,9 @@
 [color]
 	ui = auto
 
+[commit]
+	gpgsign = true
+
 [core]
 	trustctime = false
 	autocrlf = input
@@ -63,25 +66,26 @@
 [delta]
 	line-numbers = true
 
-[interactive]
-	diffFilter = delta --color-only
-
 [diff]
 	algorithm = patience
 
 [fetch]
 	prune = true
 
+[include]
+	path = config.local
+
+[init]
+	defaultBranch = main
+
+[interactive]
+	diffFilter = delta --color-only
+
+[pull]
+	ff = only
+
 [push]
 	default = simple
 
-[include]
-	path = config.local
-[init]
-	defaultBranch = main
-[pull]
-	ff = only
 [user]
 	signingkey = 0x9836566B227CEF7F
-[commit]
-	gpgsign = true
