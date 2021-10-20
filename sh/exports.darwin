@@ -9,8 +9,10 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 
 # https://www.gnupg.org/documentation/manuals/gnupg/Common-Problems.html
+# https://stackoverflow.com/a/57579018
 GPG_TTY=$(tty)
-export GPG_TTY
+GPG_AGENT_INFO=$(gpgconf --list-dirs agent-socket | tr -d '\n' && echo -n ::)
+export GPG_TTY GPG_AGENT_INFO
 
 export HOMEBREW_BUNDLE_NO_LOCK=1
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=14
