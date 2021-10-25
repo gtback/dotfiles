@@ -77,6 +77,7 @@ brew "vim"
 brew "watch"
 brew "wget"
 brew "yq"
+brew "zoxide"
 brew "zsh"
 
 cask "1password"
