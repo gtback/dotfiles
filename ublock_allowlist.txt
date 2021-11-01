@@ -1,0 +1,6 @@
+* ajax.googleapis.com * noop
+* ajax.aspnetcdn.com * noop
+* ajax.microsoft.com * noop
+* cdnjs.cloudflare.com * noop
+* code.jquery.com * noop
+* cdn.jsdelivr.net * noop
