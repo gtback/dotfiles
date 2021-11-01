@@ -87,5 +87,8 @@
 [push]
 	default = simple
 
+[tag]
+	forceSignAnnotated = true
+
 [user]
 	signingkey = 0x9836566B227CEF7F
