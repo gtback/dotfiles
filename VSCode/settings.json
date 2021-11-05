@@ -20,6 +20,10 @@
     "editor.defaultFormatter": "vscode.json-language-features",
     "editor.tabSize": 2
   },
+  "[python]": {
+    // Black does not support the "Format Selection" command
+    "editor.formatOnSaveMode": "file"
+  },
   "[ruby]": {
     "editor.formatOnSave": false
   },
