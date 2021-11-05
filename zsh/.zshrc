@@ -87,6 +87,8 @@ for dotfile in sh/aliases sh/exports zsh/completion.zsh; do
   source-if-exists "${file}.local"
 done
 
+source ${XDG_CONFIG_HOME}/sh/gh.sh
+
 # Load other tools' configuration files
 
 # source-if-exists $POWERLINE/bindings/zsh/powerline.zsh
