@@ -2,4 +2,5 @@ gnupg/*
 !gnupg/gpg*.conf
 
 *.local
+**/local/**
 espanso/user/local.yml

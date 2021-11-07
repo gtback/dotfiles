@@ -87,7 +87,9 @@ for dotfile in sh/aliases sh/exports zsh/completion.zsh; do
   source-if-exists "${file}.local"
 done
 
-source ${XDG_CONFIG_HOME}/sh/gh.sh
+for file in ${XDG_CONFIG_HOME}/sh/{,local/}*.sh; do
+  source "${file}"
+done
 
 # Load other tools' configuration files
 
