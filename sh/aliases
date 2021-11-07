@@ -17,19 +17,6 @@ alias df=duf
 # https://github.com/bootandy/dust
 alias du=dust
 
-### Python Aliases
-alias lsvirtualenv="lsvirtualenv -b"
-alias pyws="sed -i -e 's/^[ \r\t]*$//'"
-alias pip-rm-all="python -m pip freeze | sed 's/^-e.*egg=//' | xargs python -m pip uninstall -y"
-pip-upgrade-all() {
-    python -m pip list --outdated --disable-pip-version-check | awk 'NR>2 {print $1 "==" $3}' | xargs python -m pip install
-}
-# Check if there's an existing alias for pip, and if so, remove it.
-alias pip &>/dev/null && unalias pip
-pip() {
-    echo >&2 "Use 'python -m pip' instead"
-}
-
 alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
 
 alias vagrant-ids="grep '.*' ~/code/**/.vagrant/machines/*/virtualbox/index_uuid"
@@ -48,18 +35,12 @@ alias xo="xargs open"
 alias nlg="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
 
-tlsdates() {
-    echo | openssl s_client -servername "$1" -connect "$1":443 2>/dev/null | openssl x509 -noout -dates
-}
-
 zreload() {
     CONFIG_FILE=$ZDOTDIR/.zshrc
     # shellcheck source=../zsh/.zshrc
     source "$CONFIG_FILE"
     echo "Reloaded ZSH config from $CONFIG_FILE"
 }
-
-alias gunset="gcloud config unset account"
 
 function gi() {
     for var in "$@"; do
@@ -73,41 +54,6 @@ function docker-rm-images() {
     docker image ls | grep "$1" | awk '{print $1 ":" $2}' | xargs -n 1 docker image rm
 }
 
-# This function exists, with slight modifications and variations, all over
-# GitHub. I initially a version modified by @Crazybus at:
-# https://github.com/Crazybus/dotfiles/blob/4f20e69420e76cdf268017170ac92969a5b7a23f/zshrcfunctions
-#
-# The original version seems to be in this gist:
-# https://gist.github.com/tamphh/3c9a4aa07ef21232624bacb4b3f3c580, which comes
-# from the same user's dotfiles:
-# https://github.com/tamphh/dotfiles/blob/17572f973fdef98c982e7c79b39914b2c39fe377/shell/zsh/git.zsh
-#
-# This version uses `--pickaxe-regex -S`, which searches for commits that change
-# the number of occurences of the specified string (as a regular expression) in
-# a file (meaning it was added or removed).
-#
-# The original version (`gli`) was used to browse the history of a repo, or of a specific with FZF
-function git-log-regex() {
-    # local filter
-    # if [ -n $@ ] && [ -f $@ ]
-    # then
-    #     filter="-- $@"
-    # fi
-    local pattern=${1:-'.*'}
-    local gitlog=(git log --color=always --abbrev=7 --format='%C(auto)%h %C(yellow)%ad %an %C(blue) %s' --date=short --pickaxe-regex -S "$pattern" ./)
-    local fzf=(fzf --ansi --no-sort --reverse --tiebreak=index --preview "f() { set -- \$(echo -- \$@ | grep -o '[a-f0-9]\{7\}'); [ \$# -eq 0 ] || git show --color=always \$1 $filter; }; f {}" --bind "ctrl-q:abort,ctrl-m:execute:
-        (grep -o '[a-f0-9]\{7\}' | head -1 |
-        xargs -I % sh -c 'git show --color=always % $filter | less -R') << 'FZF-EOF'
-        {}
-        FZF-EOF" --preview-window=right:60%)
-    "${gitlog[@]}" | rg -v "Merge Pull Request" | "${fzf[@]}"
-}
-alias glr='git-log-regex'
-
-function op.signin() {
-    eval "$(op signin "${OP_ACCOUNT}")"
-}
-
 function start() {
     op.signin
     eval "$(load-gh-token.sh)"
@@ -118,76 +64,4 @@ function stop() {
     op signout
     unset GITHUB_TOKEN
     ssh-add -D
-}
-
-function asdf-install-plugins() {
-    awk '{print $1}' <"${ASDF_DEFAULT_TOOL_VERSIONS_FILENAME}" | xargs -n 1 asdf plugin add
-}
-
-function asdf-list-all() {
-    for plugin in $(asdf plugin-list); do
-        echo "$plugin"
-        asdf list "$plugin"
-    done
-}
-
-function all-node() {
-    for version in $(asdf list nodejs); do
-        echo "--NODEJS $version--"
-        ASDF_NODE_VERSION=$version "$@"
-    done
-}
-
-function all-python() {
-    for version in $(asdf list python); do
-        echo "--PYTHON $version--"
-        ASDF_PYTHON_VERSION=$version "$@"
-    done
-}
-
-function all-ruby() {
-    for version in $(asdf list ruby); do
-        echo "--RUBY $version--"
-        ASDF_RUBY_VERSION=$version "$@"
-    done
-}
-
-function all-rust() {
-    for version in $(asdf list rust); do
-        echo "--RUST $version--"
-        ASDF_RUST_VERSION=$version "$@"
-    done
-}
-
-function all-yarn() {
-    for version in $(asdf list yarn); do
-        echo "--YARN $version--"
-        ASDF_YARN_VERSION=$version "$@"
-    done
-}
-
-# https://stackoverflow.com/a/59412853/1136755
-function seecert() {
-    nslookup "$1"
-    (openssl s_client -showcerts -servername "$1" -connect "$1:443" <<<"Q" | openssl x509 -noout -dates)
-}
-
-# https://stackoverflow.com/a/9144984
-function svn-clean() {
-    # make sure this script exits with a non-zero return value if the
-    # current directory is not in a svn working directory
-    svn info >/dev/null || exit 1
-
-    svn status --no-ignore | grep '^[I?]' | cut -c 9- |
-    # setting IFS to the empty string ensures that any leading or
-    # trailing whitespace is not trimmed from the filename
-    while IFS= read -r f; do
-        # tell the user which file is being deleted.  use printf
-        # instead of echo because different implementations of echo do
-        # different things if the arguments begin with hyphens or
-        # contain backslashes; the behavior of printf is consistent
-        printf '%s\n' "Deleting ${f}..."
-        # if rm -rf can't delete the file, something is wrong so bail
-        rm -rf "${f}" || exit 1
-    done
 }
