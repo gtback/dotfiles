@@ -21,3 +21,10 @@ function kn() {
     NAMESPACE=${1:-$(kubectl get namespaces | fzf | awk '{print $1}')}
     kubectl config set-context --current --namespace="$NAMESPACE"
 }
+
+alias k.nodeinfo="k get nodes -o=custom-columns=LAUNCH:.metadata.creationTimestamp,NAME:.metadata.name,VERSION:.status.nodeInfo.kubeletVersion --sort-by=.metadata.creationTimestamp"
+
+# https://github.com/jarpy/bin/blob/master/kpodnode
+function k.podnode() {
+    kubectl get pod $1 -o json | jq -r .spec.nodeName
+}
