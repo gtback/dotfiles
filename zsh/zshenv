@@ -2,3 +2,18 @@
 # shellcheck shell=bash
 [ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# Disable Apple Terminal's shell session saving behavior (from
+# `/etc/zshrc_Apple_Terminal`):
+#
+# > The save/restore mechanism as a whole can be disabled by setting an
+# > environment variable (typically in `${ZDOTDIR:-$HOME}/.zshenv`):
+# >
+# >   SHELL_SESSIONS_DISABLE=1
+#
+# Ref: https://superuser.com/a/1610999
+#
+# I would typically put this in `sh/exports.darwin`, but on macOS, `/etc/zshrc`
+# loads `/etc/zshrc_Apple_Terminal` (which checks this variable) *before*
+# `$ZDOTDIR/.zshrc` (which is what loads `sh/exports.darwin`).
+export SHELL_SESSIONS_DISABLE=1
