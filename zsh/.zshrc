@@ -87,7 +87,7 @@ for dotfile in sh/aliases sh/exports zsh/completion.zsh; do
   source-if-exists "${file}.local"
 done
 
-for file in ${XDG_CONFIG_HOME}/sh/{,local/}*.sh; do
+for file in ${XDG_CONFIG_HOME}/sh/{,local/,${os}/}*.sh; do
   source "${file}"
 done
 
