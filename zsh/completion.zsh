@@ -31,11 +31,8 @@ compdef _op op
 
 eval "$(register-python-argcomplete pipx)"
 
-_toggl() {
-  # shellcheck disable=SC2046,SC2154
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _TOGGL_COMPLETE=complete-zsh  toggl)
-}
-# shellcheck disable=SC2086
-if [[ "$(basename -- ${(%):-%x})" != "_toggl" ]]; then
-  compdef _toggl toggl
-fi
+# Load custom completions
+fpath=(${XDG_CONFIG_HOME}/zsh/completions $fpath)
+
+compdef _gmailctl gmailctl
+compdef _npm npm
