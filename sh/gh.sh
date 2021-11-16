@@ -29,3 +29,8 @@ function gh.is-org-member() {
     # python ghapi is-member $ORG $USERNAME
     [ "$(gh api -i orgs/"$org"/members/"$login" | head -n 1)" == "HTTP/2.0 204 No Content" ] && echo "Yes" || echo "No"
 }
+
+function gh.check-token() {
+    token=${1:-$GITHUB_TOKEN}
+    curl -H "Authorization: token ${token}" https://api.github.com/user -i
+}
