@@ -17,8 +17,6 @@ export CIDR_RE="${IP_RE}/(3[0-2]|[0-2]?[0-9])"
 
 export PYTHONSTARTUP="$HOME/.pythonstartup"
 
-export GOPATH=$HOME/code/go
-
 # Tmuxinator sets GEM_HOME, which is then inherited by tmux and shells running
 # inside of it. This interferes with how `asdf`-managed rubies install gems.
 # - https://discourse.brew.sh/t/why-does-tmuxinator-sets-gem-home/7296
