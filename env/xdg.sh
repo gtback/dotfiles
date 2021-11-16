@@ -26,4 +26,4 @@ export TEXMFHOME="${XDG_DATA_HOME}/texmf"
 export TEXMFVAR="${XDG_CACHE_HOME}/texlive/texmf-var"
 export TEXMFCONFIG="${XDG_CONFIG_HOME}/texlive/texmf-config"
 
-export _ZO_DATA_DIR="$XDG_DATA_HOME"
+export _ZO_DATA_DIR="${XDG_DATA_HOME}/zoxide"
