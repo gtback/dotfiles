@@ -21,3 +21,12 @@ function gpg.export-signed-uids() {
         # gpg -q --armor --export --export-filter keep-uid="uid = ${uid}" "${KEYID}" >"${KEYID}_${emailescaped}.asc"
     done
 }
+
+function gpg.decrypt-signature-commands() {
+    # Print out the commands to import the files created by the export above,
+    # and then publish the new public keys containing the signature.
+    FILENAME=$1
+    KEYID=$(echo "${FILENAME}" | sd "_.*" "")
+    echo "gpg --decrypt ${FILENAME} | gpg --import"
+    echo "gpg --send-keys ${KEYID}"
+}
