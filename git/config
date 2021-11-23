@@ -72,6 +72,9 @@
 [fetch]
 	prune = true
 
+[help]
+	autoCorrect = prompt
+
 [include]
 	path = config.local
 
