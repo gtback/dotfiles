@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# In large Subversion repos, you might often check out multiple specific
+# sub-paths, but keep the overall structure. This script lets you run one
+# command to keep all directories up to date. It does this by looking for the
+# `.svn` marker directories and running `svn update` in every directory
+# containing one.
+
+set -euo pipefail
+
+for path in $(fd -Hp "\.svn$" | sd ".svn" ""); do
+    echo "---Updating $path"
+    pushd "$path" >/dev/null
+    svn update
+    popd >/dev/null
+done
