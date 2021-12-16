@@ -1,5 +1,5 @@
 {
-  "[css]": {
+  "[css][html][json][jsonc][typescript]": {
     "editor.tabSize": 2
   },
   "[dockerfile]": {
@@ -7,18 +7,12 @@
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features",
-    "editor.tabSize": 2
   },
-  "[javascript]": {
+  "[javascript][typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "[json]": {
+  "[json][jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features",
-    "editor.tabSize": 2
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
-    "editor.tabSize": 2
   },
   "[python]": {
     // Black does not support the "Format Selection" command
@@ -30,10 +24,6 @@
   "[terraform]": {
     // https://github.com/hashicorp/vscode-terraform/issues/542
     "editor.formatOnSaveMode": "file"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
-    "editor.tabSize": 2
   },
   "breadcrumbs.enabled": true,
   "color-highlight.markerType": "dot-after",
