@@ -34,3 +34,8 @@ function gh.check-token() {
     token=${1:-$GITHUB_TOKEN}
     curl -H "Authorization: token ${token}" https://api.github.com/user -i
 }
+
+function gh.load-token() {
+    op.signin
+    eval "$(load-gh-token.sh)"
+}
