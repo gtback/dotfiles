@@ -23,6 +23,7 @@
   },
   "[terraform]": {
     // https://github.com/hashicorp/vscode-terraform/issues/542
+    "editor.defaultFormatter": "hashicorp.terraform",
     "editor.formatOnSaveMode": "file"
   },
   "breadcrumbs.enabled": true,
