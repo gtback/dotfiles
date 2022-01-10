@@ -4,6 +4,7 @@ function op.signin() {
     if op.is-session-active; then
         echo "op: already signed in"
     else
+        echo "op: need to sign in"
         eval "$(op signin "${OP_ACCOUNT}")"
     fi
 }
