@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Fetch all remote repositories that are used as "reference" repos for local
+# ones (via .git/objects/info/alternates). For more information, see:
+# https://git-scm.com/docs/git-clone#Documentation/git-clone.txt---reference-if-ableltrepositorygt
+
+set -euo pipefail
+
+for repo in "${HOME}"/.git-references/*.git; do
+    pushd "${repo}" >/dev/null
+    echo "-------------------"
+    echo "${repo}"
+    git fetch --prune origin +refs/heads/*:refs/heads/*
+    # git fetch --all --prune
+    popd >/dev/null
+done
