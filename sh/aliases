@@ -41,6 +41,7 @@ zreload() {
     source "$CONFIG_FILE"
     echo "Reloaded ZSH config from $CONFIG_FILE"
 }
+alias zr=zreload
 
 function gi() {
     for var in "$@"; do
