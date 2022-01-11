@@ -6,19 +6,19 @@
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
   "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[javascript][typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[json][jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[python]": {
     // Black does not support the "Format Selection" command
     "editor.formatOnSaveMode": "file"
   },
-  "[ruby]": {
+  "[ruby][html]": {
     "editor.formatOnSave": false
   },
   "[terraform]": {
