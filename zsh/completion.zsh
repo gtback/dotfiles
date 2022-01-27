@@ -20,6 +20,10 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 # Include hidden files in completions
 _comp_options+=(globdots)
 
+# This needs to come before 'bashcompinit' so the `_npm_completion` uses compdef rather than complete
+# shellcheck disable=SC1090
+eval "$(npm completion)"
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
 complete -o nospace -C /usr/local/bin/terraform terraform
@@ -35,4 +39,3 @@ compdef _op op
 eval "$(register-python-argcomplete pipx)"
 
 compdef _gmailctl gmailctl
-source "${XDG_CONFIG_HOME}/zsh/completions/_npm"
