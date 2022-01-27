@@ -41,3 +41,5 @@ compdef _op op
 eval "$(register-python-argcomplete pipx)"
 
 compdef _gmailctl gmailctl
+
+source <(kubectl completion zsh)
