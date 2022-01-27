@@ -24,6 +24,8 @@ _comp_options+=(globdots)
 # shellcheck disable=SC1090
 eval "$(npm completion)"
 
+source "${XDG_CONFIG_HOME}/zsh/completions/_toggl"
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
 complete -o nospace -C /usr/local/bin/terraform terraform
