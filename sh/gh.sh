@@ -32,7 +32,12 @@ function gh.is-org-member() {
 
 function gh.check-token() {
     token=${1:-$GITHUB_TOKEN}
-    curl -H "Authorization: token ${token}" https://api.github.com/user -i
+    http https://api.github.com/user Authorization:"token ${token}"
+}
+
+function gh.rate-limit() {
+    token=${1:-$GITHUB_TOKEN}
+    http https://api.github.com/rate_limit Authorization:"token ${token}" | jq ".rate | {limit, used, remaining, reset: (.reset | todate) }"
 }
 
 function gh.load-token() {
