@@ -7,6 +7,9 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
+# Load custom completions
+fpath=("${XDG_CONFIG_HOME}/zsh/completions" "${fpath[@]}")
+
 autoload -Uz compinit
 
 # https://wiki.archlinux.org/title/XDG_Base_Directory#Hardcoded
@@ -31,8 +34,5 @@ compdef _op op
 
 eval "$(register-python-argcomplete pipx)"
 
-# Load custom completions
-fpath=(${XDG_CONFIG_HOME}/zsh/completions $fpath)
-
 compdef _gmailctl gmailctl
-compdef _npm npm
+source "${XDG_CONFIG_HOME}/zsh/completions/_npm"
