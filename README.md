@@ -215,7 +215,7 @@ $HOME/.vim/bundle/YouCompleteMe/install.py
 
 # Oh-my-zsh setup
 cd $HOME
-chsh -s `which zsh`
+chsh -s `command -v zsh`
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
@@ -277,7 +277,7 @@ source setup_vim.sh
 
 cd ~
 ssh-keygen -t rsa
-chsh -s `which zsh`
+chsh -s `command -v zsh`
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 sudo pip install -U pip

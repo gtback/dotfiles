@@ -87,7 +87,8 @@ for dotfile in sh/aliases sh/exports zsh/completion.zsh; do
   source-if-exists "${file}.local"
 done
 
-for file in ${XDG_CONFIG_HOME}/sh/{,local/,${os}/}*.sh; do
+for file in "${XDG_CONFIG_HOME}"/sh/{,local/,${os}/}*.sh; do
+  # shellcheck disable=SC1090
   source "${file}"
 done
 
@@ -108,16 +109,17 @@ fi
 source-if-exists ~/.fzf.zsh
 
 # Load prompt
-if which starship &>/dev/null; then
+if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
-if which antibody &>/dev/null; then
+if command -v antibody &>/dev/null; then
+  # shellcheck disable=SC1090
   source <(antibody init)
   antibody bundle <"${ZDOTDIR}/plugins.txt"
 fi
 
-if which zoxide &>/dev/null; then
+if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
