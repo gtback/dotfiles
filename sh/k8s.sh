@@ -27,3 +27,7 @@ alias k.unset="kubectl config unset current-context"
 function k.podnode() {
     kubectl get pod "$1" -o json | jq -r .spec.nodeName
 }
+
+function k.sh() {
+    kubectl exec --stdin --tty "$@" -- /bin/bash
+}
