@@ -123,5 +123,9 @@ if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
+if command -v mcfly &>/dev/null; then
+  eval "$(mcfly init zsh)"
+fi
+
 # Uncomment to print results of startup profiling
 #zprof
