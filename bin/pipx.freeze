@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-#   pipx-freeze >"${XDG_CONFIG_HOME}/pipx/pipx.lock"
+#   pipx.freeze >"${XDG_CONFIG_HOME}/pipx/pipx.lock"
 
 set -euo pipefail
 

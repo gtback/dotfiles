@@ -5,7 +5,7 @@ set -euo pipefail
 PIPX_LOCK_FILE="${XDG_CONFIG_HOME}/pipx/pipx.lock"
 
 echo "Installed but not listed in .pipx.lock:"
-comm -23 <(pipx-freeze) "${PIPX_LOCK_FILE}"
+comm -23 <(pipx.freeze) "${PIPX_LOCK_FILE}"
 echo
 echo "In .pipx.lock but not installed:"
-comm -13 <(pipx-freeze) "${PIPX_LOCK_FILE}"
+comm -13 <(pipx.freeze) "${PIPX_LOCK_FILE}"

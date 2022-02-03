@@ -38,7 +38,7 @@ My dotfiles
 1. Install Homebrew dependencies:
 
    ```shell
-   brew-sync
+   brew.sync
    ```
 
 1. Set up Python:
