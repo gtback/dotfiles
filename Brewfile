@@ -3,6 +3,8 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/cask"
 tap "homebrew/core"
+
+tap "cantino/mcfly"
 tap "federico-terzi/espanso"
 tap "martido/graph"
 tap "sachaos/todoist"
