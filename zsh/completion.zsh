@@ -42,4 +42,7 @@ eval "$(register-python-argcomplete pipx)"
 
 compdef _gmailctl gmailctl
 
-source <(kubectl completion zsh)
+if command -v kubectl &>/dev/null; then
+  # shellcheck disable=SC1090
+  source <(kubectl completion zsh)
+fi
