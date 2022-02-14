@@ -1,0 +1,7 @@
+Style/StringLiterals:
+  Exclude:
+    - Brewfile*
+
+Style/NumericLiterals:
+  Exclude:
+    - Brewfile*
