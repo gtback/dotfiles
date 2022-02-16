@@ -79,7 +79,7 @@ source-if-exists() {
 
 # Load shell aliases and environment variables
 
-for dotfile in sh/aliases sh/exports zsh/completion.zsh; do
+for dotfile in sh/aliases sh/exports; do
   file="${XDG_CONFIG_HOME}/${dotfile}"
   source-if-exists "${file}"
   source-if-exists "${file}.${os}"
@@ -92,18 +92,23 @@ for file in "${XDG_CONFIG_HOME}"/sh/{,local/,${os}/}*.sh; do
   source "${file}"
 done
 
-# Load other tools' configuration files
-
-# source-if-exists $POWERLINE/bindings/zsh/powerline.zsh
-source-if-exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-source-if-exists "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
-
+# Load Version Managers
 if [ "$TERM_PROGRAM" == "vscode" ]; then
   echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
 else
   source-if-exists /usr/local/bin/virtualenvwrapper.sh
   source-if-exists "$(brew --prefix asdf)/asdf.sh"
 fi
+
+# Load Completions
+source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh"
+source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh.local"
+
+# Load other tools' configuration files
+
+# source-if-exists $POWERLINE/bindings/zsh/powerline.zsh
+source-if-exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+source-if-exists "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
 
 # https://github.com/junegunn/fzf
 source-if-exists ~/.fzf.zsh
