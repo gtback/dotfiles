@@ -44,3 +44,8 @@ function gh.load-token() {
     op.signin
     eval "$(load-gh-token.sh)"
 }
+
+# Check if GitHub is down
+function gh.down() {
+    npx -y is-github-down
+}
