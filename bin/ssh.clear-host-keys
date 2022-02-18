@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# This is a pretty thin wrapper around `ssh-keygen -R`, but it's easier for me
+# to remember this script than the `-R` option.
+
+# Usage:
+#    ssh.clear-host-keys SERVER1 [SERVER2...]
+
+set -euo pipefail
+
+for name in "$@"; do
+    ssh-keygen -R ${name}
+done
