@@ -3,6 +3,8 @@
 ### Date aliases
 alias today="date +%F"
 alias now="date +%FT%T"
+alias utc.offset="date +%z"
+alias utc.now="date -u +'%Y-%m-%dT%H:%M:%SZ'"
 
 ## "Improved" standard utils
 
@@ -35,9 +37,6 @@ alias xo="xargs open"
 alias nlg="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
 
-alias utc.offset="date +%z"
-alias utc.now="date -u +'%Y-%m-%dT%H:%M:%SZ'"
-
 zreload() {
     CONFIG_FILE=$ZDOTDIR/.zshrc
     # shellcheck source=../zsh/.zshrc
@@ -45,18 +44,6 @@ zreload() {
     echo "Reloaded ZSH config from $CONFIG_FILE"
 }
 alias zr=zreload
-
-function gi() {
-    for var in "$@"; do
-        curl -sLw "\\n" "https://www.gitignore.io/api/$var" \
-            | grep -v "toptal" | sed '/./,/^$/!d' \
-            | sed '$d'
-    done
-}
-
-function docker-rm-images() {
-    docker image ls | grep "$1" | awk '{print $1 ":" $2}' | xargs -n 1 docker image rm
-}
 
 function start() {
     op.signin
