@@ -2,7 +2,6 @@
 
 brew "ffmpeg"
 brew "mutt"
-brew "noti"
 brew "pass"
 
 cask "adobe-digital-editions"

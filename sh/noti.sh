@@ -20,3 +20,7 @@ noti.clear() {
         unset "$e"
     done
 }
+
+noti.test() {
+    noti sleep 2
+}
