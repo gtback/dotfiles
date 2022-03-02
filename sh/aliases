@@ -49,7 +49,7 @@ function start() {
     op.signin
     eval "$(load-gh-token.sh)"
     ssh-add
-    noti.start
+    noti.setup
 }
 
 function stop() {
