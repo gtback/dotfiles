@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# https://stackoverflow.com/a/59412853/1136755
+
+set -euo pipefail
+
+host=$1
+
+nslookup "${host}"
+(openssl s_client -showcerts -servername "${host}" -connect "${host}:443" <<<"Q" | openssl x509 -text | grep -iA2 "Validity")
