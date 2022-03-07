@@ -22,9 +22,9 @@ alias gsd='git stash drop'
 alias gsl='git stash list'
 alias gst='git status'
 
-# https://medium.com/@mrWinston/smarter-git-checkout-using-fzf-to-supercharge-your-commandline-7507db600996
 function b() {
-    git checkout "$(git branch --all | fzf | tr -d '[:space:]')"
+    # Can use `b --all` to include remote branches or `b --verbose` to show commit messages, or combine multiple args
+    git checkout "$(git --no-pager branch --no-color "$@" | grep -v '\*' | sed 's/^[[:space:]]*//' | fzf | awk '{print $1}')"
 }
 
 # These git aliases are defined in _gitconfig
