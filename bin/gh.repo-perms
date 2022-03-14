@@ -7,6 +7,7 @@ set -euo pipefail
 # TODO: support pagination
 
 function team-permissions() {
+    # https://docs.github.com/en/rest/reference/repos#list-repository-teams
     teams=$(gh api "/repos/$1/teams?per_page=100")
 
     fields=".name"
@@ -25,6 +26,7 @@ function team-permissions() {
 }
 
 function user-permissions() {
+    # https://docs.github.com/en/rest/reference/collaborators#list-repository-collaborators
     users=$(gh api "/repos/$1/collaborators?affiliation=direct&per_page=100")
 
     fields=".login"
