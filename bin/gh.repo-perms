@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# TODO: allow passing the repo with or without the owner (user/org) prefix and
+# determine it from $GITHUB_ORG or $GITHUB_USER.
+# TODO: support pagination
+
+function team-permissions() {
+    teams=$(gh api "/repos/$1/teams?per_page=100")
+
+    fields=".name"
+
+    admin=$(echo "$teams" | jq -r ".[] | select( .permissions.admin ) | $fields")
+    maintain=$(echo "$teams" | jq -r ".[] | select( .permissions.maintain) | select(.permissions.admin | not ) | $fields")
+    push=$(echo "$teams" | jq -r ".[] | select( .permissions.push) | select(.permissions.maintain | not ) | $fields")
+    triage=$(echo "$teams" | jq -r ".[] | select( .permissions.triage) | select(.permissions.push | not ) | $fields")
+    pull=$(echo "$teams" | jq -r ".[] | select( .permissions.pull) | select(.permissions.triage | not ) | $fields")
+
+    [[ -n "$admin" ]] && printf "== Team Role: Admin ==\n%s\n\n" "$admin"
+    [[ -n "$maintain" ]] && printf "== Team Role: Maintain ==\n%s\n\n" "$maintain"
+    [[ -n "$push" ]] && printf "== Team Role: Write ==\n%s\n\n" "$push"
+    [[ -n "$triage" ]] && printf "== Team Role: Triage ==\n%s\n\n" "$triage"
+    [[ -n "$pull" ]] && printf "== Team Role: Read ==\n%s\n\n" "$pull"
+}
+
+function user-permissions() {
+    users=$(gh api "/repos/$1/collaborators?affiliation=direct&per_page=100")
+
+    fields=".login"
+
+    admin=$(echo "$users" | jq -r ".[] | select( .permissions.admin ) | $fields")
+    maintain=$(echo "$users" | jq -r ".[] | select( .permissions.maintain) | select(.permissions.admin | not ) | $fields")
+    push=$(echo "$users" | jq -r ".[] | select( .permissions.push) | select(.permissions.maintain | not ) | $fields")
+    triage=$(echo "$users" | jq -r ".[] | select( .permissions.triage) | select(.permissions.push | not ) | $fields")
+    pull=$(echo "$users" | jq -r ".[] | select( .permissions.pull) | select(.permissions.triage | not ) | $fields")
+
+    [[ -n "$admin" ]] && printf "== User Role: Admin ==\n%s\n\n" "$admin"
+    [[ -n "$maintain" ]] && printf "== User Role: Maintain ==\n%s\n\n" "$maintain"
+    [[ -n "$push" ]] && printf "== User Role: Write ==\n%s\n\n" "$push"
+    [[ -n "$triage" ]] && printf "== User Role: Triage ==\n%s\n\n" "$triage"
+    [[ -n "$pull" ]] && printf "== User Role: Read ==\n%s\n\n" "$pull"
+}
+
+team-permissions $1
+user-permissions $1
