@@ -40,6 +40,11 @@ function gh.rate-limit() {
     http https://api.github.com/rate_limit Authorization:"token ${token}" | jq ".rate | {limit, used, remaining, reset: (.reset | todate) }"
 }
 
+function gh.get-repo-id() {
+    # TODO: allow passing the repo with or without the owner (user/org) prefix and determine it from $GITHUB_ORG or $GITHUB_USER
+    gh api "/repos/$1" | jq -r '.id'
+}
+
 function gh.load-token() {
     op.signin
     eval "$(load-gh-token.sh)"
