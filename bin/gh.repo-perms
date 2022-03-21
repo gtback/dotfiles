@@ -1,10 +1,18 @@
 #!/bin/bash
 
-set -euo pipefail
+set -uo pipefail
 
 # TODO: allow passing the repo with or without the owner (user/org) prefix and
 # determine it from $GITHUB_ORG or $GITHUB_USER.
 # TODO: support pagination
+
+function print-if-any() {
+    type=$1
+    role=$2
+    who=$3
+
+    [[ -n "$who" ]] && printf "== $type Role: $role ==\n%s\n\n" "$who"
+}
 
 function team-permissions() {
     # https://docs.github.com/en/rest/reference/repos#list-repository-teams
@@ -12,17 +20,11 @@ function team-permissions() {
 
     fields=".name"
 
-    admin=$(echo "$teams" | jq -r ".[] | select( .permissions.admin ) | $fields")
-    maintain=$(echo "$teams" | jq -r ".[] | select( .permissions.maintain) | select(.permissions.admin | not ) | $fields")
-    push=$(echo "$teams" | jq -r ".[] | select( .permissions.push) | select(.permissions.maintain | not ) | $fields")
-    triage=$(echo "$teams" | jq -r ".[] | select( .permissions.triage) | select(.permissions.push | not ) | $fields")
-    pull=$(echo "$teams" | jq -r ".[] | select( .permissions.pull) | select(.permissions.triage | not ) | $fields")
-
-    [[ -n "$admin" ]] && printf "== Team Role: Admin ==\n%s\n\n" "$admin"
-    [[ -n "$maintain" ]] && printf "== Team Role: Maintain ==\n%s\n\n" "$maintain"
-    [[ -n "$push" ]] && printf "== Team Role: Write ==\n%s\n\n" "$push"
-    [[ -n "$triage" ]] && printf "== Team Role: Triage ==\n%s\n\n" "$triage"
-    [[ -n "$pull" ]] && printf "== Team Role: Read ==\n%s\n\n" "$pull"
+    print-if-any "Team" "Admin" "$(echo "$teams" | jq -r ".[] | select( .permissions.admin ) | $fields")"
+    print-if-any "Team" "Maintain" "$(echo "$teams" | jq -r ".[] | select( .permissions.maintain) | select(.permissions.admin | not ) | $fields")"
+    print-if-any "Team" "Write" "$(echo "$teams" | jq -r ".[] | select( .permissions.push) | select(.permissions.maintain | not ) | $fields")"
+    print-if-any "Team" "Triage" "$(echo "$teams" | jq -r ".[] | select( .permissions.triage) | select(.permissions.push | not ) | $fields")"
+    print-if-any "Team" "Read" "$(echo "$teams" | jq -r ".[] | select( .permissions.pull) | select(.permissions.triage | not ) | $fields")"
 }
 
 function user-permissions() {
@@ -31,17 +33,11 @@ function user-permissions() {
 
     fields=".login"
 
-    admin=$(echo "$users" | jq -r ".[] | select( .permissions.admin ) | $fields")
-    maintain=$(echo "$users" | jq -r ".[] | select( .permissions.maintain) | select(.permissions.admin | not ) | $fields")
-    push=$(echo "$users" | jq -r ".[] | select( .permissions.push) | select(.permissions.maintain | not ) | $fields")
-    triage=$(echo "$users" | jq -r ".[] | select( .permissions.triage) | select(.permissions.push | not ) | $fields")
-    pull=$(echo "$users" | jq -r ".[] | select( .permissions.pull) | select(.permissions.triage | not ) | $fields")
-
-    [[ -n "$admin" ]] && printf "== User Role: Admin ==\n%s\n\n" "$admin"
-    [[ -n "$maintain" ]] && printf "== User Role: Maintain ==\n%s\n\n" "$maintain"
-    [[ -n "$push" ]] && printf "== User Role: Write ==\n%s\n\n" "$push"
-    [[ -n "$triage" ]] && printf "== User Role: Triage ==\n%s\n\n" "$triage"
-    [[ -n "$pull" ]] && printf "== User Role: Read ==\n%s\n\n" "$pull"
+    print-if-any "User" "Admin" "$(echo "$users" | jq -r ".[] | select( .permissions.admin ) | $fields")"
+    print-if-any "User" "Maintain" "$(echo "$users" | jq -r ".[] | select( .permissions.maintain) | select(.permissions.admin | not ) | $fields")"
+    print-if-any "User" "Write" "$(echo "$users" | jq -r ".[] | select( .permissions.push) | select(.permissions.maintain | not ) | $fields")"
+    print-if-any "User" "Triage" "$(echo "$users" | jq -r ".[] | select( .permissions.triage) | select(.permissions.push | not ) | $fields")"
+    print-if-any "User" "Read" "$(echo "$users" | jq -r ".[] | select( .permissions.pull) | select(.permissions.triage | not ) | $fields")"
 }
 
 team-permissions $1
