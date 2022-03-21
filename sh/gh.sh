@@ -35,6 +35,10 @@ function gh.check-token() {
     http https://api.github.com/user Authorization:"token ${token}"
 }
 
+function gh.copy-token() {
+    echo "$GITHUB_TOKEN" | pbcopy
+}
+
 function gh.rate-limit() {
     token=${1:-$GITHUB_TOKEN}
     http https://api.github.com/rate_limit Authorization:"token ${token}" | jq ".rate | {limit, used, remaining, reset: (.reset | todate) }"
