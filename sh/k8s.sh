@@ -12,7 +12,7 @@ alias kg="kubectl get"
 alias kga="kubectl get all"
 alias kge="kubectl get events"
 alias kgn="kubectl get namespaces"
-alias kgno="kubectl get nodes"
+alias kgno="kubectl get nodes --sort-by .metadata.creationTimestamp"
 alias kgp="kubectl get pods"
 
 function kn() {
