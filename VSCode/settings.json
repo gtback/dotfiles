@@ -15,16 +15,23 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[python]": {
-    // Black does not support the "Format Selection" command
+    // Black does not support the range formatting
     "editor.formatOnSaveMode": "file"
   },
   "[ruby][html]": {
     "editor.formatOnSave": false
   },
+  "[rust]": {
+    // rustfmt does not support range formatting
+    "editor.formatOnSaveMode": "file"
+  },
   "[terraform]": {
     // https://github.com/hashicorp/vscode-terraform/issues/542
     "editor.defaultFormatter": "hashicorp.terraform",
     "editor.formatOnSaveMode": "file"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "fabianlauer.vs-code-xml-format"
   },
   "breadcrumbs.enabled": true,
   "color-highlight.markerType": "dot-after",
@@ -67,6 +74,7 @@
   "git.openDiffOnClick": false,
   "git.untrackedChanges": "separate",
   "gitlens.codeLens.enabled": false,
+  "gitlens.defaultDateFormat": null,
   "gitlens.hovers.currentLine.over": "line",
   "go.toolsManagement.autoUpdate": true,
   "jupyter.sendSelectionToInteractiveWindow": false,
