@@ -14,6 +14,10 @@
   "[json][jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
+  "[markdown][mdx]": {
+    // Markdown uses two spaces at the end of a line for a manual line break
+    "files.trimTrailingWhitespace": false
+  },
   "[python]": {
     // Black does not support the range formatting
     "editor.formatOnSaveMode": "file"
