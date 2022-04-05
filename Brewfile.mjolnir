@@ -2,10 +2,11 @@
 
 brew "ffmpeg"
 brew "mutt"
-brew "pass"
+brew "ykman"
 
 cask "adobe-digital-editions"
 cask "backblaze"
+cask "cardhop"
 cask "dropbox"
 cask "element"
 cask "netnewswire"
