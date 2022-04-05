@@ -55,7 +55,7 @@ My dotfiles
 1. Set up [ASDF](https://asdf-vm.com/#/) plugins and versions:
 
    ```shell
-   asdf-install-plugins
+   asdf.install-plugins
    asdf install
    ```
 
