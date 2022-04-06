@@ -23,3 +23,19 @@ function op.is-session-active() {
     # Exit code is 0 if active, 1 if inactive
     op get account 2>/dev/null >&2
 }
+
+# Allow user to select from a list of items stored in 1Password, then copy that
+# item's password to the clipboard.
+function op.copy-password() {
+    op.signin
+    data=$(op list items \
+        | jq -r '.[].overview.title' \
+        | fzf -1 -q "$1" \
+        | xargs -I {} op get item "{}")
+
+    username=$(echo "$data" | jq -r '.details.fields[] | select(.designation == "username").value')
+
+    echo "$data" | jq -r '.details.fields[] | select(.designation == "password").value' | pbcopy
+
+    echo >&2 "Password for '$username' copied to clipboard"
+}
