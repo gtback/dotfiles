@@ -1,4 +1,8 @@
 {
-  // Just for this repo, not in every environment
+  // These settings apply just in this repo, not anywhere else
+  "shellcheck.ignorePatterns": {
+    "bin/brew.up": true,
+    "zsh/*": true
+  },
   "shellformat.flag": "-bn"
 }
