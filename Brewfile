@@ -87,7 +87,7 @@ brew "zoxide"
 brew "zsh"
 
 cask "1password"
-cask "gtback/tap/1password-cli"
+cask "1password-cli@1"
 cask "alacritty"
 cask "alfred"
 cask "appcleaner"
