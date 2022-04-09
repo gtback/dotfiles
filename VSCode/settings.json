@@ -118,7 +118,6 @@
     "vscode-kubernetes.minikube-path.mac": "/Users/gtback/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
   },
   "vsicons.dontShowNewVersionMessage": true,
-  "workbench.activityBar.visible": true,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editorAssociations": {
