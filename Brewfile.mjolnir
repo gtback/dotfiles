@@ -13,6 +13,7 @@ cask "netnewswire"
 cask "pocket-casts"
 cask "steam"
 cask "telegram"
+cask "thunderbird"
 cask "zulip"
 
 mas "WireGuard", id: 1451685025
