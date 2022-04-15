@@ -8,6 +8,7 @@ alias subl="open -a /Applications/Sublime\ Text.app"
 alias tbird="open -a /Applications/Thunderbird.app"
 alias ffprof="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManager 2>/dev/null &"
 alias swud="softwareupdate --all"
+alias md="open -a /Applications/MacDown.app"
 
 # https://blog.jpalardy.com/posts/untangling-your-homebrew-dependencies/
 alias brew.graph-deps="brew graph --installed --highlight-leaves | fdp -T png -o graph.png"
