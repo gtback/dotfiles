@@ -116,4 +116,5 @@ mas "Bumpr", id: 1166066070
 # mas "LastPass", id: 926036361
 mas "Speedtest", id: 1153157709
 mas "Pocket", id: 568494494
+mas "Timery", id: 1425368544
 mas "Todoist", id: 585829637
