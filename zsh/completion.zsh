@@ -20,11 +20,25 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 # Include hidden files in completions
 _comp_options+=(globdots)
 
-# This needs to come before 'bashcompinit' so the `_npm_completion` uses compdef rather than complete
+### BEGIN compdef COMPLETIONS ###
+
+# These needs to come before 'bashcompinit' because they use `compdef`
+
+# The code output by `npm completion` tries to detect the completion system, so
+# even though it supports `copmlete`-style completions, we want to use compdef
+# instead.
+
 # shellcheck disable=SC1090
 eval "$(npm completion)"
 
 source "${XDG_CONFIG_HOME}/zsh/completions/_toggl"
+
+# if command -v poetry &>/dev/null; then
+#   # shellcheck disable=SC1090
+#   eval "$(poetry completions zsh)"
+# fi
+
+### END compdef COMPLETIONS ###
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
