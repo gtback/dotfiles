@@ -68,6 +68,7 @@
 
 [diff]
 	algorithm = patience
+	colorMoved = default
 
 [fetch]
 	prune = true
