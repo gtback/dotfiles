@@ -1,6 +1,6 @@
+kubectl system
 nodejs lts
 python 3.9.5 3.8.10 3.7.10 3.6.13 system 2.7.18
 ruby 2.6.6
-yarn 1.22.18
 rust stable
-kubectl system
+yarn 1.22.18
