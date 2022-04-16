@@ -5,7 +5,6 @@ brew "cmake"
 # https://github.com/fossas/homebrew-tap/issues/2
 # brew "fossas/tap/fossa"
 brew "telnet"
-brew "terraform"
 
 cask "google-chrome"
 cask "google-drive"
