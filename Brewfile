@@ -88,7 +88,6 @@ cask "bartender"
 cask "clipy"
 cask "dash"
 cask "eloston-chromium"
-cask "fantastical"
 cask "firefox-nightly"
 cask "firefox"
 cask "font-inconsolata-nerd-font"
@@ -112,6 +111,7 @@ cask "zoom"
 
 mas "Amphetamine", id: 937984704
 mas "Bumpr", id: 1166066070
+mas "Fantastical", id: 975937182
 # Do not install LastPass from the Mac App Store; it's really old; use the Cask instead.
 # mas "LastPass", id: 926036361
 mas "Speedtest", id: 1153157709
