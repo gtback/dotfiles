@@ -16,7 +16,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
     fd Brewfile "${HOME}/code" "${HOME}/dotfiles" \
         && fd --max-depth 1 Brewfile "${HOME}"
 } 2>/dev/null \
-    | grep -v "${BREWFILE_IGNORE:-xxxxxx}" \
+    | grep -E -v "${BREWFILE_IGNORE:-xxxxxx}" \
     | xargs cat \
     | grep -E -v "(^#|^$)" \
     | sort -u >/tmp/Brewfile.combined

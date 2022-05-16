@@ -11,6 +11,6 @@ set -euo pipefail
     fd Brewfile "${HOME}/code" "${HOME}/dotfiles" \
         && fd --max-depth 1 Brewfile "${HOME}"
 } 2>/dev/null \
-    | grep -v "${BREWFILE_IGNORE:-xxxxxx}" \
+    | grep -E -v "${BREWFILE_IGNORE:-xxxxxx}" \
     | xargs cat \
     | grep -E -v "(^#|^$)" | sort | uniq -c | grep -v "^   1 "
