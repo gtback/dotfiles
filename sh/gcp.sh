@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
 function gcp.account-select() {
     gcloud config set account \
         "$(gcloud auth list --format=json | jq --raw-output '.[].account' | fzf)"
