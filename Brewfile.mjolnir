@@ -6,7 +6,6 @@ brew "ykman"
 
 cask "adobe-digital-editions"
 cask "backblaze"
-cask "cardhop"
 cask "dropbox"
 cask "element"
 cask "netnewswire"
@@ -16,4 +15,5 @@ cask "telegram"
 cask "thunderbird"
 cask "zulip"
 
+mas "Cardhop", id: 1290358394
 mas "WireGuard", id: 1451685025
