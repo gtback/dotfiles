@@ -8,7 +8,6 @@ alias gba='git branch --all'
 alias gbac='git branch --all --contains'
 alias gbc='git branch --contains'
 alias gc='git commit'
-alias gcm='git checkout main 2>/dev/null || git checkout master'
 alias gco='git checkout'
 alias gd='git diff'
 alias gdca='git diff --cached'
@@ -25,6 +24,12 @@ alias gst='git status'
 function b() {
     # Can use `b --all` to include remote branches or `b --verbose` to show commit messages, or combine multiple args
     git checkout "$(git --no-pager branch --no-color "$@" | grep -v '\*' | sed 's/^[[:space:]]*//' | fzf | awk '{print $1}')"
+}
+
+function gcm() {
+    git stash save
+    git checkout main 2>/dev/null || git checkout master
+    git stash pop
 }
 
 # These git aliases are defined in _gitconfig
