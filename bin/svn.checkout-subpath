@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# In large Subversion repos, you might want to check out several sub-paths, but
+# keep the original structure. You might also use this in a repo with
+# fine-grained access control (where you have access only to specific
+# sub-paths).
+#
+# Usage:
+#
+#     svn.checkout-subpath [relative-path]
+#
+# <relative-path> is specified relative to SVN_BASE_URL on the SVN server, and
+# relative to the host directory SVN_BASE_DIR (or the current directory, if
+# SVN_BASE_DIR is unset).
+#
+# <relative-path> is optional. If <relative-path> is omitted, then the subpath
+# on the SVN server is calculated by taking the path of the current directory,
+# relative to SVN_BASE_DIR, and checked out to the current directory.
+#
+# If SVN_BASE_DIR is unset and <relative-path> is omitted, then this has the
+# effect of checking out SVN_BASE_URL to the current directory, (equivalent to
+# `svn checkout ${SVN_ARGS} ${SVN_BASE_URL} .`)
+#
+# SVN_ARGS is an array of additional arguments passed to the `svn checkout`
+# command. For example, if your SVN username is different than the username on
+# your host, you might set:
+#
+#     SVN_ARGS="--username gtback"
+#
+# Example:
+#
+#     export SVN_BASE_URL=https://svn.example.com/repos/example-corp/trunk/
+#     mkdir trunk
+#     cd trunk
+#     svn.checkout-subpath project1
+#     svn.checkout-subpath project2/componentA
+#     svn.checkout-subpath project2/componentC
+
+set -euo pipefail
+
+IFS=" " read -r -a svn_args <<<"${SVN_ARGS:-""}"
+svn_base_dir=${SVN_BASE_DIR:-$(pwd)/}
+
+if [ -z "$SVN_BASE_URL" ]; then
+    echo "Must set SVN_BASE_URL to use this script"
+    exit 1
+fi
+
+# If you pass an argument, use that as the relative path. Otherwise, take the
+# current working directory but strip off the SVN_BASE_DIR, so we know what path
+# to request on the server.
+subpath=${1:-$(pwd | sd "^${svn_base_dir}" "")}
+
+set -x
+# echo mkdir -p "${svn_base_dir}${subpath}"
+mkdir -p "${svn_base_dir}${subpath}"
+
+# echo svn checkout "${svn_args[@]}" "${SVN_BASE_URL}${subpath}" "${svn_base_dir}${subpath}"
+svn checkout "${svn_args[@]}" "${SVN_BASE_URL}${subpath}" "${svn_base_dir}${subpath}"
