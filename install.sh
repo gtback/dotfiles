@@ -46,6 +46,13 @@ symlink _pythonstartup ~/.pythonstartup
 
 symlink starship.toml ~/.config/starship.toml
 
+# Joplin does not respsect XDG_CONFIG_HOME, and puts both data and cache data in
+# the hard-coded `~/.config/joplin-desktop/` directory.
+# https://github.com/laurent22/joplin/issues/6524
+mkdir -p ~/.config/joplin-desktop
+symlink joplin-desktop/userchrome.css ~/.config/joplin-desktop/userchrome.css
+symlink joplin-desktop/userstyle.css ~/.config/joplin-desktop/userstyle.css
+
 symlink VSCode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
 symlink VSCode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 symlink VSCode/tasks.json "$HOME/Library/Application Support/Code/User/tasks.json"
