@@ -1,5 +1,7 @@
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset - %G?%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
 	# Log of changes on origin not yet on branch (aka hg incoming).
 	incoming = log HEAD..@{upstream}
