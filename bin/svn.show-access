@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+'''
+Parse an SVN Authz file to show all subpaths a user has access to.
+
+Usage:
+
+    svn.show-access path/to/authz gtback
+'''
+
+from collections import defaultdict
+from configparser import ConfigParser
+import sys
+
+
+def main(authz_file_path, user):
+    p = ConfigParser()
+
+    with open(authz_file_path) as f:
+        p.read_file(f)
+
+    # mapping of users to their groups
+    user_groups = defaultdict(list)
+
+    for group, members in p.items("groups"):
+        for m in members.split(","):
+            user_groups[m.strip()].append(group)
+
+
+    user_perms = []
+    for section in p.sections():
+        if section == "groups":
+            continue
+        for user_or_group, perms in p.items(section):
+            if perms == "":
+                perms = "<none>"
+            if user_or_group == "*":
+                user_perms.append(f"{section} : {perms}")
+            if user_or_group.startswith("@"):
+                group = user_or_group.lstrip("@")
+                if group in user_groups[user]:
+                    user_perms.append(f"{section} : {perms}")
+            elif user_or_group == user:
+                user_perms.append(f"{section} : {perms}")
+
+    for p in sorted(user_perms):
+        print(p)
+
+    return 0
+
+if __name__ == '__main__':
+    authz_file = sys.argv[1]
+    username = sys.argv[2]
+    sys.exit(main(authz_file, username))
