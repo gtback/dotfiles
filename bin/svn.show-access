@@ -26,24 +26,24 @@ def main(authz_file_path, user):
             user_groups[m.strip()].append(group)
 
 
-    user_perms = []
+    user_perms = {}
     for section in p.sections():
         if section == "groups":
             continue
         for user_or_group, perms in p.items(section):
             if perms == "":
-                perms = "<none>"
+                perms = None
             if user_or_group == "*":
-                user_perms.append(f"{section} : {perms}")
+                user_perms[section] = perms
             if user_or_group.startswith("@"):
                 group = user_or_group.lstrip("@")
                 if group in user_groups[user]:
-                    user_perms.append(f"{section} : {perms}")
+                    user_perms[section] = perms
             elif user_or_group == user:
-                user_perms.append(f"{section} : {perms}")
+                user_perms[section] = perms
 
-    for p in sorted(user_perms):
-        print(p)
+    for path, perms in sorted(user_perms.items()):
+        print(f"{path}: {perms}")
 
     return 0
 
