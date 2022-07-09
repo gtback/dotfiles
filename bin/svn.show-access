@@ -25,7 +25,6 @@ def main(authz_file_path, user):
         for m in members.split(","):
             user_groups[m.strip()].append(group)
 
-
     user_perms = {}
     for section in p.sections():
         if section == "groups":
@@ -42,8 +41,19 @@ def main(authz_file_path, user):
             elif user_or_group == user:
                 user_perms[section] = perms
 
+    stack = []
     for path, perms in sorted(user_perms.items()):
-        print(f"{path}: {perms}")
+        tmp_path = path
+        found_prefix = False
+        while len(stack) and not found_prefix:
+            latest = stack[-1]
+            if path.startswith(latest):
+                tmp_path = " " * len(latest) + tmp_path[len(latest):]
+                found_prefix = True
+            else:
+                stack.pop()
+        stack.append(path)
+        print(f"{tmp_path}: {perms}")
 
     return 0
 
