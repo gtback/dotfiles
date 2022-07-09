@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -euo pipefail
+
+installed=$(find "${ANTIBODY_HOME}" -depth 1 -print0 | xargs -0 basename -a | sd -- '-COLON-' ':' | sd -- '-SLASH-' '/' | sd "https://github.com/" "" | sort -u)
+
+configured=$(rg -v "^#" <"${ZDOTDIR}/plugins.txt" | awk '$1{print $1}' | sort -u)
+
+echo "Installed but not listed in plugins.txt:"
+comm -23 <(echo "$installed") <(echo "$configured")
+
+echo
+echo "In plugins.txt but not installed:"
+comm -13 <(echo "$installed") <(echo "$configured")
