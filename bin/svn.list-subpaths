@@ -9,8 +9,5 @@
 set -euo pipefail
 
 for path in $(fd -Hp "\.svn$" | sd "/.svn" ""); do
-    echo "---Updating $path"
-    pushd "$path" >/dev/null
-    svn update
-    popd >/dev/null
+    echo "$path"
 done
