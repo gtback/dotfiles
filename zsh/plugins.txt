@@ -7,15 +7,14 @@ djui/alias-tips
 reegnz/jq-zsh-plugin
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
-robbyrussell/oh-my-zsh path:plugins/chruby
 robbyrussell/oh-my-zsh path:plugins/docker
 robbyrussell/oh-my-zsh path:plugins/pip
 robbyrussell/oh-my-zsh path:plugins/python
 robbyrussell/oh-my-zsh path:plugins/ruby
 robbyrussell/oh-my-zsh path:plugins/vagrant
 
-# https://github.com/zdharma/fast-syntax-highlighting
-zdharma/fast-syntax-highlighting
+# https://github.com/z-shell/F-Sy-H
+z-shell/F-Sy-H
 
 # https://github.com/zsh-users/zsh-autosuggestions
 zsh-users/zsh-autosuggestions
