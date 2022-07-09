@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for var in "$@"; do
+    curl -sLw "\\n" "https://www.gitignore.io/api/$var" \
+        | grep -v "toptal" | sed '/./,/^$/!d' \
+        | sed '$d'
+done
