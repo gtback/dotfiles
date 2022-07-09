@@ -2,6 +2,8 @@
 '''
 Parse an SVN Authz file to show all subpaths a user has access to.
 
+With `colorama` installed, it will show pretty colors.
+
 Usage:
 
     svn.show-access path/to/authz gtback
@@ -10,6 +12,22 @@ Usage:
 from collections import defaultdict
 from configparser import ConfigParser
 import sys
+
+HAS_COLORS = True
+try:
+    from colorama import init, Fore
+    init()
+except ImportError:
+    HAS_COLORS = False
+
+def get_color(perms):
+    if not HAS_COLORS:
+        return ""
+    return {
+        "rw": Fore.GREEN,
+        "r": Fore.YELLOW,
+        None: Fore.RED,
+    }.get(perms, "")
 
 
 def main(authz_file_path, user):
@@ -53,7 +71,8 @@ def main(authz_file_path, user):
             else:
                 stack.pop()
         stack.append(path)
-        print(f"{tmp_path}: {perms}")
+
+        print(get_color(perms) + f"{tmp_path}: {perms}")
 
     return 0
 
