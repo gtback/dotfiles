@@ -11,6 +11,12 @@ function asdf.list-all() {
     done
 }
 
+function asdf.reshim() {
+    asdf_data_dir=${ASDF_DATA_DIR:-~/.asdf}
+    rm -rf "${asdf_data_dir}/shims"
+    asdf reshim
+}
+
 function all-node() {
     for version in $(asdf list nodejs); do
         echo "--NODEJS $version--"
