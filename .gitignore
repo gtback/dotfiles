@@ -1,3 +1,5 @@
+gh/hosts.yml
+
 gnupg/*
 !gnupg/gpg*.conf
 
