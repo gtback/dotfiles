@@ -5,8 +5,23 @@
   // List installed extensions with:
   //     code --list-extensions
 
+  // Update this file with:
+  //     cog.py -r .vscode/extensions.json
+  // Cog: https://nedbatchelder.com/code/cog
+  //   (`pip install cogapp`)
+
   // List of extensions which should be recommended for users of this workspace.
   "recommendations": [
+  /*
+    [[[cog
+    import subprocess
+    import cog
+    proc = subprocess.run(['code', '--list-extensions'],
+                          capture_output=True, check=True, text=True)
+    extensions = proc.stdout.split()
+    for ext in extensions:
+        cog.outl(f'"{ext}",')
+    ]]]*/
     "anseki.vscode-color",
     "arthurwhite.white",
     "ban.spellright",
@@ -45,6 +60,7 @@
     "wayou.vscode-todo-highlight",
     "Zignd.html-css-class-completion",
     "ziyasal.vscode-open-in-github"
+  //[[[end]]]
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []
