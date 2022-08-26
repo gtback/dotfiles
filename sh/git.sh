@@ -67,3 +67,9 @@ function git-log-regex() {
     "${gitlog[@]}" | rg -v "Merge Pull Request" | "${fzf[@]}"
 }
 alias glr='git-log-regex'
+
+function gc.with() {
+    local who=$1
+    shift
+    git commit --trailer "$(git.coauthor "$who")" "$@"
+}
