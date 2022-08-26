@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Generate a "Co-authored-by" line for a git commit message.
+# From: https://hynek.me/til/easier-crediting-contributors-github/
+
+# Usage:
+#   git.coauthor gtback
+#   git commit --trailer "$(git.coauthor gtback)" --trailer "$(git.coauthor hynek)"
+
+# See also:
+# - https://github.com/kludex/gh-co-author
+
+account=$1
+data=$(curl -s "https://api.github.com/users/$account")
+id=$(echo "$data" | jq .id)
+name=$(echo "$data" | jq --raw-output '.name // .login')
+
+printf "Co-authored-by: %s <%d+%s@users.noreply.github.com>\n" "$name" "$id" "$account"
