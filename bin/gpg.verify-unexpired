@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# SPDX-FileCopyrightText: 2022 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Check all GPG keys (.asc files), including subkeys, in the current directory.
+# If there are any expired keys (or subkeys), print the details and exit with
+# status code 1. If there are no expired keys, exit with status code 0.
+
+# Depends on https://github.com/jasonaowen/gpg-expiration. This script assumes
+# the `gpg-expiration.py` script is the current directory; if not, pass the path
+# to the script as GPGVE_EXPIRATION_SCRIPT. The script depends on the `gpg`
+# bindings in the current `python` executable. To use a different python, set
+# `GPGVE_PYTHON`.
+
+# By default, the script uses the current date and time as the cutoff for
+# expiration. To see (for example) all keys expiring in the next 30 days, set
+# GPGVE_DAYS=30. To see all keys expiring more than 90 days ago, set
+# GPGVE_DAYS=-90.
+
+# Usage:
+#   gpg.verify-unexpired
+#   GPGVE_PYTHON=/bin/python3 gpg.verify-unexpired
+#   GPGVE_EXPIRATION_SCRIPT=/path/to/gpg-expiration.py gpg.verify-unexpired
+#   GPGVE_DAYS=30 gpg.verify-unexpired
+
+set -euo pipefail
+
+GPGVE_PYTHON=${GPGVE_PYTHON:-python3}
+GPGVE_EXPIRATION_SCRIPT=${GPGVE_EXPIRATION_SCRIPT:-gpg-expiration.py}
+GPGVE_DAYS=${GPGVE_DAYS:-0}
+
+old_gnupg_home=$GNUPGHOME
+GNUPGHOME=$(mktemp -d -t gnupg_"$(date +%Y%m%d%H%M)"_XXX) && export GNUPGHOME
+
+# Import all keys into a new, temporary GNUPGHOME directory
+for key in $(fd -Hp "\.asc$"); do
+    gpg --import "$key" >/dev/null 2>&1
+    echo "Imported $key"
+done
+
+${GPGVE_PYTHON} "${GPGVE_EXPIRATION_SCRIPT}" --days "${GPGVE_DAYS}" all
+
+export GNUPGHOME=$old_gnupg_home
