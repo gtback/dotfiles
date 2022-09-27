@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2022 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # Fetch all remote repositories that are used as "reference" repos for local
 # ones (via .git/objects/info/alternates). For more information, see:
 # https://git-scm.com/docs/git-clone#Documentation/git-clone.txt---reference-if-ableltrepositorygt

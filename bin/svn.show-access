@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: 2022 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 '''
 Parse an SVN Authz file to show all subpaths a user has access to.
 

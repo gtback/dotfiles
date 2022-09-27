@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2022 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # In large Subversion repos, you might want to check out several sub-paths, but
 # keep the original structure. You might also use this in a repo with
 # fine-grained access control (where you have access only to specific
