@@ -30,8 +30,9 @@ GPGVE_PYTHON=${GPGVE_PYTHON:-python3}
 GPGVE_EXPIRATION_SCRIPT=${GPGVE_EXPIRATION_SCRIPT:-gpg-expiration.py}
 GPGVE_DAYS=${GPGVE_DAYS:-0}
 
-old_gnupg_home=$GNUPGHOME
-GNUPGHOME=$(mktemp -d -t gnupg_"$(date +%Y%m%d%H%M)"_XXX) && export GNUPGHOME
+gnupg_tmp=$(mktemp -d -t gnupg_"$(date +%Y%m%d%H%M)"_XXX)
+trap 'rm -rf "${gnupg_tmp}"' EXIT
+export GNUPGHOME="${gnupg_tmp}"
 
 # Import all keys into a new, temporary GNUPGHOME directory
 for key in $(fd -Hp "\.asc$"); do
@@ -40,5 +41,3 @@ for key in $(fd -Hp "\.asc$"); do
 done
 
 ${GPGVE_PYTHON} "${GPGVE_EXPIRATION_SCRIPT}" --days "${GPGVE_DAYS}" all
-
-export GNUPGHOME=$old_gnupg_home
