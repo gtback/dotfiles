@@ -59,6 +59,7 @@
 
 [commit]
 	gpgsign = true
+	template = ~/.config/git/commit-template.txt
 
 [core]
 	trustctime = false
