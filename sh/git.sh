@@ -29,7 +29,8 @@ function b() {
 
 function gcm() {
     git stash save
-    git checkout main 2>/dev/null || git checkout master
+    # TODO: checkout remote HEAD branch regardless of its name
+    git checkout --no-guess main 2>/dev/null || git checkout --no-guess master
     git stash pop
 }
 
