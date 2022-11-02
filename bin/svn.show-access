@@ -6,7 +6,12 @@
 '''
 Parse an SVN Authz file to show all subpaths a user has access to.
 
-With `colorama` installed, it will show pretty colors.
+With `colorama` installed, the output will be colored:
+- paths with 'rw' access will be in GREEN
+- paths with 'r' access will be in YELLOW
+- paths with no access will be in RED
+
+The NO_COLOR environment variable (https://no-color.org/) will be respected.
 
 Usage:
 
@@ -15,14 +20,19 @@ Usage:
 
 from collections import defaultdict
 from configparser import ConfigParser
+import os
 import sys
 
-HAS_COLORS = True
+HAS_COLORS = False
 try:
+    if os.environ.get("NO_COLOR"):
+        raise EnvironmentError
     from colorama import init, Fore
     init()
-except ImportError:
-    HAS_COLORS = False
+    HAS_COLORS = True
+except (ImportError, EnvironmentError):
+    pass
+
 
 def get_color(perms):
     if not HAS_COLORS:
