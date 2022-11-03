@@ -10,3 +10,7 @@ function aws.clear() {
 function aws.whoami() {
     aws sts get-caller-identity
 }
+
+function aws.decode() {
+    aws sts decode-authorization-message --encoded-message "$1" --output text | jq .
+}
