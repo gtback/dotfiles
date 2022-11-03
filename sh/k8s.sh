@@ -31,3 +31,5 @@ function k.podnode() {
 function k.sh() {
     kubectl exec --stdin --tty "$@" -- /bin/bash
 }
+
+export KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code"
