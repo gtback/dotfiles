@@ -56,9 +56,6 @@ listening() {
     fi
 }
 
-# Training to not use certain things.
-st() { echo 'use "stree" instead'; }
-
 fix-chromium() {
     security delete-generic-password -a Chromium
 }
