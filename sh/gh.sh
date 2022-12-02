@@ -50,6 +50,7 @@ function gh.get-repo-id() {
 }
 
 function gh.load-token() {
+    # TODO: don't reload if $GITHUB_TOKEN already set
     op.signin
     eval "$(load-gh-token.sh)"
 }
