@@ -106,6 +106,7 @@
     "markdown"
   ],
   "svn.path": "/usr/local/bin/svn",
+  "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.fontFamily": "Inconsolata Nerd Font",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.scrollback": 10000,
