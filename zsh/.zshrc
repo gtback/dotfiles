@@ -97,7 +97,7 @@ if [ "$TERM_PROGRAM" == "vscode" ]; then
   echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
 else
   source-if-exists /usr/local/bin/virtualenvwrapper.sh
-  source-if-exists "$(brew --prefix asdf)/asdf.sh"
+  source-if-exists "$(brew --prefix asdf)/libexec/asdf.sh"
 fi
 
 # Load Completions
