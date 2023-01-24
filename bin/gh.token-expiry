@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+
+# SPDX-FileCopyrightText: 2023 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+import datetime as dt
+import os
+
+import requests
+
+
+HEADERS = {
+    "Authorization": "token " + os.environ.get("GITHUB_TOKEN")
+}
+
+
+def main():
+    resp = requests.get("https://api.github.com/rate_limit", headers=HEADERS)
+
+    expires = resp.headers['github-authentication-token-expiration']
+    # print(resp.json()['login'])
+
+    # TODO: Handle time zones better
+    expires_dt = dt.datetime.strptime(expires, "%Y-%m-%d %H:%M:%S UTC")
+
+    difference : dt.timedelta = expires_dt - dt.datetime.utcnow()
+    if difference.total_seconds() > 0:
+        if not difference.days:
+            print(f"Token expires today: {expires_dt}")
+        else:
+            print(f"Token expires in {difference.days} days: {expires_dt}")
+    else:
+        if difference.days:
+            print(f"Token expired today: {expires_dt}")
+        else:
+            print(f"Token expired {difference.days} days ago: {expires_dt}")
+
+
+if __name__ == "__main__":
+    main()
