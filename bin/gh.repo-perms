@@ -40,5 +40,5 @@ function user-permissions() {
     print-if-any "User" "Read" "$(echo "$users" | jq -r ".[] | select( .permissions.pull) | select(.permissions.triage | not ) | $fields")"
 }
 
-team-permissions $1
-user-permissions $1
+team-permissions "$1"
+user-permissions "$1"

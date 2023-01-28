@@ -3,7 +3,7 @@
 set -euo pipefail
 
 for var in "$@"; do
-    filename="${ANTIBODY_HOME}/https-COLON--SLASH--SLASH-github.com-SLASH-$(echo $var | sd -- '/' '-SLASH-')"
+    filename="${ANTIBODY_HOME}/https-COLON--SLASH--SLASH-github.com-SLASH-$(echo "${var}" | sd -- '/' '-SLASH-')"
 
     if [ -d "${filename}" ]; then
         echo "Removing: ${filename}"

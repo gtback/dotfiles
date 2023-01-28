@@ -9,5 +9,5 @@
 set -euo pipefail
 
 for name in "$@"; do
-    ssh-keygen -R ${name}
+    ssh-keygen -R "${name}"
 done
