@@ -64,7 +64,8 @@
     "**/.aws/config": "ini",
     "**/.aws/credentials": "ini",
     "**/.okta-aws": "ini",
-    "_zshrc": "shellscript"
+    "_zshrc": "shellscript",
+    "dep5": "debian-copyright"
   },
   "files.exclude": {
     "**/.classpath": true,
