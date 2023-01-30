@@ -28,10 +28,24 @@ function b() {
 }
 
 function gcm() {
-    git stash save
+    stash_output="$(git stash push --no-keep-index --include-untracked)"
+    if echo "$stash_output" | rg --quiet "No local changes to save"; then
+        # If there are no changes to stash, `git stash` prints this message
+        stashed=0
+        echo "Nothing to stash"
+    else
+        stashed=1
+        echo "$stash_output"
+    fi
+
     # TODO: checkout remote HEAD branch regardless of its name
     git checkout --no-guess main 2>/dev/null || git checkout --no-guess master
-    git stash pop
+
+    if [ "$stashed" -eq 1 ]; then
+        git stash pop
+    else
+        echo "No changes saved, so not popping from stash"
+    fi
 }
 
 # These git aliases are defined in _gitconfig
