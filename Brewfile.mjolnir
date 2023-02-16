@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+brew "bitwarden-cli"
 brew "ffmpeg"
 brew "mutt"
 brew "ykman"
@@ -8,6 +9,8 @@ cask "adobe-digital-editions"
 cask "backblaze"
 cask "dropbox"
 cask "element"
+cask "gemini"
+cask "libreoffice-still"
 cask "netnewswire"
 cask "pocket-casts"
 cask "signal"
@@ -16,5 +19,6 @@ cask "telegram"
 cask "thunderbird"
 cask "zulip"
 
+mas "Bitwarden", id: 1352778147
 mas "Cardhop", id: 1290358394
 mas "WireGuard", id: 1451685025
