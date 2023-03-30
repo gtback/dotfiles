@@ -59,3 +59,7 @@ function gh.load-token() {
 function gh.down() {
     npx -y is-github-down
 }
+
+function gh.get-installation-id() {
+    gh api "/orgs/${GITHUB_ORG}/installations?per_page=100" | jq -r '.installations[] | [.id, .app_slug] | @tsv' | rg "$1" | head -1 | awk -F '\t' '{print $1}'
+}
