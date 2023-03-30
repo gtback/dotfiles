@@ -39,3 +39,8 @@ function op.copy-password() {
 
     echo >&2 "Password for '$username' copied to clipboard"
 }
+
+function op.get-password() {
+    op.signin
+    op get item "${1}" --fields password
+}
