@@ -7,9 +7,12 @@
 
 set -euo pipefail
 
-SECRET_NAME="GitHub API Token - $(hostname -s)"
+# shellcheck source=../sh/op.sh
+source "${XDG_CONFIG_HOME}/sh/op.sh"
+
+SECRET_NAME=${SECRET_NAME:-"GitHub API Token - $(hostname -s)"}
 
 cat <<EOF
-export GITHUB_TOKEN=$(op get item "${SECRET_NAME}" --fields password)
+export GITHUB_TOKEN=$(op.get-password "${SECRET_NAME}")
 EOF
 echo >&2 "Loading GitHub token '${SECRET_NAME}'"
