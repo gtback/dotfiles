@@ -20,7 +20,8 @@
   },
   "[python]": {
     // Black does not support the range formatting
-    "editor.formatOnSaveMode": "file"
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnType": true
   },
   "[ruby][html]": {
     "editor.formatOnSave": false
@@ -125,6 +126,7 @@
   "vsicons.dontShowNewVersionMessage": true,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.untitled.hint": "hidden",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
