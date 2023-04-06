@@ -92,7 +92,7 @@
 	ff = only
 
 [push]
-	default = simple
+	default = current
 
 [tag]
 	forceSignAnnotated = true
