@@ -86,7 +86,7 @@
   "gitlens.defaultDateFormat": null,
   "gitlens.hovers.currentLine.over": "line",
   "go.toolsManagement.autoUpdate": true,
-  "jupyter.sendSelectionToInteractiveWindow": false,
+  "jupyter.interactiveWindow.textEditor.executeSelection": false,
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
