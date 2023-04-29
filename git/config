@@ -66,6 +66,13 @@
 	autocrlf = input
 	pager = delta
 
+[credential]
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+
 [delta]
 	line-numbers = true
 
