@@ -1,4 +1,6 @@
+alias
 kubectl system
+golang 1.20.4
 nodejs lts
 python 3.11.0 3.10.5 3.9.13 3.8.13 3.7.13 system 2.7.18
 ruby 2.6.6

@@ -10,3 +10,6 @@ asdf plugin update --all
 # `asdf plugin add` exits with "1" if the plugin is already installed
 asdf.install-plugins || true
 asdf install
+
+asdf alias python --auto
+asdf alias terraform --auto
