@@ -1,5 +1,8 @@
 {
   // These settings apply just in this repo, not anywhere else
+  "files.associations": {
+    "**/git/config*": "ini",
+  },
   "shellcheck.ignorePatterns": {
     "bin/brew.up": true,
     "zsh/*": true
