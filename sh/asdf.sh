@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+
 function asdf.install-plugins() {
     awk '{print $1}' <"${ASDF_DEFAULT_TOOL_VERSIONS_FILENAME}" | xargs -n 1 asdf plugin add
 }
