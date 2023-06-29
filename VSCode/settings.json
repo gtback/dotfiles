@@ -110,6 +110,7 @@
   "spellright.documentTypes": [
     "markdown"
   ],
+  "spellright.notificationClass": "information",
   "svn.path": "/usr/local/bin/svn",
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.fontFamily": "Inconsolata Nerd Font",
