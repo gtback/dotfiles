@@ -11,6 +11,8 @@ $battery\
 $status\
 $character"""
 
+command_timeout = 1000
+
 [kubernetes]
 style = "blue bold"
 disabled = false
