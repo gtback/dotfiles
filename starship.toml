@@ -26,4 +26,3 @@ disabled = false
 [env_var.VAULT_ADDR]
 format = "🔒 [$env_value]($style) "
 style = "yellow"
-default = "<no vault>"
