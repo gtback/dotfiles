@@ -6,5 +6,5 @@ python 3.11.0 3.10.5 3.9.13 3.8.13 3.7.13 system 2.7.18
 ruby 2.6.6
 rust stable
 terraform 1.1.9
-teleport-ent 10.2.4
+teleport-ent 12.2.5
 yarn 1.22.19
