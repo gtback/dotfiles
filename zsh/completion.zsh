@@ -50,6 +50,8 @@ source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/co
 
 source-if-exists "$(brew --prefix)/share/zsh/site-functions/_todoist_fzf"
 
+source-if-exists /usr/local/etc/bash_completion.d/az
+
 eval "$(op completion zsh)"
 compdef _op op
 
