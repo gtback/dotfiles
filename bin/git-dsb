@@ -7,19 +7,25 @@
 
 # Run with `git dsb`
 
-set -exuo pipefail
+# shellcheck source=../sh/git.sh
+source "${XDG_CONFIG_HOME}/sh/git.sh"
 
-REMOTE=${GIT_DSB_REMOTE:-origin}
+set -euo pipefail
 
-if git checkout -q "remotes/$REMOTE/HEAD"; then
+remote=${GIT_DSB_REMOTE:-origin}
+head=$(git.remote-head "$remote")
+head_ref="remotes/$remote/$head"
+
+# On exit, Check out the remote HEAD branch. Without this you're in a detached-HEAD state.
+# This assumes that your local branch is named the same as the remote HEAD branch.
+trap 'git checkout "$head"' EXIT
+
+if git checkout -q "$head_ref"; then
     git for-each-ref refs/heads/ "--format=%(refname:short)" \
         | while read -r branch; do
-            mergeBase=$(git merge-base "remotes/$REMOTE/HEAD" "$branch") \
-                && [[ $(git cherry "remotes/$REMOTE/HEAD" "$(git commit-tree "$(git rev-parse "$branch"^\{tree\})" -p "$mergeBase" -m _)") == "-"* ]] \
+            echo "Checking ${branch}"
+            mergeBase=$(git merge-base "$head_ref" "$branch") \
+                && [[ $(git cherry "$head_ref" "$(git commit-tree "$(git rev-parse "$branch"^\{tree\})" -p "$mergeBase" -m _)") == "-"* ]] \
                 && git branch -D "$branch"
         done
 fi
-
-# Check out the remote HEAD branch. Without this you're in a detached-HEAD state.
-# https://stackoverflow.com/a/19457164/1136755
-git checkout "$(git ls-remote --heads "$REMOTE" | grep "$(git rev-parse HEAD)" | cut -d / -f 3-)"
