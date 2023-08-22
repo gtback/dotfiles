@@ -88,3 +88,9 @@ function gc.with() {
     shift
     git commit --trailer "$(git.coauthor "$who")" "$@"
 }
+
+# Get the name of the default (HEAD) branch for a remote repository.
+# https://stackoverflow.com/a/50056710
+function git.remote-head() {
+    git remote show "${1:-origin}" | sed -n '/HEAD branch/s/.*: //p'
+}
