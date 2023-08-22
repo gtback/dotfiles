@@ -25,8 +25,3 @@ export PYTHONSTARTUP="$HOME/.pythonstartup"
 # inside of it. This interferes with how `asdf`-managed rubies install gems.
 # - https://discourse.brew.sh/t/why-does-tmuxinator-sets-gem-home/7296
 unset -v GEM_HOME
-
-export MCFLY_KEY_SCHEME=vim
-export MCFLY_FUZZY=2
-export MCFLY_RESULTS=50
-export MCFLY_DELETE_WITHOUT_CONFIRM=true
