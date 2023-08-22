@@ -71,3 +71,11 @@ function stop() {
     ssh-add -D
     noti.clear
 }
+
+# https://superuser.com/a/1246245
+function pwg() {
+    ENTROPY=${1:-20}
+
+    head -c "$ENTROPY" /dev/random | base64 | tr -d '\n=+/'
+    echo
+}
