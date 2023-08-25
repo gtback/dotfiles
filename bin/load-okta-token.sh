@@ -7,7 +7,7 @@
 
 set -euo pipefail
 
-SECRET_NAME="Okta API Token"
+SECRET_NAME=${1:-"Okta API Token"}
 
 cat <<EOF
 export OKTA_API_TOKEN=$(op get item "${SECRET_NAME}" --fields password)
