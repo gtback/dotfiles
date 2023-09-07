@@ -94,3 +94,11 @@ function gc.with() {
 function git.remote-head() {
     git remote show "${1:-origin}" | sed -n '/HEAD branch/s/.*: //p'
 }
+
+# Reuse existing commit message (in the case of a failed GPG signature, etc.)
+# https://unix.stackexchange.com/a/590225
+function git.recommit() {
+    commit_msg_file="$(git rev-parse --git-dir)/COMMIT_EDITMSG"
+    printf "Reusing commit message:\n---\n%s\n---\n" "$(grep -v "^#" "$commit_msg_file")"
+    echo git commit -F "$commit_msg_file" "$@"
+}
