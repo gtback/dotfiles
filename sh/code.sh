@@ -1,7 +1,9 @@
 #!/bin/bash
 
+extensions_file="${HOME}/dotfiles/.vscode/extensions.json"
+
 code.dump-extensions() {
-    cog.py -r .vscode/extensions.json
+    cog.py -r "$extensions_file"
 }
 
 code.install-extensions() {
@@ -23,6 +25,6 @@ code.parse-extensions-file() {
     # 1. Convert the VSCode Extensions (jsonc) file into something that jq can
     #    handle.
     # 2. Extract the Recommended Extensions with jq.
-    npx json5 <.vscode/extensions.json \
+    npx json5 <"$extensions_file" \
         | jq -r '.recommendations[]'
 }
