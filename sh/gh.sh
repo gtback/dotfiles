@@ -60,6 +60,18 @@ function gh.down() {
     npx -y is-github-down
 }
 
+# Find the GitHub App Installation ID within a particular organization.
+# The argument is a regular expression used to find the app name. It doesn't need to be an exact match as long as it's unique.
+# Requires a GitHub personal access token with `admin:org` permissions.
 function gh.get-installation-id() {
-    gh api "/orgs/${GITHUB_ORG}/installations?per_page=100" | jq -r '.installations[] | [.id, .app_slug] | @tsv' | rg "$1" | head -1 | awk -F '\t' '{print $1}'
+    app=${1:-renovate}
+    gh api "/orgs/${GITHUB_ORG}/installations?per_page=100" | jq -r '.installations[] | [.id, .app_slug] | @tsv' | rg "$app" | head -1 | awk -F '\t' '{print $1}'
+}
+
+# Find all the repos that a particular GitHub App is enabled on.
+# The argument is a regular expression used to find the app name. It doesn't need to be an exact match as long as it's unique.
+# Requires a GitHub personal access token with `admin:org` permissions.
+function gh.app-repos() {
+    install_id=$(gh.get-installation-id "$1")
+    gh api "/user/installations/${install_id}/repositories?per_page=100" | jq -r '.repositories[].name'
 }
