@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-# shellcheck source=../sh/brew.sh
-source "${XDG_CONFIG_HOME}/sh/brew.sh"
+# shellcheck source=../sh/darwin/brew.sh
+source "${XDG_CONFIG_HOME}/sh/darwin/brew.sh"
 
 ## Don't update automatically when running this script
 export HOMEBREW_NO_AUTO_UPDATE=1
