@@ -30,6 +30,7 @@ mkdir -p "$XDG_DATA_HOME/zsh"
 # https://asdf-vm.com/#/
 symlink asdf "$XDG_CONFIG_HOME"
 
+symlink brewfile "$XDG_CONFIG_HOME"
 symlink gh "$XDG_CONFIG_HOME"
 symlink git "$XDG_CONFIG_HOME"
 symlink gnupg "$XDG_CONFIG_HOME"

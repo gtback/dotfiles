@@ -1,3 +1,7 @@
+# This Brewfile is designed to be run by homebrew-file:
+#   https://homebrew-file.readthedocs.io/
+# It will fail if you run with `brew bundle install -f`
+
 # frozen_string_literal: true
 
 tap "homebrew/bundle"
@@ -6,13 +10,20 @@ tap "homebrew/cask-versions"
 tap "homebrew/cask"
 tap "homebrew/core"
 
-tap "cantino/mcfly"
 tap "federico-terzi/espanso"
+brew "espanso"
+
 tap "gtback/tap"
+cask "1password-cli@1"
+
 tap "homeport/tap"
-tap "martido/graph"
-tap "microsoft/git"
+brew "dyff"
+
+tap "rcmdnk/file"
+brew "brew-file"
+
 tap "sachaos/todoist"
+brew "todoist"
 
 brew "antibody"
 brew "asdf"
@@ -28,7 +39,6 @@ brew "dust"
 brew "enchant"
 brew "eza"
 brew "fd"
-brew "federico-terzi/espanso/espanso"
 brew "fzf"
 brew "gh"
 brew "git"
@@ -36,7 +46,6 @@ brew "git-delta"
 brew "git-extras"
 brew "gnupg"
 brew "graphviz"
-brew "homeport/tap/dyff"
 brew "htop"
 brew "httpie"
 brew "hub"
@@ -58,7 +67,6 @@ brew "procs"
 brew "pstree"
 brew "ranger"
 brew "ripgrep"
-brew "sachaos/todoist/todoist"
 brew "sd"
 brew "shellcheck"
 brew "shfmt"
@@ -82,13 +90,13 @@ brew "zoxide"
 brew "zsh"
 
 cask "1password"
-cask "1password-cli@1"
 cask "alacritty"
 cask "alfred"
 cask "appcleaner"
 cask "bartender"
 cask "clipy"
 cask "dash"
+cask "docker"
 cask "eloston-chromium"
 cask "firefox-nightly"
 cask "firefox"
@@ -123,3 +131,6 @@ mas "Speedtest", id: 1153157709
 mas "Pocket", id: 568494494
 mas "Timery", id: 1425368544
 mas "Todoist", id: 585829637
+
+file ./Brewfile.$HOSTNAME
+file ./Brewfile.local

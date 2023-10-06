@@ -13,20 +13,15 @@ confirm() {
     fi
 }
 
-install_from_brewfile() {
-    [ -e "$1" ] && confirm brew bundle install --file "$1" || true
-}
-
-brew update-reset
+# brew update-reset
+brew update
 
 printf "=====\nOutdated Brew formulae:\n"
 brew outdated
 
 confirm brew upgrade
 
-install_from_brewfile "${HOME}/dotfiles/Brewfile"
-install_from_brewfile "${HOME}/dotfiles/Brewfile.$(hostname -s)"
-install_from_brewfile "${HOME}/Brewfile.local"
+confirm brew-file --verbose debug install
 
 brew cleanup -sn
 confirm brew cleanup
