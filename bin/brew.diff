@@ -17,7 +17,10 @@ brew.find-brewfiles \
     | sort -u >/tmp/Brewfile.combined
 
 # List all installed Brew formualae and casks
-brew bundle dump --no-restart --file=- | sort -u >/tmp/Brewfile.installed
+# We don't want to include WhaleBrew and (more importantly) VS Code extensions.
+# See https://github.com/Homebrew/homebrew-bundle/pull/1217
+brew bundle dump --brews --casks --mas --taps --no-restart --file=- \
+    | sort -u >/tmp/Brewfile.installed
 
 echo "Installed but not listed in Brewfile:"
 comm -23 /tmp/Brewfile.{installed,combined}
