@@ -23,3 +23,4 @@ function gcp.cluster-select() {
 }
 
 alias gcp.unset="gcloud config unset account"
+alias gcp.update="gcloud components update"
