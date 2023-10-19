@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# SPDX-FileCopyrightText: 2022 Greg Back <git@gregback.net>
+# SPDX-FileCopyrightText: 2023 Greg Back <git@gregback.net>
 # SPDX-License-Identifier: MIT
 
 # Fetch all remote repositories that are used as "reference" repos for local
@@ -9,10 +9,6 @@
 
 set -euo pipefail
 
-for repo in "${HOME}"/.git-references/*.git; do
-    pushd "${repo}" >/dev/null
-    echo "-------------------"
-    echo "Updating reference repo: ${repo}"
-    git fetch --prune origin +refs/heads/*:refs/heads/*
-    popd >/dev/null
-done
+fd --glob "*.git" --max-depth 1 ~/.git-references/ \
+    --exec printf -- "---------------------\nUpdating reference repo: %s\n" "{.}" \; \
+    --exec git -C "{}" fetch --prune origin +refs/heads/*:refs/heads/*

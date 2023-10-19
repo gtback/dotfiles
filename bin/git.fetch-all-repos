@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+dir=${1:-${HOME}/code}
+
+fd -H --glob .git "${dir}" \
+    --exec printf -- "---------------------\nFetching: %s\n" "{//}" \; \
+    --exec git -C "{//}" fetch --all --prune
