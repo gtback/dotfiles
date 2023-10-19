@@ -12,8 +12,7 @@ set -euo pipefail
 for repo in "${HOME}"/.git-references/*.git; do
     pushd "${repo}" >/dev/null
     echo "-------------------"
-    echo "${repo}"
+    echo "Updating reference repo: ${repo}"
     git fetch --prune origin +refs/heads/*:refs/heads/*
-    # git fetch --all --prune
     popd >/dev/null
 done
