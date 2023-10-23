@@ -15,7 +15,7 @@ code.install-extensions() {
     # 4. Strip out the part of lines that tells you how to force installing a
     #    specific version. We only care out the part of the output that says the
     #    extension is installed.
-    code.parse-extension-file \
+    code.parse-extensions-file \
         | awk '{print "--install-extension"; print $1}' \
         | xargs code \
         | sd " Use '--force'.*" ""
