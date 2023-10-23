@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Delete branches whose upstream branch is gone ("removed" branches)
+# Based on: https://bluebones.net/2022/04/remove-obsolete-branches-from-git/
+
+# Run with `git drb`
+
+set -euo pipefail
+
+git remote | xargs git remote prune
+
+# The `-r`/`--no-run-on-empty` argument to xargs is the default in BSD/macOS,
+# but `-r` is available for compatibilty purposes with GNU xargs.
+git branch -vvv | grep ": gone]" | cut -f3 -d' ' | xargs -r git branch -D
