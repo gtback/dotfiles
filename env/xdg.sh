@@ -29,6 +29,7 @@ export TEXMFCONFIG="${XDG_CONFIG_HOME}/texlive/texmf-config"
 export _ZO_DATA_DIR="${XDG_DATA_HOME}/zoxide"
 
 export GOPATH="${XDG_DATA_HOME}/go"
+export PATH="${PATH}:${GOPATH}/bin/"
 
 export GRADLE_USER_HOME="${XDG_DATA_HOME}/gradle"
 
