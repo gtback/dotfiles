@@ -34,7 +34,7 @@ if has('mac')
 endif
 Plugin 'rking/ag.vim'
 Plugin 'saltstack/salt-vim'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
 Plugin 'tmhedberg/SimpylFold'

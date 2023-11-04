@@ -52,7 +52,7 @@ nnoremap <leader>j :%!python -m json.tool<cr>
 " Select all
 nnoremap <leader>a ggVG
 " Toggle Syntastic Mode
-nnoremap <leader>s :SyntasticToggleMode<cr>
+" nnoremap <leader>s :SyntasticToggleMode<cr>
 " Go to Definition
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
@@ -146,13 +146,13 @@ let g:SimpylFold_docstring_preview=1
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
 autocmd FileType html,htmldjango set ts=2 sts=2 sw=2
 autocmd FileType yaml set ts=2 sts=2 sw=2
