@@ -19,10 +19,10 @@
     "files.trimTrailingWhitespace": false
   },
   "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
     // Black does not support the range formatting
     "editor.formatOnSaveMode": "file",
     "editor.formatOnType": true,
-    "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.rulers": [
       88
     ]
