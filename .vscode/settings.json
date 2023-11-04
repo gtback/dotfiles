@@ -2,8 +2,7 @@
   // These settings apply just in this repo, not anywhere else
   "files.associations": {
     "**/git/config*": "ini",
-    "gvimrc": "vimrc",
-    "vimrc": "vimrc",
+    "**/vim/*": "vimrc",
   },
   "shellcheck.ignorePatterns": {
     "bin/brew.up": true,
