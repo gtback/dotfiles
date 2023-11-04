@@ -16,14 +16,19 @@ HEADERS = {
 
 def main() -> None:
     resp = requests.get("https://api.github.com/rate_limit", headers=HEADERS)
+    if not resp.ok:
+        print(f"An error occurred: {resp.json()}")
+        return
 
     expires = resp.headers["github-authentication-token-expiration"]
-    # print(resp.json()['login'])
 
-    # TODO: Handle time zones better
-    expires_dt = dt.datetime.strptime(expires, "%Y-%m-%d %H:%M:%S UTC")
+    expires_dt = (
+        dt.datetime.strptime(expires, "%Y-%m-%d %H:%M:%S UTC")
+        .replace(tzinfo=dt.timezone.utc)
+        .astimezone()
+    )
 
-    difference: dt.timedelta = expires_dt - dt.datetime.utcnow()
+    difference: dt.timedelta = expires_dt - dt.datetime.now(tz=dt.timezone.utc)
     if difference.total_seconds() > 0:
         if not difference.days:
             print(f"Token expires today: {expires_dt}")
