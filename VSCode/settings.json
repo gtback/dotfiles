@@ -125,9 +125,9 @@
     "vscode-kubernetes.minikube-path.mac": "/Users/gtback/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
   },
   "vsicons.dontShowNewVersionMessage": true,
+  "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.untitled.hint": "hidden",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
