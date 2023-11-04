@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2022 Greg Back <git@gregback.net>
 # SPDX-License-Identifier: MIT
 
-'''
+"""
 Parse an SVN Authz file to show all subpaths a user has access to.
 
 With `colorama` installed, the output will be colored:
@@ -16,7 +16,7 @@ The NO_COLOR environment variable (https://no-color.org/) will be respected.
 Usage:
 
     svn.show-access path/to/authz gtback
-'''
+"""
 
 from collections import defaultdict
 from configparser import ConfigParser
@@ -28,6 +28,7 @@ try:
     if os.environ.get("NO_COLOR"):
         raise EnvironmentError
     from colorama import init, Fore
+
     init()
     HAS_COLORS = True
 except (ImportError, EnvironmentError):
@@ -80,7 +81,7 @@ def main(authz_file_path, user):
         while len(stack) and not found_prefix:
             latest = stack[-1]
             if path.startswith(latest):
-                tmp_path = " " * len(latest) + tmp_path[len(latest):]
+                tmp_path = " " * len(latest) + tmp_path[len(latest) :]
                 found_prefix = True
             else:
                 stack.pop()
@@ -90,7 +91,8 @@ def main(authz_file_path, user):
 
     return 0
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     authz_file = sys.argv[1]
     username = sys.argv[2]
     sys.exit(main(authz_file, username))

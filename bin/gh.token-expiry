@@ -10,20 +10,20 @@ import requests
 
 
 HEADERS = {
-    "Authorization": "token " + os.environ.get("GITHUB_TOKEN")
+    "Authorization": "token " + os.environ["GITHUB_TOKEN"],
 }
 
 
-def main():
+def main() -> None:
     resp = requests.get("https://api.github.com/rate_limit", headers=HEADERS)
 
-    expires = resp.headers['github-authentication-token-expiration']
+    expires = resp.headers["github-authentication-token-expiration"]
     # print(resp.json()['login'])
 
     # TODO: Handle time zones better
     expires_dt = dt.datetime.strptime(expires, "%Y-%m-%d %H:%M:%S UTC")
 
-    difference : dt.timedelta = expires_dt - dt.datetime.utcnow()
+    difference: dt.timedelta = expires_dt - dt.datetime.utcnow()
     if difference.total_seconds() > 0:
         if not difference.days:
             print(f"Token expires today: {expires_dt}")
