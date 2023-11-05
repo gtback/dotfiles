@@ -2,5 +2,5 @@
 # This hook is sourced after every virtualenv is activated.
 
 if [ -n "$TMUX" ]; then
-  tmux rename-window "$(basename $VIRTUAL_ENV)"
+    tmux rename-window "$(basename "${VIRTUAL_ENV}")"
 fi

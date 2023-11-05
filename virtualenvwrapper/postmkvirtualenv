@@ -1,7 +1,9 @@
-#!/bin/zsh
+#!/bin/sh
 # This hook is sourced after a new virtualenv is activated.
+
+set -x
 
 # For older version of Python (prior to 2.7.9), install the following packages
 # with pip to make urllib3 handle TLS more securely.
 # https://urllib3.readthedocs.org/en/latest/security.html#openssl-pyopenssl
-python -c "import sys; sys.exit(int(sys.version_info < (2, 7, 9)))" || echo "*** SECURING TLS ***" && pip install pyopenssl ndg-httpsclient pyasn1
+python -c "import sys; sys.exit(int(sys.version_info < (2, 7, 9)))" || (echo "*** SECURING TLS ***" && pip install pyopenssl ndg-httpsclient pyasn1)

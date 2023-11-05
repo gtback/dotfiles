@@ -67,4 +67,11 @@ else
     echo 'source ~/dotfiles/_bashrc' >>"${HOME}/.bashrc"
 fi
 
+# Symlink all virtualenvwrapper hooks
+set +f
+for f in virtualenvwrapper/*; do
+    symlink "${f}" "${WORKON_HOME}"
+done
+set -f
+
 popd >/dev/null
