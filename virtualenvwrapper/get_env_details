@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# SPDX-FileCopyrightText: 2023 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# This hook is run when the list of virtualenvs is printed so each name can include details.
+# argument: environment name
+
+# Details include:
+# - The path to the virtualenv
+# - If there is a (code) project associated with the virtualenv, the path to
+#   that directory
+# - When the virtualenv was created (based on the "birth time" of the directory)
+# - When the virtualenv was last modified (based on the modified time of the
+#   `site-packages` directory)
+# - The configuration of the virtualenv (contents of pyvenv.cfg)
+# - The list of packages in the virtualenv (with `pip freeze`)
+
+set -eu
+
+VENV="${WORKON_HOME}/${1}"
+
+project_file="${VENV}/${VIRTUALENVWRAPPER_PROJECT_FILENAME}"
+
+echo "Path:      ${VENV}"
+echo "Project:   $([ -s "${project_file}" ] && cat "${project_file}")"
+echo "Created:   $(stat -f "%SB" -t "%F %T %Z" "${VENV}")"
+echo "Modified:  $(stat -f "%Sm" -t "%F %T %Z" "${VENV}"/lib/python*/site-packages)"
+printf -- "--- Config ---\n"
+cat "${VENV}/pyvenv.cfg"
+printf -- "--- Packages ---\n"
+"${VENV}/bin/python" -m pip freeze
+printf -- "---\n"
