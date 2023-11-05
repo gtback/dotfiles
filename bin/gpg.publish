@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# SPDX-FileCopyrightText: 2023 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Send the GnuPG public key identified by $KEYID to a bunch of key servers.
+
+set -eu
+
+gpg --keyserver pgp.mit.edu --send-key "${KEYID}"
+gpg --keyserver keys.gnupg.net --send-key "${KEYID}"
+gpg --keyserver hkps://keys.openpgp.org --send-key "${KEYID}"
+gpg --keyserver hkps://pgp.ocf.berkeley.edu --send-key "${KEYID}"
+gpg --keyserver hkps://keyserver.ubuntu.com:443 --send-key "${KEYID}"
+gpg --keyserver hkps://hkps.pool.sks-keyservers.net --send-key "${KEYID}"
