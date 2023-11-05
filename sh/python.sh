@@ -1,6 +1,8 @@
 #!/bin/bash
 
 alias pyws="sed -i -e 's/^[ \r\t]*$//'"
+
+# This is preferable to the `wipeenv` command provided by virtualenvwrapper.
 alias pip.rm-all="python -m pip freeze | sed 's/^-e.*egg=//' | xargs python -m pip uninstall -y"
 
 export WORKON_HOME="$HOME/.virtualenvs"
