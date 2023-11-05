@@ -1,6 +1,5 @@
 #!/bin/bash
 
-alias lsvirtualenv="lsvirtualenv -b"
 alias pyws="sed -i -e 's/^[ \r\t]*$//'"
 alias pip.rm-all="python -m pip freeze | sed 's/^-e.*egg=//' | xargs python -m pip uninstall -y"
 
