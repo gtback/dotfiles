@@ -13,7 +13,7 @@ export HOMEBREW_INSTALL_BADGE="✅"
 brew.find-all-brewfiles() {
     # - Find all Brewfiles in code/ and dotfiles/
     # - Find any Brewfiles in the home directory (if any exist)
-    fd Brewfile "${HOME}/code" "${HOME}/dotfiles"
+    fd -I Brewfile "${HOME}/code" "${HOME}/dotfiles"
     fd --max-depth 1 Brewfile "${HOME}"
 }
 
