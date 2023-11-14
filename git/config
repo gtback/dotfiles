@@ -31,6 +31,8 @@
 	# Delete branches merged into the current branch
 	dmb = "!git branch --merged | grep -v \"^\\*\" | grep -v \"^\\+\" | grep -v '^  master$' | grep -v '^  main$' | xargs -n 1 git branch -d"
 
+	clean-branches = "!git dmb && git dsb && git drb"
+
 	mydiff = "!f () { echo $1 && echo $2 && git diff $(git merge-base $1 $2) $2; }; f"
 	info = "!pushd ~/code/$1 && git remote -v && git branch -a && popd"
 
