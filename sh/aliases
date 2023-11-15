@@ -79,3 +79,25 @@ function pwg() {
     head -c "$ENTROPY" /dev/random | base64 | tr -d '\n=+/'
     echo
 }
+
+# https://stackoverflow.com/a/76163772
+# License: CC BY-SA 4.0
+# Modified to:
+# - add " || return" and wrap "$1" in quotes (shellcheck warnings)
+# - formatting with shfmt
+function cd() {
+    # no arguments specified
+    if [ $# -eq 0 ]; then
+        builtin cd || return
+    # argument is a file, which is a link
+    elif [[ -f "$1" && -L "$1" ]]; then
+        # recursive
+        cd "$(readlink "$1")" || return
+    # argument is a file
+    elif [ -f "$1" ]; then
+        builtin cd "$(dirname "$1")" || return
+    # argument is not a file
+    else
+        builtin cd "$@" || return
+    fi
+}
