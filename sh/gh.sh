@@ -2,6 +2,9 @@
 
 # Shell functions for the GitHub CLI (`gh`): https://cli.github.com/
 
+# Don't use GitHub Token environment variable, even if one is set.
+alias gh="GITHUB_TOKEN= gh"
+
 # List all members of a GitHub team:
 # Args:
 # - team_name
