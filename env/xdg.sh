@@ -15,7 +15,14 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export VIMINIT="source ${XDG_CONFIG_HOME}/vim/vimrc"
 
 # By default, Poetry uses `~/Library/Caches/pypoetry` on macOS
+# https://python-poetry.org/docs/configuration/#cache-directory
 export POETRY_CACHE_DIR="${XDG_CACHE_HOME}/pypoetry"
+# By default, Poetry uses `~/Library/Application Support/pypoetry` on macOS
+# https://python-poetry.org/docs/configuration/#config-directory
+export POETRY_CONFIG_DIR="${XDG_CONFIG_HOME}/pypoetry"
+# By default, Poetry uses `~/Library/Application Support/pypoetry` on macOS
+# https://python-poetry.org/docs/configuration/#data-directory
+export POETRY_DATA_DIR="${XDG_DATA_HOME}/pypoetry"
 
 export ANTIDOTE_HOME="${XDG_DATA_HOME}/antidote"
 

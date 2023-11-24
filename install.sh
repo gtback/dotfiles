@@ -36,6 +36,7 @@ symlink git "$XDG_CONFIG_HOME"
 symlink gnupg "$XDG_CONFIG_HOME"
 symlink krew "$XDG_CONFIG_HOME"
 symlink pipx "$XDG_CONFIG_HOME"
+symlink pypoetry "$XDG_CONFIG_HOME"
 symlink tmux "$XDG_CONFIG_HOME"
 symlink vim "$XDG_CONFIG_HOME"
 
