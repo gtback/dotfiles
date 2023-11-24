@@ -25,7 +25,7 @@ brew "brew-file"
 tap "sachaos/todoist"
 brew "todoist"
 
-brew "antibody"
+brew "antidote"
 brew "asdf"
 # /bin/bash on macOS is version 3.2.57 from 2007.
 brew "bash"

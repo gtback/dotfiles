@@ -104,6 +104,17 @@ fi
 source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh"
 source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh.local"
 
+source-if-exists "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
+
+if command -v antidote &>/dev/null; then
+  # Store the antidote bundle file (plugin list) in the zsh/ directory in this
+  # directory. Store the compiled static file next to the downloaded plugins.
+  zstyle ':antidote:bundle' file "${ZDOTDIR}/plugins.txt"
+  zstyle ':antidote:static' file "${ANTIDOTE_HOME}/.plugins.zsh"
+
+  antidote load
+fi
+
 # Load other tools' configuration files
 
 # source-if-exists $POWERLINE/bindings/zsh/powerline.zsh
@@ -116,12 +127,6 @@ source-if-exists ~/.fzf.zsh
 # Load prompt
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
-fi
-
-if command -v antibody &>/dev/null; then
-  # shellcheck disable=SC1090
-  source <(antibody init)
-  antibody bundle <"${ZDOTDIR}/plugins.txt"
 fi
 
 if command -v zoxide &>/dev/null; then

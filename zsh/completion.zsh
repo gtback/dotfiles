@@ -63,3 +63,10 @@ if command -v kubectl &>/dev/null; then
   # shellcheck disable=SC1090
   source <(kubectl completion zsh)
 fi
+
+# The docker.plugin.zsh file from oh-my-zsh expects this variable to be defined
+# and this directory to exist. See:
+# - https://github.com/ohmyzsh/ohmyzsh/issues/11866
+# - https://github.com/ohmyzsh/ohmyzsh/blob/2ef7c73cc884163367279e4b586136e3335b1c53/oh-my-zsh.sh#L56-L57
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
+mkdir -p "${ZSH_CACHE_DIR}/completions"
