@@ -31,11 +31,6 @@ _comp_options+=(globdots)
 # shellcheck disable=SC1090
 eval "$(npm completion)"
 
-# if command -v poetry &>/dev/null; then
-#   # shellcheck disable=SC1090
-#   eval "$(poetry completions zsh)"
-# fi
-
 ### END compdef COMPLETIONS ###
 
 autoload -U +X bashcompinit && bashcompinit
