@@ -31,9 +31,6 @@ _comp_options+=(globdots)
 # shellcheck disable=SC1090
 eval "$(npm completion)"
 
-source "${XDG_CONFIG_HOME}/zsh/completions/_toggl"
-source "${XDG_CONFIG_HOME}/zsh/completions/_dyff"
-
 # if command -v poetry &>/dev/null; then
 #   # shellcheck disable=SC1090
 #   eval "$(poetry completions zsh)"
