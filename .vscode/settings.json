@@ -3,6 +3,9 @@
   "files.associations": {
     "**/git/config*": "ini",
     "**/vim/*": "vimrc",
+    // These are scripts to calcuate differences between what's configured and
+    // what's installed, not diff/patch files.
+    "**/bin/*.diff": "shellscript"
   },
   "shellcheck.ignorePatterns": {
     "bin/brew.up": true,

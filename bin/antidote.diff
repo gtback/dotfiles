@@ -2,7 +2,14 @@
 
 set -euo pipefail
 
-installed=$(find "${ANTIBODY_HOME}" -depth 1 -print0 | xargs -0 basename -a | sd -- '-COLON-' ':' | sd -- '-SLASH-' '/' | sd "https://github.com/" "" | sort -u)
+installed=$(find "${ANTIDOTE_HOME}" -depth 1 -print0 \
+    | xargs -0 basename -a \
+    | rg -v '.antidote.load' \
+    | rg -v '.plugins.zsh' \
+    | sd -- '-COLON-' ':' \
+    | sd -- '-SLASH-' '/' \
+    | sd "https://github.com/" "" \
+    | sort -u)
 
 configured=$(rg -v "^#" <"${ZDOTDIR}/plugins.txt" | awk '$1{print $1}' | sort -u)
 
