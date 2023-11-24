@@ -4,7 +4,6 @@ flake8
 gcalcli
 identify
 pip-tools
-poetry
 pre-commit
 pycodestyle
 reuse
