@@ -10,9 +10,6 @@ tap "homebrew/cask-versions"
 tap "homebrew/cask"
 tap "homebrew/core"
 
-tap "federico-terzi/espanso"
-brew "espanso"
-
 tap "gtback/tap"
 cask "1password-cli@1"
 
@@ -98,6 +95,7 @@ cask "clipy"
 cask "dash"
 cask "docker"
 cask "eloston-chromium"
+cask "espanso"
 cask "firefox-nightly"
 cask "firefox"
 cask "font-inconsolata-nerd-font"
