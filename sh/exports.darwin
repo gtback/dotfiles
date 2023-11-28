@@ -2,17 +2,5 @@
 
 export BROWSER=open
 
-# virtualenvwrapper is installed with Homebrew's python3
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-
-# Use the version of virtualenv installed with Homebrew python
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-
-# https://www.gnupg.org/documentation/manuals/gnupg/Common-Problems.html
-# https://stackoverflow.com/a/57579018
-GPG_TTY=$(tty)
-GPG_AGENT_INFO=$(gpgconf --list-dirs agent-socket | tr -d '\n' && echo -n ::)
-export GPG_TTY GPG_AGENT_INFO
-
 # https://github.com/Homebrew/homebrew-core/issues/52490#issuecomment-885021156
 export PERL5LIB=/usr/local/opt/subversion/lib/perl5/site_perl/5.30.2/darwin-thread-multi-2level
