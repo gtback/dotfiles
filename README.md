@@ -49,14 +49,13 @@ My dotfiles
    ```
 
    `virtualenv` and `virtualenvwrapper` are installed in the Homebrew Python 3
-   (this is the `system` Python to `asdf`/`pyenv`). When a new minor version of
+   (this is the `system` Python to `rtx`/`asdf`/`pyenv`). When a new minor version of
    Python is released to Homebrew, these need to be re-installed.
 
-1. Set up [ASDF](https://asdf-vm.com/#/) plugins and versions:
+1. Install language runtimes with [RTX](https://github.com/jdx/rtx):
 
    ```shell
-   asdf.install-plugins
-   asdf install
+   rtx install
    ```
 
 1. Compile custom `nnn` with Nerd Font support:

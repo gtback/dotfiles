@@ -27,9 +27,6 @@ ln -svfn "$XDG_CONFIG_HOME/zsh/zshenv" ~/.zshenv
 mkdir -p "$XDG_CACHE_HOME/zsh"
 mkdir -p "$XDG_DATA_HOME/zsh"
 
-# https://asdf-vm.com/#/
-symlink asdf "$XDG_CONFIG_HOME"
-
 symlink brewfile "$XDG_CONFIG_HOME"
 symlink gh "$XDG_CONFIG_HOME"
 symlink git "$XDG_CONFIG_HOME"
@@ -37,6 +34,7 @@ symlink gnupg "$XDG_CONFIG_HOME"
 symlink krew "$XDG_CONFIG_HOME"
 symlink pipx "$XDG_CONFIG_HOME"
 symlink pypoetry "$XDG_CONFIG_HOME"
+symlink rtx "$XDG_CONFIG_HOME"
 symlink tmux "$XDG_CONFIG_HOME"
 symlink vim "$XDG_CONFIG_HOME"
 

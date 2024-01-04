@@ -93,11 +93,12 @@ for file in "${XDG_CONFIG_HOME}"/sh/{,local/,${os}/}*.sh; do
 done
 
 # Load Version Managers
+eval "$(rtx activate zsh)"
+
 if [ "$TERM_PROGRAM" == "vscode" ]; then
   echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
 else
   source-if-exists /usr/local/bin/virtualenvwrapper_lazy.sh
-  source-if-exists "$(brew --prefix asdf)/libexec/asdf.sh"
 fi
 
 # Load Completions

@@ -4,10 +4,6 @@
 [ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
 [ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
 
-export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/asdfrc"
-export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
-export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="$XDG_CONFIG_HOME/asdf/tool-versions"
-
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 
 # Used for Vim and Neovim
@@ -41,3 +37,6 @@ export PATH="${PATH}:${GOPATH}/bin/"
 export GRADLE_USER_HOME="${XDG_DATA_HOME}/gradle"
 
 export KREW_ROOT="${XDG_DATA_HOME}/krew"
+
+export RTX_DATA_DIR="${XDG_DATA_HOME}/rtx"
+export RTX_CACHE_DIR="${XDG_CACHE_HOME}/rtx"
