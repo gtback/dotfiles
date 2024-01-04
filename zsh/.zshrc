@@ -93,7 +93,7 @@ for file in "${XDG_CONFIG_HOME}"/sh/{,local/,${os}/}*.sh; do
 done
 
 # Load Version Managers
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 
 if [ "$TERM_PROGRAM" == "vscode" ]; then
   echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
@@ -102,7 +102,7 @@ else
 fi
 
 # Load Completions
-source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh"
+# source "${XDG_CONFIG_HOME}/zsh/completion.zsh"
 source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh.local"
 
 source-if-exists "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"

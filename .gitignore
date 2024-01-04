@@ -7,5 +7,5 @@ gnupg/*
 **/local/**
 espanso/user/local.yml
 
-.rtx.local.toml
-.rtx.*.local.toml
+.mise.local.toml
+.mise.*.local.toml
