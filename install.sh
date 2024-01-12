@@ -1,43 +1,51 @@
 #!/bin/bash
 
-set -euf
+set -eufo pipefail
+IFS=$'\n\t'
 
+# If you don't pass a second argument, the first argument is symlinked into
+# `$XDG_CONFIG_HOME`.
 symlink() {
-    SRC="$PWD/$1"
+    SRC="$dotfiles_dir/$1"
     [ -e "$SRC" ] || (echo "No file named $SRC" && exit 1)
-    DEST="$2"
+    DEST="${2:-$XDG_CONFIG_HOME/$1}"
     ln -svfFn "$SRC" "$DEST"
 }
 
-pushd "${HOME}/dotfiles" >/dev/null
+pushd "$HOME/dotfiles" >/dev/null
+dotfiles_dir=$(git rev-parse --show-toplevel)
+
 # If this is running for the first time, these variables won't be set.
 set +u
 source env/xdg.sh
 set -u
 
-# Set up directory with environment variables
-symlink env "$XDG_CONFIG_HOME"
+# Ensure the primary XDG directories exist
+mkdir -p "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_DATA_HOME"
 
-symlink sh "$XDG_CONFIG_HOME"
+# Set up directory with environment variables
+symlink env
+
+symlink sh
 
 # Set up ZSH
-symlink zsh "$XDG_CONFIG_HOME"
+symlink zsh
 # .zshenv needs to be in $HOME to bootstrap ZDOTDIR
 ln -svfn "$XDG_CONFIG_HOME/zsh/zshenv" ~/.zshenv
 mkdir -p "$XDG_CACHE_HOME/zsh"
 mkdir -p "$XDG_DATA_HOME/zsh"
 
-symlink alacritty "$XDG_CONFIG_HOME"
-symlink brewfile "$XDG_CONFIG_HOME"
-symlink gh "$XDG_CONFIG_HOME"
-symlink git "$XDG_CONFIG_HOME"
-symlink gnupg "$XDG_CONFIG_HOME"
-symlink krew "$XDG_CONFIG_HOME"
-symlink mise "$XDG_CONFIG_HOME"
-symlink pipx "$XDG_CONFIG_HOME"
-symlink pypoetry "$XDG_CONFIG_HOME"
-symlink tmux "$XDG_CONFIG_HOME"
-symlink vim "$XDG_CONFIG_HOME"
+symlink alacritty
+symlink brewfile
+symlink gh
+symlink git
+symlink gnupg
+symlink krew
+symlink mise
+symlink pipx
+symlink pypoetry
+symlink tmux
+symlink vim
 
 symlink _ackrc ~/.ackrc
 symlink _fzf.bash ~/.fzf.bash
@@ -47,29 +55,36 @@ symlink _pythonstartup ~/.pythonstartup
 
 symlink starship.toml ~/.config/starship.toml
 
-# Joplin does not respsect XDG_CONFIG_HOME, and puts both data and cache data in
+# Joplin does not respect XDG_CONFIG_HOME, and puts both data and cache data in
 # the hard-coded `~/.config/joplin-desktop/` directory.
 # https://github.com/laurent22/joplin/issues/6524
-mkdir -p ~/.config/joplin-desktop
-symlink joplin-desktop/userchrome.css ~/.config/joplin-desktop/userchrome.css
-symlink joplin-desktop/userstyle.css ~/.config/joplin-desktop/userstyle.css
+joplin_dir="$HOME/.config/joplin-desktop"
+mkdir -p "$joplin_dir"
+symlink joplin-desktop/userchrome.css "$joplin_dir/userchrome.css"
+symlink joplin-desktop/userstyle.css "$joplin_dir/userstyle.css"
 
-symlink VSCode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
-symlink VSCode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
-symlink VSCode/tasks.json "$HOME/Library/Application Support/Code/User/tasks.json"
+# TODO: Make this work outside of macOS
+vscode_settings_dir="$HOME/Library/Application Support/Code/User"
+mkdir -p "$vscode_settings_dir"
+symlink VSCode/keybindings.json "$vscode_settings_dir/keybindings.json"
+symlink VSCode/settings.json "$vscode_settings_dir/settings.json"
+symlink VSCode/tasks.json "$vscode_settings_dir/tasks.json"
 
-symlink espanso "${HOME}/Library/Preferences"
+# TODO: Make this work outside of macOS
+symlink espanso "$HOME/Library/Preferences"
 
-if grep -q 'source ~/dotfiles/_bashrc' "${HOME}/.bashrc"; then
+if [ -e "$HOME/.bashrc" ] && grep -q 'source ~/dotfiles/_bashrc' "$HOME/.bashrc"; then
     echo ".bashrc has already been modified"
 else
-    echo 'source ~/dotfiles/_bashrc' >>"${HOME}/.bashrc"
+    echo "Updating .bashrc"
+    echo 'source ~/dotfiles/_bashrc' >>"$HOME/.bashrc"
 fi
 
 # Symlink all virtualenvwrapper hooks
 set +f
 for f in virtualenvwrapper/*; do
-    symlink "${f}" "${WORKON_HOME}"
+    # TODO: Handle first time install (before this is defined) better
+    [[ -z "${WORKON_HOME:-}" ]] || symlink "$f" "$WORKON_HOME"
 done
 set -f
 

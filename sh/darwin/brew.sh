@@ -1,5 +1,18 @@
 #!/bin/bash
 
+OS_ARCH=$(uname -m)
+
+# This is the output of `brew shellenv`, but doesn't assume that `brew` is
+# currently available on `$PATH`.
+if [ "$OS_ARCH" == "arm64" ]; then
+    export HOMEBREW_PREFIX="/opt/homebrew";
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+    export HOMEBREW_REPOSITORY="/opt/homebrew";
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+    export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+fi
+
 export HOMEBREW_BUNDLE_NO_LOCK=1
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=14
 export HOMEBREW_NO_ENV_HINTS=1
