@@ -27,6 +27,7 @@ ln -svfn "$XDG_CONFIG_HOME/zsh/zshenv" ~/.zshenv
 mkdir -p "$XDG_CACHE_HOME/zsh"
 mkdir -p "$XDG_DATA_HOME/zsh"
 
+symlink alacritty "$XDG_CONFIG_HOME"
 symlink brewfile "$XDG_CONFIG_HOME"
 symlink gh "$XDG_CONFIG_HOME"
 symlink git "$XDG_CONFIG_HOME"
@@ -39,7 +40,6 @@ symlink tmux "$XDG_CONFIG_HOME"
 symlink vim "$XDG_CONFIG_HOME"
 
 symlink _ackrc ~/.ackrc
-symlink _alacritty.yml ~/.alacritty.yml
 symlink _fzf.bash ~/.fzf.bash
 symlink _fzf.zsh ~/.fzf.zsh
 symlink _jsbeautifyrc ~/.jsbeautifyrc

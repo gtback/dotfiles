@@ -1,0 +1,14 @@
+[font]
+size = 16.0
+
+[font.normal]
+family = "Inconsolata Nerd Font"
+
+[[keyboard.bindings]]
+chars = "\u001Bj"
+key = "J"
+mods = "Alt"
+
+[window.padding]
+x = 10
+y = 10
