@@ -88,4 +88,6 @@ for f in virtualenvwrapper/*; do
 done
 set -f
 
+symlink macos/com.local.KeyRemapping.plist "$HOME/Library/LaunchAgents/com.local.KeyRemapping.plist"
+
 popd >/dev/null
