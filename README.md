@@ -29,6 +29,7 @@ My dotfiles
    ```shell
    HOSTNAME="mjolnir"
    defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+   defaults write com.apple.menuextra.clock.plist ShowSeconds -bool true
    sudo scutil --set ComputerName ${HOSTNAME}
    sudo scutil --set HostName ${HOSTNAME}
    sudo scutil --set LocalHostName ${HOSTNAME}
