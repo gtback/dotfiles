@@ -28,12 +28,9 @@ My dotfiles
 
    ```shell
    HOSTNAME="mjolnir"
+   mac.set-hostname "$HOSTNAME"
    defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
    defaults write com.apple.menuextra.clock.plist ShowSeconds -bool true
-   sudo scutil --set ComputerName ${HOSTNAME}
-   sudo scutil --set HostName ${HOSTNAME}
-   sudo scutil --set LocalHostName ${HOSTNAME}
-   sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string ${HOSTNAME}
    ```
 
 1. Install Homebrew dependencies:
