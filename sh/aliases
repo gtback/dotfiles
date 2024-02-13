@@ -101,3 +101,10 @@ function cd() {
         builtin cd "$@" || return
     fi
 }
+
+# Change directory based on a relative path to the root of the git repo. This is
+# useful when copying repository paths from GitHub, combined with the function
+# above.
+function cdr() {
+    cd "$(git rev-parse --show-toplevel)/$1" || return
+}
