@@ -85,6 +85,7 @@
   "git.alwaysShowStagedChangesResourceGroup": true,
   "git.confirmSync": false,
   "git.openDiffOnClick": false,
+  "git.openRepositoryInParentFolders": "never",
   "git.untrackedChanges": "separate",
   "gitlens.codeLens.enabled": false,
   "gitlens.defaultDateFormat": null,
