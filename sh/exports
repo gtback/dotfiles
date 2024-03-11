@@ -15,6 +15,10 @@ export POWERLINE=$HOME/.local/venvs/powerline-status/lib/python3.6/site-packages
 export IP_RE="((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
 export CIDR_RE="${IP_RE}/(3[0-2]|[0-2]?[0-9])"
 
+# This is my personal GPG key, available at
+# https://gregback.net/pgp/9836566B227CEF7F.asc
+export KEYID=0x9836566B227CEF7F
+
 # Tmuxinator sets GEM_HOME, which is then inherited by tmux and shells running
 # inside of it. This interferes with how `asdf`-managed rubies install gems.
 # - https://discourse.brew.sh/t/why-does-tmuxinator-sets-gem-home/7296
