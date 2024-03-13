@@ -7,11 +7,11 @@ djui/alias-tips
 reegnz/jq-zsh-plugin
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
-robbyrussell/oh-my-zsh path:plugins/docker
-robbyrussell/oh-my-zsh path:plugins/pip
-robbyrussell/oh-my-zsh path:plugins/python
-robbyrussell/oh-my-zsh path:plugins/ruby
-robbyrussell/oh-my-zsh path:plugins/vagrant
+ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/pip
+ohmyzsh/ohmyzsh path:plugins/python
+ohmyzsh/ohmyzsh path:plugins/ruby
+ohmyzsh/ohmyzsh path:plugins/vagrant
 
 # https://github.com/z-shell/F-Sy-H
 z-shell/F-Sy-H
