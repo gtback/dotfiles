@@ -8,6 +8,7 @@ reegnz/jq-zsh-plugin
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
 ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/jira
 ohmyzsh/ohmyzsh path:plugins/pip
 ohmyzsh/ohmyzsh path:plugins/python
 ohmyzsh/ohmyzsh path:plugins/ruby
