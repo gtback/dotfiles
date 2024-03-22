@@ -1,10 +1,4 @@
 [tools]
-# kubectl = "system"
-golang = "1.20.4"
-nodejs = "18.17.1"
-python = ["3.12.0", "3.11.6", "3.10.5", "3.9.13", "system"]
-# ruby = "2.6.6"
-# rust = "stable"
-terraform = "1.1.9"
-teleport-ent = "13.4.10"
+node = "lts"
+terraform = "latest"
 yarn = "1.22.19"
