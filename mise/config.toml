@@ -2,3 +2,6 @@
 node = "lts"
 terraform = "latest"
 yarn = "1.22.19"
+
+[settings]
+experimental = true
