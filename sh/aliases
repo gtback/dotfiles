@@ -10,8 +10,8 @@ alias utc.now="date -u +'%Y-%m-%dT%H:%M:%SZ'"
 
 # https://eza.rocks/
 alias ls='eza'
-alias l='eza -lFhg -m --time-style=long-iso'
-alias ll='eza -l'
+alias l='eza --long --header --group --modified --time-style=long-iso'
+alias ll='eza --long'
 # https://github.com/sharkdp/bat
 alias cat=bat
 # https://github.com/muesli/duf
