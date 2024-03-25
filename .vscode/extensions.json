@@ -6,9 +6,9 @@
   //     code --list-extensions
 
   // Update this file with:
-  //     cog.py -r .vscode/extensions.json
+  //     cog -r .vscode/extensions.json
   // Cog: https://nedbatchelder.com/code/cog
-  //   (`pip install cogapp`)
+  //   (`pipx install cogapp`)
 
   // List of extensions which should be recommended for users of this workspace.
   "recommendations": [

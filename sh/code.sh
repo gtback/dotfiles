@@ -3,7 +3,7 @@
 extensions_file="${HOME}/dotfiles/.vscode/extensions.json"
 
 code.dump-extensions() {
-    cog.py -r "$extensions_file"
+    cog -r "$extensions_file"
 }
 
 code.install-extensions() {
