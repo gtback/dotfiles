@@ -3,7 +3,6 @@
 # Backblaze API functions
 
 b2.load-master-key() {
-    op.signin
     eval "$(load-b2-master-key.sh)"
 }
 

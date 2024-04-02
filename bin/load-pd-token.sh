@@ -10,6 +10,6 @@ set -euo pipefail
 SECRET_NAME="PagerDuty API Token"
 
 cat <<EOF
-export PAGERDUTY_API_TOKEN=$(op get item "${SECRET_NAME}" --fields password)
+export PAGERDUTY_API_TOKEN=$(op item get "${SECRET_NAME}" --fields password)
 EOF
 echo >&2 "Loading '${SECRET_NAME}'"

@@ -58,7 +58,6 @@ zreload() {
 alias zr=zreload
 
 function start() {
-    op.signin
     eval "$(load-gh-token.sh)"
     ssh-add
     noti.setup
