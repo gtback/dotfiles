@@ -4,7 +4,8 @@ set -euo pipefail
 
 PIPX_LOCK_FILE="${XDG_CONFIG_HOME}/pipx/pipx.lock"
 
-cat "${PIPX_LOCK_FILE}" "${PIPX_LOCK_FILE}.local" | sort -u >/tmp/pipx.lock.combined
+# Include both the default lock file, and a `.local` file if it exists
+cat "${PIPX_LOCK_FILE}"* | sort -u >/tmp/pipx.lock.combined
 
 echo "Installed but not listed in .pipx.lock:"
 comm -23 <(pipx.freeze) /tmp/pipx.lock.combined
