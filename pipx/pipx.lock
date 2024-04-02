@@ -7,7 +7,6 @@ pip-tools
 pre-commit
 pycodestyle
 reuse
-togglcli
 tox
 twine
 yt-dlp
