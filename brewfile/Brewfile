@@ -121,7 +121,6 @@ cask "vlc"
 cask "zoom"
 
 mas "Amphetamine", id: 937984704
-mas "Bumpr", id: 1166066070
 mas "Fantastical", id: 975937182
 # Do not install LastPass from the Mac App Store; it's really old; use the Cask instead.
 # mas "LastPass", id: 926036361
@@ -129,6 +128,7 @@ mas "Speedtest", id: 1153157709
 mas "Pocket", id: 568494494
 mas "Timery", id: 1425368544
 mas "Todoist", id: 585829637
+mas "Velja", id: 1607635845
 
 file ./Brewfile.$HOSTNAME
 file ./Brewfile.local
