@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -euxo pipefail
+
+mise plugins upgrade
+mise upgrade
+mise install
