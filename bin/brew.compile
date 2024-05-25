@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+
+"""
+Compiles an "enahanced Brewfile" into a format understandable by homebrew-bundle. An
+"enhanced Brewfile" supports two features not present in standard Brewfiles:
+
+- a "file" directive will be expanded into the contents of the referenced file (if it
+  exists)
+- any "tap" directives will be used and prepended to "brew" directives in the same
+  "section". A blank line starts a new section.
+"""
+
+import logging
+import pathlib
+import platform
+import sys
+
+logging.basicConfig()
+logger = logging.getLogger(__file__)
+
+
+hostname = platform.uname()[1]
+
+
+def parse_file(filename: pathlib.Path):
+    pth = pathlib.Path(filename)
+    logger.debug(f"Processing {pth}")
+
+    if not pth.exists():
+        logger.warning(f"Path does not exist: {pth}")
+        return
+    with open(pth) as f:
+        data = f.readlines()
+
+    # If any line begins with "tap", every "brew" formula in the same section of the
+    # file will be prepended with this tap. A blank line resets the currently-active
+    # tap.
+    tap = ""
+
+    for line in data:
+        line = line.strip()
+        if not line:
+            tap = ""
+            continue
+        if line.startswith("#"):
+            continue
+        if line.startswith("file"):
+            fname = line.split(maxsplit=1)[1]
+            fname = fname.replace("$HOSTNAME", hostname)
+            parse_file(pth.parent.joinpath(fname).resolve())
+        else:
+            if line.startswith("tap"):
+                tap = line.split(maxsplit=1)[1].strip('"')
+            if line.startswith("brew"):
+                if tap:
+                    line = line.replace('brew "', f'brew "{tap}/')
+            print(line)
+
+
+def main(root_file):
+    parse_file(pathlib.Path(root_file))
+
+
+if __name__ == "__main__":
+    main(sys.argv[1])

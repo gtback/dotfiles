@@ -1,5 +1,4 @@
-# This Brewfile is designed to be run by homebrew-file:
-#   https://homebrew-file.readthedocs.io/
+# This Brewfile is designed to be run by through `brew.compile`:
 # It will fail if you run with `brew bundle install -f`
 
 # frozen_string_literal: true
