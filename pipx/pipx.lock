@@ -3,6 +3,7 @@ cogapp
 flake8
 gcalcli
 identify
+mopup
 pip-tools
 pre-commit
 pycodestyle
