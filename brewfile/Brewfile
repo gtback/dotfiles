@@ -3,6 +3,7 @@
 
 # frozen_string_literal: true
 
+# tap repositories and their packages
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
@@ -13,7 +14,6 @@ brew "dyff"
 tap "sachaos/todoist"
 brew "todoist"
 
-cask "1password-cli"
 brew "antidote"
 # /bin/bash on macOS is version 3.2.57 from 2007.
 brew "bash"
@@ -82,6 +82,7 @@ brew "zoxide"
 brew "zsh"
 
 cask "1password"
+cask "1password-cli"
 cask "alacritty"
 cask "alfred"
 cask "appcleaner"
@@ -114,15 +115,17 @@ cask "visual-studio-code"
 cask "vlc"
 cask "zoom"
 
+# App Store applications
 mas "Amphetamine", id: 937984704
 mas "Fantastical", id: 975937182
 # Do not install LastPass from the Mac App Store; it's really old; use the Cask instead.
 # mas "LastPass", id: 926036361
-mas "Speedtest", id: 1153157709
 mas "Pocket", id: 568494494
+mas "Speedtest", id: 1153157709
 mas "Timery", id: 1425368544
 mas "Todoist", id: 585829637
 mas "Velja", id: 1607635845
 
+# Additional files
 file ./Brewfile.$HOSTNAME
 file ./Brewfile.local
