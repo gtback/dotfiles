@@ -12,9 +12,6 @@ tap "homebrew/core"
 tap "homeport/tap"
 brew "dyff"
 
-tap "rcmdnk/file"
-brew "brew-file"
-
 tap "sachaos/todoist"
 brew "todoist"
 

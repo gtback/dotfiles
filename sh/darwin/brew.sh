@@ -36,9 +36,3 @@ brew.find-brewfiles() {
     brew.find-all-brewfiles \
         | grep -E -v "${BREWFILE_IGNORE:-xxxxxx}"
 }
-
-# # Don't use `brew-wrap` (yet!)
-# # https://homebrew-file.readthedocs.io/en/latest/installation.html
-# if [ -f "$(brew --prefix)/etc/brew-wrap" ];then
-#   source "$(brew --prefix)/etc/brew-wrap"
-# fi

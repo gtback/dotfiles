@@ -21,7 +21,7 @@ brew outdated
 
 confirm brew upgrade
 
-confirm brew-file --verbose debug install
+confirm brew bundle install --file <(brew.compile "${XDG_CONFIG_HOME}/brewfile/Brewfile")
 
 brew cleanup -sn
 confirm brew cleanup
