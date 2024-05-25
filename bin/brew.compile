@@ -45,12 +45,12 @@ def parse_file(filename: pathlib.Path):
         if line.startswith("#"):
             continue
         if line.startswith("file"):
-            fname = line.split(maxsplit=1)[1]
+            fname = line.split(maxsplit=1)[1].strip("'\"")
             fname = fname.replace("$HOSTNAME", hostname)
             parse_file(pth.parent.joinpath(fname).resolve())
         else:
             if line.startswith("tap"):
-                tap = line.split(maxsplit=1)[1].strip('"')
+                tap = line.split(maxsplit=1)[1].strip("'\"")
             if line.startswith("brew"):
                 if tap:
                     line = line.replace('brew "', f'brew "{tap}/')
