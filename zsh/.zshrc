@@ -102,7 +102,7 @@ else
 fi
 
 # Load Completions
-# source "${XDG_CONFIG_HOME}/zsh/completion.zsh"
+source "${XDG_CONFIG_HOME}/zsh/completion.zsh"
 source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh.local"
 
 source-if-exists "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
