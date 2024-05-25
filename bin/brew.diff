@@ -8,13 +8,8 @@ source "${XDG_CONFIG_HOME}/sh/darwin/brew.sh"
 ## Don't update automatically when running this script
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-# - Combine the contents of all files
-# - Remove comments
-# - Find unique set of files
-brew.find-brewfiles \
-    | xargs cat \
-    | grep -E -v "(^#|^$)" \
-    | sort -u >/tmp/Brewfile.combined
+# Use brew.compile to compile the desired Brew dependencies for this machine.
+brew.compile "${XDG_CONFIG_HOME}/brewfile/Brewfile" | sort -u >/tmp/Brewfile.compiled
 
 # List all installed Brew formualae and casks
 # We don't want to include WhaleBrew and (more importantly) VS Code extensions.
@@ -23,8 +18,8 @@ brew bundle dump --brews --casks --mas --taps --no-restart --file=- \
     | sort -u >/tmp/Brewfile.installed
 
 echo "Installed but not listed in Brewfile:"
-comm -23 /tmp/Brewfile.{installed,combined}
+comm -23 /tmp/Brewfile.{installed,compiled}
 
 echo
 echo "In Brewfile but not installed:"
-comm -13 /tmp/Brewfile.{installed,combined}
+comm -13 /tmp/Brewfile.{installed,compiled}
