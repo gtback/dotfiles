@@ -5,7 +5,6 @@ brew "bitwarden-cli"
 brew "dezoomify-rs"
 brew "ffmpeg"
 brew "mutt"
-brew "ykman"
 
 # Other Cask applications
 cask "adobe-digital-editions"
