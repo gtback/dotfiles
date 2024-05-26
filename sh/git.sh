@@ -49,6 +49,7 @@ function gcm() {
 }
 
 # These git aliases are defined in _gitconfig
+alias gcb="git clean-branches"
 alias gpom="git pom"
 alias gssp="git ssp"
 
