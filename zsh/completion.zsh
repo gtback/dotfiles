@@ -20,19 +20,6 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 # Include hidden files in completions
 _comp_options+=(globdots)
 
-### BEGIN compdef COMPLETIONS ###
-
-# These needs to come before 'bashcompinit' because they use `compdef`
-
-# The code output by `npm completion` tries to detect the completion system, so
-# even though it supports `copmlete`-style completions, we want to use compdef
-# instead.
-
-# shellcheck disable=SC1090
-eval "$(npm completion)"
-
-### END compdef COMPLETIONS ###
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
 complete -o nospace -C /usr/local/bin/terraform terraform
