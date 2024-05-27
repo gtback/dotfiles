@@ -11,9 +11,6 @@ tap "homebrew/cask-versions"
 tap "homeport/tap"
 brew "dyff"
 
-tap "sachaos/todoist"
-brew "todoist"
-
 brew "antidote"
 # /bin/bash on macOS is version 3.2.57 from 2007.
 brew "bash"

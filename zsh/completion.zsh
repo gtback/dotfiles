@@ -27,8 +27,6 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
-source-if-exists "$(brew --prefix)/share/zsh/site-functions/_todoist_fzf"
-
 source-if-exists /usr/local/etc/bash_completion.d/az
 
 eval "$(op completion zsh)"
