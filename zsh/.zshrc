@@ -87,7 +87,8 @@ for dotfile in sh/aliases sh/exports; do
   source-if-exists "${file}.local"
 done
 
-for file in "${XDG_CONFIG_HOME}"/sh/{,local/,${os}/}*.sh; do
+# Use NULL_GLOB (N) to avoid an error if there are no local/* files.
+for file in "${XDG_CONFIG_HOME}"/sh/{,local/,${os}/}*.sh(N); do
   # shellcheck disable=SC1090
   source "${file}"
 done
