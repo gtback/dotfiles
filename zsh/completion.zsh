@@ -32,10 +32,6 @@ source-if-exists /usr/local/etc/bash_completion.d/az
 eval "$(op completion zsh)"
 compdef _op op
 
-eval "$(register-python-argcomplete pipx)"
-
-compdef _gmailctl gmailctl
-
 if command -v kubectl &>/dev/null; then
   # shellcheck disable=SC1090
   source <(kubectl completion zsh)
