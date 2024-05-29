@@ -1,6 +1,7 @@
 {
   // These settings apply just in this repo, not anywhere else
   "files.associations": {
+    "**/brewfile/*": "ruby",
     "**/git/config*": "ini",
     "**/vim/*": "vimrc",
     // These are scripts to calcuate differences between what's configured and

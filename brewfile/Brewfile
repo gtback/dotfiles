@@ -125,5 +125,5 @@ mas "Todoist", id: 585829637
 mas "Velja", id: 1607635845
 
 # Additional files
-file ./Brewfile.$HOSTNAME
+file ./$HOSTNAME.Brewfile
 file ./Brewfile.local
