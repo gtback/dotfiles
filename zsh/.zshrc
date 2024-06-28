@@ -139,5 +139,9 @@ if command -v mcfly &>/dev/null; then
   eval "$(mcfly init zsh)"
 fi
 
+if command -v direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
 # Uncomment to print results of startup profiling
 #zprof

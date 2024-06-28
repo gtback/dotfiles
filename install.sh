@@ -37,6 +37,7 @@ mkdir -p "$XDG_DATA_HOME/zsh"
 
 symlink alacritty
 symlink brewfile
+symlink direnv
 symlink gh
 symlink git
 symlink gnupg
