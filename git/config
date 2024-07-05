@@ -108,3 +108,5 @@
 
 [user]
 	signingkey = 0x9836566B227CEF7F
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
