@@ -2,14 +2,14 @@
 
 # brew "bitwarden-cli"
 # brew "dezoomify-rs"
-# brew "ffmpeg"
+brew "ffmpeg"
 # brew "mutt"
 # brew "rtl_433"
 
 # cask "adobe-digital-editions"
 # cask "backblaze"
 cask "drawio"
-# cask "dropbox"
+cask "dropbox"
 # cask "element"
 # cask "gemini"
 # cask "knockknock"
