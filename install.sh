@@ -49,8 +49,6 @@ symlink tmux
 symlink vim
 
 symlink _ackrc ~/.ackrc
-symlink _fzf.bash ~/.fzf.bash
-symlink _fzf.zsh ~/.fzf.zsh
 symlink _jsbeautifyrc ~/.jsbeautifyrc
 symlink _pythonstartup ~/.pythonstartup
 

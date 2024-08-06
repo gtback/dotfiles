@@ -124,7 +124,9 @@ source-if-exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 source-if-exists "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
 
 # https://github.com/junegunn/fzf
-source-if-exists ~/.fzf.zsh
+if command -v fzf &>/dev/null; then
+  source <(fzf --zsh)
+fi
 
 # Load prompt
 if command -v starship &>/dev/null; then
