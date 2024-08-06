@@ -4,10 +4,10 @@
 # https://github.com/variadico/noti
 
 noti.setup() {
-    NOTI_TELEGRAM_TOKEN=$(op item get "Telegram Bot" --fields "credential")
+    NOTI_TELEGRAM_TOKEN=$(op item get "Telegram Bot" --reveal --fields "credential")
     export NOTI_TELEGRAM_TOKEN
 
-    NOTI_TELEGRAM_CHATID=$(op item get "Telegram Bot" --fields "chat_id")
+    NOTI_TELEGRAM_CHATID=$(op item get "Telegram Bot" --reveal --fields "chat_id")
     export NOTI_TELEGRAM_CHATID
 
     export NOTI_DEFAULT="telegram banner"

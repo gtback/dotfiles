@@ -17,5 +17,5 @@ function op.copy-password() {
 }
 
 function op.get-password() {
-    op item get "${1}" --fields password
+    op item get "${1}" --reveal --fields password
 }
