@@ -17,8 +17,10 @@ command_timeout = 1000
 style = "blue bold"
 disabled = false
 
-[kubernetes.context_aliases]
-"gke_.*_(?P<cluster>[\\w-]+)" = "gke-$cluster"
+# See: https://starship.rs/config/#kubernetes-context-specific-config
+[[kubernetes.contexts]]
+context_pattern = "gke_.*_(?P<cluster>[\\w-]+)"
+context_alias = "gke-$cluster"
 
 [time]
 disabled = false
