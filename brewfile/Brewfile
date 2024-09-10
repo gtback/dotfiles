@@ -102,7 +102,6 @@ cask "grandperspective"
 cask "istat-menus"
 cask "joplin"
 cask "keybase"
-cask "lastpass"
 cask "rocket"
 cask "slack"
 cask "spotify"
@@ -117,8 +116,7 @@ cask "zoom"
 # App Store applications
 mas "Amphetamine", id: 937984704
 mas "Fantastical", id: 975937182
-# Do not install LastPass from the Mac App Store; it's really old; use the Cask instead.
-# mas "LastPass", id: 926036361
+mas "LastPass", id: 926036361
 mas "Pocket", id: 568494494
 mas "Speedtest", id: 1153157709
 mas "Timery", id: 1425368544
