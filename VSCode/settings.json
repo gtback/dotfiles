@@ -42,7 +42,6 @@
   "[xml]": {
     "editor.defaultFormatter": "fabianlauer.vs-code-xml-format"
   },
-  "breadcrumbs.enabled": true,
   "color-highlight.markerType": "dot-after",
   "debug.toolBarLocation": "docked",
   "diffEditor.ignoreTrimWhitespace": false,
