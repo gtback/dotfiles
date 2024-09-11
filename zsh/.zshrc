@@ -41,6 +41,7 @@ setopt INC_APPEND_HISTORY     # add commands to HISTFILE in order of execution
 alias history="fc -l -t '[%F %T]' 1"
 
 os=$(uname | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//')
+arch=$(uname -m)
 
 # From http://dougblack.io/words/zsh-vi-mode.html
 bindkey -v
@@ -99,7 +100,7 @@ eval "$(mise activate zsh)"
 if [ "$TERM_PROGRAM" == "vscode" ]; then
   echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
 else
-  source-if-exists /usr/local/bin/virtualenvwrapper_lazy.sh
+  source-if-exists "${LOCAL_HIERARCHY:-/usr/local}/bin/virtualenvwrapper_lazy.sh"
 fi
 
 # Load Completions

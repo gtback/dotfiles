@@ -4,6 +4,9 @@
 [ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
 [ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
 
+# https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s09.html
+export LOCAL_HIERARCHY="/usr/local"
+
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 
 # Used for Vim and Neovim

@@ -21,13 +21,13 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 _comp_options+=(globdots)
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/vault vault
-complete -o nospace -C /usr/local/bin/terraform terraform
+complete -o nospace -C "${LOCAL_HIERARCHY:-/usr/local}/bin/vault" vault
+complete -o nospace -C "${MISE_DATA_DIR}/installs/terraform/latest/bin/terraform" terraform
 
 source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
-source-if-exists /usr/local/etc/bash_completion.d/az
+source-if-exists "${LOCAL_HIERARCHY:-/usr/local}/etc/bash_completion.d/az"
 
 eval "$(op completion zsh)"
 compdef _op op
