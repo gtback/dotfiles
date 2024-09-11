@@ -25,7 +25,7 @@
     "editor.formatOnType": true,
     "editor.rulers": [
       88
-    ]
+    ],
   },
   "[ruby][html]": {
     "editor.formatOnSave": false
@@ -112,7 +112,10 @@
     "-x"
   ],
   "spellright.documentTypes": [
-    "markdown"
+    "markdown",
+    "mdx",
+    "latex",
+    "plaintext",
   ],
   "spellright.notificationClass": "information",
   "terminal.integrated.defaultLocation": "editor",
