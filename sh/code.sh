@@ -28,3 +28,6 @@ code.parse-extensions-file() {
     npx json5 <"$extensions_file" \
         | jq -r '.recommendations[]'
 }
+
+# Open the git repository of the current directory in VS Code
+alias coder="code \$(git rev-parse --show-toplevel)"
