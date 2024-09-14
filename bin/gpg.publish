@@ -7,9 +7,17 @@
 
 set -eu
 
-gpg --keyserver pgp.mit.edu --send-key "${KEYID}"
-gpg --keyserver keys.gnupg.net --send-key "${KEYID}"
-gpg --keyserver hkps://keys.openpgp.org --send-key "${KEYID}"
-gpg --keyserver hkps://pgp.ocf.berkeley.edu --send-key "${KEYID}"
-gpg --keyserver hkps://keyserver.ubuntu.com:443 --send-key "${KEYID}"
-gpg --keyserver hkps://hkps.pool.sks-keyservers.net --send-key "${KEYID}"
+# This server is still up but is slow to respond
+# gpg --keyserver pgp.mit.edu --send-key "${KEYID}"
+
+# This will send you an email which you need to decrypt. You can take the body and
+#   pbpaste > ~/tmp/msg.txt
+#   gpg --decrypt < ~/tmp/msg.txt
+gpg --keyserver hkps://keys.mailvelope.com --send-key "${KEYID}"
+
+# https://datatracker.ietf.org/doc/html/draft-gallagher-openpgp-hkp#name-submitting-keys-to-a-keyser
+curl -XPOST --data-urlencode "keytext=$(gpg --export --armor "${KEYID}")" https://keyserver.ubuntu.com/pks/add
+curl -XPOST --data-urlencode "keytext=$(gpg --export --armor "${KEYID}")" https://pgpkeys.eu/pks/add
+
+# This requires a manual verification step; look at the output
+gpg --export "${KEYID}" | curl -T - https://keys.openpgp.org
