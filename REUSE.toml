@@ -1,0 +1,5 @@
+version = 1
+SPDX-PackageName = "dotfiles"
+SPDX-PackageSupplier = "Greg Back <git@gregback.net>"
+SPDX-PackageDownloadLocation = "https://github.com/gtback/dotfiles"
+annotations = []
