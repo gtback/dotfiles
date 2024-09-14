@@ -101,5 +101,5 @@ function git.remote-head() {
 function git.recommit() {
     commit_msg_file="$(git rev-parse --git-dir)/COMMIT_EDITMSG"
     printf "Reusing commit message:\n---\n%s\n---\n" "$(grep -v "^#" "$commit_msg_file")"
-    git commit -F "$commit_msg_file" "$@"
+    git commit -F "$commit_msg_file" --cleanup=strip "$@"
 }
