@@ -1,17 +1,13 @@
 #!/bin/bash
 
-OS_ARCH=$(uname -m)
-
 # This is the output of `brew shellenv`, but doesn't assume that `brew` is
 # currently available on `$PATH`.
-if [ "$OS_ARCH" == "arm64" ]; then
-    export HOMEBREW_PREFIX="/opt/homebrew";
-    export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-    export HOMEBREW_REPOSITORY="/opt/homebrew";
-    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-    export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-fi
+export HOMEBREW_PREFIX="${LOCAL_HIERARCHY}"
+export HOMEBREW_CELLAR="${LOCAL_HIERARCHY}/Cellar"
+export HOMEBREW_REPOSITORY="${LOCAL_HIERARCHY}"
+export PATH="${LOCAL_HIERARCHY}/bin:${LOCAL_HIERARCHY}/sbin${PATH+:$PATH}"
+export MANPATH="${LOCAL_HIERARCHY}/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="${LOCAL_HIERARCHY}/share/info:${INFOPATH:-}"
 
 export HOMEBREW_BUNDLE_NO_LOCK=1
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=14
