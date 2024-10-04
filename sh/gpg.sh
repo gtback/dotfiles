@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# https://www.gnupg.org/documentation/manuals/gnupg/Common-Problems.html
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# https://stackoverflow.com/a/57579018
+GPG_AGENT_INFO=$(gpgconf --list-dirs agent-socket | tr -d '\n' && echo -n ::)
+export GPG_AGENT_INFO
+
 function gpg.export-to-sign() {
     KEYID=$1
     gpg -a --export "${KEYID}" >"${KEYID}_unsigned.asc"
