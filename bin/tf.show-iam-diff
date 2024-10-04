@@ -55,7 +55,7 @@ import re
 
 from deepdiff import DeepDiff
 
-pattern = re.compile('(?:policy: )?"(.*)" => "(.*)"')
+pattern = re.compile('(?:policy:\\s*)?"(.*)" => "(.*)"')
 
 
 def main():
