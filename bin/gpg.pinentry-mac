@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+# This is a shim that can be called from gpg-agent.conf, to account for the fact
+# that Homebrew installs to different directories on x64_86 vs arm64
+
+exec "$(brew --prefix)/bin/pinentry-mac" "$@"
