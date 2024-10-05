@@ -48,7 +48,6 @@ symlink pypoetry
 symlink tmux
 symlink vim
 
-symlink _ackrc ~/.ackrc
 symlink _jsbeautifyrc ~/.jsbeautifyrc
 symlink _pythonstartup ~/.pythonstartup
 
