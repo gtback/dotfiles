@@ -77,3 +77,9 @@ function gh.app-repos() {
     install_id=$(gh.get-installation-id "$1")
     gh api "/user/installations/${install_id}/repositories?per_page=100" | jq -r '.repositories[].name'
 }
+
+function gh.open() {
+    open "https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)/blob/$(
+        git rev-parse --abbrev-ref HEAD
+    )/$(git ls-files --full-name "$1")"
+}
