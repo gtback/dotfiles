@@ -22,6 +22,10 @@ alias gsd='git stash drop'
 alias gsl='git stash list'
 alias gst='git status'
 
+# Run a `diff` that doesn't use `delta` as the pager, meaning the output can be
+# pasted directly into GitHub, etc.
+alias g.diff='git -c core.pager= diff'
+
 function b() {
     # Can use `b --all` to include remote branches or `b --verbose` to show commit messages, or combine multiple args
     git checkout "$(git --no-pager branch --no-color "$@" | grep -v '\*' | sed 's/^[[:space:]]*//' | fzf | awk '{print $1}')"
