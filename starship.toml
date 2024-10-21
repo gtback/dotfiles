@@ -28,3 +28,9 @@ disabled = false
 [env_var.VAULT_ADDR]
 format = "🔒 [$env_value]($style) "
 style = "yellow"
+
+[git_status]
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+up_to_date = "✔"
