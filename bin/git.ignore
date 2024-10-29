@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2024 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+set -euo pipefail
+
 for var in "$@"; do
     curl -sLw "\\n" "https://www.gitignore.io/api/$var" \
         | grep -v "toptal" | sed '/./,/^$/!d' \
