@@ -20,3 +20,6 @@
 # End of https://www.gitignore.io/api/visualstudiocode
 
 .pytest_cache
+
+# A file in any repo for local notes that won't get committed
+localnotes.md
