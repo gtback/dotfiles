@@ -23,3 +23,6 @@
 
 # A file in any repo for local notes that won't get committed
 localnotes.md
+
+# Ignore .mise.local.toml files in any repo.
+.mise.local.toml
