@@ -33,4 +33,3 @@ style = "yellow"
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
-up_to_date = "✔"
