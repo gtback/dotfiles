@@ -58,6 +58,7 @@ alias zr=zreload
 function start() {
     eval "$(load-gh-token.sh)"
     ssh-add
+    gpg.init
     noti.setup
     tmux
 }
