@@ -8,7 +8,7 @@
 for f in "$XDG_CONFIG_HOME"/env/*.sh; do
   if [ -r "$f" ]; then
     # shellcheck disable=SC1090
-    . "$f"
+    source "$f"
   fi
 done
 unset f
@@ -94,8 +94,10 @@ for file in "${XDG_CONFIG_HOME}"/sh/{,local/,${os}/}*.sh(N); do
   source "${file}"
 done
 
-# Load Version Managers
-eval "$(mise activate zsh)"
+## Mise: https://mise.jdx.dev/
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+fi
 
 if [ "$TERM_PROGRAM" == "vscode" ]; then
   echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
@@ -107,6 +109,7 @@ fi
 source "${XDG_CONFIG_HOME}/zsh/completion.zsh"
 source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh.local"
 
+## Antidote: https://getantidote.github.io/
 source-if-exists "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
 
 if command -v antidote &>/dev/null; then
@@ -118,29 +121,30 @@ if command -v antidote &>/dev/null; then
   antidote load
 fi
 
-# Load other tools' configuration files
-
+## Nix: https://nixos.wiki/wiki/Nix_Installation_Guide
 source-if-exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-source-if-exists "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
 
-# https://github.com/junegunn/fzf
+## fzf: https://junegunn.github.io/fzf/
 if command -v fzf &>/dev/null; then
   source <(fzf --zsh)
 fi
 
-# Load prompt
+## Starship: https://starship.rs/
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
+## zoxide: https://github.com/ajeetdsouza/zoxide
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
+## mcfly: https://github.com/cantino/mcfly
 if command -v mcfly &>/dev/null; then
   eval "$(mcfly init zsh)"
 fi
 
+## direnv: https://direnv.net/
 if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
