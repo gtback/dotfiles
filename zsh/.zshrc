@@ -94,6 +94,8 @@ for file in "${XDG_CONFIG_HOME}"/sh/{,local/,${os}/}*.sh(N); do
   source "${file}"
 done
 
+####### Configure Utilities #######
+
 ## Mise: https://mise.jdx.dev/
 if command -v mise &>/dev/null; then
   eval "$(mise activate zsh)"
@@ -101,22 +103,6 @@ fi
 
 ## Virtualenvwrapper: https://virtualenvwrapper.readthedocs.io/en/latest/
 source-if-exists "${LOCAL_HIERARCHY:-/usr/local}/bin/virtualenvwrapper_lazy.sh"
-
-# Load Completions
-source "${XDG_CONFIG_HOME}/zsh/completion.zsh"
-source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh.local"
-
-## Antidote: https://getantidote.github.io/
-source-if-exists "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
-
-if command -v antidote &>/dev/null; then
-  # Store the antidote bundle file (plugin list) in the zsh/ directory in this
-  # directory. Store the compiled static file next to the downloaded plugins.
-  zstyle ':antidote:bundle' file "${ZDOTDIR}/plugins.txt"
-  zstyle ':antidote:static' file "${ANTIDOTE_HOME}/.plugins.zsh"
-
-  antidote load
-fi
 
 ## Nix: https://nixos.wiki/wiki/Nix_Installation_Guide
 source-if-exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
@@ -146,11 +132,35 @@ if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+####### Load Completions #######
+
+# Load Completions
+source "${XDG_CONFIG_HOME}/zsh/completion.zsh"
+source-if-exists "${XDG_CONFIG_HOME}/zsh/completion.zsh.local"
+
+####### Configure More Utilities #######
+
+## Antidote: https://getantidote.github.io/
+# Antidote must be loaded after completions are installed so that the `compdef`
+# function is available.
+source-if-exists "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
+
+if command -v antidote &>/dev/null; then
+  # Store the antidote bundle file (plugin list) in the zsh/ directory in this
+  # directory. Store the compiled static file next to the downloaded plugins.
+  zstyle ':antidote:bundle' file "${ZDOTDIR}/plugins.txt"
+  zstyle ':antidote:static' file "${ANTIDOTE_HOME}/.plugins.zsh"
+
+  antidote load
+fi
+
 ## Kubeswitch: https://github.com/danielfoehrKn/kubeswitch
+# Kubeswitch must be initialized after completions because `switcher init`
+# generates both an `init` script (to define the `switch` function) and also a
+# completion script for `switcher`
 if command -v switcher &>/dev/null; then
   source <(switcher init zsh)
-  # Let completion work with either `switcher` or `switch`
-  source <(switcher completion zsh)
+  # Create completions for `switch`
   source <(switch completion zsh)
 fi
 
