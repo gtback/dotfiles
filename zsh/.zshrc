@@ -146,5 +146,13 @@ if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+## Kubeswitch: https://github.com/danielfoehrKn/kubeswitch
+if command -v switcher &>/dev/null; then
+  source <(switcher init zsh)
+  # Let completion work with either `switcher` or `switch`
+  source <(switcher completion zsh)
+  source <(switch completion zsh)
+fi
+
 # Uncomment to print results of startup profiling
 #zprof

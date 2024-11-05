@@ -12,12 +12,6 @@ fpath=("${XDG_CONFIG_HOME}/zsh/completions" "${fpath[@]}")
 
 autoload -Uz compinit
 
-# TODO: Figure out why this needs to be here
-# https://github.com/danielfoehrKn/kubeswitch/blob/master/docs/installation.md#required-source-the-shell-function
-if command -v switcher &>/dev/null; then
-  source <(switcher init zsh)
-fi
-
 # https://wiki.archlinux.org/title/XDG_Base_Directory#Hardcoded
 compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 zstyle ':completion:*' use-cache on
@@ -41,12 +35,6 @@ compdef _op op
 if command -v kubectl &>/dev/null; then
   # shellcheck disable=SC1090
   source <(kubectl completion zsh)
-fi
-
-# https://github.com/danielfoehrKn/kubeswitch
-if command -v switch &>/dev/null; then
-  # shellcheck disable=SC1090
-  source <(switch completion zsh)
 fi
 
 # The docker.plugin.zsh file from oh-my-zsh expects this variable to be defined
