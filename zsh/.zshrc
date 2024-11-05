@@ -120,7 +120,6 @@ fi
 
 # Load other tools' configuration files
 
-# source-if-exists $POWERLINE/bindings/zsh/powerline.zsh
 source-if-exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 source-if-exists "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
 
