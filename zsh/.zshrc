@@ -99,11 +99,8 @@ if command -v mise &>/dev/null; then
   eval "$(mise activate zsh)"
 fi
 
-if [ "$TERM_PROGRAM" == "vscode" ]; then
-  echo "Disabling shell environment managers (virtualenvwrapper) in Visual Studio Code"
-else
-  source-if-exists "${LOCAL_HIERARCHY:-/usr/local}/bin/virtualenvwrapper_lazy.sh"
-fi
+## Virtualenvwrapper: https://virtualenvwrapper.readthedocs.io/en/latest/
+source-if-exists "${LOCAL_HIERARCHY:-/usr/local}/bin/virtualenvwrapper_lazy.sh"
 
 # Load Completions
 source "${XDG_CONFIG_HOME}/zsh/completion.zsh"
