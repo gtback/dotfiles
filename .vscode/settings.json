@@ -10,7 +10,6 @@
     "**/bin/*.diff": "shellscript"
   },
   "shellcheck.ignorePatterns": {
-    "bin/brew.up": true,
     "zsh/*": true
   },
   "shellformat.flag": "-bn"

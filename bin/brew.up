@@ -1,19 +1,25 @@
-#!/bin/zsh
+#!/bin/bash
 # Update Brew dependencies
 
 set -euo pipefail
 
-confirm() {
-    printf "====\n%s\n" "$*"
-    if read -q "?Are you sure? [y/N] "; then
-        echo
+function confirm() {
+    # Check with user before performing an action. The default is "yes", but if
+    # the user provides a response beginning with "n" (case-insensitive), the
+    # operation will abort.
+    read -r -p "$* [Y/n]: " response
+    case $response in
+    [Nn]*)
+        echo "Aborted"
+        return 1
+        ;;
+    *)
         "$@"
-    else
-        echo "skipping"
-    fi
+        return 0
+        ;;
+    esac
 }
 
-# brew update-reset
 brew update
 
 printf "=====\nOutdated Brew formulae:\n"
