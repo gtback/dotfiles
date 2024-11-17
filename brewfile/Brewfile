@@ -38,7 +38,6 @@ brew "hub"
 brew "jc"
 brew "jid"
 brew "jq"
-brew "lastpass-cli"
 brew "mas"
 brew "mcfly"
 brew "mise"
@@ -114,7 +113,6 @@ cask "zoom"
 # App Store applications
 mas "Amphetamine", id: 937984704
 mas "Fantastical", id: 975937182
-mas "LastPass", id: 926036361
 mas "Pocket", id: 568494494
 mas "Speedtest", id: 1153157709
 mas "Timery", id: 1425368544
