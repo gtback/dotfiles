@@ -19,3 +19,7 @@ function op.copy-password() {
 function op.get-password() {
     op item get "${1}" --reveal --fields password
 }
+
+function op.get-credential() {
+    op item get "${1}" --reveal --fields credential
+}
