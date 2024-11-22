@@ -8,7 +8,8 @@ repos:
   rev: 3.0.0
   hooks:
     - id: shellcheck
-      exclude: "bin/brew.up"
+      # shellcheck doesn't support ZSH
+      exclude: "zsh/.zshrc"
     - id: shfmt
       args: ['-i', '4', '-bn']
       # shfmt doesn't support ZSH
