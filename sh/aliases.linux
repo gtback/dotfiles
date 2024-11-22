@@ -1,8 +1,6 @@
 #!/bin/bash
 
-alias ack="ack-grep"
 alias apt-list="grep -h '^deb ' /etc/apt/sources.list /etc/apt/sources.list.d/*.list | sort -u"
-alias myip="hostname -I | tr -d ' '"
 alias sasu="sudo aptitude safe-upgrade"
 alias sau="sudo aptitude update"
 

@@ -26,7 +26,6 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'jnurmine/Zenburn'
 Plugin 'kien/ctrlp.vim'
 "Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'mileszs/ack.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'plasticboy/vim-markdown'
 if has('mac')
