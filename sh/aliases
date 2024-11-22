@@ -21,7 +21,15 @@ alias df=duf
 # https://github.com/bootandy/dust
 alias du=dust
 
-alias version="echo -n \"VirtualBox \" && VBoxManage --version && vagrant --version && git --version && tmux -V &&  vim --version | head -1"
+function version() {
+    # echo -n \"VirtualBox \" && VBoxManage --version
+    vagrant --version
+    git --version
+    tmux -V
+    vim --version | head -1
+    helm version
+    kubectl version
+}
 
 alias vagrant-ids="grep '.*' ~/code/**/.vagrant/machines/*/virtualbox/index_uuid"
 alias lspath='f(){echo ${PATH} | tr ":" "\n"};f'
