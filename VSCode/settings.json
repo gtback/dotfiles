@@ -122,13 +122,6 @@
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.scrollback": 10000,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "vs-kubernetes": {
-    "vs-kubernetes.draft-path.mac": "/usr/local/bin/draft",
-    "vs-kubernetes.helm-path.mac": "/usr/local/bin/helm",
-    "vs-kubernetes.kubectl-path.mac": "/usr/local/bin/kubectl",
-    "vs-kubernetes.minikube-path.mac": "/usr/local/bin/minikube",
-    "vscode-kubernetes.minikube-path.mac": "/Users/gtback/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
-  },
   "vsicons.dontShowNewVersionMessage": true,
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreviewFromQuickOpen": false,
