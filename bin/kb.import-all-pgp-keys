@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2023 Josh Mock <160161+joshmock@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+set -euo pipefail
+
 for username in $(keybase list-following); do
     printf -- "---\nImporting PGP keys for %s...\n" "${username}"
     curl -s "https://keybase.io/${username}/pgp_keys.asc" | gpg --import

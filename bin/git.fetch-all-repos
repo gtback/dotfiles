@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2023-2024 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 set -euo pipefail
 
 dir=${1:-${HOME}/code}

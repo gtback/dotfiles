@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2022-2023 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # This is a pretty thin wrapper around `ssh-keygen -R`, but it's easier for me
 # to remember this script than the `-R` option.
 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2022-2024 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 set -euo pipefail
 
 # shellcheck source=../sh/darwin/brew.sh

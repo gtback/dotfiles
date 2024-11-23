@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2019 Myles Steinhauser <https://stackoverflow.com/users/606600/myles-steinhauser>
+# SPDX-License-Identifier: CC-BY-SA-4.0
+
 # https://stackoverflow.com/a/59412853/1136755
 
 set -euo pipefail

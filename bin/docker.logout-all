@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2022 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+set -euxo pipefail
+
 # 1. Loop over all 'auths' entries in ~/.docker/config.json.
 # 2. Replace the entry for Docker Hub with an empty string (`docker logout` uses Docker Hub by default)
 # 3. Call `docker logout` for each registry (prompting first).

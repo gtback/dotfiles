@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2021-2024 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # Load Backblaze Master Application Key from a password stored in 1Password.
 
 # Usage:

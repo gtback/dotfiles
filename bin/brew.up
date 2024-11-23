@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# SPDX-FileCopyrightText: 2022-2024 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # Update Brew dependencies
 
 set -euo pipefail

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2022 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # Usage:
 #   pipx.freeze >"${XDG_CONFIG_HOME}/pipx/pipx.lock"
 

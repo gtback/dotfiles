@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2023-2024 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # Load PagerDuty API Token from a password stored in 1Password.
 
 # Usage:

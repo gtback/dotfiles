@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2022 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # In large Subversion repos, you might often check out multiple specific
 # sub-paths, but keep the overall structure. This script lets you run one
 # command to keep all directories up to date. It does this by looking for the

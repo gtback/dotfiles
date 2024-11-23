@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2021 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # Save requirements of all virtualenvs into temporary files
 
 # Usage:

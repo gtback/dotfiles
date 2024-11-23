@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# SPDX-FileCopyrightText: 2024 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 """
 Compiles an "enahanced Brewfile" into a format understandable by homebrew-bundle. An
 "enhanced Brewfile" supports two features not present in standard Brewfiles:

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2021-2023 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # Load GitHub API Token from a password stored in 1Password.
 
 # Usage:

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2022-2023 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 set -uo pipefail
 
 # TODO: allow passing the repo with or without the owner (user/org) prefix and

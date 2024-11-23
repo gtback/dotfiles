@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2023 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # shellcheck source=../sh/gh.sh
 source "${XDG_CONFIG_HOME}/sh/gh.sh"
 
