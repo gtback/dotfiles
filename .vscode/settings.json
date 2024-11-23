@@ -1,4 +1,7 @@
 {
+  // SPDX-FileCopyrightText: 2021-2024 Greg Back <git@gregback.net>
+  // SPDX-License-Identifier: CC0-1.0
+
   // These settings apply just in this repo, not anywhere else
   "files.associations": {
     "**/brewfile/**/*Brewfile*": "ruby",
