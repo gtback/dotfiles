@@ -2,42 +2,87 @@
 
 My dotfiles
 
+- [Set up macOS](#set-up-macos)
+  - [Set Hostname](#set-hostname)
+  - [Create SSH Key](#create-ssh-key)
+  - [Set up](#set-up)
+- [Setting up on Windows 7](#setting-up-on-windows-7)
+- [Setting up Babun/Cygwin](#setting-up-babuncygwin)
+- [RHEL/CentOS 7](#rhelcentos-7)
+- [Setting up Ubuntu GNOME 14.04](#setting-up-ubuntu-gnome-1404)
+- [Setting up a new Ubuntu 12.04 system](#setting-up-a-new-ubuntu-1204-system)
+
 ## Set up macOS
 
-1. Install [Homebrew](https://brew.sh/):
+### Set Hostname
 
-   ```shell
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```shell
+export HOSTNAME="<PICK SOMETHING>"
+```
+
+### Create SSH Key
+
+1. Generate SSH Key: `ssh-keygen -t ed25519 -a 100 -C "$(whoami)@${HOSTNAME}"`
+1. Copy public key, log into GitHub, and upload key: `cat ~/.ssh/id_ed25519.pub | pbcopy`
+1. Install SSH key in `ssh-agent`: `ssh-add`
+
+### Set up
+
+1. Install Command-line Developer Tools (running `git` will prompt you to do this)
+
+1. `git clone git@github.com:gtback/dotfiles.git`
+
+1. `./dotfiles/install.sh`
+
+1. Install latest Homebrew from [`.pkg` installer](https://github.com/Homebrew/brew/releases/).
+
+1. Restart Shell
+
+1. `brew.up` (this will take a while)
+
+1. Set up vim: `./dotfiles/setup_vim.sh`
+
+1. Create `dotfiles/git/config.local`:
+
+   ```ini
+   [user]
+      name = Greg Back
+      email = <email address to use for Git commits on this machine>
    ```
 
-1. Install zsh:
+1. Install `pipx` packages: `pipx.up`
+
+1. Set up `pre-commit` in `dotfiles` repo: `pre-commit install`
+
+1. Configure macOS defaults:
 
    ```shell
-   brew install zsh
-   chsh -s /usr/local/bin/zsh
-   ```
-
-1. Clone this repo and install the files:
-
-   ```shell
-   git clone git@github.com/gtback/dotfiles.git
-   ./dotfiles/install.sh
-   ```
-
-1. Set Mac defaults:
-
-   ```shell
-   HOSTNAME="mjolnir"
-   mac.set-hostname "$HOSTNAME"
+   defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
    defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+   defaults write NSGlobalDomain AppleShowAllExtensions -bool true
    defaults write com.apple.menuextra.clock.plist ShowSeconds -bool true
+   defaults write com.apple.dock "tilesize" -int "16"
+   defaults write com.apple.dock "orientation" -string "right"
+   defaults write com.apple.dock "autohide" -bool "true"
+   defaults write com.apple.dock "show-recents" -bool "false"
+   defaults write com.apple.dock "static-only" -bool "true"
+   killall Dock
+   defaults write com.apple.finder "AppleShowAllFiles" -bool "true"
+   defaults write com.apple.finder "ShowPathbar" -bool "true"
+   killall Finder
+   mac.set_hostname "${HOSTNAME}"
    ```
 
-1. Install Homebrew dependencies:
+1. Install latest Python from python.org: `mopup --force true`
 
-   ```shell
-   brew.up
-   ```
+1. Copy files from old machine to new machine:
+
+    - [`mcfly` database](https://github.com/cantino/mcfly#database-location)
+1. Restart Machine
+
+References:
+
+- [`com.apple.keyboard.fnState`](https://macos-defaults.com/misc/applekeyboardfnstate.html#set-to-true)
 
 1. Set up Python:
 
@@ -50,7 +95,7 @@ My dotfiles
    (this is the `system` Python to `mise`/`asdf`/`pyenv`). When a new minor version of
    Python is released to Homebrew, these need to be re-installed.
 
-1. Install language runtimes with [`mise`](https://github.com/jdx/mise):
+1. Install language runtimes with [`mise`](https://mise.jdx.dev/):
 
    ```shell
    mise install
@@ -127,18 +172,6 @@ This is not a complete guide, just a few hints.
    ```sh
    pact install tmux
    ```
-
-## OS X Setup hints
-
-1. Install Homebrew
-1. Install `python` and `vim` with Homebrew: `brew install python vim`
-1. Install virtualenvwrapper with Homebrew pip: `sudo -H /usr/local/bin/pip install virtualenvwrapper`
-1. Install `isort` so that Vim can get to it: `sudo -H /usr/local/bin/pip install isort`
-1. Install [`pipsi`](https://github.com/mitsuhiko/pipsi) with Homebrew Python:
-
-   `curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | /usr/local/bin/python`
-
-1. Install powerline with pipsi: `pipsi install powerline-status`
 
 ## RHEL/CentOS 7
 

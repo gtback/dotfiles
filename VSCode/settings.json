@@ -90,6 +90,7 @@
   "gitlens.hovers.currentLine.over": "line",
   "go.toolsManagement.autoUpdate": true,
   "jupyter.interactiveWindow.textEditor.executeSelection": false,
+  "markdown.extension.toc.levels": "2..6",
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
