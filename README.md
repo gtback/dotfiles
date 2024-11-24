@@ -78,11 +78,8 @@ export HOSTNAME="<PICK SOMETHING>"
 1. Copy files from old machine to new machine:
 
     - [`mcfly` database](https://github.com/cantino/mcfly#database-location)
+
 1. Restart Machine
-
-References:
-
-- [`com.apple.keyboard.fnState`](https://macos-defaults.com/misc/applekeyboardfnstate.html#set-to-true)
 
 1. Set up Python:
 
@@ -110,6 +107,10 @@ References:
    make O_NERD=1
    mv ./nnn ~/bin
    ```
+
+References:
+
+- [`com.apple.keyboard.fnState`](https://macos-defaults.com/misc/applekeyboardfnstate.html#set-to-true)
 
 ## Setting up on Windows 7
 
