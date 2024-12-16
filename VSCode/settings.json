@@ -39,6 +39,9 @@
     "editor.defaultFormatter": "hashicorp.terraform",
     "editor.formatOnSaveMode": "file"
   },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
   "[xml]": {
     "editor.defaultFormatter": "fabianlauer.vs-code-xml-format"
   },
@@ -85,6 +88,7 @@
   "git.confirmSync": false,
   "git.openRepositoryInParentFolders": "never",
   "git.untrackedChanges": "separate",
+  "githubPullRequests.pullBranch": "never",
   "gitlens.codeLens.enabled": false,
   "gitlens.defaultDateFormat": null,
   "gitlens.hovers.currentLine.over": "line",
