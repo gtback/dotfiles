@@ -5,7 +5,7 @@ gnupg/*
 
 *.local
 **/local/**
-espanso/user/local.yml
+espanso/match/local.yml
 
 .mise.local.toml
 .mise.*.local.toml
