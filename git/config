@@ -70,14 +70,6 @@
 	trustctime = false
 	autocrlf = input
 	pager = delta
-
-[credential]
-	helper =
-	helper = /usr/local/share/gcm-core/git-credential-manager
-
-[credential "https://dev.azure.com"]
-	useHttpPath = true
-
 [delta]
 	line-numbers = true
 
@@ -114,3 +106,12 @@
 
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+
+# I would like to keep this file in alphabetical order by section, but updates
+# to `git-credential-manager` consistently rewrite this even though nothing has
+# changed. So I'll leave these at the bottom of the file.
+[credential]
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
