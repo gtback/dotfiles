@@ -29,6 +29,10 @@ disabled = false
 format = "🔒 [$env_value]($style) "
 style = "yellow"
 
+[env_var.ACTIVE_HERMIT]
+format = "🐚 [$env_value]($style) "
+style = "white"
+
 [git_status]
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
