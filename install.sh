@@ -44,6 +44,7 @@ symlink git
 symlink gnupg
 symlink krew
 symlink mise
+symlink pip
 symlink pipx
 symlink pypoetry
 symlink tmux
