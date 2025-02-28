@@ -20,3 +20,7 @@ alias pip &>/dev/null && unalias pip
 function pip() {
     echo >&2 "Use 'python -m pip' instead"
 }
+
+function poetry.activate() {
+    eval "$(poetry env activate)"
+}
