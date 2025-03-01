@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# SPDX-FileCopyrightText: Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
 # /bin/bash on macOS is old and doesn't support `-e` escape codes
 
 set -eufo pipefail
