@@ -1,7 +1,26 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# /bin/bash on macOS is old and doesn't support `-e` escape codes
 
 set -eufo pipefail
 IFS=$'\n\t'
+
+RED='\e[31m'
+YELLOW='\e[33m'
+GREEN='\e[32m'
+RESET='\e[0m'
+
+red() {
+    echo -e "${RED}$1${RESET}"
+}
+
+yellow() {
+    echo -e "${YELLOW}$1${RESET}"
+}
+
+green() {
+    echo -e "${GREEN}$1${RESET}"
+}
 
 # If you don't pass a second argument, the first argument is symlinked into
 # `$XDG_CONFIG_HOME`.
@@ -9,6 +28,40 @@ symlink() {
     SRC="$dotfiles_dir/$1"
     [ -e "$SRC" ] || (echo "No file named $SRC" && exit 1)
     DEST="${2:-$XDG_CONFIG_HOME/$1}"
+
+    if [ -L "$DEST" ]; then
+        # If $DEST is a symlink, check if it's already pointing to the right place.
+        current_src="$(readlink -f "$DEST")"
+        if [ "$current_src" != "$SRC" ]; then
+            red "'$DEST' is symlink to '$current_src', not '$SRC'"
+            return 1
+        else
+            green "'$DEST' is already a symlink to '$SRC'"
+            return 0
+        fi
+    elif [ -d "$DEST" ]; then
+        # If $DEST exists, but it's a directory, this is OK (we'll symlink
+        # *into* that directory), but if it's a file, raise an error.
+        new_dest="$DEST/$(basename $1)"
+        if [ -L "$new_dest" ]; then
+            green "'$new_dest' is already a symlink to '$SRC'"
+            return 0
+        elif [ -e "$new_dest" ]; then
+            current_src="$(readlink -f "$new_dest")"
+            if [ "$current_src" != "$SRC" ]; then
+                red "'$new_dest' is symlink to '$current_src', not '$SRC'"
+                return 1
+            else
+                green "'$new_dest' is already a symlink to '$SRC'"
+                return 0
+            fi
+        else
+            yellow "Creating $new_dest"
+        fi
+    elif [ -e "$DEST" ]; then
+        red "File already exists at '$DEST'"
+        return 1
+    fi
     ln -svfFn "$SRC" "$DEST"
 }
 
@@ -31,7 +84,7 @@ symlink sh
 # Set up ZSH
 symlink zsh
 # .zshenv needs to be in $HOME to bootstrap ZDOTDIR
-ln -svfn "$XDG_CONFIG_HOME/zsh/zshenv" ~/.zshenv
+symlink zsh/zshenv ~/.zshenv
 mkdir -p "$XDG_CACHE_HOME/zsh"
 mkdir -p "$XDG_DATA_HOME/zsh"
 
@@ -74,9 +127,9 @@ symlink VSCode/tasks.json "$vscode_settings_dir/tasks.json"
 symlink espanso "$HOME/Library/Preferences"
 
 if [ -e "$HOME/.bashrc" ] && grep -q 'source ~/dotfiles/_bashrc' "$HOME/.bashrc"; then
-    echo ".bashrc has already been modified"
+    green ".bashrc has already been modified"
 else
-    echo "Updating .bashrc"
+    yellow "Updating .bashrc"
     echo 'source ~/dotfiles/_bashrc' >>"$HOME/.bashrc"
 fi
 
