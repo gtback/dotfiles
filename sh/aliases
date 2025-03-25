@@ -120,3 +120,7 @@ function cdr() {
 function join-with-commas() {
     awk 'ORS=","' - | sed "s/,$//"
 }
+
+function uuid() {
+    uuidgen | tr A-F a-f
+}
