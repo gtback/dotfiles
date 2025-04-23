@@ -59,6 +59,11 @@
 	# https://git-scm.com/docs/git-ls-files
 	ignored = ls-files -i -o --exclude-standard
 
+# https://git-scm.com/docs/git-blame#Documentation/git-blame.txt---ignore-revs-fileltfilegt
+# https://docs.github.com/en/repositories/working-with-files/using-files/viewing-and-understanding-files#ignore-commits-in-the-blame-view
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
+
 [color]
 	ui = auto
 
