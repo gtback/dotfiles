@@ -45,7 +45,7 @@ symlink() {
     elif [ -d "$DEST" ]; then
         # If $DEST exists, but it's a directory, this is OK (we'll symlink
         # *into* that directory), but if it's a file, raise an error.
-        new_dest="$DEST/$(basename $1)"
+        new_dest="$DEST/$(basename "$1")"
         if [ -L "$new_dest" ]; then
             green "'$new_dest' is already a symlink to '$SRC'"
             return 0
