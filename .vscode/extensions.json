@@ -70,7 +70,7 @@
     "mhutchie.git-graph",
     "mikestead.dotenv",
     "mrmlnc.vscode-apache",
-    "ms-azuretools.vscode-docker",
+    "ms-azuretools.vscode-containers",
     "ms-kubernetes-tools.vscode-kubernetes-tools",
     "ms-python.autopep8",
     "ms-python.black-formatter",
