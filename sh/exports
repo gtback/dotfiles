@@ -18,8 +18,3 @@ export GITHUB_USER=gtback
 # This is my personal GPG key, available at
 # https://gregback.net/pgp/9836566B227CEF7F.asc
 export KEYID=0x9836566B227CEF7F
-
-# Tmuxinator sets GEM_HOME, which is then inherited by tmux and shells running
-# inside of it. This interferes with how `asdf`-managed rubies install gems.
-# - https://discourse.brew.sh/t/why-does-tmuxinator-sets-gem-home/7296
-unset -v GEM_HOME

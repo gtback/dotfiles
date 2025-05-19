@@ -37,7 +37,6 @@ alias proxies="env | grep -i proxy"
 
 alias git=hub
 alias ip="http https://httpbin.org/ip | jq -r '.origin'"
-alias tm="tmuxinator start"
 alias xo="xargs open"
 
 # List top level npm packages (global and local)
