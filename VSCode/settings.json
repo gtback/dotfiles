@@ -94,6 +94,12 @@
   "gitlens.hovers.currentLine.over": "line",
   "go.toolsManagement.autoUpdate": true,
   "jupyter.interactiveWindow.textEditor.executeSelection": false,
+  "languageToolLinter.diagnosticSeverityAuto": true,
+  "languageToolLinter.languageTool.level": "picky",
+  "languageToolLinter.lintOnChange": true,
+  "languageToolLinter.lintOnOpen": true,
+  "languageToolLinter.smartFormat.onSave": true,
+  "languageToolLinter.smartFormat.onType": true,
   "markdown.extension.toc.levels": "2..6",
   "notebook.cellToolbarLocation": {
     "default": "right",

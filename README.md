@@ -6,6 +6,7 @@ My dotfiles
   - [Set Hostname](#set-hostname)
   - [Create SSH Key](#create-ssh-key)
   - [Set up](#set-up)
+  - [Installing LanguageTool](#installing-languagetool)
 - [Setting up on Windows 7](#setting-up-on-windows-7)
 - [Setting up Babun/Cygwin](#setting-up-babuncygwin)
 - [RHEL/CentOS 7](#rhelcentos-7)
@@ -108,9 +109,35 @@ export HOSTNAME="<PICK SOMETHING>"
    mv ./nnn ~/bin
    ```
 
+### Installing LanguageTool
+
+See Ben Balter’s [blog post][] to get started.
+
+Set up n-grams data:
+
+```shell
+cd ~/tmp || exit
+wget https://languagetool.org/download/ngram-data/ngrams-en-20150817.zip
+unzip ngrams-en-20150817.zip
+mkdir $XDG_DATA_HOME/ngrams
+mv en $XDG_DATA_HOME/ngrams
+rm ngrams-en-20150817.zip
+brew services restart languagetool
+```
+
+To get logs from LanguageTool:
+
+```shell
+tail -f ${LOCAL_HIERARCHY}/var/log/languagetool/languagetool-server.log
+```
+
+TODO: Add `api.languagetool.org` to a DNS block list at the system level (hosts file, Little Snitch, etc.)
+
 References:
 
 - [`com.apple.keyboard.fnState`](https://macos-defaults.com/misc/applekeyboardfnstate.html#set-to-true)
+
+[blog post]: https://ben.balter.com/2025/01/30/how-to-run-language-tool-open-source-grammarly-alternative-on-macos/
 
 ## Setting up on Windows 7
 
