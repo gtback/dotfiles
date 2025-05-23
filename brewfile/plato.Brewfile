@@ -3,6 +3,7 @@
 brew "ffmpeg"
 brew "rtl_433"
 
+cask "anki"
 # cask "backblaze"
 cask "balenaetcher"
 cask "drawio"
