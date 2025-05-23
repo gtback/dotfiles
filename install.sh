@@ -100,6 +100,7 @@ symlink git
 symlink gnupg
 symlink krew
 symlink mise
+symlink nvim
 symlink pip
 symlink pipx
 symlink pypoetry
