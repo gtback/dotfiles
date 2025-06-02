@@ -149,6 +149,11 @@ launch_agents="$HOME/Library/LaunchAgents"
 mkdir -p "$launch_agents"
 symlink macos/com.local.KeyRemapping.plist "$launch_agents/com.local.KeyRemapping.plist"
 
+# On Apple Silicon, Homebrew installs into /opt/homebrew rather than /usr/local.
+# https://docs.brew.sh/Installation
+if [ "$(arch)" == "arm64" ]; then
+    export LOCAL_HIERARCHY="/opt/homebrew"
+fi
 symlink languagetool/server.properties "${LOCAL_HIERARCHY}/etc/languagetool/server.properties"
 
 popd >/dev/null
