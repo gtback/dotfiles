@@ -54,7 +54,7 @@
 	root = "rev-parse --show-toplevel"
 
 	# https://stackoverflow.com/a/22183573/1136755
-	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | sort
+	aliases = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | sort
 
 	# https://git-scm.com/docs/git-ls-files
 	ignored = ls-files -i -o --exclude-standard
