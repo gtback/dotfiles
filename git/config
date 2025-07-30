@@ -46,9 +46,8 @@
 	# This is equivalent to This is equivalent to `git log ^HEAD <branch>`
 	commits = "!git log ..${1}"
 
-	# Show changes made in <branch> (from common ancestor with current branch)
-	# This is equivalent to: `git diff $(git-merge-base HEAD <branch>) <branch>`
-	changes = "!git diff ...${1}"
+	# Show changes made in <branch> from common ancestor with current branch
+	changes = "!git diff $(git-merge-base HEAD ${1}) ${1}"
 
 	# Use with `cd $(git root)`
 	root = "rev-parse --show-toplevel"
