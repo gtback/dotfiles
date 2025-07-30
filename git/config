@@ -43,7 +43,7 @@
 	remote-unmerged = "!for branch in `git branch -r --no-merged | grep -v HEAD`; do echo `git show --format=\"%ci %cr %an\" $branch | head -n 1` \\\\t$branch; done | sort -r"
 
 	# Show commits in <branch> that aren't in the current branch.
-	# This is equivalent to This is equivalent to `git log ^HEAD <branch>`
+	# This is equivalent to: `git log ^HEAD <branch>`
 	commits = "!git log ..${1}"
 
 	# Show changes made in <branch> from common ancestor with current branch
