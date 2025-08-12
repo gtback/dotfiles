@@ -247,8 +247,6 @@ pyenv rehash
 
 ## Setting up Ubuntu GNOME 14.04
 
-For VirtualBox, to get shared folders to work, run `sudo adduser $USER vboxsf`
-
 ```sh
 sudo apt-get update
 sudo apt-get upgrade

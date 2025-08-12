@@ -21,7 +21,6 @@ cask "signal"
 cask "steam"
 cask "telegram"
 cask "thunderbird"
-cask "virtualbox"
 cask "zulip"
 
 # App Store applications

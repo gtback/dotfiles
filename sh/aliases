@@ -22,7 +22,6 @@ alias df=duf
 alias du=dust
 
 function version() {
-    # echo -n \"VirtualBox \" && VBoxManage --version
     vagrant --version
     git --version
     tmux -V
