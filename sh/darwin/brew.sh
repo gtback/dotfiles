@@ -19,6 +19,11 @@ export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_BAT=1
 export HOMEBREW_INSTALL_BADGE="✅"
 
+# https://blog.jpalardy.com/posts/untangling-your-homebrew-dependencies/
+alias brew.graph-deps="brew graph --installed --reduce --highlight-leaves | fdp -T png -o graph.png"
+
+alias brew.reset="brew update-reset && brew update"
+
 brew.find-all-brewfiles() {
     # - Find all Brewfiles in code/ and dotfiles/
     # - Find any Brewfiles in the home directory (if any exist)
