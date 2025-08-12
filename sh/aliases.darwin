@@ -11,7 +11,7 @@ alias swud="softwareupdate --all"
 alias md="open -a /Applications/MacDown.app"
 
 # https://blog.jpalardy.com/posts/untangling-your-homebrew-dependencies/
-alias brew.graph-deps="brew graph --installed --highlight-leaves | fdp -T png -o graph.png"
+alias brew.graph-deps="brew graph --installed --reduce --highlight-leaves | fdp -T png -o graph.png"
 
 alias brew.reset="brew update-reset && brew update"
 
