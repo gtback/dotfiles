@@ -24,8 +24,8 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C "${LOCAL_HIERARCHY:-/usr/local}/bin/vault" vault
 complete -o nospace -C "${MISE_DATA_DIR}/installs/terraform/latest/bin/terraform" terraform
 
-source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source-if-exists "$(brew --caskroom)/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+source-if-exists "$(mise where gcloud)/path.zsh.inc"
+source-if-exists "$(mise where gcloud)/completion.zsh.inc"
 
 source-if-exists "${LOCAL_HIERARCHY:-/usr/local}/etc/bash_completion.d/az"
 
