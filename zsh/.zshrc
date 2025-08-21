@@ -89,7 +89,7 @@ for dotfile in sh/aliases sh/exports; do
 done
 
 # Use NULL_GLOB (N) to avoid an error if there are no local/* files.
-for file in "${XDG_CONFIG_HOME}"/sh/{,local/,${os}/}*.sh(N); do
+for file in "${XDG_CONFIG_HOME}"/sh/{,${os}/,local/}*.sh(N); do
   # shellcheck disable=SC1090
   source "${file}"
 done
