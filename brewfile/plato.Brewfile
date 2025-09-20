@@ -20,3 +20,4 @@ cask "xmind"
 
 mas "Cardhop", id: 1290358394
 mas "WireGuard", id: 1451685025
+mas "Okta Verify", id: 490179405
