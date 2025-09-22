@@ -26,3 +26,5 @@ localnotes.md
 
 # Ignore .mise.local.toml files in any repo.
 .mise.local.toml
+
+spellright.dict
