@@ -112,6 +112,7 @@ cask "ungoogled-chromium"
 cask "vagrant"
 cask "visual-studio-code"
 cask "vlc"
+cask "yubico-authenticator"
 cask "zoom"
 
 # App Store applications
