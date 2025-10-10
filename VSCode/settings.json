@@ -88,6 +88,9 @@
   "git.confirmSync": false,
   "git.openRepositoryInParentFolders": "never",
   "git.untrackedChanges": "separate",
+  "github.copilot.enable": {
+    "*": false
+  },
   "githubPullRequests.pullBranch": "never",
   "gitlens.codeLens.enabled": false,
   "gitlens.defaultDateFormat": null,
@@ -142,6 +145,7 @@
   },
   "workbench.iconTheme": "vscode-icons",
   "workbench.list.keyboardNavigation": "filter",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.statusBar.visible": true,
   "yaml.format.enable": false
