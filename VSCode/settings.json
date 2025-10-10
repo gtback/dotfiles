@@ -2,8 +2,22 @@
   "[css][html][json][jsonc][typescript]": {
     "editor.tabSize": 2
   },
+  "[dockercompose]": {
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.insertSpaces": true,
+    "editor.quickSuggestions": {
+      "comments": false,
+      "other": true,
+      "strings": true
+    },
+    "editor.tabSize": 2
+  },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
@@ -49,6 +63,7 @@
   "debug.toolBarLocation": "docked",
   "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": true,
+  "docker.extension.enableComposeLanguageServer": false,
   "editor.fontLigatures": false,
   "editor.fontSize": 14,
   "editor.formatOnPaste": true,
