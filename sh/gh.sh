@@ -35,7 +35,7 @@ function gh.is-org-member() {
 
 function gh.check-token() {
     token=${1:-$GITHUB_TOKEN}
-    http https://api.github.com/user Authorization:"token ${token}"
+    http --check-status https://api.github.com/user Authorization:"token ${token}"
 }
 
 function gh.copy-token() {

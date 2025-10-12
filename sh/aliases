@@ -65,6 +65,7 @@ alias zr=zreload
 
 function start() {
     eval "$(load-gh-token.sh)"
+    gh.check-token | jq -r ".login"
     ssh-add
     gpg.init
     noti.setup
