@@ -5,6 +5,7 @@ gcalcli
 identify
 mopup
 pip-tools
+poetry
 pre-commit
 pycodestyle
 reuse
