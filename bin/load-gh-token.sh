@@ -16,6 +16,6 @@ source "${XDG_CONFIG_HOME}/sh/op.sh"
 SECRET_NAME=${SECRET_NAME:-"GitHub API Token - $(hostname -s)"}
 
 cat <<EOF
-export GITHUB_TOKEN=$(op.get-password "${SECRET_NAME}")
+export GITHUB_TOKEN=$(op.get-credential "${SECRET_NAME}")
 EOF
 echo >&2 "Loading GitHub token '${SECRET_NAME}'"
