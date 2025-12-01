@@ -21,10 +21,12 @@
 
 .pytest_cache
 
-# A file in any repo for local notes that won't get committed
+# "Local" notes in Markdown files in any repo won’t get committed
 localnotes.md
+.*.local.md
 
-# Ignore .mise.local.toml files in any repo.
+# Ignore .mise.local.toml and mise.local.toml files in any repo.
 .mise.local.toml
+mise.local.toml
 
 spellright.dict
