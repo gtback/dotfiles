@@ -117,7 +117,6 @@ cask "zoom"
 # App Store applications
 mas "Amphetamine", id: 937984704
 mas "Fantastical", id: 975937182
-mas "Pocket", id: 568494494
 mas "Speedtest", id: 1153157709
 mas "Todoist", id: 585829637
 mas "Velja", id: 1607635845
