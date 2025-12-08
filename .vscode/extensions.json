@@ -60,6 +60,8 @@
     "firefox-devtools.vscode-firefox-debug",
     "formulahendry.auto-close-tag",
     "foxundermoon.shell-format",
+    "github.copilot",
+    "github.copilot-chat",
     "github.vscode-pull-request-github",
     "golang.go",
     "hashicorp.terraform",
