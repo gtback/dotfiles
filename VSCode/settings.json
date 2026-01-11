@@ -57,7 +57,7 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[xml]": {
-    "editor.defaultFormatter": "fabianlauer.vs-code-xml-format"
+    "editor.defaultFormatter": "redhat.vscode-xml"
   },
   "color-highlight.markerType": "dot-after",
   "debug.toolBarLocation": "docked",
