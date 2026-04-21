@@ -35,6 +35,3 @@ confirm brew bundle install --file <(brew.compile "${XDG_CONFIG_HOME}/brewfile/B
 
 brew cleanup -sn
 confirm brew cleanup
-
-brew autoremove -n
-confirm brew autoremove
