@@ -1,16 +1,15 @@
 {
-  // SPDX-FileCopyrightText: 2021-2024 Greg Back <git@gregback.net>
+  // SPDX-FileCopyrightText: 2021-2026 Greg Back <git@gregback.net>
   // SPDX-License-Identifier: CC0-1.0
-
   // These settings apply just in this repo, not anywhere else
   "files.associations": {
-    "**/brewfile/**/*Brewfile*": "ruby",
-    "**/git/config*": "ini",
-    "git/ignore": "gitignore",
-    "**/vim/*": "vimrc",
     // These are scripts to calcuate differences between what's configured and
     // what's installed, not diff/patch files.
-    "**/bin/*.diff": "shellscript"
+    "**/bin/*.diff": "shellscript",
+    "**/brewfile/**/*Brewfile*": "ruby",
+    "**/git/config*": "ini",
+    "**/vim/*": "vimrc",
+    "git/ignore": "gitignore"
   },
   "shellcheck.ignorePatterns": {
     "zsh/*": true
