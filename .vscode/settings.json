@@ -11,6 +11,7 @@
     "**/vim/*": "vimrc",
     "git/ignore": "gitignore"
   },
+  "search.useIgnoreFiles": false,
   "shellcheck.ignorePatterns": {
     "zsh/*": true
   },
