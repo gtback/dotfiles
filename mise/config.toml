@@ -3,6 +3,7 @@ kubectl = "latest"
 node = "lts"
 pi = "latest"
 usage = "latest"
+uv = 'latest'
 
 [settings]
 experimental = true
