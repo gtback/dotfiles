@@ -9,7 +9,8 @@
     "**/brewfile/**/*Brewfile*": "ruby",
     "**/git/config*": "ini",
     "**/vim/*": "vimrc",
-    "git/ignore": "gitignore"
+    "git/ignore": "gitignore",
+    "pi/mcp.json.tpl": "jsonc"
   },
   "search.useIgnoreFiles": false,
   "shellcheck.ignorePatterns": {

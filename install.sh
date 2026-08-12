@@ -130,6 +130,13 @@ symlink VSCode/tasks.json "$vscode_settings_dir/tasks.json"
 # TODO: Make this work outside of macOS
 symlink espanso "$HOME/Library/Preferences"
 
+# pi keeps state (auth.json, models-store.json, trust.json) alongside config in
+# $PI_CODING_AGENT_DIR, so link individual files rather than the directory.
+mkdir -p "$PI_CODING_AGENT_DIR" "$PI_CODING_AGENT_SESSION_DIR"
+symlink pi/AGENTS.md "$PI_CODING_AGENT_DIR/AGENTS.md"
+symlink pi/settings.json "$PI_CODING_AGENT_DIR/settings.json"
+symlink pi/mcp.json.tpl "$PI_CODING_AGENT_DIR/mcp.json.tpl"
+
 if [ -e "$HOME/.bashrc" ] && grep -q 'source ~/dotfiles/_bashrc' "$HOME/.bashrc"; then
     green ".bashrc has already been modified"
 else

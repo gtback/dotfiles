@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Render pi/mcp.json.tpl into $PI_CODING_AGENT_DIR/mcp.json, resolving
+# 1Password secret references (op://vault/item/field) via `op inject`.
+#
+# Usage:
+#   pi.mcp-render
+#
+# Prerequisites:
+#   - 1Password CLI (`op`) signed in: op signin
+#   - $PI_CODING_AGENT_DIR set (via env/xdg.sh)
+
+set -euo pipefail
+
+TEMPLATE="${PI_CODING_AGENT_DIR}/mcp.json.tpl"
+DEST="${PI_CODING_AGENT_DIR}/mcp.json"
+TMPFILE=$(mktemp)
+
+cleanup() {
+    rm -f "$TMPFILE"
+}
+trap cleanup EXIT
+
+# Strip JSONC comments before piping to op inject, since op inject does not
+# tolerate JS-style comments in JSON.
+sed '/^[[:space:]]*\/\//d' "$TEMPLATE" \
+    | op inject --in-file /dev/stdin --out-file "$TMPFILE"
+
+# Write with restricted permissions — the rendered file holds live tokens.
+umask 177
+mv "$TMPFILE" "$DEST"
+
+echo >&2 "pi MCP config rendered to $DEST"

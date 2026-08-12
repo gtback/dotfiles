@@ -28,5 +28,13 @@
     "key": "alt+cmd+up",
     "command": "-extension.vim_cmd+alt+up",
     "when": "editorTextFocus && vim.active && !inDebugRepl"
+  },
+  {
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "\u001b\r"
+    },
+    "when": "terminalFocus"
   }
 ]

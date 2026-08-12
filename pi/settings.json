@@ -1,0 +1,16 @@
+{
+  "theme": "dark",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-8",
+  "defaultThinkingLevel": "medium",
+  "defaultProjectTrust": "ask",
+  "enableInstallTelemetry": false,
+  "packages": [
+    "npm:@plannotator/pi-extension",
+    "npm:pi-mcp-extension"
+  ],
+  "lastChangelogVersion": "0.84.1",
+  "warnings": {
+    "anthropicExtraUsage": false
+  }
+}

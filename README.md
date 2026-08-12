@@ -99,6 +99,24 @@ export HOSTNAME="<PICK SOMETHING>"
    mise install
    ```
 
+1. Set up [pi](https://pi.dev/) MCP servers (requires 1Password CLI signed in):
+
+   ```shell
+   pi.mcp-render
+   ```
+
+   Then launch `pi` once to trigger package installation
+   (`@plannotator/pi-extension`, `pi-mcp-extension`).
+
+   **First time on a new machine:** migrate any existing `~/.pi/agent` state
+   to XDG before running `install.sh`:
+
+   ```shell
+   mkdir -p "$XDG_CONFIG_HOME/pi/agent" "$XDG_DATA_HOME/pi/sessions" "$XDG_DATA_HOME/pi/packages"
+   mv ~/.pi/agent/auth.json ~/.pi/agent/models-store.json "$XDG_CONFIG_HOME/pi/agent/" 2>/dev/null || true
+   rm -rf ~/.pi
+   ```
+
 1. Compile custom `nnn` with Nerd Font support:
 
    ```shell

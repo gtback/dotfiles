@@ -1,6 +1,7 @@
 [tools]
 kubectl = "latest"
 node = "lts"
+pi = "latest"
 usage = "latest"
 
 [settings]
