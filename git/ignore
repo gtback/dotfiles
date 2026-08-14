@@ -30,3 +30,5 @@ localnotes.md
 mise.local.toml
 
 spellright.dict
+
+**/.claude/settings.local.json
