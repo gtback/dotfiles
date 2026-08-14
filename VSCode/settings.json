@@ -121,6 +121,8 @@
   "languageToolLinter.smartFormat.onSave": true,
   "languageToolLinter.smartFormat.onType": true,
   "markdown.extension.toc.levels": "2..6",
+  "mise.binPath": "/opt/homebrew/bin/mise",
+  "mise.checkForNewMiseVersion": false,
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
