@@ -102,8 +102,10 @@
 [push]
 	default = current
 
+# https://git-scm.com/docs/git-config#Documentation/git-config.txt-tagsort
 [tag]
 	forceSignAnnotated = true
+	sort = -version:refname
 
 [user]
 	signingkey = 0x9836566B227CEF7F
