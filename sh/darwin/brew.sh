@@ -19,6 +19,8 @@ export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_BAT=1
 export HOMEBREW_INSTALL_BADGE="✅"
 
+export HOMEBREW_VERIFY_ATTESTATIONS=1
+
 # https://blog.jpalardy.com/posts/untangling-your-homebrew-dependencies/
 alias brew.graph-deps="brew graph --installed --reduce --highlight-leaves | fdp -T png -o graph.png"
 
