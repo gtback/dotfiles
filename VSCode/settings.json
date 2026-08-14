@@ -1,4 +1,7 @@
 {
+  "[codeowners]": {
+    "editor.defaultFormatter": "chdsbd.github-code-owners"
+  },
   "[css][html][json][jsonc][typescript]": {
     "editor.tabSize": 2
   },
