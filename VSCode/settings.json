@@ -62,6 +62,7 @@
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
+  "claudeCode.preferredLocation": "panel",
   "color-highlight.markerType": "dot-after",
   "debug.toolBarLocation": "docked",
   "diffEditor.ignoreTrimWhitespace": false,
