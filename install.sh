@@ -130,6 +130,10 @@ symlink VSCode/tasks.json "$vscode_settings_dir/tasks.json"
 # TODO: Make this work outside of macOS
 symlink espanso "$HOME/Library/Preferences"
 
+# gcloud keeps auth state in ~/.config/gcloud, so link individual files rather
+# than the directory.
+symlink gcloud/.default-cloud-sdk-components "$HOME/.config/gcloud/.default-cloud-sdk-components"
+
 # pi keeps state (auth.json, models-store.json, trust.json) alongside config in
 # $PI_CODING_AGENT_DIR, so link individual files rather than the directory.
 mkdir -p "$PI_CODING_AGENT_DIR" "$PI_CODING_AGENT_SESSION_DIR"
