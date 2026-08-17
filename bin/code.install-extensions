@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Install VS Code extensions from VSCode/extensions plus any requested profiles.
+# Respects $CODE_EXTENSION_PROFILES when called with no arguments.
+#
+# Usage: code.install-extensions [profile ...]
+# Example: code.install-extensions elastic
+
+set -euo pipefail
+
+# shellcheck source=../sh/code.sh
+source "${XDG_CONFIG_HOME}/sh/code.sh"
+
+# Collect base + any requested/configured profiles, then prefix each with
+# --install-extension so `code` can install them all in one invocation
+# (massive perf improvement over xargs -n 1). Strip the "Use --force" hint
+# from the output since we only care about the installed/already-installed lines.
+code.configured-extensions "$@" \
+    | awk '{print "--install-extension"; print $1}' \
+    | xargs code \
+    | sd " Use '--force'.*" ""

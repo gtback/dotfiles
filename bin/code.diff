@@ -1,20 +1,25 @@
 #!/bin/bash
 
-# SPDX-FileCopyrightText: 2022-2024 Greg Back <git@gregback.net>
+# SPDX-FileCopyrightText: 2022-2026 Greg Back <git@gregback.net>
 # SPDX-License-Identifier: MIT
+
+# Compare installed VS Code extensions against the configured list.
+# Respects $CODE_EXTENSION_PROFILES when called with no arguments.
+#
+# Usage: code.diff [profile ...]
+# Example: code.diff elastic
 
 set -euo pipefail
 
 # shellcheck source=../sh/code.sh
 source "${XDG_CONFIG_HOME}/sh/code.sh"
 
-installed=$(code --list-extensions)
+installed=$(code --list-extensions | sort)
+configured=$(code.configured-extensions "$@")
 
-configured=$(code.parse-extensions-file)
-
-echo "Installed but not listed in extensions.json:"
+echo "Installed but not in configured list:"
 comm -23 <(echo "$installed") <(echo "$configured")
 
 echo
-echo "In extensions.json but not installed:"
+echo "In configured list but not installed:"
 comm -13 <(echo "$installed") <(echo "$configured")

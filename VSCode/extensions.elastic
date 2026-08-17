@@ -1,0 +1,8 @@
+# Elastic work machine extensions.
+# To activate on a machine, export CODE_EXTENSION_PROFILES=elastic
+
+asciidoctor.asciidoctor-vscode
+chrischinchilla.vale-vscode
+chrisjsewell.myst-tml-syntax
+elastic.elastic-docs-v3-utilities
+unifiedjs.vscode-mdx

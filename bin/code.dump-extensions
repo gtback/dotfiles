@@ -1,0 +1,31 @@
+#!/bin/bash
+# shellcheck disable=SC2154  # vscode_dir, extensions_file are set in code.sh
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Rebuild VSCode/extensions from the currently installed extensions, excluding
+# any that appear in a VSCode/extensions.<profile> sibling file.
+# Prints "updated" or "no changes".
+#
+# Usage: code.dump-extensions
+
+set -euo pipefail
+
+# shellcheck source=../sh/code.sh
+source "${XDG_CONFIG_HOME}/sh/code.sh"
+
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+comm -23 \
+    <(code --list-extensions | sort) \
+    <(code.read-extension-files "${vscode_dir}"/extensions.* | sort -u) \
+    >"$tmp"
+if cmp -s "$tmp" "$extensions_file"; then
+    echo "extensions: no changes"
+else
+    echo "extensions: updated"
+    comm -13 "$extensions_file" "$tmp" | sed 's/^/  + /'
+    comm -23 "$extensions_file" "$tmp" | sed 's/^/  - /'
+    cp "$tmp" "$extensions_file"
+fi

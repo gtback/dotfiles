@@ -1,32 +1,45 @@
 #!/bin/bash
 
-extensions_file="${HOME}/dotfiles/.vscode/extensions.json"
+vscode_dir="${HOME}/dotfiles/VSCode"
+extensions_file="${vscode_dir}/extensions"
 
-code.dump-extensions() {
-    cog -r "$extensions_file"
+# Read one or more extension files, stripping comments and blank lines.
+# Safe for glob expansion — silently skips paths that don't exist.
+# Two separate greps: BSD grep (macOS) mishandles ^$ inside alternation groups.
+code.read-extension-files() {
+    for f in "$@"; do
+        [[ -f "$f" ]] && grep -Ev '^#' "$f" | grep -Ev '^$'
+    done
 }
 
-code.install-extensions() {
-    # 1. Parse the .extensions.json file
-    # 2. Prefix each extension with `--install-extension`, so we can invoke
-    #    `code` just once rather than once per extension (with `xargs -n 1`).
-    #    Massive performance improvement!
-    # 3. Invoke `code` to install all the extensions.
-    # 4. Strip out the part of lines that tells you how to force installing a
-    #    specific version. We only care out the part of the output that says the
-    #    extension is installed.
-    code.parse-extensions-file \
-        | awk '{print "--install-extension"; print $1}' \
-        | xargs code \
-        | sd " Use '--force'.*" ""
-}
+# Emit the sorted union of the base extension list and any requested profile(s).
+# Usage: code.configured-extensions [profile ...]
+# With no arguments, defaults to $CODE_EXTENSION_PROFILES (space- or comma-separated).
+# Example: code.configured-extensions elastic
+code.configured-extensions() {
+    local profiles=()
+    if [[ $# -gt 0 ]]; then
+        profiles=("$@")
+    elif [[ -n "${CODE_EXTENSION_PROFILES:-}" ]]; then
+        # Split CODE_EXTENSION_PROFILES on spaces and commas, drop empty tokens.
+        # Using command substitution so word-splitting works in both bash and zsh.
+        # shellcheck disable=SC2207
+        profiles=($(printf '%s\n' "${CODE_EXTENSION_PROFILES}" \
+            | tr ', ' '\n' \
+            | grep -v '^$'))
+    fi
 
-code.parse-extensions-file() {
-    # 1. Convert the VSCode Extensions (jsonc) file into something that jq can
-    #    handle.
-    # 2. Extract the Recommended Extensions with jq.
-    npx json5 <"$extensions_file" \
-        | jq -r '.recommendations[]'
+    {
+        code.read-extension-files "$extensions_file"
+        for profile in ${profiles[@]+"${profiles[@]}"}; do
+            local profile_file="${vscode_dir}/extensions.${profile}"
+            if [[ -f "$profile_file" ]]; then
+                code.read-extension-files "$profile_file"
+            else
+                echo "code.configured-extensions: no profile file for '${profile}' (expected ${profile_file})" >&2
+            fi
+        done
+    } | sort -u
 }
 
 # Open the git repository of the current directory in VS Code
