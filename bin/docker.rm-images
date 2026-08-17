@@ -1,8 +1,25 @@
 #!/bin/bash
 
-# SPDX-FileCopyrightText: 2022-2023 Greg Back <git@gregback.net>
+# SPDX-FileCopyrightText: 2022-2026 Greg Back <git@gregback.net>
 # SPDX-License-Identifier: MIT
 
-docker image ls | grep "$1" | awk '{print $1 ":" $2}' | xargs -n 1 docker image rm
+# Usage:
+#
+#   docker.rm-images alpine
+#   docker.rm-images 'postgres:1[23]'
+#
+# Removes every image whose `repository:tag` matches the pattern. Tagged images are
+# removed by reference, so other tags pointing at the same image survive. Untagged
+# images have no valid reference, so they are removed by image ID instead.
 
-# docker image ls | grep "$1" | awk '{print $3}' | xargs -n 1 docker image rm
+set -euo pipefail
+
+# `docker image ls` emits one tab-separated "<id>\t<repository>:<tag>" line per image.
+# awk splits on that tab, so $1 is the ID and $2 is the reference, then:
+#   - `$2 ~ pat` matches the search pattern against the reference only, never the ID.
+#   - the ternary picks what to feed `docker image rm`: an untagged image reads as
+#     "repo:<none>", which is not a legal reference, so print its ID ($1) instead.
+docker image ls --format '{{.ID}}\t{{.Repository}}:{{.Tag}}' \
+    | awk -F'\t' -v pat="$1" '$2 ~ pat { print ($2 ~ /:<none>$/) ? $1 : $2 }' \
+    | sort -u \
+    | xargs -n 1 docker image rm
