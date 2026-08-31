@@ -1,14 +1,20 @@
+# scope: Subject
+
+# Why this change is needed (omit if the subject says it all)
+
+# --------------------------------- 72 ---------------------------------
 # Subject
-
-# What and Why
-
-# Rules:
-# * 50-character subject line
-# * 72-character wrapped longer description.
-# * Separate subject from body with a blank line
-# * Limit the subject line to 50 characters
-# * Capitalize the subject line
-# * Do not end the subject line with a period
-# * Use the imperative mood in the subject line
-# * Wrap the body at 72 characters
-# * Use the body to explain what and why vs. how
+# * scope: imperative description — aim for ~65-70 chars, incl. the scope
+# * Scope is the subsystem or area touched (vscode, git, brew)
+# * Multiple scopes: use a broader one, or list them comma-separated;
+#   use `global` or `all` only if it touches the entire tree
+# * Capitalized, imperative mood ("Add", not "Added" or "Adds"), no period
+#
+# Body
+# * Blank line after the subject; wrap at 72 characters
+# * Explain what and why, not how
+# * Omit when the subject already explains why (version bumps, renames,
+#   typo fixes, adding or removing a package)
+#
+# A repo's own convention (CONTRIBUTING.md, .gitmessage) overrides this.
+# https://scopedcommits.com/

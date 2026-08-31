@@ -91,6 +91,7 @@ symlink zsh/zshenv ~/.zshenv
 mkdir -p "$XDG_CACHE_HOME/zsh"
 mkdir -p "$XDG_DATA_HOME/zsh"
 
+symlink agents
 symlink alacritty
 symlink brewfile
 symlink broot
