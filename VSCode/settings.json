@@ -114,6 +114,9 @@
   "gitlens.defaultDateFormat": null,
   "gitlens.hovers.currentLine.over": "line",
   "go.toolsManagement.autoUpdate": true,
+  "isort.path": [
+    "~/.local/bin/isort"
+  ],
   "jupyter.interactiveWindow.textEditor.executeSelection": false,
   "languageToolLinter.diagnosticSeverityAuto": true,
   "languageToolLinter.languageTool.level": "picky",
