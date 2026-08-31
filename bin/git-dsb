@@ -13,19 +13,28 @@ source "${XDG_CONFIG_HOME}/sh/git.sh"
 set -euo pipefail
 
 remote=${GIT_DSB_REMOTE:-origin}
+
 head=$(git.remote-head "$remote")
+if [[ -z "$head" ]]; then
+    echo >&2 "Cannot resolve HEAD branch for '${remote}'. Run: git remote set-head ${remote} --auto"
+    exit 1
+fi
 head_ref="remotes/$remote/$head"
 
-# On exit, Check out the remote HEAD branch. Without this you're in a detached-HEAD state.
-# This assumes that your local branch is named the same as the remote HEAD branch.
-trap 'git checkout "$head"' EXIT
+# Track current branch so we never delete it out from under ourselves.
+current=$(git symbolic-ref --short HEAD 2>/dev/null || true)
 
-if git checkout -q "$head_ref"; then
-    git for-each-ref refs/heads/ "--format=%(refname:short)" \
-        | while read -r branch; do
-            echo "Checking ${branch}"
-            mergeBase=$(git merge-base "$head_ref" "$branch") \
-                && [[ $(git cherry "$head_ref" "$(git commit-tree "$(git rev-parse "$branch"^\{tree\})" -p "$mergeBase" -m _)") == "-"* ]] \
-                && git branch -D "$branch"
-        done
-fi
+git for-each-ref refs/heads/ "--format=%(refname:short)" \
+    | while read -r branch; do
+        if [[ "$branch" == "$head" ]]; then
+            continue
+        fi
+        if [[ -n "$current" && "$branch" == "$current" ]]; then
+            echo >&2 "Skipping $branch (currently checked out)"
+            continue
+        fi
+        mergeBase=$(git merge-base "$head_ref" "$branch" 2>/dev/null) || continue
+        echo "Checking ${branch}"
+        [[ $(git cherry "$head_ref" "$(git commit-tree "$(git rev-parse "$branch"^\{tree\})" -p "$mergeBase" -m _)") == "-"* ]] \
+            && git branch -D "$branch"
+    done

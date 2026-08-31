@@ -95,9 +95,10 @@ function gc.with() {
 }
 
 # Get the name of the default (HEAD) branch for a remote repository.
-# https://stackoverflow.com/a/50056710
+# https://stackoverflow.com/a/44750379
 function git.remote-head() {
-    git remote show "${1:-origin}" | sed -n '/HEAD branch/s/.*: //p'
+    git symbolic-ref --short "refs/remotes/${1:-origin}/HEAD" 2>/dev/null \
+        | sed "s|${1:-origin}/||"
 }
 
 # Reuse existing commit message (in the case of a failed GPG signature, etc.)
