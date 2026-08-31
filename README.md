@@ -24,7 +24,8 @@ export HOSTNAME="<PICK SOMETHING>"
 ### Create SSH Key
 
 1. Generate SSH Key: `ssh-keygen -t ed25519 -a 100 -C "$(whoami)@${HOSTNAME}"`
-1. Copy public key, log into GitHub, and upload key: `cat ~/.ssh/id_ed25519.pub | pbcopy`
+1. Copy public key, log into GitHub, and upload key:
+   `cat ~/.ssh/id_ed25519.pub | pbcopy`
 1. Install SSH key in `ssh-agent`: `ssh-add`
 
 ### Set up
@@ -90,8 +91,8 @@ export HOSTNAME="<PICK SOMETHING>"
    ```
 
    `virtualenv` and `virtualenvwrapper` are installed in the Homebrew Python 3
-   (this is the `system` Python to `mise`/`asdf`/`pyenv`). When a new minor version of
-   Python is released to Homebrew, these need to be re-installed.
+   (this is the `system` Python to `mise`/`asdf`/`pyenv`). When a new minor
+   version of Python is released to Homebrew, these need to be re-installed.
 
 1. Install language runtimes with [`mise`](https://mise.jdx.dev/):
 
@@ -149,7 +150,8 @@ To get logs from LanguageTool:
 tail -f ${LOCAL_HIERARCHY}/var/log/languagetool/languagetool-server.log
 ```
 
-TODO: Add `api.languagetool.org` to a DNS block list at the system level (hosts file, Little Snitch, etc.)
+TODO: Add `api.languagetool.org` to a DNS block list at the system level
+(hosts file, Little Snitch, etc.)
 
 References:
 
