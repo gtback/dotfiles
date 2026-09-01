@@ -172,6 +172,71 @@ References:
 
 [blog post]: https://ben.balter.com/2025/01/30/how-to-run-language-tool-open-source-grammarly-alternative-on-macos/
 
+## Claude
+
+```mermaid
+graph LR
+    subgraph repo["~/dotfiles (git)"]
+        subgraph src_claude["claude/"]
+            src_CLAUDE["CLAUDE.md"]
+            src_settings["settings.json"]
+            src_settings_local["settings.json.local<br/>(untracked)"]
+            subgraph src_mcp["mcp/"]
+                src_mcp_base["servers.json"]
+                src_mcp_local["local/private.json<br/>(untracked)"]
+            end
+        end
+        subgraph src_dot_claude[".claude/"]
+            src_proj["settings.json<br/>(project config)"]
+        end
+        src_agents["agents/<br/>commit-messages.md"]
+        src_claudesh["sh/claude.sh"]
+        src_render["bin/claude.render"]
+        src_mcpsync["bin/claude.mcp-sync"]
+    end
+
+    subgraph live["Claude Code (runtime)"]
+        live_CLAUDE["~/.claude/CLAUDE.md"]
+        live_settings["~/.claude/settings.json<br/>(generated)"]
+        live_agents["~/.config/agents/<br/>commit-messages.md"]
+        live_claude_json["~/.claude.json<br/>§ mcpServers"]
+        live_proj[".claude/settings.json<br/>(read in-place)"]
+        live_skills["~/.claude/skills/<br/>(symlink)"]
+    end
+
+    %% install.sh symlinks
+    src_CLAUDE  -->|"symlink"| live_CLAUDE
+    src_agents  -->|"symlink (~/.config/agents)"| live_agents
+
+    %% @ import inside CLAUDE.md
+    live_CLAUDE -.->|"@ import"| live_agents
+
+    %% settings layers → render → live
+    src_settings       --> src_render
+    src_settings_local --> src_render
+    src_claudesh       -.->|source| src_render
+    src_render         -->|writes| live_settings
+
+    %% MCP layers → sync → ~/.claude.json
+    src_mcp_base  --> src_mcpsync
+    src_mcp_local --> src_mcpsync
+    src_claudesh  -->|source| src_mcpsync
+    src_mcpsync   -->|"claude mcp add-json"| live_claude_json
+
+    %% project config read directly
+    src_proj --> live_proj
+
+    %% skills: ~/.claude/skills/ is a symlink to ~/.agents/skills/
+    %% items there are installed via `npx skills` or symlinked from a code repo
+    skills_npx["npx @anthropic-ai/skills"]
+    skills_repo["code repo<br/>(symlinked)"]
+    agents_skills["~/.agents/skills/"]
+
+    live_skills -->|symlink| agents_skills
+    skills_npx  -->|installs| agents_skills
+    skills_repo -->|symlink| agents_skills
+```
+
 ## Setting up on Windows 7
 
 This is not a complete guide, just a few hints.
