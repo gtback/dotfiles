@@ -1,0 +1,123 @@
+#!/bin/bash
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Merge settings layers into ~/.claude/settings.json, detecting drift from
+# changes Claude Code has made to the live file since the last render.
+#
+# Usage: claude.render [--check] [--force] [profile ...]
+# Options:
+#   --check   Print the pending diff and exit without writing.
+#   --force   Write even if drift is detected; use on first-run adoption.
+#   profile   Named settings profile(s), e.g. "elastic". Defaults to $CLAUDE_PROFILES.
+#
+# Layers (merged in order):
+#   claude/settings.json             tracked base
+#   claude/settings.json.<profile>   tracked named profile (if $CLAUDE_PROFILES is set)
+#   claude/settings.json.local       untracked, this machine
+#
+# Objects merge recursively; arrays concatenate and deduplicate.
+# Run twice in a row: the second run is a no-op.
+
+set -euo pipefail
+
+# shellcheck source=../sh/claude.sh
+source "${XDG_CONFIG_HOME}/sh/claude.sh"
+
+DEST="${HOME}/.claude/settings.json"
+SNAPSHOT_DIR="${XDG_CACHE_HOME}/claude"
+SNAPSHOT="${SNAPSHOT_DIR}/settings.rendered.json"
+
+check=false
+force=false
+extra_profiles=()
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+    --check)
+        check=true
+        shift
+        ;;
+    --force)
+        force=true
+        shift
+        ;;
+    *)
+        extra_profiles+=("$1")
+        shift
+        ;;
+    esac
+done
+
+# Collect layer files
+layers=()
+while IFS= read -r f; do
+    [[ -n "$f" ]] && layers+=("$f")
+done < <(claude.settings-layers "${extra_profiles[@]+"${extra_profiles[@]}"}")
+
+if [[ ${#layers[@]} -eq 0 ]]; then
+    echo "No settings layer files found." >&2
+    exit 1
+fi
+
+merged=$(claude.deepmerge "${layers[@]}" | jq -S .)
+
+# Detect drift: changes Claude Code made to the live file since the last render.
+# Drift means a /config change, an "always allow" at user scope, or a plugin
+# install that wrote back to settings.json. Those changes need to be moved into
+# the right layer before re-rendering.
+if [[ -f "$DEST" ]]; then
+    live=$(jq -S . "$DEST")
+    if [[ -f "$SNAPSHOT" ]]; then
+        snapshot_sorted=$(jq -S . "$SNAPSHOT")
+        if [[ "$snapshot_sorted" != "$live" ]]; then
+            echo "${HOME}/.claude/settings.json has drifted since the last render." >&2
+            echo "Claude Code wrote something back (model change, allow rule, plugin install)." >&2
+            echo ""
+            echo "Diff (snapshot → live):"
+            diff <(echo "$snapshot_sorted") <(echo "$live") || true
+            echo ""
+            if [[ "$force" == true ]]; then
+                echo "Warning: overwriting drift (--force)." >&2
+            else
+                echo "Move any intended changes into a settings layer, then re-run." >&2
+                echo "Use --force to overwrite anyway." >&2
+                exit 1
+            fi
+        fi
+    else
+        # First run: no snapshot. If live differs from merged, require --force.
+        if [[ "$live" != "$merged" ]]; then
+            echo "${HOME}/.claude/settings.json exists but has no render snapshot (first run)." >&2
+            echo ""
+            echo "Diff (merged ← live):"
+            diff <(echo "$merged") <(echo "$live") || true
+            echo ""
+            if [[ "$force" == true ]]; then
+                echo "Warning: overwriting live settings (--force)." >&2
+            else
+                echo "Review the diff above. Move any machine-specific settings into" >&2
+                echo "claude/settings.json.local, then re-run with --force to adopt." >&2
+                exit 1
+            fi
+        fi
+    fi
+fi
+
+if [[ "$check" == true ]]; then
+    echo "Merged settings (would write to ${DEST}):"
+    echo "$merged"
+    exit 0
+fi
+
+mkdir -p "$SNAPSHOT_DIR"
+
+if [[ -f "$DEST" ]] && [[ "$(jq -S . "$DEST")" == "$merged" ]]; then
+    echo "Already up to date."
+    exit 0
+fi
+
+echo "$merged" >"$DEST"
+cp "$DEST" "$SNAPSHOT"
+echo "Rendered ${#layers[@]} layer(s) → ${DEST}"

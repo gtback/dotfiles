@@ -131,6 +131,12 @@ symlink VSCode/tasks.json "$vscode_settings_dir/tasks.json"
 # TODO: Make this work outside of macOS
 symlink espanso "$HOME/Library/Preferences"
 
+# Claude Code keeps runtime state (~/.claude.json, sessions/, projects/) alongside
+# config in ~/.claude, so link individual files rather than the directory.
+# settings.json is NOT symlinked — claude.render generates it from settings layers.
+mkdir -p "$HOME/.claude"
+symlink claude/CLAUDE.md "$HOME/.claude/CLAUDE.md"
+
 # gcloud keeps auth state in ~/.config/gcloud, so link individual files rather
 # than the directory.
 symlink gcloud/.default-cloud-sdk-components "$HOME/.config/gcloud/.default-cloud-sdk-components"

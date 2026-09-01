@@ -1,0 +1,17 @@
+{
+    "model": "opusplan",
+    "tui": "fullscreen",
+    "extraKnownMarketplaces": {
+        "claude-plugins-official": {
+            "source": {
+                "source": "github",
+                "repo": "anthropics/claude-plugins-official"
+            }
+        }
+    },
+    "permissions": {
+        "allow": [
+            "Bash(git fetch *)"
+        ]
+    }
+}

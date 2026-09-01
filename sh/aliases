@@ -63,7 +63,12 @@ zreload() {
 }
 alias zr=zreload
 
+# No-op by default; override in sh/local/*.sh to export machine-specific credentials.
+# Called by start() so exported vars are available in all child processes (tmux, etc.).
+function credentials.load() { :; }
+
 function start() {
+    credentials.load
     ssh-add
     gpg.init
     noti.setup

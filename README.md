@@ -118,6 +118,19 @@ export HOSTNAME="<PICK SOMETHING>"
    rm -rf ~/.pi
    ```
 
+1. Set up Claude Code user settings and MCP servers:
+
+   ```shell
+   # First time only: adopt the existing ~/.claude/settings.json into the layer system
+   claude.render --force
+
+   # Create machine-local layers (not committed):
+   #   claude/settings.json.local  — additionalDirectories, machine-specific allow rules
+   #   claude/mcp/local/*.json     — MCP server definitions (e.g. elastic.json)
+   # Then sync user-scope MCP servers:
+   claude.mcp-sync
+   ```
+
 1. Compile custom `nnn` with Nerd Font support:
 
    ```shell

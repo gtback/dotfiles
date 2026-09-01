@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Sync user-scope MCP servers from dotfiles layers into Claude Code.
+#
+# Usage: claude.mcp-sync [--check] [--prune]
+# Options:
+#   --check   Show what would change without writing.
+#   --prune   Also remove user-scope servers not present in the desired config.
+#             Without --prune, extra servers are reported but left alone.
+#
+# Layers (merged in order):
+#   claude/mcp/servers.json         tracked base
+#   claude/mcp/local/*.json         untracked, this machine
+#
+# User-scope MCP servers are stored in ~/.claude.json, not in settings.json.
+# This script drives the `claude mcp` CLI rather than touching that file directly.
+#
+# Environment variables in server configs (e.g. ${BUILDKITE_API_TOKEN}) are
+# passed through verbatim and expanded by Claude Code at read time.
+
+set -euo pipefail
+
+# shellcheck source=../sh/claude.sh
+source "${XDG_CONFIG_HOME}/sh/claude.sh"
+
+CLAUDE_STATE="${HOME}/.claude.json"
+
+check=false
+prune=false
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+    --check)
+        check=true
+        shift
+        ;;
+    --prune)
+        prune=true
+        shift
+        ;;
+    *)
+        echo "Unknown option: $1" >&2
+        exit 1
+        ;;
+    esac
+done
+
+# Collect MCP layer files
+layers=()
+while IFS= read -r f; do
+    [[ -n "$f" ]] && layers+=("$f")
+done < <(claude.mcp-layers)
+
+if [[ ${#layers[@]} -eq 0 ]]; then
+    echo "No MCP layer files found." >&2
+    exit 1
+fi
+
+desired=$(claude.deepmerge "${layers[@]}" | jq -S '.mcpServers // {}')
+current=$(jq -S '.mcpServers // {}' "$CLAUDE_STATE")
+
+changed=false
+
+# Servers to add or update
+while IFS= read -r name; do
+    desired_json=$(echo "$desired" | jq -S --arg n "$name" '.[$n]')
+    current_json=$(echo "$current" | jq -S --arg n "$name" '.[$n]')
+
+    if [[ "$desired_json" == "$current_json" ]]; then
+        continue
+    fi
+
+    changed=true
+    if [[ "$current_json" == "null" ]]; then
+        echo "Add: $name"
+    else
+        echo "Update: $name"
+        echo "  was: $current_json"
+        echo "  now: $desired_json"
+    fi
+
+    if [[ "$check" == false ]]; then
+        # Remove first: add-json throws if the name already exists.
+        claude mcp remove -s user "$name" 2>/dev/null || true
+        claude mcp add-json -s user "$name" "$desired_json"
+    fi
+done < <(echo "$desired" | jq -r 'keys[]')
+
+# Servers in current but not in desired
+while IFS= read -r name; do
+    if echo "$desired" | jq -e --arg n "$name" '.[$n]' >/dev/null 2>&1; then
+        continue
+    fi
+
+    changed=true
+    if [[ "$prune" == true ]]; then
+        echo "Remove: $name (--prune)"
+        [[ "$check" == false ]] && claude mcp remove -s user "$name"
+    else
+        echo "Not in desired (skipping): $name — use --prune to remove"
+    fi
+done < <(echo "$current" | jq -r 'keys[]')
+
+if [[ "$changed" == false ]]; then
+    echo "Already in sync."
+elif [[ "$check" == true ]]; then
+    exit 1
+fi

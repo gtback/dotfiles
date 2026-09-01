@@ -118,6 +118,12 @@ config (read by VS Code when opening this repo), `VSCode/` is user-profile
 config (specific files symlinked by `install.sh` into `~/Library/Application
 Support/Code/User/`).
 
+`claude/` and `.claude/` serve different purposes: `.claude/` is repo project
+config (read by Claude Code when working in this repo), `claude/` is user-global
+config (`claude/CLAUDE.md` is symlinked to `~/.claude/CLAUDE.md`, and
+`claude/settings.json` is merged by `claude.render` into
+`~/.claude/settings.json`).
+
 ### `install.sh` symlink patterns
 
 Two modes:
@@ -143,6 +149,11 @@ Machine identity lives in the untracked layer (`sh/local/*.sh`, gitignored by
 `**/local/**`). That file exports e.g. `CODE_EXTENSION_PROFILES=private` to opt
 the machine in. Named sets are tracked because the IDs are public; secrets and
 internal paths are not.
+
+Tools that mix runtime state into their config directory (pi, Claude Code) cannot
+be whole-directory symlinked. Instead, individual config files are symlinked and
+settings are **rendered** by a `bin/` script that deep-merges the layer files
+into the live location. See `bin/pi.mcp-render` and `bin/claude.render`.
 
 ### Dependency declaration
 
