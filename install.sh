@@ -138,6 +138,7 @@ symlink claude/CLAUDE.md "$HOME/.claude/CLAUDE.md"
 
 # gcloud keeps auth state in ~/.config/gcloud, so link individual files rather
 # than the directory.
+mkdir -p "$HOME/.config/gcloud"
 symlink gcloud/.default-cloud-sdk-components "$HOME/.config/gcloud/.default-cloud-sdk-components"
 
 # pi keeps state (auth.json, models-store.json, trust.json) alongside config in
