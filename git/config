@@ -81,6 +81,9 @@
 	algorithm = patience
 	colorMoved = default
 
+[diff "markdown"]
+	xfuncname = "^(#{1,6}[[:space:]].+)$"
+
 [fetch]
 	prune = true
 
