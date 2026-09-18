@@ -13,3 +13,12 @@ wait for confirmation before running it.
 @~/.config/agents/commit-messages.md
 
 In the `Assisted-by` trailer, use `Claude` as the agent name.
+
+## Plan mode
+
+The `ExitPlanMode` approval dialog draws over the text printed immediately
+before it. Never put anything I need in order to evaluate the plan in that text
+— put it in the plan file, which is what the dialog renders.
+
+When revising a plan, lead the plan file with a short "Changes since your last
+review" section.
