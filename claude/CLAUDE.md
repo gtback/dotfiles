@@ -2,11 +2,11 @@
 
 ## Git Operations
 
-Never perform non-read-only git operations without explicit approval from the
-user. This includes commits, pushes, rebases, merges, branch creation/deletion,
-resets, checkouts that discard changes, and any other operation that modifies
-git state. Always describe the intended operation and wait for confirmation
-before running it.
+Always get explicit confirmation from the user before performing non-read-only
+git operations. This includes commits, pushes, rebases, merges, branch
+creation/deletion, resets, checkouts that discard changes, and any other
+operation that modifies git state. Always describe the intended operation and
+wait for confirmation before running it.
 
 ## Commit Conventions
 
