@@ -26,11 +26,47 @@ function gh.select-members() {
         | sed 's/,$//'
 }
 
+function gh.require-org() {
+    if [[ -z "${GITHUB_ORG:-}" ]]; then
+        echo "gh.require-org: \$GITHUB_ORG is not set" >&2
+        return 2
+    fi
+}
+
+# Check whether a GitHub login is a member of an organization.
+# Echoes "Yes" or "No" for interactive use.
+# Exit status: 0 = member, 1 = not a member, 2 = could not determine.
 function gh.is-org-member() {
     org=$1
     login=$2
-    # python ghapi is-member $ORG $USERNAME
-    [ "$(gh api -i orgs/"$org"/members/"$login" | head -n 1)" == "HTTP/2.0 204 No Content" ] && echo "Yes" || echo "No"
+    if [[ -z "$org" || -z "$login" ]]; then
+        echo "gh.is-org-member: usage: gh.is-org-member <org> <login>" >&2
+        return 2
+    fi
+
+    local out code
+    out=$(gh api -i "orgs/${org}/members/${login}" 2>&1)
+    # Parse status code from response header (HTTP/x.x NNN) or gh error message (HTTP NNN)
+    code=$(printf '%s\n' "$out" | grep -m1 -oE '^HTTP/[0-9.]+ [0-9]{3}' | awk '{print $2}')
+    if [[ -z "$code" ]]; then
+        code=$(printf '%s\n' "$out" | grep -oE '\(HTTP [0-9]{3}\)' | head -1 | grep -oE '[0-9]{3}')
+    fi
+
+    case "$code" in
+    204) echo "Yes" ;;
+    404)
+        echo "No"
+        return 1
+        ;;
+    302)
+        echo "gh.is-org-member: cannot determine membership -- requester is not a member of '${org}'" >&2
+        return 2
+        ;;
+    *)
+        echo "gh.is-org-member: unexpected response for '${org}/${login}' (HTTP ${code:-unknown}): ${out}" >&2
+        return 2
+        ;;
+    esac
 }
 
 function gh.check-token() {
