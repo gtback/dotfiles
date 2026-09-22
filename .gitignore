@@ -1,12 +1,21 @@
+# Ignore "local" files repo-wide
+*.local
+**/local/**
+
+# broot
+broot/launcher/
+
+# espanso
+espanso/match/local.yml
+
+# gh
 gh/hosts.yml
 
+# gnupg
 gnupg/*
 !gnupg/gpg*.conf
 
-*.local
-**/local/**
-espanso/match/local.yml
-
+# mise
 .mise.local.toml
 .mise.*.local.toml
 mise.local.toml
