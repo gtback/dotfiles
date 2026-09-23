@@ -6,15 +6,17 @@
 # We don't need `dyff` on this machine
 exclude tap "homeport/tap"
 
-exclude tap "martido/graph"
-
+# I haven't bothered to set up LanguageTool on mjolnir
 exclude brew "languagetool"
-exclude brew "neovim"
-exclude brew "trash"
-exclude cask "alfred"
-exclude cask "grandperspective"
 exclude cask "languagetool-desktop"
+
+# These require compiling on this machine, and aren't often used
+exclude brew "neovim"
+
+# I don't use these on mjolnir (to keep it leaner)
+exclude cask "grandperspective"
 exclude cask "logitech-options"
+exclude cask "yubico-authenticator"
 
 # Maccy requires Sonoma or newer, so use Clipy instead
 exclude cask "maccy"
@@ -23,8 +25,6 @@ cask "clipy"
 # On mjolnir, we use Sublime Text instead of VS Code
 exclude cask "visual-studio-code"
 cask "sublime-text"
-
-exclude cask "yubico-authenticator"
 
 # `mas` needs to be compiled on machines this old, and none of these are cricital
 exclude brew "mas"
@@ -36,17 +36,8 @@ exclude mas "Velja"
 
 # Other Homebrew packages
 brew "bitwarden-cli"
-brew "dezoomify-rs"
-brew "ffmpeg"
-brew "mutt"
 
 # Other Cask applications
-cask "adobe-digital-editions"
-cask "backblaze"
 cask "claude-code"
 cask "dropbox"
-cask "element"
-cask "gemini"
 cask "netnewswire"
-
-brew "rtl_433"

@@ -10,7 +10,7 @@ tap "homeport/tap"
 brew "dyff"
 
 # https://github.com/martido/homebrew-graph
-tap "martido/graph"
+tap "martido/graph", trusted: true
 
 brew "antidote"
 # /bin/bash on macOS is version 3.2.57 from 2007.
@@ -66,7 +66,6 @@ brew "subversion"
 brew "switchaudio-osx"
 brew "tldr"
 brew "tmux"
-brew "trash"
 brew "tree"
 brew "unp"
 brew "unzip"
@@ -82,7 +81,6 @@ brew "zsh"
 
 cask "1password"
 cask "1password-cli"
-cask "alfred"
 cask "amethyst"
 cask "appcleaner"
 cask "bartender"

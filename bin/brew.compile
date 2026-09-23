@@ -12,7 +12,7 @@ Compiles an "enahanced Brewfile" into a format understandable by homebrew-bundle
 - any "tap" directives will be used and prepended to "brew" directives in the same
   "section". A blank line starts a new section.
 - an "exclude" directive drops a matching entry declared anywhere else. For example,
-  "exclude cask 'alfred'" removes a "cask 'alfred'" line even if it's declared in a
+  "exclude cask 'maccy'" removes a "cask 'maccy'" line even if it's declared in a
   different file. Matching ignores any tap prefix on "brew" entries and any trailing
   "id:" on "mas" entries, so "exclude brew 'dyff'" matches "brew 'homeport/tap/dyff'".
   Excluding a tap (e.g. "exclude tap 'homeport/tap'") also drops every "brew" entry
