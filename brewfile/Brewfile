@@ -76,6 +76,7 @@ brew "virtualenvwrapper"
 brew "watch"
 brew "wget"
 brew "ykman"
+brew "yq"
 brew "zoxide"
 brew "zsh"
 

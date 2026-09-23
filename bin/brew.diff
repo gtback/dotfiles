@@ -17,7 +17,7 @@ brew.compile "${XDG_CONFIG_HOME}/brewfile/Brewfile" | sort -u >/tmp/Brewfile.com
 # List all installed Brew formualae and casks
 # We don't want to include WhaleBrew and (more importantly) VS Code extensions.
 # See https://github.com/Homebrew/homebrew-bundle/pull/1217
-brew bundle dump --brews --casks --mas --taps --no-restart --file=- \
+brew bundle dump --brews --casks --mas --taps --no-restart --no-describe --file=- \
     | sort -u >/tmp/Brewfile.installed
 
 echo "Installed but not listed in Brewfile:"

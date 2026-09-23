@@ -1,21 +1,30 @@
 #!/usr/bin/env python3
 
-# SPDX-FileCopyrightText: 2024 Greg Back <git@gregback.net>
+# SPDX-FileCopyrightText: 2024-2026 Greg Back <git@gregback.net>
 # SPDX-License-Identifier: MIT
 
 """
 Compiles an "enahanced Brewfile" into a format understandable by homebrew-bundle. An
-"enhanced Brewfile" supports two features not present in standard Brewfiles:
+"enhanced Brewfile" supports three features not present in standard Brewfiles:
 
 - a "file" directive will be expanded into the contents of the referenced file (if it
   exists)
 - any "tap" directives will be used and prepended to "brew" directives in the same
   "section". A blank line starts a new section.
+- an "exclude" directive drops a matching entry declared anywhere else. For example,
+  "exclude cask 'alfred'" removes a "cask 'alfred'" line even if it's declared in a
+  different file. Matching ignores any tap prefix on "brew" entries and any trailing
+  "id:" on "mas" entries, so "exclude brew 'dyff'" matches "brew 'homeport/tap/dyff'".
+  Excluding a tap (e.g. "exclude tap 'homeport/tap'") also drops every "brew" entry
+  tapped from it, without needing to list each formula individually.
 """
+
+from __future__ import annotations
 
 import logging
 import pathlib
 import platform
+import re
 import sys
 
 logging.basicConfig()
@@ -25,8 +34,30 @@ logger = logging.getLogger(__file__)
 hostname = platform.uname()[1]
 home = str(pathlib.Path.home())
 
+QUOTED = re.compile(r"""['"]([^'"]+)['"]""")
 
-def parse_file(filename: pathlib.Path):
+
+def parse_entry(line: str):
+    """Parse a tap/brew/cask/mas declaration line into (type, name, tap), where
+    "tap" is the tap prefix on a "brew" entry (e.g. "homeport/tap"), or None."""
+    decl_type, _, rest = line.partition(" ")
+    match = QUOTED.search(rest)
+    name = match.group(1) if match else rest.strip()
+    tap = None
+    if decl_type == "brew" and "/" in name:
+        tap, _, name = name.rpartition("/")
+    return decl_type, name, tap
+
+
+def is_excluded(decl_type: str, name: str, tap: str | None, excludes: set) -> bool:
+    if (decl_type, name) in excludes:
+        return True
+    # A formula tapped from an excluded tap is excluded too, section-style: you
+    # shouldn't need to list every formula a tap provides just to drop the tap.
+    return decl_type == "brew" and tap is not None and ("tap", tap) in excludes
+
+
+def walk(filename: pathlib.Path, entries: list, excludes: set):
     pth = pathlib.Path(filename)
     logger.debug(f"Processing {pth}")
 
@@ -52,18 +83,34 @@ def parse_file(filename: pathlib.Path):
             fname = line.split(maxsplit=1)[1].strip("'\"")
             fname = fname.replace("$HOSTNAME", hostname)
             fname = fname.replace("$HOME", home)
-            parse_file(pth.parent.joinpath(fname).resolve())
+            walk(pth.parent.joinpath(fname).resolve(), entries, excludes)
+            continue
+
+        is_exclude = line.startswith("exclude ")
+        if is_exclude:
+            line = line[len("exclude ") :].strip()
+
+        if line.startswith("tap") and not is_exclude:
+            tap = line.split(maxsplit=1)[1].strip("'\"")
+        if line.startswith("brew"):
+            if tap:
+                line = line.replace('brew "', f'brew "{tap}/')
+
+        decl_type, name, entry_tap = parse_entry(line)
+        if is_exclude:
+            excludes.add((decl_type, name))
         else:
-            if line.startswith("tap"):
-                tap = line.split(maxsplit=1)[1].strip("'\"")
-            if line.startswith("brew"):
-                if tap:
-                    line = line.replace('brew "', f'brew "{tap}/')
-            print(line)
+            entries.append((decl_type, name, entry_tap, line))
 
 
 def main(root_file):
-    parse_file(pathlib.Path(root_file))
+    entries = []
+    excludes = set()
+    walk(pathlib.Path(root_file), entries, excludes)
+    for decl_type, name, entry_tap, line in entries:
+        if is_excluded(decl_type, name, entry_tap, excludes):
+            continue
+        print(line)
 
 
 if __name__ == "__main__":
