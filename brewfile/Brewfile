@@ -7,7 +7,7 @@
 tap "homebrew/bundle"
 
 tap "homeport/tap"
-brew "dyff"
+brew "dyff", trusted: true
 
 # https://github.com/martido/homebrew-graph
 tap "martido/graph", trusted: true
@@ -84,6 +84,8 @@ cask "1password-cli"
 cask "amethyst"
 cask "appcleaner"
 cask "bartender"
+cask "claude"
+cask "claude-code"
 cask "dash"
 cask "espanso"
 cask "firefox"
@@ -105,6 +107,7 @@ cask "slack"
 cask "spotify"
 cask "sunsama"
 cask "syncthing-app"
+cask "tailscale-app"
 cask "ungoogled-chromium"
 cask "vagrant"
 cask "visual-studio-code"

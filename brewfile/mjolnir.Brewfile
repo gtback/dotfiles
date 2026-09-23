@@ -14,6 +14,7 @@ exclude cask "languagetool-desktop"
 exclude brew "neovim"
 
 # I don't use these on mjolnir (to keep it leaner)
+exclude cask "claude"
 exclude cask "grandperspective"
 exclude cask "logitech-options"
 exclude cask "yubico-authenticator"
@@ -38,6 +39,5 @@ exclude mas "Velja"
 brew "bitwarden-cli"
 
 # Other Cask applications
-cask "claude-code"
 cask "dropbox"
 cask "netnewswire"

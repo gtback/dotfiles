@@ -9,14 +9,15 @@ Compiles an "enahanced Brewfile" into a format understandable by homebrew-bundle
 
 - a "file" directive will be expanded into the contents of the referenced file (if it
   exists)
-- any "tap" directives will be used and prepended to "brew" directives in the same
-  "section". A blank line starts a new section.
+- any "tap" directives will be used and prepended to "brew" and "cask" directives in the
+  same "section". A blank line starts a new section.
 - an "exclude" directive drops a matching entry declared anywhere else. For example,
   "exclude cask 'maccy'" removes a "cask 'maccy'" line even if it's declared in a
-  different file. Matching ignores any tap prefix on "brew" entries and any trailing
-  "id:" on "mas" entries, so "exclude brew 'dyff'" matches "brew 'homeport/tap/dyff'".
-  Excluding a tap (e.g. "exclude tap 'homeport/tap'") also drops every "brew" entry
-  tapped from it, without needing to list each formula individually.
+  different file. Matching ignores any tap prefix on "brew" and "cask" entries and any
+  trailing "id:" on "mas" entries, so "exclude brew 'dyff'" matches
+  "brew 'homeport/tap/dyff'". Excluding a tap (e.g. "exclude tap 'homeport/tap'") also
+  drops every "brew" and "cask" entry tapped from it, without needing to list each
+  formula or cask individually.
 """
 
 from __future__ import annotations
@@ -39,12 +40,13 @@ QUOTED = re.compile(r"""['"]([^'"]+)['"]""")
 
 def parse_entry(line: str):
     """Parse a tap/brew/cask/mas declaration line into (type, name, tap), where
-    "tap" is the tap prefix on a "brew" entry (e.g. "homeport/tap"), or None."""
+    "tap" is the tap prefix on a "brew" or "cask" entry (e.g. "buildkite/buildkite"),
+    or None."""
     decl_type, _, rest = line.partition(" ")
     match = QUOTED.search(rest)
     name = match.group(1) if match else rest.strip()
     tap = None
-    if decl_type == "brew" and "/" in name:
+    if decl_type in ("brew", "cask") and "/" in name:
         tap, _, name = name.rpartition("/")
     return decl_type, name, tap
 
@@ -52,9 +54,11 @@ def parse_entry(line: str):
 def is_excluded(decl_type: str, name: str, tap: str | None, excludes: set) -> bool:
     if (decl_type, name) in excludes:
         return True
-    # A formula tapped from an excluded tap is excluded too, section-style: you
-    # shouldn't need to list every formula a tap provides just to drop the tap.
-    return decl_type == "brew" and tap is not None and ("tap", tap) in excludes
+    # A formula or cask tapped from an excluded tap is excluded too, section-style: you
+    # shouldn't need to list every formula/cask a tap provides just to drop the tap.
+    return (
+        decl_type in ("brew", "cask") and tap is not None and ("tap", tap) in excludes
+    )
 
 
 def walk(filename: pathlib.Path, entries: list, excludes: set):
@@ -67,7 +71,7 @@ def walk(filename: pathlib.Path, entries: list, excludes: set):
     with open(pth) as f:
         data = f.readlines()
 
-    # If any line begins with "tap", every "brew" formula in the same section of the
+    # If any line begins with "tap", every "brew" and "cask" in the same section of the
     # file will be prepended with this tap. A blank line resets the currently-active
     # tap.
     tap = ""
@@ -91,10 +95,11 @@ def walk(filename: pathlib.Path, entries: list, excludes: set):
             line = line[len("exclude ") :].strip()
 
         if line.startswith("tap") and not is_exclude:
-            tap = line.split(maxsplit=1)[1].strip("'\"")
-        if line.startswith("brew"):
-            if tap:
-                line = line.replace('brew "', f'brew "{tap}/')
+            match = QUOTED.search(line)
+            tap = match.group(1) if match else line.split(maxsplit=1)[1]
+        if tap and line.startswith(("brew", "cask")):
+            decl = line.split(maxsplit=1)[0]
+            line = line.replace(f'{decl} "', f'{decl} "{tap}/', 1)
 
         decl_type, name, entry_tap = parse_entry(line)
         if is_exclude:
