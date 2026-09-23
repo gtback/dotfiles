@@ -1,0 +1,10 @@
+brew "colima"
+# If docker-desktop is installed, it comes with `docker`
+# brew "docker"
+brew "docker-buildx"
+brew "docker-compose"
+brew "docker-credential-helper"
+cask "docker-desktop"
+brew "lima-additional-guestagents"
+brew "podman"
+brew "qemu"
