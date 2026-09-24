@@ -100,7 +100,9 @@ grep -Ev '^#' "$f" | grep -Ev '^$'   # not: grep -Ev '(^#|^$)'
 ### Gitignore layers
 
 - `*.local` — any local override (e.g. `sh/exports.local`, `git/config.local`)
-- `**/local/**` — private per-machine scripts (e.g. `sh/local/private.sh`)
+- `**/local/**` — private per-machine content (e.g. `sh/local/private.sh`,
+  `brewfile/local/*.Brewfile`). Shareable named sets belong in a tracked sibling
+  directory (e.g. `brewfile/presets/`), not under `local/`.
 - `.vscode/*` with explicit allowlist — VS Code workspace files are globally
   gitignored (in `~/.config/git/ignore`); only `settings.json`, `tasks.json`,
   `launch.json`, `extensions.json` are excepted
@@ -134,20 +136,24 @@ Two modes:
   "$vscode_settings_dir/settings.json"` — when only specific files belong in the
   target
 
-### Named set / profile pattern
+### Profile pattern
 
 Some tools support multiple named configurations tracked in the same directory.
 `brewfile/` and `VSCode/extensions` both use this pattern:
 
-| File                       | Purpose                                           |
-|----------------------------|---------------------------------------------------|
-| `VSCode/extensions`        | Universal base set                                |
-| `VSCode/extensions.<name>` | Named add-on (tracked, public IDs)                |
-| `VSCode/extensions.local`  | Machine-local overrides (gitignored by `*.local`) |
+| File                               | Purpose                                              |
+|------------------------------------|------------------------------------------------------|
+| `VSCode/extensions`                | Universal base set                                   |
+| `VSCode/extensions.<name>`         | Named add-on (tracked, public IDs)                   |
+| `VSCode/extensions.local`          | Machine-local overrides (gitignored by `*.local`)    |
+| `brewfile/Brewfile`                | Universal base                                       |
+| `brewfile/presets/<name>.Brewfile` | Tracked preset — generic, public tool grouping       |
+| `brewfile/local/*.Brewfile`        | Private presets (gitignored by `**/local/**`)        |
+| `brewfile/$HOSTNAME.Brewfile`      | Host profile — selects presets, trims with `exclude` |
 
 Machine identity lives in the untracked layer (`sh/local/*.sh`, gitignored by
 `**/local/**`). That file exports e.g. `CODE_EXTENSION_PROFILES=private` to opt
-the machine in. Named sets are tracked because the IDs are public; secrets and
+the machine in. Presets are tracked because the IDs are public; secrets and
 internal paths are not.
 
 Tools that mix runtime state into their config directory (pi, Claude Code) cannot
