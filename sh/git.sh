@@ -72,11 +72,8 @@ alias gssp="git ssp"
 #
 # The original version (`gli`) was used to browse the history of a repo, or of a specific with FZF
 function git-log-regex() {
-    # local filter
-    # if [ -n $@ ] && [ -f $@ ]
-    # then
-    #     filter="-- $@"
-    # fi
+    local filter=
+    # local filter="-- $@"  # enable to restrict to a specific path
     local pattern=${1:-'.*'}
     local gitlog=(git log --color=always --abbrev=7 --format='%C(auto)%h %C(yellow)%ad %an %C(blue) %s' --date=short --pickaxe-regex -S "$pattern" ./)
     local fzf=(fzf --ansi --no-sort --reverse --tiebreak=index --preview "f() { set -- \$(echo -- \$@ | grep -o '[a-f0-9]\{7\}'); [ \$# -eq 0 ] || git show --color=always \$1 $filter; }; f {}" --bind "ctrl-q:abort,ctrl-m:execute:
