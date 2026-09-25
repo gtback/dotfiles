@@ -23,8 +23,8 @@ formulae=()
 casks=()
 while IFS= read -r line; do
     [[ -z "$line" ]] && continue
-    name="${line#* \"}"
-    name="${name%\"}"
+    name="${line#*\"}"
+    name="${name%%\"*}"
     case "$line" in
     brew\ *) formulae+=("$name") ;;
     cask\ *) casks+=("$name") ;;
