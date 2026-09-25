@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Uninstall Homebrew formulae and casks that are installed but not listed
+# in the Brewfile. Intended as a follow-on after reviewing `brew.diff`.
+
+set -euo pipefail
+
+extras=$(brew.diff 2>/dev/null | awk '/^Installed but not listed/{p=1; next} /^$/{p=0} p')
+
+if [[ -z "$extras" ]]; then
+    echo "Nothing to uninstall."
+    exit 0
+fi
+
+echo "Installed but not listed in Brewfile:"
+echo "$extras"
+echo
+
+formulae=()
+casks=()
+while IFS= read -r line; do
+    [[ -z "$line" ]] && continue
+    name="${line#* \"}"
+    name="${name%\"}"
+    case "$line" in
+    brew\ *) formulae+=("$name") ;;
+    cask\ *) casks+=("$name") ;;
+    esac
+done <<<"$extras"
+
+read -r -p "Uninstall all of the above? [y/N]: " response
+case "$response" in
+[Yy]*) ;;
+*)
+    echo "Aborted"
+    exit 0
+    ;;
+esac
+
+[[ ${#formulae[@]} -gt 0 ]] && brew uninstall "${formulae[@]}"
+[[ ${#casks[@]} -gt 0 ]] && brew uninstall --cask "${casks[@]}"
