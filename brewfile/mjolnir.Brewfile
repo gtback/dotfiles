@@ -10,12 +10,9 @@ exclude tap "homeport/tap"
 exclude brew "languagetool"
 exclude cask "languagetool-desktop"
 
-# These require compiling on this machine, and aren't often used
-exclude brew "neovim"
-
 # I don't use these on mjolnir (to keep it leaner)
 exclude cask "claude"
-exclude cask "grandperspective"
+exclude brew "graphviz"
 exclude cask "logitech-options"
 exclude cask "yubico-authenticator"
 

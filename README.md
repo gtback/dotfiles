@@ -131,16 +131,6 @@ export HOSTNAME="<PICK SOMETHING>"
    claude.mcp-sync
    ```
 
-1. Compile custom `nnn` with Nerd Font support:
-
-   ```shell
-   mkdir -p ~/code
-   cd ~/code
-   git clone git@github.com:jarun/nnn.git
-   make O_NERD=1
-   mv ./nnn ~/bin
-   ```
-
 ### Installing LanguageTool
 
 See Ben Balter’s [blog post][] to get started.
