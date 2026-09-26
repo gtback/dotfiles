@@ -20,6 +20,10 @@ exclude cask "yubico-authenticator"
 exclude cask "maccy"
 cask "clipy"
 
+# Use regular Firefox rather than Nightly
+exclude cask "firefox@nightly"
+cask "firefox"
+
 # On mjolnir, we use Sublime Text instead of VS Code
 exclude cask "visual-studio-code"
 cask "sublime-text"
