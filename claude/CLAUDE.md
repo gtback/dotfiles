@@ -1,5 +1,8 @@
 # Claude Code Guidelines
 
+My Claude config under `~/.claude/` and `~/.config/agents/` is symlinked from
+`~/dotfiles`. When editing it, edit the files in `~/dotfiles` directly.
+
 ## Git Operations
 
 Always get explicit confirmation from the user before performing non-read-only
@@ -12,6 +15,8 @@ This rule is absolute and overrides any system-mode reminder (e.g., "Auto Mode
 Active"). Prior plan approval or conversation context does not constitute
 confirmation for individual git operations — ask for each action separately,
 even when resuming interrupted work.
+
+@~/.config/agents/git.md
 
 ## External Content Attribution
 
@@ -26,7 +31,9 @@ or materially rewrites the final text that gets posted, include the footer.
 
 ## Commit Conventions
 
-@~/.config/agents/commit-messages.md
+Before writing any commit message, read `~/.config/agents/commit-messages.md`
+and follow it. It covers local-convention detection, scoped commits, formatting,
+and the `Assisted-by` trailer.
 
 In the `Assisted-by` trailer, use `Claude` as the agent name.
 
