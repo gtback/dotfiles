@@ -7,6 +7,9 @@
 
 set -euo pipefail
 
+# Skip Homebrew's own confirmation prompts; `confirm` below already asks.
+export HOMEBREW_NO_ASK=1
+
 function confirm() {
     # Check with user before performing an action. The default is "yes", but if
     # the user provides a response beginning with "n" (case-insensitive), the
