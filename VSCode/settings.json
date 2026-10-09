@@ -16,9 +16,6 @@
     },
     "editor.tabSize": 2
   },
-  "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-  },
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
@@ -107,17 +104,12 @@
   "git.confirmSync": false,
   "git.openRepositoryInParentFolders": "never",
   "git.untrackedChanges": "separate",
-  "github.copilot.enable": {
-    "*": false
-  },
   "githubPullRequests.pullBranch": "never",
-  "gitlens.codeLens.enabled": false,
-  "gitlens.defaultDateFormat": null,
-  "gitlens.hovers.currentLine.over": "line",
   "go.toolsManagement.autoUpdate": true,
   "isort.path": [
     "~/.local/bin/isort"
   ],
+  "js/ts.updateImportsOnFileMove.enabled": "always",
   "jupyter.interactiveWindow.textEditor.executeSelection": false,
   "languageToolLinter.diagnosticSeverityAuto": true,
   "languageToolLinter.languageTool.level": "picky",
@@ -134,18 +126,9 @@
     "jupyter-notebook": "left"
   },
   "problems.showCurrentInStatus": true,
-  "python.formatting.provider": "black",
   "python.languageServer": "Pylance",
   "python.venvPath": "~/.virtualenvs",
   "redhat.telemetry.enabled": false,
-  "ruby.codeCompletion": "rcodetools",
-  "ruby.format": "rubocop",
-  "ruby.intellisense": "rubyLocate",
-  "ruby.useBundler": true,
-  "ruby.useLanguageServer": true,
-  "rust-client.rlsPath": "$ASDF_DATA_DIR/shims/rls",
-  "rust-client.rustupPath": "$ASDF_DATA_DIR/shims/rustup",
-  "rust.rustfmt_path": "$ASDF_DATA_DIR/shims/rustfmt",
   "security.workspace.trust.untrustedFiles": "newWindow",
   "shellcheck.customArgs": [
     "-x"
@@ -161,7 +144,6 @@
   "terminal.integrated.fontFamily": "Inconsolata Nerd Font",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.scrollback": 10000,
-  "typescript.updateImportsOnFileMove.enabled": "always",
   "vsicons.dontShowNewVersionMessage": true,
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreviewFromQuickOpen": false,
