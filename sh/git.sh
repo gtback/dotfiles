@@ -17,6 +17,10 @@ alias gsd='git stash drop'
 alias gsl='git stash list'
 alias gst='git status'
 
+# These git aliases are defined in git/config
+alias gcb='git clean-branches'
+alias gssp='git ssp'
+
 # Run a `diff` that doesn't use `delta` as the pager, meaning the output can be
 # pasted directly into GitHub, etc.
 alias g.diff='git -c core.pager= diff'
@@ -66,10 +70,6 @@ function git.unwip() {
     esac
 }
 
-# These git aliases are defined in git/config
-alias gcb="git clean-branches"
-alias gssp="git ssp"
-
 # Get the name of the default (HEAD) branch for a remote repository.
 # https://stackoverflow.com/a/44750379
 function git.remote-head() {
@@ -82,6 +82,7 @@ function git.remote-head() {
 # Reuse existing commit message (in the case of a failed GPG signature, etc.)
 # https://unix.stackexchange.com/a/590225
 function git.recommit() {
+    local commit_msg_file
     commit_msg_file="$(git rev-parse --git-dir)/COMMIT_EDITMSG"
     printf "Reusing commit message:\n---\n%s\n---\n" "$(grep -v "^#" "$commit_msg_file")"
     git commit -F "$commit_msg_file" --cleanup=strip "$@"
