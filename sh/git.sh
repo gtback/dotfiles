@@ -31,25 +31,49 @@ function b() {
     git checkout "$(git --no-pager branch --no-color "$@" | grep -v '\*' | sed 's/^[[:space:]]*//' | fzf | awk '{print $1}')"
 }
 
-function gcm() {
-    stash_output="$(git stash push --no-keep-index --include-untracked)"
-    if echo "$stash_output" | rg --quiet "No local changes to save"; then
-        # If there are no changes to stash, `git stash` prints this message
-        stashed=0
-        echo "Nothing to stash"
-    else
-        stashed=1
-        echo "$stash_output"
+# Update the local default branch (main/master) from origin without switching to
+# it, so uncommitted work is never touched.
+function gum() {
+    local head
+    head="$(git.remote-head)"
+    if [ -z "$head" ]; then
+        echo >&2 "Cannot resolve HEAD branch for 'origin'. Run: git remote set-head origin --auto"
+        return 1
     fi
 
-    # TODO: checkout remote HEAD branch regardless of its name
-    git checkout --no-guess main 2>/dev/null || git checkout --no-guess master
+    git fetch --prune origin || return 1
 
-    if [ "$stashed" -eq 1 ]; then
-        git stash pop
+    if [ "$(git symbolic-ref --short HEAD 2>/dev/null)" = "$head" ]; then
+        git merge --ff-only "origin/$head"
     else
-        echo "No changes saved, so not popping from stash"
+        # Fast-forwards the local branch without checking it out
+        git fetch . "origin/$head:$head"
     fi
+}
+
+# Park uncommitted work (including untracked files) as a commit on the current
+# branch. Use instead of `git stash`: the work stays attached to its branch.
+# Undo with `git.unwip`.
+function git.wip() {
+    local branch
+    branch="$(git symbolic-ref --short HEAD)" || return 1
+    git add --all \
+        && git commit --no-verify --no-gpg-sign -m "WIP on ${branch}: DO NOT PUSH/MERGE"
+}
+
+# Undo `git.wip`, leaving the changes uncommitted (new files become untracked).
+function git.unwip() {
+    local subject
+    subject="$(git log -1 --format=%s)"
+    case "$subject" in
+    "WIP on "*": DO NOT PUSH/MERGE")
+        git reset HEAD~1
+        ;;
+    *)
+        echo >&2 "Last commit is not a git.wip commit: $subject"
+        return 1
+        ;;
+    esac
 }
 
 # These git aliases are defined in _gitconfig
@@ -94,8 +118,10 @@ function gc.with() {
 # Get the name of the default (HEAD) branch for a remote repository.
 # https://stackoverflow.com/a/44750379
 function git.remote-head() {
+    # Prints nothing (and succeeds) if the remote HEAD isn't set, so callers
+    # running with `set -eo pipefail` can check for an empty result.
     git symbolic-ref --short "refs/remotes/${1:-origin}/HEAD" 2>/dev/null \
-        | sed "s|${1:-origin}/||"
+        | sed "s|${1:-origin}/||" || true
 }
 
 # Reuse existing commit message (in the case of a failed GPG signature, etc.)

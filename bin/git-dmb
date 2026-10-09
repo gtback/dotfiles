@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Delete branches that have been merged into the remote HEAD branch (usually
+# `main` or `master`). Works from any branch; never deletes a branch that is
+# checked out in any worktree.
+
+# Run with `git dmb`
+
+# shellcheck source=../sh/git.sh
+source "${XDG_CONFIG_HOME}/sh/git.sh"
+
+set -euo pipefail
+
+remote=${GIT_DMB_REMOTE:-origin}
+
+head=$(git.remote-head "$remote")
+if [[ -z "$head" ]]; then
+    echo >&2 "Cannot resolve HEAD branch for '${remote}'. Run: git remote set-head ${remote} --auto"
+    exit 1
+fi
+
+git for-each-ref --merged "remotes/$remote/$head" refs/heads/ \
+    "--format=%(refname:short) %(worktreepath)" \
+    | while read -r branch worktree; do
+        if [[ "$branch" == "$head" || "$branch" == "main" || "$branch" == "master" ]]; then
+            continue
+        fi
+        if [[ -n "$worktree" ]]; then
+            echo >&2 "Skipping $branch (checked out in $worktree)"
+            continue
+        fi
+        git branch -D "$branch"
+    done
