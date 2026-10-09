@@ -106,6 +106,17 @@ symlink pypoetry
 symlink tmux
 symlink vim
 
+# VSCode's `mise.binPath` points at ~/.local/bin/mise, since GUI-launched VSCode
+# doesn't have the shell's PATH and the Homebrew prefix differs between Intel and
+# Apple Silicon.
+if mise_bin="$(command -v mise)"; then
+    mkdir -p "$HOME/.local/bin"
+    ln -sfn "$mise_bin" "$HOME/.local/bin/mise"
+    green "'$HOME/.local/bin/mise' -> '$mise_bin'"
+else
+    yellow "mise not found; skipping ~/.local/bin/mise symlink"
+fi
+
 symlink _jsbeautifyrc ~/.jsbeautifyrc
 symlink _pythonstartup ~/.pythonstartup
 
