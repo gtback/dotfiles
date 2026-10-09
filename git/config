@@ -1,7 +1,5 @@
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset - %G?%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
 	# Log of changes on origin not yet on branch (aka hg incoming).
 	incoming = log HEAD..@{upstream}
@@ -9,46 +7,10 @@
 	# Log of changes on branch not yet on branch (aka hg outgoing).
 	outgoing = log @{upstream}..HEAD
 
-	rso = remote show origin
-	pom = push origin master
-
-	assume = update-index --assume-unchanged
-	unassume = update-index --no-assume-unchanged
-	assumed = !git ls-files -v | grep ^h | cut -c 3-
-
-	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
-
-	ours = "!f() { git checkout --ours $@ && git add $@; }; f"
-	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
-
-	ribbon = tag --force _ribbon origin/master
-	catchup = log --patch --reverse --topo-order _ribbon..origin/master
-
-	unstage = reset HEAD --
-
-	last = log -1 HEAD
-
 	# `git-dmb`, `git-dsb` and `git-drb` are scripts in ~/dotfiles/bin
 	clean-branches = "!git dmb; git dsb; git drb"
 
-	mydiff = "!f () { echo $1 && echo $2 && git diff $(git merge-base $1 $2) $2; }; f"
-	info = "!pushd ~/code/$1 && git remote -v && git branch -a && popd"
-
 	ssp = stash show -p
-
-	# https://railsware.com/blog/2014/08/11/git-housekeeping-tutorial-clean-up-outdated-branches-in-local-and-remote-repositories/
-	remote-merged = "!for branch in `git branch -r --merged | grep -v HEAD`; do echo `git show --format=\"%ci %cr %an\" $branch | head -n 1` \\\\t$branch; done | sort -r"
-	remote-unmerged = "!for branch in `git branch -r --no-merged | grep -v HEAD`; do echo `git show --format=\"%ci %cr %an\" $branch | head -n 1` \\\\t$branch; done | sort -r"
-
-	# Show commits in <branch> that aren't in the current branch.
-	# This is equivalent to: `git log ^HEAD <branch>`
-	commits = "!git log ..${1}"
-
-	# Show changes made in <branch> from common ancestor with current branch
-	changes = "!git diff $(git-merge-base HEAD ${1}) ${1}"
-
-	# Use with `cd $(git root)`
-	root = "rev-parse --show-toplevel"
 
 	# https://stackoverflow.com/a/22183573/1136755
 	aliases = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | sort
