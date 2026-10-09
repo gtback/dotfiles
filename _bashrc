@@ -20,3 +20,9 @@ source virtualenvwrapper.sh
 
 # https://github.com/junegunn/fzf
 eval "$(fzf --bash)"
+
+# https://github.com/cantino/mcfly
+# Must come after fzf so that mcfly owns Ctrl-R.
+if command -v mcfly &>/dev/null; then
+  eval "$(mcfly init bash)"
+fi
