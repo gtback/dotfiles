@@ -125,6 +125,7 @@
   "languageToolLinter.lintOnOpen": true,
   "languageToolLinter.smartFormat.onSave": true,
   "languageToolLinter.smartFormat.onType": true,
+  "markdown-preview-enhanced.previewMode": "Multiple Previews",
   "markdown.extension.toc.levels": "2..6",
   "mise.binPath": "~/.local/bin/mise",
   "mise.checkForNewMiseVersion": false,
