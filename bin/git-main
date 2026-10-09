@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Switch to the remote HEAD branch (usually `main` or `master`). Git refuses,
+# leaving everything untouched, if uncommitted changes would be overwritten.
+
+# Run with `git main`
+
+# shellcheck source=../sh/git.sh
+source "${XDG_CONFIG_HOME}/sh/git.sh"
+
+set -euo pipefail
+
+remote=${GIT_MAIN_REMOTE:-origin}
+
+head=$(git.remote-head "$remote")
+if [[ -z "$head" ]]; then
+    echo >&2 "Cannot resolve HEAD branch for '${remote}'. Run: git remote set-head ${remote} --auto"
+    exit 1
+fi
+
+if ! git switch "$head"; then
+    echo >&2 "Could not switch to ${head}. Commit your changes, or run git.wip first."
+    exit 1
+fi
