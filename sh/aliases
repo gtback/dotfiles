@@ -71,7 +71,6 @@ function start() {
     credentials.load
     ssh-add
     gpg.init
-    noti.setup
     tmux
 }
 
@@ -79,7 +78,6 @@ function stop() {
     op signout
     unset GITHUB_TOKEN
     ssh-add -D
-    noti.clear
 }
 
 # https://superuser.com/a/1246245
