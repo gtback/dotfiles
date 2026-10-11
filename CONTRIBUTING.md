@@ -24,7 +24,21 @@ These run automatically on every commit — write code that passes them:
 - `shfmt -i 4 -bn` — 4-space indent; binary operators (`|`, `&&`, `||`) begin
   continuation lines
 - `black` — Python files
+- `lib/pkgs` unit tests, when `lib/pkgs/` or the `brew.*` scripts change
 - `end-of-file-fixer`, `trailing-whitespace`
+
+## Python libraries (`lib/`)
+
+Shared Python lives in `lib/`, currently the `pkgs` package behind
+`bin/brew.compile` and `bin/brew.usage`.
+
+- Stdlib only: no packaging and no venv. Keep `lib/pkgs/brewfile.py` free of
+  3.10+ syntax, since `brew.up` may run it under macOS's system Python.
+- `bin/` scripts import with
+  `sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "lib"))`,
+  then `from pkgs import …`.
+- Run the tests with `python3 -m unittest discover -s lib -t lib`. A
+  pre-commit hook runs them when `lib/pkgs/` or those scripts change.
 
 ## Shell code
 
