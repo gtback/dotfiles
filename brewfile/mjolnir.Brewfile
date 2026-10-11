@@ -32,7 +32,6 @@ cask "sublime-text"
 exclude brew "mas"
 exclude mas "Amphetamine"
 exclude mas "Fantastical"
-exclude mas "Speedtest"
 exclude mas "Todoist"
 exclude mas "Velja"
 

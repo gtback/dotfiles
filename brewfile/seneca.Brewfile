@@ -8,6 +8,8 @@ file ./presets/oci-images.Brewfile
 # Private presets (untracked)
 file ./local/presets.Brewfile
 
+brew "yq"
+
 cask "microsoft-auto-update"
 cask "microsoft-teams"
 

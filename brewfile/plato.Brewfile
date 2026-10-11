@@ -42,10 +42,3 @@ exclude brew "tmux"
 # tarball upstream, so it doesn't work via mise on this Intel host. Not
 # important enough to keep on Homebrew just for this.
 exclude brew "broot"
-
-# Not needed on plato, and impractical to install here: none has an Intel
-# bottle. blueutil needs a full Xcode.app to build, pandoc builds with
-# ghc/cabal, and yq needs go plus pandoc.
-exclude brew "blueutil"
-exclude brew "pandoc"
-exclude brew "yq"

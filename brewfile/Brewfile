@@ -16,7 +16,6 @@ brew "antidote"
 # /bin/bash on macOS is version 3.2.57 from 2007.
 brew "bash"
 brew "bat"
-brew "blueutil"
 brew "broot"
 brew "coreutils"
 brew "ctags"
@@ -39,9 +38,6 @@ brew "languagetool"
 brew "mas"
 brew "mcfly"
 brew "mise"
-brew "moreutils"
-brew "noti"
-brew "pandoc"
 brew "pinentry-mac"
 brew "pipx"
 brew "ripgrep"
@@ -51,8 +47,6 @@ brew "shfmt"
 brew "starship"
 # Needed to install some fonts
 brew "subversion"
-brew "switchaudio-osx"
-brew "tldr"
 brew "tmux"
 brew "tree"
 brew "unp"
@@ -63,7 +57,6 @@ brew "virtualenvwrapper"
 brew "watch"
 brew "wget"
 brew "ykman"
-brew "yq"
 brew "zoxide"
 brew "zsh"
 
@@ -94,7 +87,6 @@ cask "spotify"
 cask "sunsama"
 cask "syncthing-app"
 cask "tailscale-app"
-cask "vagrant"
 cask "visual-studio-code"
 cask "vlc"
 cask "yubico-authenticator"
@@ -103,7 +95,6 @@ cask "zoom"
 # App Store applications
 mas "Amphetamine", id: 937984704
 mas "Fantastical", id: 975937182
-mas "Speedtest", id: 1153157709
 mas "Todoist", id: 585829637
 mas "Velja", id: 1607635845
 
