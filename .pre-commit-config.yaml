@@ -24,3 +24,11 @@ repos:
   rev: 26.10.0
   hooks:
     - id: black
+- repo: local
+  hooks:
+    - id: pkgs-tests
+      name: lib/pkgs unit tests
+      entry: python3 -m unittest discover -s lib -t lib
+      language: system
+      pass_filenames: false
+      files: ^(lib/pkgs/|bin/brew\.(compile|usage)$)

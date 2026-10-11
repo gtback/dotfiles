@@ -1,0 +1,126 @@
+# SPDX-FileCopyrightText: 2024-2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Keep this module free of 3.10+ syntax: on a fresh machine brew.up may run it under
+# macOS's system Python 3.9.
+
+"""
+Compiles an "enhanced Brewfile" into a format understandable by homebrew-bundle. An
+"enhanced Brewfile" supports three features not present in standard Brewfiles:
+
+- a "file" directive will be expanded into the contents of the referenced file (if it
+  exists)
+- any "tap" directives will be used and prepended to "brew" and "cask" directives in the
+  same "section". A blank line starts a new section.
+- an "exclude" directive drops a matching entry declared anywhere else. For example,
+  "exclude cask 'maccy'" removes a "cask 'maccy'" line even if it's declared in a
+  different file. Matching ignores any tap prefix on "brew" and "cask" entries and any
+  trailing "id:" on "mas" entries, so "exclude brew 'dyff'" matches
+  "brew 'homeport/tap/dyff'". Excluding a tap (e.g. "exclude tap 'homeport/tap'") also
+  drops every "brew" and "cask" entry tapped from it, without needing to list each
+  formula or cask individually.
+"""
+
+from __future__ import annotations
+
+import logging
+import pathlib
+import platform
+import re
+from dataclasses import dataclass
+from typing import Optional
+
+logger = logging.getLogger(__name__)
+
+
+hostname = platform.uname()[1]
+home = str(pathlib.Path.home())
+
+QUOTED = re.compile(r"""['"]([^'"]+)['"]""")
+
+
+@dataclass
+class Entry:
+    decl_type: str
+    name: str
+    # Tap prefix on a "brew" or "cask" entry (e.g. "buildkite/buildkite"), or None.
+    tap: Optional[str]
+    line: str
+
+
+def parse_entry(line: str):
+    """Parse a tap/brew/cask/mas declaration line into (type, name, tap), where
+    "tap" is the tap prefix on a "brew" or "cask" entry (e.g. "buildkite/buildkite"),
+    or None."""
+    decl_type, _, rest = line.partition(" ")
+    match = QUOTED.search(rest)
+    name = match.group(1) if match else rest.strip()
+    tap = None
+    if decl_type in ("brew", "cask") and "/" in name:
+        tap, _, name = name.rpartition("/")
+    return decl_type, name, tap
+
+
+def is_excluded(decl_type: str, name: str, tap: Optional[str], excludes: set) -> bool:
+    if (decl_type, name) in excludes:
+        return True
+    # A formula or cask tapped from an excluded tap is excluded too, section-style: you
+    # shouldn't need to list every formula/cask a tap provides just to drop the tap.
+    return (
+        decl_type in ("brew", "cask") and tap is not None and ("tap", tap) in excludes
+    )
+
+
+def walk(filename: pathlib.Path, entries: list, excludes: set):
+    pth = pathlib.Path(filename)
+    logger.debug(f"Processing {pth}")
+
+    if not pth.exists():
+        logger.warning(f"Path does not exist: {pth}")
+        return
+    with open(pth) as f:
+        data = f.readlines()
+
+    # If any line begins with "tap", every "brew" and "cask" in the same section of the
+    # file will be prepended with this tap. A blank line resets the currently-active
+    # tap.
+    tap = ""
+
+    for line in data:
+        line = line.strip()
+        if not line:
+            tap = ""
+            continue
+        if line.startswith("#"):
+            continue
+        if line.startswith("file"):
+            fname = line.split(maxsplit=1)[1].strip("'\"")
+            fname = fname.replace("$HOSTNAME", hostname)
+            fname = fname.replace("$HOME", home)
+            walk(pth.parent.joinpath(fname).resolve(), entries, excludes)
+            continue
+
+        is_exclude = line.startswith("exclude ")
+        if is_exclude:
+            line = line[len("exclude ") :].strip()
+
+        if line.startswith("tap") and not is_exclude:
+            match = QUOTED.search(line)
+            tap = match.group(1) if match else line.split(maxsplit=1)[1]
+        if tap and line.startswith(("brew", "cask")):
+            decl = line.split(maxsplit=1)[0]
+            line = line.replace(f'{decl} "', f'{decl} "{tap}/', 1)
+
+        decl_type, name, entry_tap = parse_entry(line)
+        if is_exclude:
+            excludes.add((decl_type, name))
+        else:
+            entries.append(Entry(decl_type, name, entry_tap, line))
+
+
+def compile(root) -> list:
+    """Return the non-excluded entries of the enhanced Brewfile at `root`."""
+    entries: list = []
+    excludes: set = set()
+    walk(pathlib.Path(root), entries, excludes)
+    return [e for e in entries if not is_excluded(e.decl_type, e.name, e.tap, excludes)]
