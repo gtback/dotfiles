@@ -24,7 +24,16 @@ credited to their targets) and Spotlight's last-used date for apps.
      (Fantastical, Bartender, Tailscale)
    - fonts, and casks that install only pkgs or drivers (shown with `-`
      in PROVIDES, so they have no signal at all)
+   - subcommand-style tools (git-extras, kubectl plugins), which are run as
+     `git <sub>` rather than by command name, so the report undercounts them
+   - tools called only from shell functions in `sh/` (like `blueutil` and
+     `SwitchAudioSource` from `pods()`); history records the function name
    - "nice to have everywhere" tools the user keeps deliberately
+   Before calling a stale tool unused, check these two gaps directly:
+   - grep `sh/`, `bin/` and `git/config` for the tool's command names
+   - for subcommand-style tools, search history for `<tool> <subcommand>`
+     (e.g. `sqlite3` on `~/Library/Application Support/mcfly/history.db` for
+     `git summary`)
 3. **Ask before deciding.** Present candidates grouped by confidence and ask
    the user. Don't decide for them.
 4. **Choose the placement** for each removal:
@@ -37,6 +46,8 @@ credited to their targets) and Spotlight's last-used date for apps.
      references to removed tools.
    - If a removed tool has its own config directory in the repo, propose
      deleting it together with its `install.sh` symlink lines.
+   - Remove helpers in `sh/` that only wrapped a removed tool (and their
+     calls), and any exports for them in `sh/exports.local`.
    - Then give the matching `brew uninstall` (and `--cask`) commands for each
      host. `brew.diff` lists what is installed but no longer in the Brewfile.
 6. **Stop at edits.** Never edit without confirmation, and never commit.
