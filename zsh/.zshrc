@@ -135,6 +135,11 @@ if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+## snip: run commands in a clean bash and copy a transcript
+if command -v snip &>/dev/null; then
+  eval "$(snip init zsh)"
+fi
+
 ####### Load Completions #######
 
 # Load Completions
