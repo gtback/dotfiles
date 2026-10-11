@@ -10,36 +10,6 @@ alias ffprof="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManag
 alias swud="softwareupdate --all"
 alias md="open -a /Applications/MacDown.app"
 
-bt._connect() {
-    blueutil --connect "$1"
-    while [ "$(blueutil --is-connected "$1")" -ne "1" ]; do sleep 1; done
-}
-
-pods() {
-    bt._connect "${AIRPODS_BLUETOOTH_ID}"
-    sleep 1
-    SwitchAudioSource -t output -s AirPods
-    SwitchAudioSource -t input -s AirPods
-}
-
-bt.start() {
-    blueutil --power 1
-    echo "connecting keyboard"
-    bt._connect "${KEYBOARD_BLUETOOTH_ID}"
-    echo "connecting mouse"
-    bt._connect "${MOUSE_BLUETOOTH_ID}"
-    echo "connected"
-}
-
-bt.stop() {
-    echo "disconnecting keyboard"
-    blueutil --disconnect "${KEYBOARD_BLUETOOTH_ID}"
-    echo "disconnecting mouse"
-    blueutil --disconnect "${MOUSE_BLUETOOTH_ID}"
-    echo "disconnected"
-    blueutil --power 0
-}
-
 # https://stackoverflow.com/a/30029855
 listening() {
     if [ $# -eq 0 ]; then
