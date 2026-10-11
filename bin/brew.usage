@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+"""Report how recently each Brewfile entry was used.
+
+Commands are scored from shell history (mcfly), with aliases credited to what they
+expand to. Apps are scored from Spotlight's last-used date. Stale entries come first.
+"""
+
+import argparse
+import os
+import sys
+from datetime import datetime, timedelta
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "lib"))
+
+from pkgs import brew, usage  # noqa: E402
+from pkgs.brewfile import compile  # noqa: E402
+
+KINDS = ("brew", "cask", "mas")
+
+
+def main() -> None:
+    config = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config"))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--brewfile", default=config / "brewfile/Brewfile")
+    parser.add_argument("--days", type=int, default=365)
+    args = parser.parse_args()
+
+    since = datetime.now() - timedelta(days=args.days)
+    entries = [e for e in compile(args.brewfile) if e.decl_type in KINDS]
+    provided = brew.provides(entries)
+    commands = usage.command_usage(since, usage.aliases())
+
+    rows = []
+    for entry in entries:
+        provides = provided.get((entry.decl_type, entry.name), usage.Provides())
+        uses = 0
+        last = None
+        for command in provides.commands:
+            used = commands.get(command)
+            if used:
+                uses += used.count_in_window
+                if last is None or (used.last_used and used.last_used > last):
+                    last = used.last_used
+        for app in provides.apps:
+            opened = usage.app_last_opened(app)
+            if opened and (last is None or opened > last):
+                last = opened
+        provides_text = ",".join(provides.commands + [a.stem for a in provides.apps])
+        stale = last is None or last < since
+        rows.append(
+            (
+                not stale,
+                last or datetime.min,
+                entry.decl_type,
+                entry.name,
+                provides_text or "-",
+                uses,
+                last.strftime("%Y-%m-%d") if last else "never",
+                "stale" if stale else "",
+            )
+        )
+
+    rows.sort(key=lambda r: (r[0], r[1], r[3]))
+    table = [("KIND", "NAME", "PROVIDES", "USES", "LAST USED", "")] + [
+        (r[2], r[3], r[4][:40], str(r[5]), r[6], r[7]) for r in rows
+    ]
+    widths = [max(len(row[i]) for row in table) for i in range(6)]
+    for row in table:
+        print("  ".join(cell.ljust(w) for cell, w in zip(row, widths)).rstrip())
+
+
+if __name__ == "__main__":
+    main()
