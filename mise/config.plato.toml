@@ -1,0 +1,13 @@
+# Tools moved here from Homebrew to avoid from-source builds (Homebrew has
+# dropped Intel-macOS bottles past Sonoma, and plato is Intel). Corresponding
+# `exclude brew` lines are in brewfile/plato.Brewfile.
+
+[tools]
+direnv = "latest"
+dust = "latest"
+fd = "latest"
+fzf = "latest"
+gh = "latest"
+pipx = "latest"
+shfmt = "latest"
+tmux = "latest"

@@ -27,3 +27,21 @@ mas "Brother iPrint&Scan", id: 1193539993
 mas "Cardhop", id: 1290358394
 mas "Okta Verify", id: 490179405
 mas "WireGuard", id: 1451685025
+
+# Moved to mise (see mise/config.plato.toml) to get prebuilt binaries instead
+# of from-source builds now that Homebrew has dropped Intel-macOS bottles
+# past Sonoma.
+exclude brew "direnv"
+exclude brew "dust"
+exclude brew "fd"
+exclude brew "fzf"
+exclude brew "gh"
+exclude brew "pipx"
+exclude brew "shfmt"
+exclude brew "tmux"
+
+# broot's mise backend (github:canop/broot) only bundles an aarch64-apple-darwin
+# binary in its release zip despite shipping a separate x86_64-apple-darwin
+# tarball upstream, so it doesn't work via mise on this Intel host. Not
+# important enough to keep on Homebrew just for this.
+exclude brew "broot"

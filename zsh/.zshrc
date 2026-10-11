@@ -98,6 +98,9 @@ done
 
 ## Mise: https://mise.jdx.dev/
 if command -v mise &>/dev/null; then
+  # Picks up mise/config.$HOSTNAME.toml alongside the shared mise/config.toml,
+  # mirroring the $HOSTNAME.Brewfile pattern.
+  export MISE_ENV="$(hostname -s)"
   eval "$(mise activate zsh)"
 fi
 
