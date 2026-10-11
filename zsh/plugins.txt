@@ -12,7 +12,6 @@ ohmyzsh/ohmyzsh path:plugins/jira
 ohmyzsh/ohmyzsh path:plugins/pip
 ohmyzsh/ohmyzsh path:plugins/python
 ohmyzsh/ohmyzsh path:plugins/ruby
-ohmyzsh/ohmyzsh path:plugins/vagrant
 
 # https://github.com/z-shell/F-Sy-H
 z-shell/F-Sy-H
