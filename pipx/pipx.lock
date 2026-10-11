@@ -2,6 +2,7 @@ black
 cogapp
 flake8
 gcalcli
+httpie
 identify
 mopup
 pip-tools
