@@ -50,7 +50,9 @@ has one, read it early and surface anything relevant to the current task.
 When updating `localnotes.md`, remove anything that has been done and
 committed. It is not a log of completed work, since git history and commit
 messages already record that. Keep only what is still outstanding: deferred
-tasks, open decisions, and context needed to act on them.
+tasks, open decisions, and context needed to act on them. Don't record git
+state (what is committed, pushed, or uncommitted); `git status` and `git log`
+show that.
 
 ## Plan mode
 
