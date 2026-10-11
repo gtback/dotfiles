@@ -47,6 +47,11 @@ When wrapping up a session, write any deferred items or open decisions to
 `localnotes.md` if the user asks. When starting a session in a project that
 has one, read it early and surface anything relevant to the current task.
 
+When updating `localnotes.md`, remove anything that has been done and
+committed. It is not a log of completed work, since git history and commit
+messages already record that. Keep only what is still outstanding: deferred
+tasks, open decisions, and context needed to act on them.
+
 ## Plan mode
 
 The `ExitPlanMode` approval dialog draws over the text printed immediately
