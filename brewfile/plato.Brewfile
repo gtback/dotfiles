@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 brew "ffmpeg"
-brew "rtl_433"
 
 cask "adobe-digital-editions"
 cask "anki"
