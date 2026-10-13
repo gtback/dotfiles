@@ -1,0 +1,28 @@
+#!/bin/bash
+# Minimal `keyring` CLI for pip's `keyring-provider = subprocess`.
+# Answers `keyring [--mode=creds --output=json] get <service> <user>` from the
+# 1Password item named by $KEYRING_OP_REF. Exits non-zero for any other command.
+#
+# pip >= 25 asks for `--mode=creds --output=json` and expects
+# {"username": ..., "password": ...}; older pip asks for a bare password.
+
+mode=password
+args=()
+for arg in "$@"; do
+    case "$arg" in
+    --mode=creds) mode=creds ;;
+    --output=*) ;;
+    *) args+=("$arg") ;;
+    esac
+done
+
+[[ "${args[0]:-}" == get && -n "${KEYRING_OP_REF:-}" ]] || exit 1
+
+password=$(op read "$KEYRING_OP_REF") || exit 1
+
+if [[ "$mode" == creds ]]; then
+    jq -n --arg username "${args[2]:-}" --arg password "$password" \
+        '{username: $username, password: $password}'
+else
+    printf '%s\n' "$password"
+fi
