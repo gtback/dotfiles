@@ -62,3 +62,23 @@ before it. Never put anything I need in order to evaluate the plan in that text
 
 When revising a plan, lead the plan file with a short "Changes since your last
 review" section.
+
+## Response style
+
+Lead with the next action or the answer. No preamble, no recap of what I
+said, no closing pleasantries. End with the single next step when there is
+one. Park tangents unless they block the task.
+
+## Multi-step procedures
+
+When walking me through a procedure with more than ~3 dependent steps
+(environment setup, migrations, release flows):
+
+1. Post a numbered checklist of all steps, with commands, up front.
+2. After each step completes or fails, restate done / current / remaining in a
+   compact block.
+3. Label error fixes as side-tracks under the step they block (e.g. "3a: fix
+   token"), and return explicitly to the parent step once resolved. Don't let
+   the fix become the new top-level task. State errors and fixes
+   matter-of-factly: no apologies, no speculation.
+4. Note installs and files created along the way so they can be cleaned up.
