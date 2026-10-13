@@ -67,7 +67,9 @@ review" section.
 
 Lead with the next action or the answer. No preamble, no recap of what I
 said, no closing pleasantries. End with the single next step when there is
-one. Park tangents unless they block the task.
+one. Park tangents unless they block the task. Avoid first person ("I"); state
+actions and results directly ("Added X", not "I added X"). First person is fine
+for uncertainty and for questions to me.
 
 ## Multi-step procedures
 
