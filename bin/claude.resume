@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Pick a Claude Code session by fuzzy-matching its title (or directory), then
+# resume it by ID from the session's original working directory.
+#
+# Usage: claude.resume [--list] [query ...]
+# Options:
+#   --list   Print the session table (newest first) and exit without fzf.
+#   query    Initial fzf query.
+#
+# Sessions are the top-level *.jsonl files under ~/.claude/projects/<project>/.
+# Title is the latest /rename title if any, else the latest auto-generated
+# title. Claude only resumes sessions belonging to the current directory's
+# project, hence the cd before launching.
+
+set -euo pipefail
+
+projects_dir="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/projects"
+
+list=0
+if [ "${1:-}" = "--list" ]; then
+    list=1
+    shift
+fi
+
+fmt_date() {
+    date -r "$1" '+%Y-%m-%d %H:%M' 2>/dev/null || date -d "@$1" '+%Y-%m-%d %H:%M'
+}
+
+# Emit "<mtime>\t<id>\t<title>\t<cwd>" for each session, newest first. One
+# stat, one grep per field, and one awk cover all files: spawning jq per file
+# is slow, notably when jq is a version-manager shim.
+collect() {
+    local files=("$projects_dir"/*/*.jsonl)
+    [ -e "${files[0]}" ] || return 0
+    {
+        { stat -f '%m %N' "${files[@]}" 2>/dev/null || stat -c '%Y %n' "${files[@]}"; } | sed 's/^/M /'
+        grep -m1 -o -H '"cwd":"\([^"\\]\|\\.\)*"' "${files[@]}" | sed 's/^/C /'
+        grep -o -H '"\(aiTitle\|customTitle\)":"\([^"\\]\|\\.\)*"' "${files[@]}" | sed 's/^/T /'
+    } | awk '
+        function unq(v) {
+            sub(/^"[A-Za-z]+":"/, "", v); sub(/"$/, "", v)
+            gsub(/\\"/, "\"", v); gsub(/\\\\/, "\\", v)
+            return v
+        }
+        function sid(path,    n, a) { n = split(path, a, "/"); return substr(a[n], 1, length(a[n]) - 6) }
+        $1 == "M" { mt[substr($0, length($2) + 4)] = $2; next }
+        {
+            rest = substr($0, 3); i = index(rest, ".jsonl:"); if (!i) next
+            path = substr(rest, 1, i + 5); val = substr(rest, i + 7)
+            if ($1 == "C") cwd[path] = unq(val)
+            else if (val ~ /^"customTitle"/) custom[path] = unq(val)
+            else ai[path] = unq(val)
+        }
+        END {
+            for (p in mt)
+                printf "%s\t%s\t%s\t%s\n", mt[p], sid(p),
+                    (p in custom ? custom[p] : (p in ai ? ai[p] : "(untitled)")), cwd[p]
+        }
+    ' | sort -rn
+}
+
+# Rows for fzf: "<date>\t<title>\t<cwd>\t<id>\t<raw cwd>"; last two are hidden.
+rows="$(collect | while IFS=$'\t' read -r ts id title cwd; do
+    printf '%s\t%s\t%s\t%s\t%s\n' "$(fmt_date "$ts")" "$title" "${cwd/#$HOME/~}" "$id" "$cwd"
+done)"
+
+if [ -z "$rows" ]; then
+    echo "claude.resume: no sessions found in $projects_dir" >&2
+    exit 1
+fi
+
+if [ "$list" -eq 1 ]; then
+    printf '%s\n' "$rows" | cut -f1-4
+    exit 0
+fi
+
+selection="$(printf '%s\n' "$rows" \
+    | fzf --delimiter=$'\t' --with-nth=1,2,3 --tabstop=24 \
+        --prompt='resume> ' --query="$*" \
+        --preview='echo {4}; echo {5}' --preview-window=down:2:wrap)" || exit 0
+
+id="$(printf '%s' "$selection" | cut -f4)"
+cwd="$(printf '%s' "$selection" | cut -f5)"
+
+if [ -n "$cwd" ] && [ -d "$cwd" ]; then
+    cd "$cwd"
+else
+    echo "claude.resume: original directory missing (${cwd:-unknown}); resuming from $PWD" >&2
+fi
+
+exec claude --resume "$id"
