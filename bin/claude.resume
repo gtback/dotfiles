@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
 # SPDX-License-Identifier: MIT
 
-# Pick a Claude Code session by fuzzy-matching its title (or directory), then
+# Pick a Claude Code session by fuzzy-matching its directory or title, then
 # resume it by ID from the session's original working directory.
 #
 # Usage: claude.resume [--list] [query ...]
@@ -20,11 +20,7 @@ set -euo pipefail
 
 projects_dir="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/projects"
 
-list=0
-if [ "${1:-}" = "--list" ]; then
-    list=1
-    shift
-fi
+path_w=40
 
 fmt_date() {
     date -r "$1" '+%Y-%m-%d %H:%M' 2>/dev/null || date -d "@$1" '+%Y-%m-%d %H:%M'
@@ -63,23 +59,64 @@ collect() {
     ' | sort -rn
 }
 
-# Rows for fzf: "<date>\t<title>\t<cwd>\t<id>\t<raw cwd>"; last two are hidden.
-rows="$(collect | while IFS=$'\t' read -r ts id title cwd; do
-    printf '%s\t%s\t%s\t%s\t%s\n' "$(fmt_date "$ts")" "$title" "${cwd/#$HOME/~}" "$id" "$cwd"
-done)"
+# Shorten a path for display, fish-style: "~" for $HOME, every directory but
+# the last reduced to its first character ("~/c/e/terrazzo"; dot-directories
+# keep the dot). If it is still longer than path_w, cut the last component
+# short with a trailing "…".
+short_path() {
+    [ -n "$1" ] || return 0
+    local p="${1/#$HOME/~}" parts=() out="" c i n
+    IFS=/ read -ra parts <<<"$p"
+    n=${#parts[@]}
+    for ((i = 0; i < n; i++)); do
+        c="${parts[i]}"
+        if [ "$i" -lt $((n - 1)) ] && [ "$c" != "~" ]; then
+            if [[ "$c" == .* ]]; then c="${c:0:2}"; else c="${c:0:1}"; fi
+        fi
+        if [ "$i" -eq 0 ]; then out="$c"; else out="$out/$c"; fi
+    done
+    if [ "${#out}" -gt "$path_w" ]; then
+        local head="${out%/*}/" last="${out##*/}"
+        if [ "$((path_w - ${#head} - 1))" -ge 6 ]; then
+            out="$head${last:0:path_w-${#head}-1}…"
+        else
+            out="…${out: -$((path_w - 1))}"
+        fi
+    fi
+    printf '%s' "$out"
+}
 
-if [ -z "$rows" ]; then
+# Rows for fzf, "<date>\t<path, padded>\t<title>\t<id>\t<raw cwd>"; the last
+# two are hidden. The title goes last so it needs no padding or truncation.
+rows() {
+    local path pad
+    collect | while IFS=$'\t' read -r ts id title cwd; do
+        path="$(short_path "$cwd")"
+        printf -v pad '%*s' "$((path_w - ${#path}))" ''
+        printf '%s\t%s%s\t%s\t%s\t%s\n' "$(fmt_date "$ts")" "$path" "$pad" "$title" "$id" "$cwd"
+    done
+}
+
+list=0
+if [ "${1:-}" = "--list" ]; then
+    list=1
+    shift
+fi
+
+selection_rows="$(rows)"
+
+if [ -z "$selection_rows" ]; then
     echo "claude.resume: no sessions found in $projects_dir" >&2
     exit 1
 fi
 
 if [ "$list" -eq 1 ]; then
-    printf '%s\n' "$rows" | cut -f1-4
+    printf '%s\n' "$selection_rows" | cut -f1-4
     exit 0
 fi
 
-selection="$(printf '%s\n' "$rows" \
-    | fzf --delimiter=$'\t' --with-nth=1,2,3 --tabstop=24 \
+selection="$(printf '%s\n' "$selection_rows" \
+    | fzf --delimiter=$'\t' --with-nth=1,2,3 --tabstop=2 \
         --prompt='resume> ' --query="$*" \
         --preview='echo {4}; echo {5}' --preview-window=down:2:wrap)" || exit 0
 
