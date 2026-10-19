@@ -36,6 +36,7 @@ exclude brew "gh"
 exclude brew "pipx"
 exclude brew "shfmt"
 exclude brew "tmux"
+exclude brew "tpack"
 
 # broot's mise backend (github:canop/broot) only bundles an aarch64-apple-darwin
 # binary in its release zip despite shipping a separate x86_64-apple-darwin

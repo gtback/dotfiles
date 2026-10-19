@@ -48,6 +48,7 @@ brew "starship"
 # Needed to install some fonts
 brew "subversion"
 brew "tmux"
+brew "tpack"
 brew "tree"
 brew "unp"
 brew "unzip"
