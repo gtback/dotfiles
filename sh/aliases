@@ -69,7 +69,7 @@ function start() {
     credentials.load
     ssh-add
     gpg.init
-    tmux
+    tmux new-session -A -s main
 }
 
 function stop() {
