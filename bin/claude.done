@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Mark a Claude Code session as done so claude.resume hides it.
+#
+# Usage: claude.done [session-id]
+#
+# Without an argument, uses $CLAUDE_CODE_SESSION_ID, which Claude sets in the
+# environment of its Bash tool. Appends "<id><TAB><epoch>" to the done list
+# read (and pruned) by claude.resume; see that script for the reopen rule.
+
+set -euo pipefail
+
+done_file="${XDG_STATE_HOME:-$HOME/.local/state}/claude.resume/done"
+
+id="${1:-${CLAUDE_CODE_SESSION_ID:-}}"
+if [ -z "$id" ]; then
+    echo "claude.done: no session id (pass one, or run from inside Claude)" >&2
+    exit 1
+fi
+if ! [[ "$id" =~ ^[0-9a-fA-F-]{36}$ ]]; then
+    echo "claude.done: not a session id: $id" >&2
+    exit 1
+fi
+
+mkdir -p "$(dirname "$done_file")"
+printf '%s\t%s\n' "$id" "$(date +%s)" >>"$done_file"
+echo "claude.done: marked $id done"

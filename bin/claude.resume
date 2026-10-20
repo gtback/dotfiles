@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
 # SPDX-License-Identifier: MIT
@@ -6,24 +6,52 @@
 # Pick a Claude Code session by fuzzy-matching its directory or title, then
 # resume it by ID from the session's original working directory.
 #
-# Usage: claude.resume [--list] [query ...]
+# Usage: claude.resume [--list] [--all] [query ...]
 # Options:
 #   --list   Print the session table (newest first) and exit without fzf.
+#   --all    Include sessions marked done or archived, tagged "[done]" /
+#            "[archived]". In fzf, ctrl-l shows all and ctrl-o only open ones.
 #   query    Initial fzf query.
 #
 # Sessions are the top-level *.jsonl files under ~/.claude/projects/<project>/.
 # Title is the latest /rename title if any, else the latest auto-generated
 # title. Claude only resumes sessions belonging to the current directory's
 # project, hence the cd before launching.
+#
+# Hidden by default:
+#   - Sessions listed in the done file (see claude.done). A session is open
+#     again, and its entry pruned, once its transcript is modified more than
+#     reopen_grace seconds after it was marked (the marking turn itself still
+#     writes to the transcript). Entries for deleted sessions are pruned too.
+#   - Sessions archived in the VS Code extension (read-only lookup of its
+#     hiddenSessionIds in VS Code's state database; skipped without sqlite3).
 
 set -euo pipefail
 
 projects_dir="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/projects"
+done_file="${XDG_STATE_HOME:-$HOME/.local/state}/claude.resume/done"
+reopen_grace=300
 
 path_w=40
 
+# Set $date_str to the local "YYYY-MM-DD HH:MM" for an epoch. The printf
+# builtin (bash >= 4.2) avoids forking date once per session.
 fmt_date() {
-    date -r "$1" '+%Y-%m-%d %H:%M' 2>/dev/null || date -d "@$1" '+%Y-%m-%d %H:%M'
+    if [ "${BASH_VERSINFO[0]}" -ge 5 ]; then
+        printf -v date_str '%(%Y-%m-%d %H:%M)T' "$1"
+    else
+        date_str="$(date -r "$1" '+%Y-%m-%d %H:%M' 2>/dev/null || date -d "@$1" '+%Y-%m-%d %H:%M')"
+    fi
+}
+
+# grep -o -H with ERE patterns, via ripgrep when installed (50x faster than
+# BSD grep over a large transcript directory).
+matches() {
+    if command -v rg >/dev/null; then
+        rg -o -H -N --no-heading "$@"
+    else
+        LC_ALL=C grep -E -o -H "$@"
+    fi
 }
 
 # Emit "<mtime>\t<id>\t<title>\t<cwd>" for each session, newest first. One
@@ -34,8 +62,8 @@ collect() {
     [ -e "${files[0]}" ] || return 0
     {
         { stat -f '%m %N' "${files[@]}" 2>/dev/null || stat -c '%Y %n' "${files[@]}"; } | sed 's/^/M /'
-        grep -m1 -o -H '"cwd":"\([^"\\]\|\\.\)*"' "${files[@]}" | sed 's/^/C /'
-        grep -o -H '"\(aiTitle\|customTitle\)":"\([^"\\]\|\\.\)*"' "${files[@]}" | sed 's/^/T /'
+        matches -m1 '"cwd":"([^"\\]|\\.)*"' "${files[@]}" | sed 's/^/C /'
+        matches '"(aiTitle|customTitle)":"([^"\\]|\\.)*"' "${files[@]}" | sed 's/^/T /'
     } | awk '
         function unq(v) {
             sub(/^"[A-Za-z]+":"/, "", v); sub(/"$/, "", v)
@@ -65,7 +93,8 @@ collect() {
 # short with a trailing "…".
 short_path() {
     [ -n "$1" ] || return 0
-    local p="${1/#$HOME/~}" parts=() out="" c i n
+    local tilde='~' p parts=() out="" c i n
+    p="${1/#$HOME/$tilde}"
     IFS=/ read -ra parts <<<"$p"
     n=${#parts[@]}
     for ((i = 0; i < n; i++)); do
@@ -86,27 +115,94 @@ short_path() {
     printf '%s' "$out"
 }
 
-# Rows for fzf, "<date>\t<path, padded>\t<title>\t<id>\t<raw cwd>"; the last
-# two are hidden. The title goes last so it needs no padding or truncation.
-rows() {
-    local path pad
-    collect | while IFS=$'\t' read -r ts id title cwd; do
-        path="$(short_path "$cwd")"
-        printf -v pad '%*s' "$((path_w - ${#path}))" ''
-        printf '%s\t%s%s\t%s\t%s\t%s\n' "$(fmt_date "$ts")" "$path" "$pad" "$title" "$id" "$cwd"
+# Comma-separated IDs of sessions archived in the VS Code extension. The
+# extension keeps them in its globalState (a SQLite key-value table); nothing
+# is written to Claude's own files.
+vscode_archived() {
+    command -v sqlite3 >/dev/null || return 0
+    local db
+    for db in "$HOME/Library/Application Support/Code/User/globalStorage/state.vscdb" \
+        "${XDG_CONFIG_HOME:-$HOME/.config}/Code/User/globalStorage/state.vscdb"; do
+        [ -f "$db" ] || continue
+        sqlite3 -readonly "$db" "select group_concat(value, ',') from json_each(
+            (select json_extract(value, '\$.hiddenSessionIds') from ItemTable
+             where key = 'Anthropic.claude-code'))" 2>/dev/null || true
+        return 0
     done
 }
 
-list=0
-if [ "${1:-}" = "--list" ]; then
-    list=1
-    shift
-fi
+# Filter collect's rows on stdin. mode "open" drops done/archived sessions;
+# "all" keeps them with a "[done]"/"[archived]" title prefix. If $2 is a file
+# name, the still-relevant done entries are written there (pruning).
+filter_rows() {
+    awk -F'\t' -v OFS='\t' -v mode="$1" -v out="${2:-}" -v grace="$reopen_grace" \
+        -v donefile="$done_file" -v vs="$(vscode_archived)" '
+        BEGIN {
+            while ((getline line < donefile) > 0) {
+                split(line, a, "\t"); if (a[1] != "") d[a[1]] = a[2]
+            }
+            n = split(vs, ids, ","); for (i = 1; i <= n; i++) v[ids[i]] = 1
+        }
+        {
+            seen[$2] = 1; tag = ""
+            if ($2 in d) { if ($1 <= d[$2] + grace) tag = "done"; else reopened[$2] = 1 }
+            if (tag == "" && ($2 in v)) tag = "archived"
+            if (tag == "") print
+            else if (mode == "all") { $3 = "[" tag "] " $3; print }
+        }
+        END {
+            if (out != "" && NR > 0)
+                for (id in d) if ((id in seen) && !(id in reopened)) print id, d[id] > out
+        }
+    '
+}
 
-selection_rows="$(rows)"
+# Rows for fzf, "<date>\t<path, padded>\t<title>\t<id>\t<raw cwd>"; the last
+# two are hidden. The title goes last so it needs no padding or truncation.
+# $1 is the filter mode (open|all); $2 "prune" also prunes the done file.
+rows() {
+    local path pad tmp="" collected
+    collected="$(collect)"
+    if [ "${2:-}" = prune ] && [ -f "$done_file" ] && [ -n "$collected" ]; then
+        tmp="$(mktemp "$done_file.XXXXXX")"
+    fi
+    printf '%s\n' "$collected" | filter_rows "$1" "$tmp" | while IFS=$'\t' read -r ts id title cwd; do
+        path="$(short_path "$cwd")"
+        printf -v pad '%*s' "$((path_w - ${#path}))" ''
+        fmt_date "$ts"
+        printf '%s\t%s%s\t%s\t%s\t%s\n' "$date_str" "$path" "$pad" "$title" "$id" "$cwd"
+    done
+    if [ -n "$tmp" ]; then mv "$tmp" "$done_file"; fi
+}
+
+list=0
+mode=open
+while [ $# -gt 0 ]; do
+    case "$1" in
+    --list) list=1 ;;
+    --all) mode=all ;;
+    # Internal: fzf reload target for the ctrl-l / ctrl-o bindings.
+    --_rows)
+        rows "$2"
+        exit 0
+        ;;
+    --)
+        shift
+        break
+        ;;
+    *) break ;;
+    esac
+    shift
+done
+
+selection_rows="$(rows "$mode" prune)"
 
 if [ -z "$selection_rows" ]; then
-    echo "claude.resume: no sessions found in $projects_dir" >&2
+    if [ "$mode" = open ] && [ -n "$(collect)" ]; then
+        echo "claude.resume: no open sessions (use --all to include done ones)" >&2
+    else
+        echo "claude.resume: no sessions found in $projects_dir" >&2
+    fi
     exit 1
 fi
 
@@ -115,9 +211,14 @@ if [ "$list" -eq 1 ]; then
     exit 0
 fi
 
+self="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
+printf -v self_q '%q' "$self"
+
 selection="$(printf '%s\n' "$selection_rows" \
     | fzf --delimiter=$'\t' --with-nth=1,2,3 --tabstop=2 \
-        --prompt='resume> ' --query="$*" \
+        --prompt="$([ "$mode" = all ] && echo 'all> ' || echo 'resume> ')" --query="$*" \
+        --bind "ctrl-l:reload($self_q --_rows all)+change-prompt(all> )" \
+        --bind "ctrl-o:reload($self_q --_rows open)+change-prompt(resume> )" \
         --preview='echo {4}; echo {5}' --preview-window=down:2:wrap)" || exit 0
 
 id="$(printf '%s' "$selection" | cut -f4)"
