@@ -54,6 +54,13 @@ tasks, open decisions, and context needed to act on them. Don't record git
 state (what is committed, pushed, or uncommitted); `git status` and `git log`
 show that.
 
+## Finished sessions
+
+When I say the whole session is finished (e.g. "we're done here", "mark this
+session done"), run `claude.done` to hide it from the `claude.resume` picker,
+then confirm in one line. Don't run it for a finished step or task, and don't
+infer it from a pause or a thank-you.
+
 ## Plan mode
 
 The `ExitPlanMode` approval dialog draws over the text printed immediately
