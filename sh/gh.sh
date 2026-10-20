@@ -88,8 +88,10 @@ function gh.get-repo-id() {
     gh api "/repos/$1" | jq -r '.id'
 }
 
+# Export $GITHUB_TOKEN into this shell from 1Password.
+# Requires SECRET_NAME (1Password item name), e.g.:
+#   SECRET_NAME="<item name>" gh.load-token
 function gh.load-token() {
-    # TODO: don't reload if $GITHUB_TOKEN already set
     eval "$(load-gh-token.sh)"
 }
 
