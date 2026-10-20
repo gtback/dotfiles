@@ -13,6 +13,10 @@
 #            "[archived]". In fzf, ctrl-l shows all and ctrl-o only open ones.
 #   query    Initial fzf query.
 #
+# fzf matches exact substrings (space-separated terms are ANDed; prefix a
+# term with ' for fuzzy) and keeps the newest-first order instead of ranking
+# by score. ctrl-s toggles ranking back on.
+#
 # Sessions are the top-level *.jsonl files under ~/.claude/projects/<project>/.
 # Title is the latest /rename title if any, else the latest auto-generated
 # title. Claude only resumes sessions belonging to the current directory's
@@ -215,7 +219,8 @@ self="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
 printf -v self_q '%q' "$self"
 
 selection="$(printf '%s\n' "$selection_rows" \
-    | fzf --delimiter=$'\t' --with-nth=1,2,3 --tabstop=2 \
+    | fzf --delimiter=$'\t' --with-nth=1,2,3 --tabstop=2 --exact --no-sort \
+        --bind 'ctrl-s:toggle-sort' \
         --prompt="$([ "$mode" = all ] && echo 'all> ' || echo 'resume> ')" --query="$*" \
         --bind "ctrl-l:reload($self_q --_rows all)+change-prompt(all> )" \
         --bind "ctrl-o:reload($self_q --_rows open)+change-prompt(resume> )" \
