@@ -18,6 +18,24 @@ even when resuming interrupted work.
 
 @~/.config/agents/git.md
 
+## Infrastructure access
+
+Never run commands that touch infrastructure unless I explicitly tell you to in
+that turn. This includes:
+
+- Vault (`vault ...`, including read and list operations)
+- SSH, `scp`, or any other connection to a remote host (including port probes
+  like `nc` against remote hosts)
+- AWS CLI (`aws ...`), including read-only calls such as `describe-*`
+
+Instead, give me the exact commands to run and what to look for in the output.
+I'll run them and paste the results. Redact or avoid commands that print
+secret values; prefer ones that list keys or metadata only.
+
+This applies even when credentials are already available in the session and
+even when a command looks read-only. Approval for one command doesn't extend to
+others.
+
 ## External Content Attribution
 
 Any PR body, GitHub comment, or issue posted to an external service must
