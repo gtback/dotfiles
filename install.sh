@@ -104,6 +104,7 @@ symlink pip
 symlink pipx
 symlink pypoetry
 symlink tmux
+symlink uv
 symlink vim
 
 # VSCode's `mise.binPath` points at ~/.local/bin/mise, since GUI-launched VSCode
