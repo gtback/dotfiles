@@ -131,6 +131,10 @@ export HOSTNAME="<PICK SOMETHING>"
    claude.mcp-sync
    ```
 
+1. Record that this machine is up to date: `dotfiles.applied --set`. Later,
+   ask Claude to "check what recent dotfiles changes need applied" (the
+   `dotfiles-apply` skill) to see what to run after pulling.
+
 ### Installing LanguageTool
 
 See Ben Balter’s [blog post][] to get started.

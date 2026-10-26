@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# SPDX-FileCopyrightText: 2026 Greg Back <git@gregback.net>
+# SPDX-License-Identifier: MIT
+
+# Record which dotfiles commit has been applied on this machine.
+#
+# Usage: dotfiles.applied          print the recorded commit (exit 1 if none)
+#        dotfiles.applied --set [rev]
+#                                  record rev (default HEAD) of ~/dotfiles
+
+set -euo pipefail
+
+marker="${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/applied"
+
+case "${1:-}" in
+"")
+    if [ ! -s "$marker" ]; then
+        echo "dotfiles.applied: nothing recorded on this machine" >&2
+        exit 1
+    fi
+    cat "$marker"
+    ;;
+--set)
+    sha="$(git -C "$HOME/dotfiles" rev-parse --verify "${2:-HEAD}^{commit}")"
+    mkdir -p "$(dirname "$marker")"
+    echo "$sha" >"$marker"
+    echo "$sha"
+    ;;
+*)
+    echo "Usage: dotfiles.applied [--set [rev]]" >&2
+    exit 2
+    ;;
+esac
