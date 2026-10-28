@@ -33,7 +33,7 @@ alias lspath='f(){echo ${PATH} | tr ":" "\n"};f'
 alias proxies="env | grep -i proxy"
 
 alias git=hub
-alias ip="http https://httpbin.org/ip | jq -r '.origin'"
+alias ip="curl -s https://httpbin.org/ip | jq -r '.origin'"
 alias xo="xargs open"
 
 # List top level npm packages (global and local)
